@@ -1,2 +1,2 @@
 # Crypto_Node
-This is the node for a crypto course of TU Wien.
+This is a node for a crypto course of TU Wien.
