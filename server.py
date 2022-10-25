@@ -72,7 +72,7 @@ def main():
                 if data:
                     print("\nID: ", data_id)
                     print('Received: \n"%s"' % data_string)
-                    logging.info(f"| RECEIVED | {data_id} | {client_address} | {data_string}") # saving what we got
+                    logging.info(f"| RECEIVED | {data_id} | {client_address} | {data}") # saving what we got
                     data_id += 1
 
                     # runs the function process in a new thread, as to not stop the loop
