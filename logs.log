@@ -1,0 +1,248 @@
+25/10/2022 09:11:29 | Creating Addresses file
+25/10/2022 14:07:15 | Reading Addresses | Addresses read: 0
+25/10/2022 14:08:10 | Reading Addresses | Addresses read: 0
+25/10/2022 14:09:20 | Saved Address | ('128.130.248.242', 57793)
+25/10/2022 14:09:20 | 0 | ('128.130.248.242', 57793) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:12:29 | Reading Addresses | Addresses read: 1
+25/10/2022 14:12:32 | 0 | ('128.130.248.242', 57827) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:18:48 | Reading Addresses | Addresses read: 1
+25/10/2022 14:18:52 | 0 | ('128.130.248.242', 57890) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:19:11 | 1 | ('128.130.248.242', 57894) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:20:45 | Reading Addresses | Addresses read: 1
+25/10/2022 14:20:48 | 0 | ('128.130.248.242', 57899) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:24:50 | Reading Addresses | Addresses read: 1
+25/10/2022 14:24:53 | 0 | ('128.130.248.242', 57926) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:25:53 | Reading Addresses | Addresses read: 1
+25/10/2022 14:25:56 | 0 | ('128.130.248.242', 57938) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:29:52 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:29:55 | RECEIVED | 0 | ('128.130.248.242', 57962) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:29:55 | SENT | ('128.130.248.242', 57962) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:31:47 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:31:52 | RECEIVED | 0 | ('128.130.248.242', 57968) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:31:52 | SENT | ('128.130.248.242', 57968) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:40:16 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:41:38 | RECEIVED | 0 | ('128.130.248.242', 58062) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:41:38 | SENT | ('128.130.248.242', 58062) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:43:54 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:44:02 | RECEIVED | 0 | ('128.130.248.242', 58086) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:44:02 | SENT | ('128.130.248.242', 58086) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:45:33 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:45:36 | RECEIVED | 0 | ('128.130.248.242', 58094) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:45:36 | SENT | ('128.130.248.242', 58094) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:46:53 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:46:55 | RECEIVED | 0 | ('128.130.248.242', 58100) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:46:55 | SENT | ('128.130.248.242', 58100) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:48:15 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:48:18 | RECEIVED | 0 | ('128.130.248.242', 58107) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:48:18 | SENT | ('128.130.248.242', 58107) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:49:21 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:49:23 | RECEIVED | 0 | ('128.130.248.242', 58116) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:49:35 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:49:37 | RECEIVED | 0 | ('128.130.248.242', 58117) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:50:02 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:50:05 | RECEIVED | 0 | ('128.130.248.242', 58119) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:51:29 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:51:32 | RECEIVED | 0 | ('128.130.248.242', 60646) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:52:18 | Reading Addresses | Addresses read: 1
+25/10/2022 14:52:23 | 0 | ('128.130.248.242', 60652) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:53:41 | Reading Addresses | Addresses read: 1
+25/10/2022 14:54:08 | 0 | ('128.130.248.242', 60667) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:54:59 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:55:04 | RECEIVED | 0 | ('128.130.248.242', 60673) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:56:14 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:56:17 | RECEIVED | 0 | ('128.130.248.242', 60683) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:56:17 | SENT | ('128.130.248.242', 60683) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:59:18 | READING ADDRESSES | Addresses read: 1
+25/10/2022 14:59:21 | RECEIVED | 0 | ('128.130.248.242', 60698) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 14:59:21 | SENT | ('128.130.248.242', 60698) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:00:45 | READING ADDRESSES | Addresses read: 1
+25/10/2022 15:00:50 | RECEIVED | 0 | ('128.130.248.242', 60705) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:00:50 | SENT | ('128.130.248.242', 60705) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:01:11 | READING ADDRESSES | Addresses read: 1
+25/10/2022 15:01:14 | RECEIVED | 0 | ('128.130.248.242', 60707) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:01:14 | SENT | ('128.130.248.242', 60707) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:03:43 | READING ADDRESSES | Addresses read: 1
+25/10/2022 15:03:46 | RECEIVED | 0 | ('128.130.248.242', 60717) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:03:46 | SENT | ('128.130.248.242', 60717) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:05:06 | RECEIVED | 1 | ('128.130.248.242', 60730) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:05:06 | SENT | ('128.130.248.242', 60730) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:26:33 | READING ADDRESSES | Addresses read: 1
+25/10/2022 15:26:37 | RECEIVED | 0 | ('128.130.248.242', 60893) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:28:15 | READING ADDRESSES | Addresses read: 1
+25/10/2022 15:28:19 | RECEIVED | 0 | ('128.130.248.242', 60901) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:28:19 | ERROR | ('128.130.248.242', 60901) | GETPEERS | b'{"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}' | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+25/10/2022 15:31:59 | READING ADDRESSES | Addresses read: 1
+25/10/2022 15:32:02 | RECEIVED | 0 | ('128.130.248.242', 60927) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:34:37 | READING ADDRESSES | Addresses read: 1
+25/10/2022 15:34:40 | RECEIVED | 0 | ('128.130.248.242', 60956) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:34:40 | SENT | ('128.130.248.242', 60956) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:35:30 | READING ADDRESSES | Addresses read: 1
+25/10/2022 15:35:32 | RECEIVED | 0 | ('128.130.248.242', 60960) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:35:32 | SENT | ('128.130.248.242', 60960) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:36:51 | READING ADDRESSES | Addresses read: 1
+25/10/2022 15:36:53 | RECEIVED | 0 | ('128.130.248.242', 60964) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:36:53 | SENT | ('128.130.248.242', 60964) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:37:21 | RECEIVED | 1 | ('128.130.248.242', 60965) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:37:21 | SENT | ('128.130.248.242', 60965) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:37:27 | RECEIVED | 2 | ('128.130.248.242', 60966) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 15:37:27 | SENT | ('128.130.248.242', 60966) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:12:32 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:12:57 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:12:58 | RECEIVED | 0 | ('128.130.248.242', 57403) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:13:44 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:13:56 | RECEIVED | 0 | ('128.130.248.242', 57416) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:14:58 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:15:04 | RECEIVED | 0 | ('128.130.248.242', 57419) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:16:47 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:16:48 | RECEIVED | 0 | ('128.130.248.242', 57423) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:18:54 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:19:07 | RECEIVED | 0 | ('128.130.248.242', 57480) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:19:07 | SENT | ('128.130.248.242', 57480) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:19:29 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:19:31 | RECEIVED | 0 | ('128.130.248.242', 57496) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:19:31 | SENT | ('128.130.248.242', 57496) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:20:36 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:20:42 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:20:44 | RECEIVED | 0 | ('128.130.248.242', 57511) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:20:44 | SENT | ('128.130.248.242', 57511) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:20:47 | RECEIVED | 1 | ('128.130.248.242', 57512) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:20:47 | SENT | ('128.130.248.242', 57512) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:21:46 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:21:47 | RECEIVED | 0 | ('128.130.248.242', 57522) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:21:47 | SENT | ('128.130.248.242', 57522) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:21:59 | RECEIVED | 1 | ('128.130.248.242', 57524) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:21:59 | SENT | ('128.130.248.242', 57524) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:23:16 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:23:17 | RECEIVED | 0 | ('128.130.248.242', 57531) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:23:17 | SENT | ('128.130.248.242', 57531) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:27:26 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:27:30 | RECEIVED | 0 | ('128.130.248.242', 57581) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:27:30 | SENT | ('128.130.248.242', 57581) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:27:39 | RECEIVED | 1 | ('128.130.248.242', 57585) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:28:33 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:28:36 | RECEIVED | 0 | ('128.130.248.242', 57596) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:28:36 | SENT | ('128.130.248.242', 57596) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:28:46 | RECEIVED | 1 | ('128.130.248.242', 57599) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:28:46 | SENT | ('128.130.248.242', 57599) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:28:49 | RECEIVED | 2 | ('128.130.248.242', 57600) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:28:49 | SENT | ('128.130.248.242', 57600) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:28:56 | RECEIVED | 3 | ('128.130.248.242', 57602) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:28:56 | SENT | ('128.130.248.242', 57602) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:29:02 | RECEIVED | 4 | ('128.130.248.242', 57604) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:29:02 | SENT | ('128.130.248.242', 57604) | {"type": "getPeers", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:30:01 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:30:10 | RECEIVED | 0 | ('128.130.248.242', 57631) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:30:10 | SENT | ('128.130.248.242', 57631) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:30:33 | RECEIVED | 1 | ('128.130.248.242', 57636) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:30:33 | ERROR | ('128.130.248.242', 57636) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:33:21 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:33:25 | RECEIVED | 0 | ('128.130.248.242', 57661) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:33:25 | ERROR | ('128.130.248.242', 57661) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:33:25 | ERROR | ('128.130.248.242', 57661) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | error() missing 3 required positional arguments: 'connection', 'client_address', and 'data' | ("error() missing 3 required positional arguments: 'connection', 'client_address', and 'data'",)
+25/10/2022 16:33:54 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:33:56 | RECEIVED | 0 | ('128.130.248.242', 57681) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:33:56 | ERROR | ('128.130.248.242', 57681) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:33:56 | SENT | ('128.130.248.242', 57681) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:33:56 | ERROR | ('128.130.248.242', 57681) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | My exit condition was met. Leaving try block | ('My exit condition was met. Leaving try block',)
+25/10/2022 16:33:56 | SENT | ('128.130.248.242', 57681) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:34:00 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:34:03 | RECEIVED | 0 | ('128.130.248.242', 57690) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:34:03 | ERROR | ('128.130.248.242', 57690) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:34:03 | SENT | ('128.130.248.242', 57690) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:34:03 | ERROR | ('128.130.248.242', 57690) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | My exit condition was met. Leaving try block | ('My exit condition was met. Leaving try block',)
+25/10/2022 16:34:03 | SENT | ('128.130.248.242', 57690) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:34:21 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:34:23 | RECEIVED | 0 | ('128.130.248.242', 57693) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:34:23 | ERROR | ('128.130.248.242', 57693) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:34:23 | SENT | ('128.130.248.242', 57693) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:34:23 | SENT | ('128.130.248.242', 57693) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:07 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:38:18 | RECEIVED | 0 | ('128.130.248.242', 58961) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:18 | ERROR | ('128.130.248.242', 58961) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:38:18 | SENT | ('128.130.248.242', 58961) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:18 | SENT | ('128.130.248.242', 58961) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:18 | ERROR | ('128.130.248.242', 58961) | 1 | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | [WinError 10054] Eine vorhandene Verbindung wurde vom Remotehost geschlossen | (10054, 'Eine vorhandene Verbindung wurde vom Remotehost geschlossen', None, 10054, None)
+25/10/2022 16:38:20 | RECEIVED | 1 | ('128.130.248.242', 58962) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:20 | ERROR | ('128.130.248.242', 58962) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:38:20 | SENT | ('128.130.248.242', 58962) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:20 | SENT | ('128.130.248.242', 58962) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:20 | ERROR | ('128.130.248.242', 58962) | 2 | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | [WinError 10054] Eine vorhandene Verbindung wurde vom Remotehost geschlossen | (10054, 'Eine vorhandene Verbindung wurde vom Remotehost geschlossen', None, 10054, None)
+25/10/2022 16:38:40 | RECEIVED | 2 | ('128.130.248.242', 58970) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:40 | ERROR | ('128.130.248.242', 58970) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:38:40 | SENT | ('128.130.248.242', 58970) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:40 | SENT | ('128.130.248.242', 58970) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:46 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:38:49 | RECEIVED | 0 | ('128.130.248.242', 58972) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:49 | ERROR | ('128.130.248.242', 58972) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:38:49 | SENT | ('128.130.248.242', 58972) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:49 | ERROR | ('128.130.248.242', 58972) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | My exit condition was met. Leaving try block | ('My exit condition was met. Leaving try block',)
+25/10/2022 16:38:49 | SENT | ('128.130.248.242', 58972) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:38:49 | ERROR | ('128.130.248.242', 58972) | 1 | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | [WinError 10054] Eine vorhandene Verbindung wurde vom Remotehost geschlossen | (10054, 'Eine vorhandene Verbindung wurde vom Remotehost geschlossen', None, 10054, None)
+25/10/2022 16:39:29 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:39:34 | RECEIVED | 0 | ('128.130.248.242', 58980) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:39:34 | ERROR | ('128.130.248.242', 58980) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:39:34 | SENT | ('128.130.248.242', 58980) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:41:02 | RECEIVED | 1 | ('128.130.248.242', 58989) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:41:02 | ERROR | ('128.130.248.242', 58989) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:41:02 | SENT | ('128.130.248.242', 58989) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:41:38 | RECEIVED | 2 | ('128.130.248.242', 58996) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:41:38 | ERROR | ('128.130.248.242', 58996) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:41:38 | SENT | ('128.130.248.242', 58996) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:57:47 | READING ADDRESSES | Addresses read: 1
+25/10/2022 16:57:51 | RECEIVED | 0 | ('128.130.248.242', 59158) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:57:51 | ERROR | ('128.130.248.242', 59158) | HELLO | b'{"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}' | Version not supported
+25/10/2022 16:57:51 | SENT | ('128.130.248.242', 59158) | {"type": "hello", "version": "0.5.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:58:13 | RECEIVED | 1 | ('128.130.248.242', 59164) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 16:58:13 | SENT | ('128.130.248.242', 59164) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:01:37 | RECEIVED | 2 | ('128.130.248.242', 59192) | {"type": "peers", "peers": []}
+
+25/10/2022 17:01:37 | ERROR | ('128.130.248.242', 59192) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
+25/10/2022 17:03:52 | READING ADDRESSES | Addresses read: 1
+25/10/2022 17:03:56 | RECEIVED | 0 | ('128.130.248.242', 59230) | {"type": "peers", "peers": []}
+
+25/10/2022 17:03:56 | ERROR | ('128.130.248.242', 59230) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
+25/10/2022 17:07:54 | READING ADDRESSES | Addresses read: 1
+25/10/2022 17:07:57 | RECEIVED | 0 | ('128.130.248.242', 59266) | {"type": "peers", "peers": []}
+
+25/10/2022 17:07:57 | ERROR | ('128.130.248.242', 59266) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
+25/10/2022 17:14:00 | RECEIVED | 1 | ('128.130.248.242', 59360) | {"type": "peers", "peers": []}
+
+25/10/2022 17:14:00 | ERROR | ('128.130.248.242', 59360) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
+25/10/2022 17:14:47 | RECEIVED | 2 | ('128.130.248.242', 59365) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:14:47 | SENT | ('128.130.248.242', 59365) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:14:53 | RECEIVED | 3 | ('128.130.248.242', 59366) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:14:53 | SENT | ('128.130.248.242', 59366) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:14:54 | RECEIVED | 4 | ('128.130.248.242', 59367) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:14:54 | SENT | ('128.130.248.242', 59367) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:14:55 | RECEIVED | 5 | ('128.130.248.242', 59368) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:14:55 | SENT | ('128.130.248.242', 59368) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:14:55 | RECEIVED | 6 | ('128.130.248.242', 59369) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:14:55 | SENT | ('128.130.248.242', 59369) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:14:56 | RECEIVED | 7 | ('128.130.248.242', 59370) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:14:56 | SENT | ('128.130.248.242', 59370) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:18:07 | RECEIVED | 8 | ('128.130.248.242', 59405) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:18:07 | SENT | ('128.130.248.242', 59405) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:18:09 | RECEIVED | 9 | ('128.130.248.242', 59406) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:18:09 | SENT | ('128.130.248.242', 59406) | {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+25/10/2022 17:18:15 | RECEIVED | 10 | ('128.130.248.242', 59408) | {"type": "peers", "peers": []}
+
+25/10/2022 17:18:15 | ERROR | ('128.130.248.242', 59408) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
+25/10/2022 17:20:01 | READING ADDRESSES | Addresses read: 1
+25/10/2022 17:20:10 | RECEIVED | 0 | ('128.130.248.242', 59444) | {"type": "peers", "peers": []}
+
+25/10/2022 17:20:10 | ERROR | ('128.130.248.242', 59444) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
+25/10/2022 17:21:41 | RECEIVED | 1 | ('128.130.248.242', 59451) | {"type": "peers", "peers": []}
+
+25/10/2022 17:21:41 | ERROR | ('128.130.248.242', 59451) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
+25/10/2022 17:21:58 | RECEIVED | 2 | ('128.130.248.242', 59455) | {"type": "peers", "peers": []}
+
+25/10/2022 17:21:58 | ERROR | ('128.130.248.242', 59455) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
+25/10/2022 17:22:35 | RECEIVED | 3 | ('128.130.248.242', 59461) | {"type": "peers", "peers": []}
+
+25/10/2022 17:22:35 | ERROR | ('128.130.248.242', 59461) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
+25/10/2022 17:22:50 | RECEIVED | 4 | ('128.130.248.242', 59463) | {"type": "peers", "peers": []}
+
+25/10/2022 17:22:50 | ERROR | ('128.130.248.242', 59463) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
+25/10/2022 17:22:53 | RECEIVED | 5 | ('128.130.248.242', 59465) | {"type": "peers", "peers": []}
+
+25/10/2022 17:22:53 | ERROR | ('128.130.248.242', 59465) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
