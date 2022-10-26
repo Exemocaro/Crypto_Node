@@ -1,3 +1,4 @@
+from json import load
 import socket
 import sys
 
@@ -17,9 +18,16 @@ try:
     # Send data
     # '{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}'
     
+    ###### GETPEERS
+    #message_string = json.dumps({"type": "getPeers"})
+    #message = str.encode(str(message_string + "\n"))
+
+    ###### PEERS
+    loadAddresses()
     message_string = json.dumps({"type": "peers", "peers": KNOWN_ADDRESSES})
     message = str.encode(str(message_string + "\n"))
     
+    ###### HELLO
     #message = b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}'
     #message_string = str(message, encoding="utf-8") # converting from binary to string
     
@@ -43,11 +51,11 @@ try:
     amount_received = 0
     amount_expected = len(data_string)
     
-    """ while amount_received < amount_expected:
+    while amount_received < amount_expected:
         #print("Length of data: ", len(data_string))
         amount_received += len(data_string)
         print('\nReceived: \n"%s"' % data_string)
-        print("received:", amount_received, "| expected:", amount_expected) """
+        #print("received:", amount_received, "| expected:", amount_expected)
 
 finally:
     print('\nClosing socket\n')

@@ -246,3 +246,4 @@
 25/10/2022 17:22:53 | RECEIVED | 5 | ('128.130.248.242', 59465) | {"type": "peers", "peers": []}
 
 25/10/2022 17:22:53 | ERROR | ('128.130.248.242', 59465) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
+25/10/2022 17:49:07 | READING ADDRESSES | Addresses read: 3

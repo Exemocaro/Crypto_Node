@@ -71,7 +71,7 @@ def main():
                 data_string = str(data, encoding="utf-8") # converting from binary to string
                 if data:
                     print("\nID: ", data_id)
-                    print('Received: \n"%s"' % data_string)
+                    print('Received: \n"%s"' % data)
                     logging.info(f"| RECEIVED | {data_id} | {client_address} | {data}") # saving what we got
                     data_id += 1
 

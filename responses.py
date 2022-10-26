@@ -21,7 +21,7 @@ def hello(connection, client_address, data):
                 data_string = str(data, encoding="utf-8")
 
                 connection.sendall(data_to_send) # we can't send str(data) because it must be a "byte-like object"
-                logging.info(f"| SENT | {client_address} | {data_string}") # saving what we got
+                logging.info(f"| SENT | {client_address} | {data}") # saving what we got
     except Exception as e:
         logging.error(f"| ERROR | {client_address} | HELLO | {data} | {e} | {e.args}") # saving what we got
         print(f"\nError on hello! {e} | {e.args}\n")
@@ -40,7 +40,7 @@ def getPeers(connection, client_address, data):
         data_string = str(data, encoding="utf-8")
 
         connection.sendall(data_to_send) # we can't send str(data) because it must be a "byte-like object"
-        logging.info(f"| SENT | {client_address} | {data_string}") # saving what we got
+        logging.info(f"| SENT | {client_address} | {data}") # saving what we got
     except Exception as e:
         logging.error(f"| ERROR | {client_address} | GETPEERS | {data} | {e} | {e.args}") # saving what we got
         print(f"\nError on getPeers! {e} | {e.args}\n")
@@ -57,7 +57,7 @@ def peers(connection, client_address, data):
             if nPeers > 0: # might be empty, we don't know
                 for peer in data_parsed["peers"]:
                     checkAddresses(peer)
-                print(f"\nUpdated peers list with {nPeers}!\n")
+                print(f"\nChecked {nPeers} new peers!\n")
             else:
                 logging.error(f"| ERROR | {client_address} | PEERS | {data} | Received empty peers list!")
 
@@ -76,7 +76,7 @@ def error(connection, client_address, data):
         data_string = str(data, encoding="utf-8")
 
         connection.sendall(data_to_send) # we can't send str(data) because it must be a "byte-like object"
-        logging.info(f"| SENT | {client_address} | {data_string}") # saving what we got
+        logging.info(f"| SENT | {client_address} | {data}") # saving what we got
     except Exception as e:
         logging.error(f"| ERROR | {client_address} | ERROR | {data} | {e} | {e.args}") # saving what we got
         print(f"\nError on error! {e} | {e.args}\n")

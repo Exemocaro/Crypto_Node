@@ -2,8 +2,8 @@ import platform
 import logging
 import json
 
-HOST = "128.130.248.242" # LOCAL
-#HOST = "143.244.205.206"  # MINE
+#HOST = "128.130.248.242" # LOCAL
+HOST = "143.244.205.206"  # MINE
 #HOST = "144.126.247.134" #JAN
 PORT = 18018  # The port used by the server
 
