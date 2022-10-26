@@ -351,3 +351,4 @@
 26/10/2022 16:09:48 | SENT | ('192.168.56.1', 58814) | {"type": "getPeers"}
 26/10/2022 16:09:51 | RECEIVED | ('192.168.56.1', 58814) | b'{"type": "peers", "peers": []}'
 26/10/2022 16:09:51 | ERROR | ('192.168.56.1', 58814) | PEERS | b'{"type": "peers", "peers": []}' | Received empty peers list!
+26/10/2022 16:10:50 | READING ADDRESSES | Addresses read: 4

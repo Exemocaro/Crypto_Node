@@ -1,60 +1,47 @@
-from json import load
+from multiprocessing.connection import wait
 import socket
-import sys
+import json
 
-from config import *
+HOST = "192.168.56.1" # LOCAL
+#HOST = "143.244.205.206"  # MINE
+#HOST = "144.126.247.134" #JAN
+PORT = 18018  # The port used by the server
 
-# Create a TCP/IP socket
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+CLIENTS_NUMBER = 5000
+DATA_SIZE = 2048 # size of data to read from each received message
+KNOWN_ADDRESSES = [] # stores all the addresses this node knows
+ADDRESSES_FILE = 'known_addresses.txt' # file that stores the known addresses
+#SYSTEM = platform.system().lower() # our operating system
 
-# Connect the socket to the port where the server is listening
-#server_address = ('localhost', 10000)
-server_address = (HOST, PORT)
+host = HOST
+port = PORT
 
-print('\nConnecting to %s port %s' % server_address)
-sock.connect(server_address)
+ClientMultiSocket = socket.socket()
+#host = '127.0.0.1'
+#port = 2004
 
+print('Waiting for connection response')
 try:
-    ###### GETPEERS
-    #message_string = json.dumps({"type": "getPeers"})
-    #message = str.encode(str(message_string + "\n"))
+    ClientMultiSocket.connect((host, port))
+except socket.error as e:
+    print(str(e))
+res = ClientMultiSocket.recv(DATA_SIZE)
 
-    ###### PEERS
-    #loadAddresses()
-    #message_string = json.dumps({"type": "peers", "peers": KNOWN_ADDRESSES})
-    #message = str.encode(str(message_string + "\n"))
+while True:
+    waitForResponse = True  
+    Input = input('Hey there: ')
+    if Input == "hello":
+        Input = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"})
     
-    ###### HELLO
-    message = b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}'
-    message_string = str(message, encoding="utf-8") # converting from binary to string
-    
-    print('\nSending: \n"%s"' % message_string)
-    sock.sendall(message)
+    elif Input == "peers":
+        Input = json.dumps({"type": "peers", "peers": KNOWN_ADDRESSES})
+        waitForResponse = False
 
-    #sock.setblocking(False) # IMPORTANT
-    
-    data = str()
-    data_string = str()
-
-    try:
-        #sock.settimeout(2) # time to wait for answer. if we don't get it in x secs, we close the connection
-        data = sock.recv(DATA_SIZE)
-        data_string = str(data, encoding="utf-8")
-    except Exception as e:
-        print("\nConnection timed out!")
-
-    # Look for the response
-    amount_received = 0
-    amount_expected = len(data_string)
-    
-    #while True:
-    while True:
-        while amount_received < amount_expected:
-            #print("Length of data: ", len(data_string))
-            amount_received += len(data_string)
-            print('\nReceived: \n"%s"' % data_string)
-            #print("received:", amount_received, "| expected:", amount_expected)
-
-finally:
-    print('\nClosing socket\n')
-    sock.close()
+    elif Input == "getPeers":
+        Input = json.dumps({"type": "getPeers"})
+        
+    ClientMultiSocket.send(str.encode(Input))
+    if waitForResponse:
+        res = ClientMultiSocket.recv(DATA_SIZE)
+    print(res.decode('utf-8'))
+ClientMultiSocket.close()
