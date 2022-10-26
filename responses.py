@@ -11,7 +11,7 @@ def hello(connection, client_address, data):
 
         if "version" in data_parsed:
             if data_parsed["version"][:4] != "0.8.":
-                logging.error(f"| ERROR | {client_address} | HELLO | {data} | Version not supported") # saving what we got
+                logging.error(f"| ERROR | {client_address} | HELLO | {data} | Version not supported")
                 print(f"\nWrong hello version!\n")
                 error(connection, client_address, data)
             else:
@@ -21,9 +21,9 @@ def hello(connection, client_address, data):
                 data_string = str(data, encoding="utf-8")
 
                 connection.sendall(data_to_send) # we can't send str(data) because it must be a "byte-like object"
-                logging.info(f"| SENT | {client_address} | {data}") # saving what we got
+                logging.info(f"| SENT | {client_address} | {data}")
     except Exception as e:
-        logging.error(f"| ERROR | {client_address} | HELLO | {data} | {e} | {e.args}") # saving what we got
+        logging.error(f"| ERROR | {client_address} | HELLO | {data} | {e} | {e.args}")
         print(f"\nError on hello! {e} | {e.args}\n")
         error(connection, client_address, data)
     finally:
@@ -40,9 +40,9 @@ def getPeers(connection, client_address, data):
         data_string = str(data, encoding="utf-8")
 
         connection.sendall(data_to_send) # we can't send str(data) because it must be a "byte-like object"
-        logging.info(f"| SENT | {client_address} | {data}") # saving what we got
+        logging.info(f"| SENT | {client_address} | {data_string}")
     except Exception as e:
-        logging.error(f"| ERROR | {client_address} | GETPEERS | {data} | {e} | {e.args}") # saving what we got
+        logging.error(f"| ERROR | {client_address} | GETPEERS | {data_string} | {e} | {e.args}")
         print(f"\nError on getPeers! {e} | {e.args}\n")
         error(connection, client_address, data)
     finally:
@@ -62,23 +62,23 @@ def peers(connection, client_address, data):
                 logging.error(f"| ERROR | {client_address} | PEERS | {data} | Received empty peers list!")
 
     except Exception as e:
-        logging.error(f"| ERROR | {client_address} | PEERS | {data} | {e} | {e.args}") # saving what we got
+        logging.error(f"| ERROR | {client_address} | PEERS | {data} | {e} | {e.args}")
         print(f"\nError on peers! {e} | {e.args}\n")
         error(connection, client_address, data)
     finally:
         pass
 
-def error(connection, client_address, data):
+def error(connection, client_address, data, message="Wrong hello version type!"):
     try:
-        data_to_send = b'{"type " : " error " , "error " : "Unsupported message type received"}\n'
+        data_to_send = b'{"type " : " error " , "error " : ' + message + '}\n'
 
         print(f"\nSending data: \n{data_to_send}")
-        data_string = str(data, encoding="utf-8")
+        #data_string = str(data, encoding="utf-8")
 
         connection.sendall(data_to_send) # we can't send str(data) because it must be a "byte-like object"
-        logging.info(f"| SENT | {client_address} | {data}") # saving what we got
+        logging.info(f"| SENT | {client_address} | {data}")
     except Exception as e:
-        logging.error(f"| ERROR | {client_address} | ERROR | {data} | {e} | {e.args}") # saving what we got
+        logging.error(f"| ERROR | {client_address} | ERROR | {data} | {e} | {e.args}")
         print(f"\nError on error! {e} | {e.args}\n")
         #error(connection, client_address, data)
     finally:

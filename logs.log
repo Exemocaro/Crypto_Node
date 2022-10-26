@@ -247,3 +247,107 @@
 
 25/10/2022 17:22:53 | ERROR | ('128.130.248.242', 59465) | PEERS | b'{"type": "peers", "peers": []}\n' | Received empty peers list!
 25/10/2022 17:49:07 | READING ADDRESSES | Addresses read: 3
+26/10/2022 14:28:17 | READING ADDRESSES | Addresses read: 3
+26/10/2022 14:30:40 | READING ADDRESSES | Addresses read: 3
+26/10/2022 14:30:49 | READING ADDRESSES | Addresses read: 3
+26/10/2022 14:30:49 | SAVED ADDRESS | ('192.168.56.1', 58988)
+26/10/2022 14:30:49 | RECEIVED | 0 | ('192.168.56.1', 58988) | b'{"type": "peers", "peers": ["128.130.248.242", "143.244.205.206", "144.126.247.134"]}\n'
+26/10/2022 14:30:49 | SAVED ADDRESS | 128.130.248.242
+26/10/2022 14:31:10 | READING ADDRESSES | Addresses read: 5
+26/10/2022 14:31:10 | RECEIVED | 1 | ('192.168.56.1', 58994) | b'{"type": "peers", "peers": ["128.130.248.242", "143.244.205.206", "144.126.247.134", "192.168.56.1", "1"]}\n'
+26/10/2022 14:31:57 | READING ADDRESSES | Addresses read: 5
+26/10/2022 14:32:19 | READING ADDRESSES | Addresses read: 5
+26/10/2022 14:32:25 | READING ADDRESSES | Addresses read: 5
+26/10/2022 14:32:25 | RECEIVED | 0 | ('192.168.56.1', 59024) | b'{"type": "peers", "peers": ["128.130.248.242", "143.244.205.206", "144.126.247.134", "192.168.56.1", "1"]}\n'
+26/10/2022 14:34:57 | RECEIVED | 1 | ('192.168.56.1', 59059) | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}'
+26/10/2022 14:34:57 | SENT | ('192.168.56.1', 59059) | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}'
+26/10/2022 14:35:35 | RECEIVED | 2 | ('192.168.56.1', 59078) | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}'
+26/10/2022 14:35:35 | SENT | ('192.168.56.1', 59078) | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}'
+26/10/2022 14:35:54 | RECEIVED | 3 | ('192.168.56.1', 59091) | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}'
+26/10/2022 14:35:54 | SENT | ('192.168.56.1', 59091) | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}'
+26/10/2022 15:00:08 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:09:10 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:13:39 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:13:42 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:13:56 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:14:34 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:16:03 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:16:51 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:17:08 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:18:07 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:18:26 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:20:01 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:20:51 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:21:35 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:21:56 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:22:18 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:23:14 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:24:11 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:25:14 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:26:07 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:26:11 | RECEIVED | ('192.168.56.1', 62091) | b'ageaga'
+26/10/2022 15:26:11 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+26/10/2022 15:26:11 | SENT | ('192.168.56.1', 62091) | b'ageaga'
+26/10/2022 15:26:20 | RECEIVED | ('192.168.56.1', 62091) | b'lnlkaengae'
+26/10/2022 15:26:20 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+26/10/2022 15:26:20 | SENT | ('192.168.56.1', 62091) | b'lnlkaengae'
+26/10/2022 15:27:29 | RECEIVED | ('192.168.56.1', 62091) | b'{"type": "peers"}'
+26/10/2022 15:28:20 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:28:49 | RECEIVED | ('192.168.56.1', 62134) | b'aaaa'
+26/10/2022 15:28:49 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+26/10/2022 15:28:49 | SENT | ('192.168.56.1', 62134) | b'aaaa'
+26/10/2022 15:28:58 | RECEIVED | ('192.168.56.1', 62133) | b'{"type":"getPeers"}'
+26/10/2022 15:28:58 | SENT | ('192.168.56.1', 62133) | b'{"type":"getPeers"}'
+26/10/2022 15:29:32 | RECEIVED | ('192.168.56.1', 62133) | b'{"type":"peers", "peers":["128.130.248.242"]}'
+26/10/2022 15:29:32 | SAVED ADDRESS | 128.130.248.242
+26/10/2022 15:30:00 | RECEIVED | ('192.168.56.1', 62140) | b'paigejpagnea'
+26/10/2022 15:30:00 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+26/10/2022 15:30:00 | SENT | ('192.168.56.1', 62140) | b'paigejpagnea'
+26/10/2022 15:31:47 | READING ADDRESSES | Addresses read: 4
+26/10/2022 15:31:49 | SAVED ADDRESS | ('192.168.56.1', 52999)
+26/10/2022 15:32:02 | RECEIVED | ('192.168.56.1', 53001) | b'oaiegoange'
+26/10/2022 15:32:02 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+26/10/2022 15:32:02 | SENT | ('192.168.56.1', 53001) | b'oaiegoange'
+26/10/2022 15:32:12 | RECEIVED | ('192.168.56.1', 52999) | b'{"type":"getPeers"}'
+26/10/2022 15:32:12 | SENT | ('192.168.56.1', 52999) | b'{"type":"getPeers"}'
+26/10/2022 15:32:35 | RECEIVED | ('192.168.56.1', 52999) | b'{"type":"peers", "peers":["128.130.248.242"]}'
+26/10/2022 15:32:35 | SAVED ADDRESS | 128.130.248.242
+26/10/2022 15:33:15 | RECEIVED | ('192.168.56.1', 53001) | b'here: {"type":"peers", "peers":["128.130.248.242"]}'
+26/10/2022 15:33:15 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+26/10/2022 15:33:15 | SENT | ('192.168.56.1', 53001) | b'here: {"type":"peers", "peers":["128.130.248.242"]}'
+26/10/2022 15:33:17 | RECEIVED | ('192.168.56.1', 53001) | b'ega+lmaegae'
+26/10/2022 15:33:17 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+26/10/2022 15:33:17 | SENT | ('192.168.56.1', 53001) | b'ega+lmaegae'
+26/10/2022 15:44:08 | READING ADDRESSES | Addresses read: 6
+26/10/2022 15:44:29 | RECEIVED | ('192.168.56.1', 55158) | b'oagangea'
+26/10/2022 15:44:29 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+26/10/2022 15:44:29 | SENT | ('192.168.56.1', 55158) | b'oagangea'
+26/10/2022 15:44:31 | RECEIVED | ('192.168.56.1', 55159) | b'kejbgkajgae'
+26/10/2022 15:44:31 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+26/10/2022 15:44:31 | SENT | ('192.168.56.1', 55159) | b'kejbgkajgae'
+26/10/2022 15:44:43 | RECEIVED | ('192.168.56.1', 55156) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 15:44:43 | SENT | ('192.168.56.1', 55156) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 15:44:47 | RECEIVED | ('192.168.56.1', 55156) | b'hello\xc2\xb4'
+26/10/2022 15:44:47 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+26/10/2022 15:44:47 | SENT | ('192.168.56.1', 55156) | b'hello\xc2\xb4'
+26/10/2022 15:44:50 | RECEIVED | ('192.168.56.1', 55159) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 15:44:50 | SENT | ('192.168.56.1', 55159) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 15:44:52 | RECEIVED | ('192.168.56.1', 55158) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 15:44:52 | SENT | ('192.168.56.1', 55158) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 15:44:57 | RECEIVED | ('192.168.56.1', 55158) | b'{"type": "getPeers"}'
+26/10/2022 15:44:57 | SENT | ('192.168.56.1', 55158) | b'{"type": "getPeers"}'
+26/10/2022 15:45:04 | RECEIVED | ('192.168.56.1', 55158) | b'{"type": "getPeers"}'
+26/10/2022 15:45:04 | SENT | ('192.168.56.1', 55158) | b'{"type": "getPeers"}'
+26/10/2022 15:45:36 | RECEIVED | ('192.168.56.1', 55159) | b'{"type": "peers", "peers": []}'
+26/10/2022 15:45:36 | ERROR | ('192.168.56.1', 55159) | PEERS | b'{"type": "peers", "peers": []}' | Received empty peers list!
+26/10/2022 15:46:51 | RECEIVED | ('192.168.56.1', 55159) | b'{"type":"hello", "version":"0.111111"}'
+26/10/2022 15:46:51 | ERROR | ('192.168.56.1', 55159) | HELLO | b'{"type":"hello", "version":"0.111111"}' | Version not supported
+26/10/2022 15:46:51 | SENT | ('192.168.56.1', 55159) | b'{"type":"hello", "version":"0.111111"}'
+26/10/2022 16:09:39 | READING ADDRESSES | Addresses read: 3
+26/10/2022 16:09:41 | SAVED ADDRESS | ('192.168.56.1', 58814)
+26/10/2022 16:09:46 | RECEIVED | ('192.168.56.1', 58814) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 16:09:46 | SENT | ('192.168.56.1', 58814) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 16:09:48 | RECEIVED | ('192.168.56.1', 58814) | b'{"type": "getPeers"}'
+26/10/2022 16:09:48 | SENT | ('192.168.56.1', 58814) | {"type": "getPeers"}
+26/10/2022 16:09:51 | RECEIVED | ('192.168.56.1', 58814) | b'{"type": "peers", "peers": []}'
+26/10/2022 16:09:51 | ERROR | ('192.168.56.1', 58814) | PEERS | b'{"type": "peers", "peers": []}' | Received empty peers list!

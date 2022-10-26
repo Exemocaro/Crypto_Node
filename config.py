@@ -2,15 +2,18 @@ import platform
 import logging
 import json
 
-#HOST = "128.130.248.242" # LOCAL
-HOST = "143.244.205.206"  # MINE
+HOST = "192.168.56.1" # LOCAL
+#HOST = "143.244.205.206"  # MINE
 #HOST = "144.126.247.134" #JAN
 PORT = 18018  # The port used by the server
 
+CLIENTS_NUMBER = 5000
 DATA_SIZE = 2048 # size of data to read from each received message
 KNOWN_ADDRESSES = [] # stores all the addresses this node knows
+VALIDATION_SETTINGS = [] # stores the addresses that are waiting for validation
 ADDRESSES_FILE = 'known_addresses.txt' # file that stores the known addresses
 SYSTEM = platform.system().lower() # our operating system
+SERVER_ADDRESS = ('', PORT)
 
 # logging things
 logging.basicConfig(
@@ -45,6 +48,17 @@ def loadAddresses():
     print("Known Addresses:")
     print(KNOWN_ADDRESSES, end="\n\n")
 
+
+def addAddress(address):
+    if address not in KNOWN_ADDRESSES:
+        print(f"\nUnknown address {address}! Saving it...")
+        with open('known_addresses.txt', 'a') as f:
+            f.write(f"{address}\n")
+        KNOWN_ADDRESSES.append(address)
+        logging.info(f"| SAVED ADDRESS | {address}")
+    else:
+        print(f"\nKnown address {address}.")
+
 # checks if the passed address is in the list of known ones, and if not adds it.
 def checkAddresses(client_address):
     if client_address[0] not in KNOWN_ADDRESSES:
@@ -55,3 +69,25 @@ def checkAddresses(client_address):
         logging.info(f"| SAVED ADDRESS | {client_address}")
     else:
         print(f"\nKnown address {client_address}.")
+
+def checkAddress(client_address):
+    return client_address[0] in KNOWN_ADDRESSES
+
+
+def validateAdress(connection, address):
+    try:
+        data = {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+        data_to_send = json.dumps(data)
+        data_to_send = str.encode(str(data_to_send + "\n"))
+
+        VALIDATION_SETTINGS.append(address)
+
+        print(f"\nSending data: \n{data}")
+        connection.sendall(data_to_send) # we can't send str(data) because it must be a "byte-like object"
+        logging.info(f"| SENT | {address} | {data}")
+
+    except Exception as e:
+        logging.error(f"| ERROR | {address} | VALIDATE | {e} | {e.args}")
+        print(f"\nError on validate! {e} | {e.args}\n")
+    finally:
+        pass
