@@ -11,7 +11,7 @@ from responses import *
 
 # will process the data we receive and send back some message or something
 def multi_threaded_client(connection, client_address):
-    connection.send(str.encode('Server is working:'))
+    #connection.send(str.encode('Server is working:'))
     while True:
         data = connection.recv(DATA_SIZE)
         data_string = str(data, encoding="utf-8") # converting from binary to string
@@ -59,7 +59,7 @@ def startSocket():
         serverSideSocket.bind(SERVER_ADDRESS)
         #serverSideSocket.bind((HOST, PORT))
     except socket.error as e:
-        logging.error(f"| ERROR | {client_address} | {e} | {e.args} | Error when binding the socket to the server address")
+        logging.error(f"| ERROR | {SERVER_ADDRESS} | {e} | {e.args} | Error when binding the socket to the server address")
         print(str(e))
 
     print('Starting up on %s port %s' % SERVER_ADDRESS)
@@ -89,3 +89,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# if you read this far, you are awesome!

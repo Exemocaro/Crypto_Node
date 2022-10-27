@@ -352,3 +352,52 @@
 26/10/2022 16:09:51 | RECEIVED | ('192.168.56.1', 58814) | b'{"type": "peers", "peers": []}'
 26/10/2022 16:09:51 | ERROR | ('192.168.56.1', 58814) | PEERS | b'{"type": "peers", "peers": []}' | Received empty peers list!
 26/10/2022 16:10:50 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:42:56 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:43:55 | SAVED ADDRESS | ('127.0.0.1', 52324)
+26/10/2022 19:43:59 | RECEIVED | ('127.0.0.1', 52324) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 19:43:59 | SENT | ('127.0.0.1', 52324) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 19:44:40 | RECEIVED | ('127.0.0.1', 52405) | b'{"type": "peers", "peers": ["144.126.247.134"]}'
+26/10/2022 19:45:30 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:45:30 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:46:31 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:47:57 | RECEIVED | ('127.0.0.1', 52765) | b'{"type": "peers", "peers": ["144.126.247.134"]}'
+26/10/2022 19:47:57 | ERROR | 144.126.247.134 | VALIDATE | connect(): AF_INET address must be tuple, not str | ('connect(): AF_INET address must be tuple, not str',)
+26/10/2022 19:48:32 | RECEIVED | ('127.0.0.1', 52859) | b'{"type": "peers", "peers": ["144.126.247.134"]}'
+26/10/2022 19:48:32 | ERROR | 144.126.247.134 | VALIDATE | connect(): AF_INET address must be tuple, not str | ('connect(): AF_INET address must be tuple, not str',)
+26/10/2022 19:49:15 | RECEIVED | ('127.0.0.1', 52925) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+26/10/2022 19:49:15 | ERROR | 144.126.247.134:18018 | VALIDATE | connect(): AF_INET address must be tuple, not str | ('connect(): AF_INET address must be tuple, not str',)
+26/10/2022 19:49:26 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:49:26 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:50:01 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:50:06 | RECEIVED | ('127.0.0.1', 52957) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+26/10/2022 19:50:07 | ERROR | 144.126.247.134:18018 | VALIDATE | connect(): AF_INET address must be tuple, not str | ('connect(): AF_INET address must be tuple, not str',)
+26/10/2022 19:50:56 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:50:56 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:51:16 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:51:16 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:51:23 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:51:23 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:51:32 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:51:38 | RECEIVED | ('127.0.0.1', 53088) | b'{"type": "peers", "peers": [["144.126.247.134", 18018]]}'
+26/10/2022 19:51:38 | ERROR | ['144.126.247.134', 18018] | VALIDATE | connect(): AF_INET address must be tuple, not list | ('connect(): AF_INET address must be tuple, not list',)
+26/10/2022 19:53:20 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:53:20 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:53:34 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:53:34 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:54:05 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:58:41 | RECEIVED | ('127.0.0.1', 53753) | b'{"type": "peers", "peers": [("144.126.247.134",18018)]}'
+26/10/2022 19:58:41 | ERROR | Error parsing json. | Expecting value: line 1 column 29 (char 28) | ('Expecting value: line 1 column 29 (char 28)',)
+26/10/2022 19:58:41 | ERROR | ('127.0.0.1', 53753) | ERROR | b'{"type": "peers", "peers": [("144.126.247.134",18018)]}' | can't concat str to bytes | ("can't concat str to bytes",)
+26/10/2022 20:00:40 | READING ADDRESSES | Addresses read: 4
+26/10/2022 20:00:40 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 20:00:50 | READING ADDRESSES | Addresses read: 4
+26/10/2022 20:00:50 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 20:00:56 | READING ADDRESSES | Addresses read: 4
+26/10/2022 20:00:56 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 20:01:34 | READING ADDRESSES | Addresses read: 4
+26/10/2022 20:01:42 | RECEIVED | ('127.0.0.1', 54215) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+26/10/2022 20:01:42 | ERROR | ('144.126.247.134', 18018) | VALIDATE | [Errno 61] Connection refused | (61, 'Connection refused')
+26/10/2022 20:02:31 | RECEIVED | ('127.0.0.1', 54215) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 20:02:31 | SENT | ('127.0.0.1', 54215) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 20:03:24 | RECEIVED | ('127.0.0.1', 54215) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+26/10/2022 20:03:24 | SENT | ('144.126.247.134', 18018) | {'type': 'hello', 'version': '0.8.0', 'agent ': 'Kerma-Core Client 0.8'}

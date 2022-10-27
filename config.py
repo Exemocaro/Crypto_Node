@@ -1,10 +1,8 @@
 import platform
 import logging
 import json
+import socket
 
-HOST = "192.168.56.1" # LOCAL
-#HOST = "143.244.205.206"  # MINE
-#HOST = "144.126.247.134" #JAN
 PORT = 18018  # The port used by the server
 
 CLIENTS_NUMBER = 5000
@@ -70,11 +68,11 @@ def checkAddresses(client_address):
     else:
         print(f"\nKnown address {client_address}.")
 
-def checkAddress(client_address):
-    return client_address[0] in KNOWN_ADDRESSES
+def checkAddress(address):
+    return address in KNOWN_ADDRESSES
 
 
-def validateAdress(connection, address):
+def validateAdress(address):
     try:
         data = {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
         data_to_send = json.dumps(data)
@@ -83,7 +81,9 @@ def validateAdress(connection, address):
         VALIDATION_SETTINGS.append(address)
 
         print(f"\nSending data: \n{data}")
-        connection.sendall(data_to_send) # we can't send str(data) because it must be a "byte-like object"
+        clientSocket = socket.socket()
+        clientSocket.connect(address)
+        clientSocket.send(data_to_send)
         logging.info(f"| SENT | {address} | {data}")
 
     except Exception as e:
@@ -91,3 +91,13 @@ def validateAdress(connection, address):
         print(f"\nError on validate! {e} | {e.args}\n")
     finally:
         pass
+
+
+def isValidationPending(address):
+    return address in VALIDATION_SETTINGS
+
+def finanlizeValidation(address):
+    VALIDATION_SETTINGS.remove(address)
+    KNOWN_ADDRESSES.append(address)
+    print(f"\nValidation finalized for {address}!")
+    logging.info(f"| VALIDATION FINALIZED | {address}")

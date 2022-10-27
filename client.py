@@ -2,9 +2,12 @@ from multiprocessing.connection import wait
 import socket
 import json
 
-HOST = "192.168.56.1" # LOCAL
-#HOST = "143.244.205.206"  # MINE
+#HOST = "192.168.56.1" # LOCAL
+#HOST = "143.244.205.206"  #MATEUS
 #HOST = "144.126.247.134" #JAN
+HOST = "127.0.0.1" #LOCALHOST
+
+
 PORT = 18018  # The port used by the server
 
 CLIENTS_NUMBER = 5000
@@ -20,21 +23,21 @@ ClientMultiSocket = socket.socket()
 #host = '127.0.0.1'
 #port = 2004
 
-print('Waiting for connection response')
+print('Connecting to Server')
 try:
     ClientMultiSocket.connect((host, port))
 except socket.error as e:
     print(str(e))
-res = ClientMultiSocket.recv(DATA_SIZE)
 
+print("Connected to Server")
 while True:
-    waitForResponse = True  
+    waitForResponse = True
     Input = input('Hey there: ')
     if Input == "hello":
         Input = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"})
     
     elif Input == "peers":
-        Input = json.dumps({"type": "peers", "peers": KNOWN_ADDRESSES})
+        Input = json.dumps({"type": "peers", "peers": ["144.126.247.134:18018"]})
         waitForResponse = False
 
     elif Input == "getPeers":
@@ -43,5 +46,6 @@ while True:
     ClientMultiSocket.send(str.encode(Input))
     if waitForResponse:
         res = ClientMultiSocket.recv(DATA_SIZE)
-    print(res.decode('utf-8'))
+        print(res.decode('utf-8'))
+    print("done.")
 ClientMultiSocket.close()
