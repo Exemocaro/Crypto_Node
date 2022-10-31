@@ -81,6 +81,7 @@ def startSocket():
             threadCount += 1
             print('Thread Number: ' + str(threadCount))
         except Exception as e: # to catch errors in case something goes really bad
+            print("Error: unable to start thread.")
             logging.error(f"| ERROR | {client_address} | {e} | {e.args}")
     
     serverSideSocket.close()
