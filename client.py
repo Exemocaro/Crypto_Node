@@ -6,11 +6,13 @@ from config import *
 #HOST = "192.168.56.1" # LOCAL
 #HOST = "143.244.205.206"  # MATEUS
 #HOST = "144.126.247.134" # JAN
+#HOST = "139.59.205.101" # SIMÃO
 #HOST = "128.130.122.101" # bootstrapping node
 HOST = "127.0.0.1" # localhost
 
 host = HOST
 port = PORT
+
 """ 
 CREDENTIALS = []
 
@@ -22,7 +24,8 @@ def loadAddressesWithPorts():
         for a in temp:
             if a not in CREDENTIALS:
                 CREDENTIALS.append(a)
-        size = len(CREDENTIALS) """
+        size = len(CREDENTIALS)
+"""
     
 ClientMultiSocket = socket.socket()
 
@@ -32,6 +35,10 @@ try:
 except socket.error as e:
     print(str(e))
 res = ClientMultiSocket.recv(DATA_SIZE)
+print("First received: " + str(res))
+res = ClientMultiSocket.recv(DATA_SIZE)
+print("First received: " + str(res))
+
 
 while True:
     waitForResponse = True  
@@ -47,6 +54,10 @@ while True:
 
     elif Input.lower() == "getpeers":
         Input = json.dumps({"type": "getpeers"})
+
+    elif Input.lower() == "doublemessage":
+        Input = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}) + "\n" + \
+                json.dumps({"type": "getpeers"})
         
     ClientMultiSocket.send(str.encode(Input))
     if waitForResponse:

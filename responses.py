@@ -57,8 +57,8 @@ def peers(connection, client_address, data):
         if "peers" in data_parsed:
             nPeers = len(data_parsed["peers"])
             if nPeers > 0: # might be empty, we don't know
-                for peer in data_parsed["peers"]:
-                    checkAndAddAddresses(peer)
+                for address in data_parsed["peers"]:
+                    checkAndAddAddresses(address)
                 print(f"\nChecked {nPeers} new peers!\n")
             else:
                 logging.error(f"| ERROR | {client_address} | PEERS | {data} | Received empty peers list!")

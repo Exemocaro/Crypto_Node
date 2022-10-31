@@ -14,6 +14,7 @@ class Client:
         self.ip = credentials.split(":")[0]
         self.port = credentials.split(":")[1]
         self.isConnectionOpen = False
+        self.sentHello = False
 
 def newClient():
     pass

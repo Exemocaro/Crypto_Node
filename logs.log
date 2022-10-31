@@ -562,3 +562,181 @@
 31/10/2022 21:12:43 | RECEIVED | 127.0.0.1:54686 | b'{"type": "peers", "peers": ["127.0.0.1:54627"]}'
 31/10/2022 21:13:09 | RECEIVED | 127.0.0.1:54686 | b'{"type": "getpeers"}'
 31/10/2022 21:13:09 | SENT | 127.0.0.1:54686 | {"type": "getpeers"}
+31/10/2022 21:17:42 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:17:48 | RECEIVED | 127.0.0.1:59748 | b'HELLO'
+31/10/2022 21:17:48 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 21:17:48 | SENT | 127.0.0.1:59748 | b'HELLO'
+31/10/2022 21:17:50 | RECEIVED | 127.0.0.1:59748 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:17:50 | SAVED ADDRESS | 127.0.0.1:59748
+31/10/2022 21:17:50 | SAVED ADDRESS | 127.0.0.1:59748
+31/10/2022 21:17:50 | SENT | 127.0.0.1:59748 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:17:52 | READING ADDRESSES | Addresses read: 2
+31/10/2022 21:17:52 | RECEIVED | 127.0.0.1:59748 | b'{"type": "peers", "peers": ["127.0.0.1:54627", "127.0.0.1:59748"]}'
+31/10/2022 21:18:06 | RECEIVED | 127.0.0.1:59748 | b'{"type": "getpeers"}'
+31/10/2022 21:18:06 | SENT | 127.0.0.1:59748 | {"type": "getpeers"}
+31/10/2022 21:50:00 | READING ADDRESSES | Addresses read: 2
+31/10/2022 21:50:32 | READING ADDRESSES | Addresses read: 2
+31/10/2022 21:50:54 | READING ADDRESSES | Addresses read: 2
+31/10/2022 21:51:12 | READING ADDRESSES | Addresses read: 2
+31/10/2022 21:51:13 | SAVED ADDRESS | 127.0.0.1:59991
+31/10/2022 21:51:13 | SAVED ADDRESS | 127.0.0.1:59991
+31/10/2022 21:51:16 | RECEIVED | 127.0.0.1:59991 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:51:16 | SENT | 127.0.0.1:59991 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:51:26 | READING ADDRESSES | Addresses read: 3
+31/10/2022 21:51:27 | ERROR | 127.0.0.1:59992 | HELLO | introduction data I guess | decoding str is not supported | ('decoding str is not supported',)
+31/10/2022 21:51:27 | SENT | 127.0.0.1:59992 | introduction data I guess
+31/10/2022 21:51:49 | READING ADDRESSES | Addresses read: 3
+31/10/2022 21:51:51 | SAVED ADDRESS | 127.0.0.1:59994
+31/10/2022 21:51:51 | SAVED ADDRESS | 127.0.0.1:59994
+31/10/2022 21:52:18 | READING ADDRESSES | Addresses read: 4
+31/10/2022 21:52:19 | SAVED ADDRESS | 127.0.0.1:59995
+31/10/2022 21:52:19 | SAVED ADDRESS | 127.0.0.1:59995
+31/10/2022 21:52:26 | RECEIVED | 127.0.0.1:59995 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:52:26 | SENT | 127.0.0.1:59995 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:52:50 | READING ADDRESSES | Addresses read: 5
+31/10/2022 21:52:51 | SAVED ADDRESS | 127.0.0.1:60002
+31/10/2022 21:52:51 | SAVED ADDRESS | 127.0.0.1:60002
+31/10/2022 21:52:54 | SAVED ADDRESS | 127.0.0.1:60003
+31/10/2022 21:52:54 | SAVED ADDRESS | 127.0.0.1:60003
+31/10/2022 21:52:56 | SAVED ADDRESS | 127.0.0.1:60004
+31/10/2022 21:52:56 | SAVED ADDRESS | 127.0.0.1:60004
+31/10/2022 21:52:57 | SAVED ADDRESS | 127.0.0.1:60006
+31/10/2022 21:52:57 | SAVED ADDRESS | 127.0.0.1:60006
+31/10/2022 21:53:15 | READING ADDRESSES | Addresses read: 9
+31/10/2022 21:53:17 | SAVED ADDRESS | 127.0.0.1:60010
+31/10/2022 21:53:17 | SAVED ADDRESS | 127.0.0.1:60010
+31/10/2022 21:53:46 | READING ADDRESSES | Addresses read: 10
+31/10/2022 21:53:47 | SAVED ADDRESS | 127.0.0.1:60015
+31/10/2022 21:53:47 | SAVED ADDRESS | 127.0.0.1:60015
+31/10/2022 21:54:04 | READING ADDRESSES | Addresses read: 11
+31/10/2022 21:54:05 | SAVED ADDRESS | 127.0.0.1:60016
+31/10/2022 21:54:05 | SAVED ADDRESS | 127.0.0.1:60016
+31/10/2022 21:54:41 | READING ADDRESSES | Addresses read: 12
+31/10/2022 21:54:42 | SAVED ADDRESS | 127.0.0.1:60019
+31/10/2022 21:54:42 | SAVED ADDRESS | 127.0.0.1:60019
+31/10/2022 21:54:45 | RECEIVED | 127.0.0.1:60019 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:54:45 | SENT | 127.0.0.1:60019 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:55:57 | READING ADDRESSES | Addresses read: 13
+31/10/2022 21:59:23 | READING ADDRESSES | Addresses read: 13
+31/10/2022 21:59:28 | READING ADDRESSES | Addresses read: 13
+31/10/2022 21:59:31 | ERROR | 127.0.0.1:60073 | HELLO | introduction data I guess | decoding str is not supported | ('decoding str is not supported',)
+31/10/2022 21:59:31 | SENT | 127.0.0.1:60073 | introduction data I guess
+31/10/2022 21:59:39 | READING ADDRESSES | Addresses read: 13
+31/10/2022 21:59:40 | SAVED ADDRESS | 127.0.0.1:60078
+31/10/2022 21:59:40 | SAVED ADDRESS | 127.0.0.1:60078
+31/10/2022 21:59:42 | RECEIVED | 127.0.0.1:60078 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:59:42 | SAVED ADDRESS | 127.0.0.1:60078
+31/10/2022 21:59:42 | SENT | 127.0.0.1:60078 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:59:46 | READING ADDRESSES | Addresses read: 14
+31/10/2022 22:00:09 | READING ADDRESSES | Addresses read: 1
+31/10/2022 22:00:15 | RECEIVED | 127.0.0.1:60083 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:00:15 | SENT | 127.0.0.1:60083 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:00:17 | READING ADDRESSES | Addresses read: 1
+31/10/2022 22:00:46 | RECEIVED | 127.0.0.1:60084 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:00:46 | SENT | 127.0.0.1:60084 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:00:47 | RECEIVED | 127.0.0.1:60084 | b'hel'
+31/10/2022 22:00:47 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 22:00:47 | SENT | 127.0.0.1:60084 | b'hel'
+31/10/2022 22:00:49 | RECEIVED | 127.0.0.1:60084 | b'hel'
+31/10/2022 22:00:49 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 22:00:49 | SENT | 127.0.0.1:60084 | b'hel'
+31/10/2022 22:00:50 | RECEIVED | 127.0.0.1:60084 | b'apmngepa'
+31/10/2022 22:00:50 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 22:00:50 | SENT | 127.0.0.1:60084 | b'apmngepa'
+31/10/2022 22:01:32 | READING ADDRESSES | Addresses read: 1
+31/10/2022 22:01:33 | ERROR | 127.0.0.1:60087 | HELLO | introduction data I guess | decoding str is not supported | ('decoding str is not supported',)
+31/10/2022 22:01:33 | SENT | 127.0.0.1:60087 | introduction data I guess
+31/10/2022 22:02:46 | READING ADDRESSES | Addresses read: 1
+31/10/2022 22:02:48 | ERROR | 127.0.0.1:60099 | HELLO | introduction data I guess | decoding str is not supported | ('decoding str is not supported',)
+31/10/2022 22:02:48 | SENT | 127.0.0.1:60099 | introduction data I guess
+31/10/2022 22:02:57 | READING ADDRESSES | Addresses read: 1
+31/10/2022 22:03:00 | ERROR | 127.0.0.1:60101 | HELLO | introduction data I guess | decoding str is not supported | ('decoding str is not supported',)
+31/10/2022 22:03:00 | SENT | 127.0.0.1:60101 | introduction data I guess
+31/10/2022 22:03:17 | READING ADDRESSES | Addresses read: 1
+31/10/2022 22:03:19 | ERROR | 127.0.0.1:60103 | HELLO | introduction data I guess | decoding str is not supported | ('decoding str is not supported',)
+31/10/2022 22:03:19 | SENT | 127.0.0.1:60103 | introduction data I guess
+31/10/2022 22:04:10 | READING ADDRESSES | Addresses read: 1
+31/10/2022 22:04:12 | ERROR | 127.0.0.1:60111 | HELLO | {"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"} | decoding str is not supported | ('decoding str is not supported',)
+31/10/2022 22:04:12 | SENT | 127.0.0.1:60111 | {"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}
+31/10/2022 22:04:24 | RECEIVED | 127.0.0.1:60111 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:04:24 | SENT | 127.0.0.1:60111 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:05:59 | READING ADDRESSES | Addresses read: 1
+31/10/2022 22:06:00 | SENT | 127.0.0.1:60118 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:06:17 | RECEIVED | 127.0.0.1:60118 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:06:17 | SENT | 127.0.0.1:60118 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:06:19 | RECEIVED | 127.0.0.1:60118 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:06:19 | SENT | 127.0.0.1:60118 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:06:20 | RECEIVED | 127.0.0.1:60118 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:06:20 | SENT | 127.0.0.1:60118 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:09:32 | READING ADDRESSES | Addresses read: 5
+31/10/2022 22:09:33 | SAVED ADDRESS | 127.0.0.1:60137
+31/10/2022 22:09:33 | SAVED ADDRESS | 127.0.0.1:60137
+31/10/2022 22:09:33 | SENT | 127.0.0.1:60137 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:10:34 | READING ADDRESSES | Addresses read: 5
+31/10/2022 22:12:02 | READING ADDRESSES | Addresses read: 5
+31/10/2022 22:12:05 | SAVED ADDRESS | 127.0.0.1:60148
+31/10/2022 22:12:05 | SAVED ADDRESS | 127.0.0.1:60148
+31/10/2022 22:12:05 | SENT | 127.0.0.1:60148 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:12:05 | SENT | 127.0.0.1:60148 | {"type": "getpeers"}
+
+31/10/2022 22:14:21 | READING ADDRESSES | Addresses read: 5
+31/10/2022 22:14:25 | SAVED ADDRESS | 127.0.0.1:60161
+31/10/2022 22:14:25 | SAVED ADDRESS | 127.0.0.1:60161
+31/10/2022 22:14:25 | SENT | 127.0.0.1:60161 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:15:39 | READING ADDRESSES | Addresses read: 6
+31/10/2022 22:15:44 | SENT | 127.0.0.1:60172 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:23:49 | READING ADDRESSES | Addresses read: 6
+31/10/2022 22:23:53 | SENT | 127.0.0.1:60243 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:24:03 | SENT | 127.0.0.1:60243 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:24:05 | RECEIVED | 127.0.0.1:60243 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:24:05 | SENT | 127.0.0.1:60243 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:24:07 | RECEIVED | 127.0.0.1:60243 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:24:07 | SENT | 127.0.0.1:60243 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:24:08 | RECEIVED | 127.0.0.1:60243 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:24:08 | SENT | 127.0.0.1:60243 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:24:09 | READING ADDRESSES | Addresses read: 6
+31/10/2022 22:24:09 | RECEIVED | 127.0.0.1:60243 | b'{"type": "peers", "peers": ["192.168.56.1:18018", "143.244.205.206:18018", "144.126.247.134:18018", "139.59.205.101:18018", "128.130.122.101:18018127.0.0.1:60148", "127.0.0.1:60161"]}'
+31/10/2022 22:24:12 | RECEIVED | 127.0.0.1:60243 | b'{"type": "getpeers"}'
+31/10/2022 22:24:12 | SENT | 127.0.0.1:60243 | {"type": "getpeers"}
+31/10/2022 22:24:18 | RECEIVED | 127.0.0.1:60243 | b'getpeers7'
+31/10/2022 22:24:18 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 22:24:18 | SENT | 127.0.0.1:60243 | b'getpeers7'
+31/10/2022 22:24:21 | RECEIVED | 127.0.0.1:60243 | b'{"type": "getpeers"}'
+31/10/2022 22:24:21 | SENT | 127.0.0.1:60243 | {"type": "getpeers"}
+31/10/2022 22:24:25 | RECEIVED | 127.0.0.1:60243 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:24:25 | SENT | 127.0.0.1:60243 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:24:27 | RECEIVED | 127.0.0.1:60243 | b'error'
+31/10/2022 22:24:27 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 22:24:27 | SENT | 127.0.0.1:60243 | b'error'
+31/10/2022 22:24:35 | SENT | 127.0.0.1:60245 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:24:42 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 22:24:42 | SENT | 127.0.0.1:60245 | b'error'
+31/10/2022 22:25:57 | READING ADDRESSES | Addresses read: 6
+31/10/2022 22:26:00 | SENT | 127.0.0.1:60249 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:26:01 | SENT | 127.0.0.1:60250 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:26:12 | SENT | 127.0.0.1:60249 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:26:14 | RECEIVED | 127.0.0.1:60249 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:26:14 | SENT | 127.0.0.1:60249 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:26:56 | RECEIVED | 127.0.0.1:60249 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:26:56 | SENT | 127.0.0.1:60249 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:27:03 | ERROR | Error parsing json. | 'int' object is not subscriptable | ("'int' object is not subscriptable",)
+31/10/2022 22:27:03 | SENT | 127.0.0.1:60250 | b'7'
+31/10/2022 22:27:59 | READING ADDRESSES | Addresses read: 6
+31/10/2022 22:28:01 | SENT | 127.0.0.1:60267 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:28:14 | SENT | 127.0.0.1:60269 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:28:27 | SENT | 127.0.0.1:60267 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:28:28 | RECEIVED | 127.0.0.1:60267 | b'ageknag'
+31/10/2022 22:28:28 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 22:28:28 | SENT | 127.0.0.1:60267 | b'ageknag'
+31/10/2022 22:28:29 | RECEIVED | 127.0.0.1:60267 | b'lakengaeg'
+31/10/2022 22:28:29 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 22:28:29 | SENT | 127.0.0.1:60267 | b'lakengaeg'
+31/10/2022 22:28:29 | RECEIVED | 127.0.0.1:60267 | b'aknegkleangae'
+31/10/2022 22:28:29 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 22:28:29 | SENT | 127.0.0.1:60267 | b'aknegkleangae'
+31/10/2022 22:28:32 | READING ADDRESSES | Addresses read: 6
+31/10/2022 22:28:32 | RECEIVED | 127.0.0.1:60267 | b'{"type": "peers", "peers": ["192.168.56.1:18018", "143.244.205.206:18018", "144.126.247.134:18018", "139.59.205.101:18018", "128.130.122.101:18018127.0.0.1:60148", "127.0.0.1:60161"]}'
+31/10/2022 22:28:34 | RECEIVED | 127.0.0.1:60267 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:28:34 | SENT | 127.0.0.1:60267 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 22:28:37 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 22:28:37 | SENT | 127.0.0.1:60269 | b'l'

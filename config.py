@@ -92,8 +92,11 @@ def addCredentials(credentials):
 
 # checks if the passed address is in the list of known ones, and if not adds it.
 def checkAndAddAddresses(credentials):
-    #ip_port = credentials.split(":") # list with ip and port
-    if credentials not in KNOWN_CREDENTIALS:
+    credential_ip = credentials.split(":")[0] # list with ip and port
+    known_ips = []
+    for i in KNOWN_CREDENTIALS:
+        known_ips.append(i.split(":")[0]) # list with ip and port
+    if credential_ip not in known_ips:
         if isValidCredentials(credentials):
             print(f"\nUnknown address {credentials}! Saving it...")
             addCredentials(credentials)

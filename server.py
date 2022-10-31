@@ -10,11 +10,38 @@ from responses import *
 
 # will process the data we receive and send back some message or something
 def multi_threaded_client(connection, client_address):
-    connection.send(str.encode('Server is working:'))
-    while True:
+
+    data = connection.recv(DATA_SIZE)
+    isRunning = True
+
+    # process the data into a json file and send back the appropriate response
+    try:
+        data_parsed = json.loads(str(data, encoding="utf-8"))
+        # run function with name 
+        function_name = data_parsed["type"].lower()
+        # if the function exists
+        if function_name == "hello":
+            eval(function_name + "(connection, client_address, data)") #runs the functions with the type name
+        else:
+            print(f"\nError unknown type.")
+            logging.info(f"| ERROR | {function_name} | Wrong message type or type not yet supported")
+            error(connection, client_address, data, "Wrong message type or type not yet supported")
+            connection.close()
+            isRunning = False
+
+    except Exception as e: # THIS I
+        print(f"\nError parsing json OR DISCONNECTED")
+        logging.info(f"| ERROR | Error parsing json. | {e} | {e.args}")
+        error(connection, client_address, data, "Error parsing json")
+        connection.close()
+        isRunning = False
+
+
+
+    while isRunning:
         data = connection.recv(DATA_SIZE)
-        data_string = str(data, encoding="utf-8") # converting from binary to string
-        response = 'Server message: ' + data.decode('utf-8')
+        #data_string = str(data, encoding="utf-8") # converting from binary to string
+        #response = 'Server message: ' + data.decode('utf-8')
         if not data:
             break
 
@@ -70,13 +97,19 @@ def startSocket():
         print('\nWaiting for a connection...\n')
         connection, client_address = serverSideSocket.accept()
 
+        # parsing the credentials
+        ip = client_address[0]
+        port = str(client_address[1])
+        client_address = str(ip + ":" + port)
+        
+        # introductions:
+        hello(connection, client_address, b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n')
+        connection.sendall(b'{"type": "getpeers"}\n')
+
         try:
-            ip = client_address[0]
-            port = str(client_address[1])
-            client_address = str(ip + ":" + port)
-            #checkAndAddAddresses(client_address)
-            
             print('---------- Connection from', client_address, " ----------")
+            checkAndAddAddresses(client_address)
+
             start_new_thread(multi_threaded_client, (connection, client_address))
             threadCount += 1
             print('Thread Number: ' + str(threadCount))
@@ -89,6 +122,7 @@ def startSocket():
 def main():
     loadAddresses()
     startSocket()
+
 
 if __name__ == "__main__":
     main()
