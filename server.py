@@ -5,7 +5,6 @@ import logging
 import json
 
 from _thread import *
-from tracemalloc import start # new threading lib
 from config import *
 from inputHandling import *
 
@@ -31,11 +30,12 @@ def multi_threaded_client(connection, client_address):
         except Exception as e:
             print(f"\nError parsing json.")
             logging.info(f"| ERROR | Error parsing json. | {e} | {e.args}")
-            error(connection, client_address, data, "Error parsing json")
+            #handleError() # TODO
+            #error(connection, client_address, data, "Error parsing json")
 
     connection.close()
 
-# I <3 you copilot for this one :) 
+# I <3 you copilot for this one :) (still hate you though)
 # ughh this is so ugly but it works for now 
 # Mateus is working on a better solution
 def startSocket():

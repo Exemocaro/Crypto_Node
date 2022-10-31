@@ -10,9 +10,8 @@ def handleInput(connection, sender_address, data):
         print("Data parsed: ", data_parsed)
         if "type" in data_parsed:
             if data_parsed["type"] == "hello":
-                response = handleHello(data_parsed, sender_address)
-                print(response)
-                return response
+                print("Hello received")
+                return handleHello(data_parsed, sender_address)
             elif data_parsed["type"] == "getPeers":
                 print("GetPeers received")
                 return handleGetPeers(data_parsed, sender_address)
@@ -23,10 +22,11 @@ def handleInput(connection, sender_address, data):
                 print("Error received")
                 return handleError(data, sender_address)
         else:
-            return generateErrorMessage("Invalid type!")
+            return generateErrorMessage("Type invalid or not supported!")
     except Exception as e:
         logging.error(f"| ERROR | {sender_address} | HANDLEINPUT | {data} | {e} | {e.args}")
         print(f"\nError on handleInput! {e} | {e.args}\n")
+        return generateErrorMessage("invalid json")
     finally:
         pass
 
@@ -66,10 +66,13 @@ def handleGetPeers(data_parsed, sender_address):
 def handlePeers(data_parsed, sender_address):
     try:
         if "peers" in data_parsed:
+            #for peer in data_parsed["peers"]:
+                
             for peer in data_parsed["peers"]:
                 if not checkAddress(peer):
                     print(f"\nValidating {peer}\n")
                     client_adress = (peer.split(":")[0], int(peer.split(":")[1]))
+                    print("\n\n\n\n Client Address:" + client_adress + "\n\n\n\n")
                     validateAdress(client_adress)
                 else:
                     print(f"\n{peer} already known!\n")
@@ -86,8 +89,10 @@ def handleError(data_parsed, sender_address):
     try:
         logging.error(f"| ERROR | {sender_address} | ERROR | {data_parsed} | Error message received")
         print(f"\nError message received!\n")
+        return generateErrorMessage("Error message received")
     except Exception as e:
         logging.error(f"| ERROR | {sender_address} | ERROR | {data_parsed} | Error on Error: {e} | {e.args}")
         print(f"\nError on error! {e} | {e.args}\n")
+        return generateErrorMessage("Error in error!")
     finally:
         pass
