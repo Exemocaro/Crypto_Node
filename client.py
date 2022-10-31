@@ -5,10 +5,11 @@ from config import *
 
 #HOST = "192.168.56.1" # LOCAL
 #HOST = "143.244.205.206"  # MATEUS
-#HOST = "144.126.247.134" # JAN
+#HOST = "4.231.16.23" # JAN
 #HOST = "139.59.205.101" # SIMÃO
 #HOST = "128.130.122.101" # bootstrapping node
 HOST = "127.0.0.1" # localhost
+#HOST = "134.122.88.104" # RANDOM PERSON 1 
 
 host = HOST
 port = PORT
@@ -26,7 +27,7 @@ def loadAddressesWithPorts():
                 CREDENTIALS.append(a)
         size = len(CREDENTIALS)
 """
-    
+
 ClientMultiSocket = socket.socket()
 
 print('Waiting for connection response')

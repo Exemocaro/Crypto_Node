@@ -81,12 +81,13 @@ def loadAddresses():
 
 # adds an address into the list of addresses
 def addCredentials(credentials):
-    #ip_port = credentials.split(":") # list with ip and port
+    ip_port = credentials.split(":") # list with ip and port
+    fixed_credentials = ip_port[0] + ":" + "18018"
     if credentials not in KNOWN_CREDENTIALS:
         with open(ADDRESSES_FILE, 'a') as f:
-            f.write(f"{credentials}\n")
-        KNOWN_CREDENTIALS.append(credentials)
-        logging.info(f"| SAVED ADDRESS | {credentials}")
+            f.write(f"{fixed_credentials}\n")
+        KNOWN_CREDENTIALS.append(fixed_credentials)
+        logging.info(f"| SAVED ADDRESS | {fixed_credentials}")
     else:
         print(f"\nKnown address {credentials}.")
 

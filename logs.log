@@ -740,3 +740,10 @@
 31/10/2022 22:28:34 | SENT | 127.0.0.1:60267 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
 31/10/2022 22:28:37 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
 31/10/2022 22:28:37 | SENT | 127.0.0.1:60269 | b'l'
+31/10/2022 22:47:35 | READING ADDRESSES | Addresses read: 6
+31/10/2022 22:47:45 | READING ADDRESSES | Addresses read: 6
+31/10/2022 22:49:39 | READING ADDRESSES | Addresses read: 5
+31/10/2022 22:49:40 | SAVED ADDRESS | 127.0.0.1:18018
+31/10/2022 22:49:40 | SAVED ADDRESS | 127.0.0.1:60434
+31/10/2022 22:49:40 | SENT | 127.0.0.1:60434 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+31/10/2022 22:49:42 | SENT | 127.0.0.1:60434 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
