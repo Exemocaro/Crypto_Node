@@ -65,9 +65,7 @@ def loadAddresses():
             addresses_unparsed = f.readlines()
             temp = [x.strip("\n") for x in addresses_unparsed] # to remove whitespace characters like `\n` at the end of each line
             for a in temp:
-                a = a.split(":")[0] # removes the ip out of the address
-                print("\na:")
-                print(a)
+                #a = a.split(":")[0] # removes the ip out of the address
                 if a not in KNOWN_CREDENTIALS:
                     KNOWN_CREDENTIALS.append(a)
             size = len(KNOWN_CREDENTIALS)
@@ -83,19 +81,19 @@ def loadAddresses():
 
 # adds an address into the list of addresses
 def addCredentials(credentials):
-    ip_port = credentials.split(":") # list with ip and port
+    #ip_port = credentials.split(":") # list with ip and port
     if credentials not in KNOWN_CREDENTIALS:
         with open(ADDRESSES_FILE, 'a') as f:
             f.write(f"{credentials}\n")
-        KNOWN_CREDENTIALS.append(ip_port[0])
+        KNOWN_CREDENTIALS.append(credentials)
         logging.info(f"| SAVED ADDRESS | {credentials}")
     else:
         print(f"\nKnown address {credentials}.")
 
 # checks if the passed address is in the list of known ones, and if not adds it.
 def checkAndAddAddresses(credentials):
-    ip_port = credentials.split(":") # list with ip and port
-    if ip_port[0] not in KNOWN_CREDENTIALS:
+    #ip_port = credentials.split(":") # list with ip and port
+    if credentials not in KNOWN_CREDENTIALS:
         if isValidCredentials(credentials):
             print(f"\nUnknown address {credentials}! Saving it...")
             addCredentials(credentials)

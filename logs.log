@@ -544,3 +544,21 @@
 31/10/2022 21:07:11 | SENT | 127.0.0.1:54656 | {"type": "getpeers"}
 31/10/2022 21:07:13 | READING ADDRESSES | Addresses read: 1
 31/10/2022 21:07:13 | RECEIVED | 127.0.0.1:54656 | b'{"type": "peers", "peers": ["127.0.0.1"]}'
+31/10/2022 21:09:08 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:09:31 | RECEIVED | 127.0.0.1:54673 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:09:31 | SENT | 127.0.0.1:54673 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:09:35 | RECEIVED | 127.0.0.1:54673 | b'{"type": "getpeers"}'
+31/10/2022 21:09:35 | SENT | 127.0.0.1:54673 | {"type": "getpeers"}
+31/10/2022 21:09:37 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:09:37 | RECEIVED | 127.0.0.1:54673 | b'{"type": "peers", "peers": ["127.0.0.1"]}'
+31/10/2022 21:09:39 | RECEIVED | 127.0.0.1:54673 | b'error'
+31/10/2022 21:09:39 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 21:09:39 | SENT | 127.0.0.1:54673 | b'error'
+31/10/2022 21:12:37 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:12:42 | RECEIVED | 127.0.0.1:54686 | b'PEERS'
+31/10/2022 21:12:42 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 21:12:42 | SENT | 127.0.0.1:54686 | b'PEERS'
+31/10/2022 21:12:43 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:12:43 | RECEIVED | 127.0.0.1:54686 | b'{"type": "peers", "peers": ["127.0.0.1:54627"]}'
+31/10/2022 21:13:09 | RECEIVED | 127.0.0.1:54686 | b'{"type": "getpeers"}'
+31/10/2022 21:13:09 | SENT | 127.0.0.1:54686 | {"type": "getpeers"}

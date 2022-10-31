@@ -11,7 +11,19 @@ HOST = "127.0.0.1" # localhost
 
 host = HOST
 port = PORT
+""" 
+CREDENTIALS = []
 
+# loads the addresses from the file into the list of addresses
+def loadAddressesWithPorts():
+    with open(ADDRESSES_FILE, 'r') as f:
+        addresses_unparsed = f.readlines()
+        temp = [x.strip("\n") for x in addresses_unparsed] # to remove whitespace characters like `\n` at the end of each line
+        for a in temp:
+            if a not in CREDENTIALS:
+                CREDENTIALS.append(a)
+        size = len(CREDENTIALS) """
+    
 ClientMultiSocket = socket.socket()
 
 print('Waiting for connection response')
@@ -29,6 +41,7 @@ while True:
     
     elif Input == "peers":
         loadAddresses()
+        #loadAddressesWithPorts()
         Input = json.dumps({"type": "peers", "peers": KNOWN_CREDENTIALS})
         waitForResponse = False
 
