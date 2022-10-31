@@ -1,4 +1,3 @@
-from http import client
 import socket
 import logging
 #import threading
@@ -48,7 +47,7 @@ def multi_threaded_client(connection, client_address):
 
     connection.close()
 
-# I <3 you copilot for this one :) 
+# I <3 you copilot for this one :), still hate you though
 # ughh this is so ugly but it works for now 
 # Mateus is working on a better solution
 def startSocket():
