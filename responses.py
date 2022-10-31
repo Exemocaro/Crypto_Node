@@ -31,7 +31,7 @@ def hello(connection, client_address, data):
         
 def getPeers(connection, client_address, data):
     try:
-        data_to_send = json.dumps({"type": "peers", "peers": KNOWN_ADDRESSES})
+        data_to_send = json.dumps({"type": "peers", "peers": KNOWN_CREDENTIALS})
         data_to_send = str.encode(str(data_to_send + "\n"))
 
         #data_to_send = b'{"type " : " peers " ,"peers " : }'
@@ -53,13 +53,13 @@ def peers(connection, client_address, data):
         data_parsed = json.loads(str(data, encoding="utf-8"))
 
         if "peers" in data_parsed:
-            nPeers = len(data_parsed["peers"])
-            if nPeers > 0: # might be empty, we don't know
-                for peer in data_parsed["peers"]:
-                    checkAddresses(peer)
-                print(f"\nChecked {nPeers} new peers!\n")
-            else:
-                logging.error(f"| ERROR | {client_address} | PEERS | {data} | Received empty peers list!")
+            for peer in data_parsed["peers"]:
+                if not checkAddress(peer):
+                    print(f"\nValidating {peer}\n")
+                    client_adress = (peer.split(":")[0], int(peer.split(":")[1]))
+                    validateAdress(client_adress)
+                else:
+                    print(f"\n{peer} is already known.")
 
     except Exception as e:
         logging.error(f"| ERROR | {client_address} | PEERS | {data} | {e} | {e.args}")

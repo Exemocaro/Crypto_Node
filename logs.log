@@ -352,3 +352,242 @@
 26/10/2022 16:09:51 | RECEIVED | ('192.168.56.1', 58814) | b'{"type": "peers", "peers": []}'
 26/10/2022 16:09:51 | ERROR | ('192.168.56.1', 58814) | PEERS | b'{"type": "peers", "peers": []}' | Received empty peers list!
 26/10/2022 16:10:50 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:42:56 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:43:55 | SAVED ADDRESS | ('127.0.0.1', 52324)
+26/10/2022 19:43:59 | RECEIVED | ('127.0.0.1', 52324) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 19:43:59 | SENT | ('127.0.0.1', 52324) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 19:44:40 | RECEIVED | ('127.0.0.1', 52405) | b'{"type": "peers", "peers": ["144.126.247.134"]}'
+26/10/2022 19:45:30 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:45:30 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:46:31 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:47:57 | RECEIVED | ('127.0.0.1', 52765) | b'{"type": "peers", "peers": ["144.126.247.134"]}'
+26/10/2022 19:47:57 | ERROR | 144.126.247.134 | VALIDATE | connect(): AF_INET address must be tuple, not str | ('connect(): AF_INET address must be tuple, not str',)
+26/10/2022 19:48:32 | RECEIVED | ('127.0.0.1', 52859) | b'{"type": "peers", "peers": ["144.126.247.134"]}'
+26/10/2022 19:48:32 | ERROR | 144.126.247.134 | VALIDATE | connect(): AF_INET address must be tuple, not str | ('connect(): AF_INET address must be tuple, not str',)
+26/10/2022 19:49:15 | RECEIVED | ('127.0.0.1', 52925) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+26/10/2022 19:49:15 | ERROR | 144.126.247.134:18018 | VALIDATE | connect(): AF_INET address must be tuple, not str | ('connect(): AF_INET address must be tuple, not str',)
+26/10/2022 19:49:26 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:49:26 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:50:01 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:50:06 | RECEIVED | ('127.0.0.1', 52957) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+26/10/2022 19:50:07 | ERROR | 144.126.247.134:18018 | VALIDATE | connect(): AF_INET address must be tuple, not str | ('connect(): AF_INET address must be tuple, not str',)
+26/10/2022 19:50:56 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:50:56 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:51:16 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:51:16 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:51:23 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:51:23 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:51:32 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:51:38 | RECEIVED | ('127.0.0.1', 53088) | b'{"type": "peers", "peers": [["144.126.247.134", 18018]]}'
+26/10/2022 19:51:38 | ERROR | ['144.126.247.134', 18018] | VALIDATE | connect(): AF_INET address must be tuple, not list | ('connect(): AF_INET address must be tuple, not list',)
+26/10/2022 19:53:20 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:53:20 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:53:34 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:53:34 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 19:54:05 | READING ADDRESSES | Addresses read: 4
+26/10/2022 19:58:41 | RECEIVED | ('127.0.0.1', 53753) | b'{"type": "peers", "peers": [("144.126.247.134",18018)]}'
+26/10/2022 19:58:41 | ERROR | Error parsing json. | Expecting value: line 1 column 29 (char 28) | ('Expecting value: line 1 column 29 (char 28)',)
+26/10/2022 19:58:41 | ERROR | ('127.0.0.1', 53753) | ERROR | b'{"type": "peers", "peers": [("144.126.247.134",18018)]}' | can't concat str to bytes | ("can't concat str to bytes",)
+26/10/2022 20:00:40 | READING ADDRESSES | Addresses read: 4
+26/10/2022 20:00:40 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 20:00:50 | READING ADDRESSES | Addresses read: 4
+26/10/2022 20:00:50 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 20:00:56 | READING ADDRESSES | Addresses read: 4
+26/10/2022 20:00:56 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+26/10/2022 20:01:34 | READING ADDRESSES | Addresses read: 4
+26/10/2022 20:01:42 | RECEIVED | ('127.0.0.1', 54215) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+26/10/2022 20:01:42 | ERROR | ('144.126.247.134', 18018) | VALIDATE | [Errno 61] Connection refused | (61, 'Connection refused')
+26/10/2022 20:02:31 | RECEIVED | ('127.0.0.1', 54215) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 20:02:31 | SENT | ('127.0.0.1', 54215) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+26/10/2022 20:03:24 | RECEIVED | ('127.0.0.1', 54215) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+26/10/2022 20:03:24 | SENT | ('144.126.247.134', 18018) | {'type': 'hello', 'version': '0.8.0', 'agent ': 'Kerma-Core Client 0.8'}
+27/10/2022 14:33:28 | READING ADDRESSES | Addresses read: 4
+27/10/2022 14:33:28 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+27/10/2022 14:33:58 | READING ADDRESSES | Addresses read: 4
+27/10/2022 14:35:54 | RECEIVED | ('127.0.0.1', 64491) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+27/10/2022 14:35:54 | SENT | ('127.0.0.1', 64491) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+27/10/2022 14:36:03 | RECEIVED | ('127.0.0.1', 64491) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+27/10/2022 14:36:03 | ERROR | ('127.0.0.1', 64491) | PEERS | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}' | validateAdress() takes 1 positional argument but 2 were given | ('validateAdress() takes 1 positional argument but 2 were given',)
+27/10/2022 14:36:03 | ERROR | ('127.0.0.1', 64491) | ERROR | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}' | can't concat str to bytes | ("can't concat str to bytes",)
+27/10/2022 14:37:34 | RECEIVED | ('127.0.0.1', 64491) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+27/10/2022 14:37:34 | ERROR | ('127.0.0.1', 64491) | PEERS | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}' | validateAdress() takes 1 positional argument but 2 were given | ('validateAdress() takes 1 positional argument but 2 were given',)
+27/10/2022 14:37:34 | ERROR | ('127.0.0.1', 64491) | ERROR | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}' | can't concat str to bytes | ("can't concat str to bytes",)
+27/10/2022 14:38:19 | READING ADDRESSES | Addresses read: 4
+27/10/2022 14:38:19 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+27/10/2022 14:38:25 | READING ADDRESSES | Addresses read: 4
+27/10/2022 14:38:25 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+27/10/2022 14:38:40 | READING ADDRESSES | Addresses read: 4
+27/10/2022 14:38:40 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+27/10/2022 14:39:21 | READING ADDRESSES | Addresses read: 4
+27/10/2022 14:39:27 | RECEIVED | ('127.0.0.1', 64823) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+27/10/2022 14:39:27 | SENT | ('127.0.0.1', 64823) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+27/10/2022 14:39:35 | RECEIVED | ('127.0.0.1', 64823) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+27/10/2022 14:40:50 | ERROR | ('144.126.247.134', 18018) | VALIDATE | 'NoneType' object has no attribute 'recv' | ("'NoneType' object has no attribute 'recv'",)
+27/10/2022 14:40:50 | RECEIVED | ('127.0.0.1', 64823) | b'\x1b[A'
+27/10/2022 14:40:50 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+27/10/2022 14:40:50 | ERROR | ('127.0.0.1', 64823) | ERROR | b'\x1b[A' | can't concat str to bytes | ("can't concat str to bytes",)
+27/10/2022 14:40:56 | RECEIVED | ('127.0.0.1', 64869) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+27/10/2022 14:40:56 | SENT | ('127.0.0.1', 64869) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+27/10/2022 14:40:58 | RECEIVED | ('127.0.0.1', 64869) | b'{"type": "peers", "peers": ["144.126.247.134:18018"]}'
+27/10/2022 14:42:13 | ERROR | ('144.126.247.134', 18018) | VALIDATE | 'NoneType' object has no attribute 'recv' | ("'NoneType' object has no attribute 'recv'",)
+31/10/2022 11:21:22 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:21:54 | RECEIVED | ('127.0.0.1', 52321) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:21:54 | ERROR | ('127.0.0.1', 52321) | HANDLEINPUT | {'type': 'hello', 'version': '0.8.0', 'agent ': 'Kerma-Core Client 0.8'} | decoding to str: need a bytes-like object, dict found | ('decoding to str: need a bytes-like object, dict found',)
+31/10/2022 11:22:32 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:22:32 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:23:21 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:23:35 | RECEIVED | ('127.0.0.1', 52476) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:24:08 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:24:08 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:24:12 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:24:12 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:24:18 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:24:18 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:24:27 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:24:27 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:25:22 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:25:32 | RECEIVED | ('127.0.0.1', 52689) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:25:32 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 11:31:21 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:31:21 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:31:35 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:31:35 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:33:21 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:33:29 | RECEIVED | ('127.0.0.1', 53616) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:33:29 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 11:36:36 | RECEIVED | ('127.0.0.1', 53758) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:36:36 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 11:37:18 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:37:18 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:38:03 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:38:10 | RECEIVED | ('127.0.0.1', 53874) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:38:10 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 11:39:30 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:39:30 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:39:36 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:39:36 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:39:52 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:39:52 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:39:58 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:40:05 | RECEIVED | ('127.0.0.1', 54031) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:40:05 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 11:41:05 | RECEIVED | ('127.0.0.1', 54056) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:41:05 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 11:41:34 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:41:34 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:41:47 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:41:47 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:41:51 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:41:51 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:42:11 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:42:11 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:42:56 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:43:08 | RECEIVED | ('127.0.0.1', 54204) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:44:29 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:44:29 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:44:37 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:44:37 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:44:41 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:44:41 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:45:37 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:45:52 | RECEIVED | ('127.0.0.1', 54307) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:46:03 | ERROR | ('127.0.0.1', 54307) | HELLO | {'type': 'hello', 'version': '0.8.0', 'agent ': 'Kerma-Core Client 0.8'} | Version not supported | 0.8.0
+31/10/2022 11:46:50 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:46:50 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:46:54 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:46:54 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:46:57 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:46:57 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:02 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:02 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:10 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:10 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:15 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:15 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:19 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:19 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:27 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:27 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:35 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:35 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:38 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:38 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:45 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:45 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:48 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:48 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:49 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:49 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:51 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:51 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:52 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:52 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 11:47:53 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:47:56 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:48:11 | RECEIVED | ('127.0.0.1', 54449) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:48:11 | ERROR | ('127.0.0.1', 54449) | HELLO | {'type': 'hello', 'version': '0.8.0', 'agent ': 'Kerma-Core Client 0.8'} | Version not supported | 0.8.
+31/10/2022 11:48:11 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 11:48:54 | READING ADDRESSES | Addresses read: 4
+31/10/2022 11:49:00 | RECEIVED | ('127.0.0.1', 54486) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 11:49:00 | SAVED ADDRESS | ('127.0.0.1', 54486)
+31/10/2022 12:03:22 | READING ADDRESSES | Addresses read: 14
+31/10/2022 12:23:54 | READING ADDRESSES | Addresses read: 3
+31/10/2022 12:24:07 | SAVED ADDRESS | ('127.0.0.1', 56879)
+31/10/2022 12:24:11 | RECEIVED | ('127.0.0.1', 56879) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 12:30:30 | READING ADDRESSES | Addresses read: 3
+31/10/2022 12:31:36 | READING ADDRESSES | Addresses read: 3
+31/10/2022 12:31:41 | ERROR | ('127.0.0.1', 57430) | name 'client_address' is not defined | ("name 'client_address' is not defined",)
+31/10/2022 15:25:32 | READING ADDRESSES | Addresses read: 3
+31/10/2022 15:25:41 | ERROR | ('127.0.0.1', 58824) | name 'client_address' is not defined | ("name 'client_address' is not defined",)
+31/10/2022 15:26:10 | ERROR | ('127.0.0.1', 58825) | name 'client_address' is not defined | ("name 'client_address' is not defined",)
+31/10/2022 15:52:18 | READING ADDRESSES | Addresses read: 3
+31/10/2022 15:52:22 | ERROR | ('127.0.0.1', 60304) | name 'client_address' is not defined | ("name 'client_address' is not defined",)
+31/10/2022 15:54:25 | READING ADDRESSES | Addresses read: 3
+31/10/2022 15:54:34 | RECEIVED | ('127.0.0.1', 60417) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 15:54:34 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 15:57:45 | READING ADDRESSES | Addresses read: 3
+31/10/2022 15:58:59 | READING ADDRESSES | Addresses read: 3
+31/10/2022 15:59:04 | RECEIVED | ('127.0.0.1', 60585) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 15:59:04 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 15:59:48 | READING ADDRESSES | Addresses read: 3
+31/10/2022 15:59:48 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:00:14 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:00:21 | RECEIVED | ('127.0.0.1', 60721) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 16:00:21 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 16:01:26 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:01:26 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:01:30 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:01:30 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:02:01 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:02:08 | RECEIVED | ('127.0.0.1', 60954) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 16:02:08 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 16:03:55 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:04:04 | RECEIVED | ('127.0.0.1', 61185) | b'hell'
+31/10/2022 16:04:04 | ERROR | ('127.0.0.1', 61185) | HANDLEINPUT | b'hell' | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 16:04:09 | RECEIVED | ('127.0.0.1', 61186) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 16:04:09 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 16:06:14 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:06:14 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:06:17 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:06:17 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:06:25 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:06:25 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:06:31 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:06:31 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:06:40 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:06:40 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:08:23 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:08:32 | RECEIVED | ('127.0.0.1', 61522) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 16:08:32 | ERROR | Error parsing json. | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 16:11:30 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:11:30 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:11:32 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:11:32 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:11:34 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:11:34 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:11:35 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:11:35 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:11:39 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:11:39 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 16:12:15 | READING ADDRESSES | Addresses read: 3
+31/10/2022 16:12:23 | RECEIVED | ('127.0.0.1', 61771) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
