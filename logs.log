@@ -774,3 +774,35 @@
 31/10/2022 18:19:11 | READING ADDRESSES | Addresses read: 0
 31/10/2022 18:19:11 | RECEIVED | ('127.0.0.1', 51255) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
 31/10/2022 18:19:22 | ERROR | Error validating node! | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 18:21:41 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:21:50 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:21:50 | RECEIVED | ('127.0.0.1', 51394) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 18:23:01 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:23:08 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:23:08 | RECEIVED | ('127.0.0.1', 51556) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 18:23:10 | ERROR | Error validating node! | tuple indices must be integers or slices, not str | ('tuple indices must be integers or slices, not str',)
+31/10/2022 18:23:34 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:23:38 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:23:38 | RECEIVED | ('127.0.0.1', 51609) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 18:24:26 | RECEIVED | ('127.0.0.1', 51609) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 18:24:26 | ERROR | ('127.0.0.1', 51609) | HELLO | {'type': 'hello', 'version': '0.8.0', 'agent ': 'Kerma-Core Client 0.8'} | 'tuple' object has no attribute 'split' | ("'tuple' object has no attribute 'split'",)
+31/10/2022 18:25:54 | RECEIVED | ('127.0.0.1', 51702) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 18:27:28 | ERROR | ('127.0.0.1', 51702) | HELLO | {'type': 'hello', 'version': '0.8.0', 'agent ': 'Kerma-Core Client 0.8'} | 'tuple' object has no attribute 'split' | ("'tuple' object has no attribute 'split'",)
+31/10/2022 18:27:35 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:27:50 | RECEIVED | ('127.0.0.1', 51803) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 18:28:32 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:28:36 | RECEIVED | ('127.0.0.1', 51936) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 18:28:47 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:28:47 | RECEIVED | ('127.0.0.1', 51936) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 18:29:19 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:29:19 | RECEIVED | ('127.0.0.1', 51936) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 18:29:23 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:29:23 | RECEIVED | ('127.0.0.1', 51936) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 18:29:26 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:29:30 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:29:30 | RECEIVED | ('127.0.0.1', 51992) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 18:29:37 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:29:37 | RECEIVED | ('127.0.0.1', 51992) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 18:30:08 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:30:13 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:30:13 | RECEIVED | ('127.0.0.1', 52036) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'

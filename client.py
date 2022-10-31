@@ -7,12 +7,12 @@ from generateMessage import *
 
 def validateNode(credentials):
     try:
-        print(f"\nValidating {credentials}\n")
+        print(f"Validating {credentials}")
         client_socket = socket.socket()
         client_socket.connect(credentials)
         data_to_send = generateHelloMessage()
-        client_socket.sendall(data_to_send)
-        VALIDATION_PENDING_CREDENTIALS.append(credentials["ip"])
+        client_socket.sendall(str.encode(data_to_send))
+        VALIDATION_PENDING_CREDENTIALS.append(credentials)
     except Exception as e:
         print(f"\nError validating node! {e} | {e.args}\n")
         logging.info(f"| ERROR | Error validating node! | {e} | {e.args}")

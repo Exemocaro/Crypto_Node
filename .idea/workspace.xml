@@ -81,7 +81,7 @@
       <workItem from="1667225960902" duration="2234000" />
       <workItem from="1667228213761" duration="263000" />
       <workItem from="1667228520020" duration="43000" />
-      <workItem from="1667228599473" duration="4257000" />
+      <workItem from="1667228599473" duration="4725000" />
     </task>
     <task id="LOCAL-00001" summary="Refactoring especially the server/client split up.&#10;Cleaning up the responses.py and putting the functionality into inputHandling.py to decouple it from network stuff&#10;&#10;Still work in progress, not tested">
       <created>1666851782828</created>
@@ -120,7 +120,23 @@
     <MESSAGE value="Refactored" />
     <option name="LAST_COMMIT_MESSAGE" value="Refactored" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/client.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/inputHandling.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Crypto_Node$server.coverage" NAME="server Coverage Results" MODIFIED="1667236690481" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Crypto_Node$server.coverage" NAME="server Coverage Results" MODIFIED="1667237255271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

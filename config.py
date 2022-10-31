@@ -134,9 +134,9 @@ def validateAdress(connection, address):
         pass
 
 
-# checks if the passed address is in the validation list
-def isValidationPending(address):
-    return address in extractAddresses(VALIDATION_PENDING_CREDENTIALS)
+# checks if the passed credentials is in the validation list
+def isValidationPending(credentials):
+    return credentials in VALIDATION_PENDING_CREDENTIALS
 
 # validates  
 def finalizeValidation(address):
