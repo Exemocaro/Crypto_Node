@@ -29,7 +29,7 @@ while True:
     
     elif Input == "peers":
         loadAddresses()
-        Input = json.dumps({"type": "peers", "peers": KNOWN_ADDRESSES})
+        Input = json.dumps({"type": "peers", "peers": KNOWN_CREDENTIALS})
         waitForResponse = False
 
     elif Input == "getPeers":
