@@ -8,8 +8,8 @@ PORT = 18018  # The port used by the server
 
 CLIENTS_NUMBER = 5000
 DATA_SIZE = 2048 # size of data to read from each received message
-KNOWN_CREDENTIALS = [] # stores all the addresses this node knows
-ADDRESSES_FILE = 'known_credentials.json' # file that stores the known addresses
+KNOWN_ADDRESSES = [] # stores all the addresses this node knows
+ADDRESSES_FILE = 'known_addresses.txt' # file that stores the known addresses
 #SYSTEM = platform.system().lower() # our operating system
 
 

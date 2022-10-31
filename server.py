@@ -5,12 +5,13 @@ import logging
 import json
 
 from _thread import *
+from tracemalloc import start # new threading lib
 from config import *
-from inputHandling import *
+from responses import *
 
 # will process the data we receive and send back some message or something
 def multi_threaded_client(connection, client_address):
-    #connection.send(str.encode('Server is working:'))
+    connection.send(str.encode('Server is working:'))
     while True:
         data = connection.recv(DATA_SIZE)
         data_string = str(data, encoding="utf-8") # converting from binary to string
@@ -23,19 +24,31 @@ def multi_threaded_client(connection, client_address):
 
         # process the data into a json file and send back the appropriate response
         try:
-            response = handleInput(connection, client_address, data)
-            print(response)
-            if response != None:
-                connection.sendall(str.encode(response))
+            data_parsed = json.loads(str(data, encoding="utf-8"))
+
+            # run function with name 
+            function_name = data_parsed["type"]
+
+            # if the function exists
+            if function_name in ["hello", "getPeers", "peers", "error"]:
+                if function_name == "error":
+                    print(f"\nReceived error message.")
+                    logging.info(f"| ERROR | {function_name} | Received an error message, something probably went wrong")
+                else:
+                    eval(function_name + "(connection, client_address, data)") #runs the functions with the type name
+            else:
+                print(f"\nError unknown type.")
+                logging.info(f"| ERROR | {function_name} | Wrong message type or type not yet supported")
+                error(connection, client_address, data, "Wrong message type or type not yet supported")
+
         except Exception as e:
             print(f"\nError parsing json.")
             logging.info(f"| ERROR | Error parsing json. | {e} | {e.args}")
-            #handleError() # TODO
-            #error(connection, client_address, data, "Error parsing json")
+            error(connection, client_address, data, "Error parsing json")
 
     connection.close()
 
-# I <3 you copilot for this one :) (still hate you though)
+# I <3 you copilot for this one :) 
 # ughh this is so ugly but it works for now 
 # Mateus is working on a better solution
 def startSocket():
@@ -46,7 +59,7 @@ def startSocket():
         serverSideSocket.bind(SERVER_ADDRESS)
         #serverSideSocket.bind((HOST, PORT))
     except socket.error as e:
-        logging.error(f"| ERROR | {SERVER_ADDRESS} | {e} | {e.args} | Error when binding the socket to the server address")
+        logging.error(f"| ERROR | {client_address} | {e} | {e.args} | Error when binding the socket to the server address")
         print(str(e))
 
     print('Starting up on %s port %s' % SERVER_ADDRESS)
@@ -68,8 +81,8 @@ def startSocket():
             logging.error(f"| ERROR | {client_address} | {e} | {e.args}")
     
     serverSideSocket.close()
-
-
+    
+# main
 def main():
     loadAddresses()
     startSocket()
