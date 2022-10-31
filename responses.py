@@ -31,7 +31,7 @@ def hello(connection, client_address, data):
         
 def getPeers(connection, client_address, data):
     try:
-        data_to_send = json.dumps({"type": "peers", "peers": KNOWN_ADDRESSES})
+        data_to_send = json.dumps({"type": "peers", "peers": KNOWN_CREDENTIALS})
         data_to_send = str.encode(str(data_to_send + "\n"))
 
         #data_to_send = b'{"type " : " peers " ,"peers " : }'
@@ -57,7 +57,7 @@ def peers(connection, client_address, data):
                 if not checkAddress(peer):
                     print(f"\nValidating {peer}\n")
                     client_adress = (peer.split(":")[0], int(peer.split(":")[1]))
-                    validateAdress(connection, client_adress)
+                    validateAdress(client_adress)
                 else:
                     print(f"\n{peer} is already known.")
 

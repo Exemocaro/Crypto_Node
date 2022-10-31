@@ -1,51 +1,74 @@
 from multiprocessing.connection import wait
 import socket
 import json
+import logging
 
-#HOST = "192.168.56.1" # LOCAL
-#HOST = "143.244.205.206"  #MATEUS
-#HOST = "144.126.247.134" #JAN
-HOST = "127.0.0.1" #LOCALHOST
+from config import *
+from generateMessage import *
+
+def validateNode(credentials):
+    try:
+        print(f"\nValidating {credentials}\n")
+        client_socket = socket.socket()
+        client_socket.connect(credentials)
+        data_to_send = generateHelloMessage()
+        client_socket.sendall(data_to_send)
+        VALIDATION_PENDING_ADRESSES.append(credentials["ip"])
+    except Exception as e:
+        print(f"\nError validating node! {e} | {e.args}\n")
+        logging.info(f"| ERROR | Error validating node! | {e} | {e.args}")
+    finally:
+        pass
 
 
-PORT = 18018  # The port used by the server
 
-CLIENTS_NUMBER = 5000
-DATA_SIZE = 2048 # size of data to read from each received message
-KNOWN_ADDRESSES = [] # stores all the addresses this node knows
-ADDRESSES_FILE = 'known_addresses.txt' # file that stores the known addresses
-#SYSTEM = platform.system().lower() # our operating system
 
-host = HOST
-port = PORT
+def connectToServer(address):
+    try:
+        clientSocket = socket.socket()
+        clientSocket.connect(address)
+        return clientSocket
+    except Exception as e:
+        print(f"Error on connectToServer! {e} | {e.args}")
+        return None
+    finally:
+        pass
 
-ClientMultiSocket = socket.socket()
-#host = '127.0.0.1'
-#port = 2004
+# will process the data we receive and send back some message or something
+def multi_threaded_client(connection, client_address):
+    #connection.send(str.encode('Server is working:'))
+    while True:
+        data = connection.recv(DATA_SIZE)
+        data_string = str(data, encoding="utf-8") # converting from binary to string
+        response = 'Server message: ' + data.decode('utf-8')
+        if not data:
+            break
 
-print('Connecting to Server')
-try:
-    ClientMultiSocket.connect((host, port))
-except socket.error as e:
-    print(str(e))
+        print('Received: \n"%s"' % data)
+        logging.info(f"| RECEIVED | {client_address} | {data}")
 
-print("Connected to Server")
-while True:
-    waitForResponse = True
-    Input = input('Hey there: ')
-    if Input == "hello":
-        Input = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"})
-    
-    elif Input == "peers":
-        Input = json.dumps({"type": "peers", "peers": ["144.126.247.134:18018"]})
-        waitForResponse = False
+        # process the data into a json file and send back the appropriate response
+        try:
+            data_parsed = json.loads(str(data, encoding="utf-8"))
 
-    elif Input == "getPeers":
-        Input = json.dumps({"type": "getPeers"})
-        
-    ClientMultiSocket.send(str.encode(Input))
-    if waitForResponse:
-        res = ClientMultiSocket.recv(DATA_SIZE)
-        print(res.decode('utf-8'))
-    print("done.")
-ClientMultiSocket.close()
+            # run function with name
+            function_name = data_parsed["type"]
+
+            # if the function exists
+            if function_name in ["hello", "getPeers", "peers", "error"]:
+                if function_name == "error":
+                    print(f"\nReceived error message.")
+                    logging.info(f"| ERROR | {function_name} | Received an error message, something probably went wrong")
+                else:
+                    eval(function_name + "(connection, client_address, data)") #runs the functions with the type name
+            else:
+                print(f"\nError unknown type.")
+                logging.info(f"| ERROR | {function_name} | Wrong message type or type not yet supported")
+                error(connection, client_address, data, "Wrong message type or type not yet supported")
+
+        except Exception as e:
+            print(f"\nError parsing json.")
+            logging.info(f"| ERROR | Error parsing json. | {e} | {e.args}")
+            error(connection, client_address, data, "Error parsing json")
+
+    connection.close()

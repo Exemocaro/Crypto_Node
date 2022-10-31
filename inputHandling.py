@@ -2,21 +2,28 @@ import logging
 import json
 
 from config import *
+from generateMessage import *
 
-def handleInput(data, sender_address):
+def handleInput(connection, sender_address, data):
     try:
         data_parsed = json.loads(str(data, encoding="utf-8"))
+        print("Data parsed: ", data_parsed)
         if "type" in data_parsed:
             if data_parsed["type"] == "hello":
-                return handleHello(data_parsed, sender_address)
+                response = handleHello(data_parsed, sender_address)
+                print(response)
+                return response
             elif data_parsed["type"] == "getPeers":
+                print("GetPeers received")
                 return handleGetPeers(data_parsed, sender_address)
             elif data_parsed["type"] == "peers":
+                print("Peers received")
                 return handlePeers(data_parsed, sender_address)
             else:
+                print("Error received")
                 return handleError(data, sender_address)
         else:
-            return json.loads("{'type': 'error', 'error': 'No type!'}")
+            return generateErrorMessage("Invalid type!")
     except Exception as e:
         logging.error(f"| ERROR | {sender_address} | HANDLEINPUT | {data} | {e} | {e.args}")
         print(f"\nError on handleInput! {e} | {e.args}\n")
@@ -26,15 +33,20 @@ def handleInput(data, sender_address):
 def handleHello(data_parsed, sender_address):
     try:
         if "version" in data_parsed:
-            if data_parsed["version"][:4] == "0.8":
+            if data_parsed["version"][:4] == "0.8.":
                 if isValidationPending(sender_address):
+                    print(f"\nValidating {sender_address}\n")
                     finanlizeValidation(sender_address)
+                    print("\nValidation finished!\n")
                 else:
-                    return json.loads("{'type': 'hello', 'version': '0.8.0', 'agent': 'Kerma-Core Client 0.8'}")
+                    print("Just answering hello")
+                    return generateHelloMessage()
             else:
-                return json.loads("{'type': 'error', 'error': 'Wrong hello version type!'}")
+                logging.error(f"| ERROR | {sender_address} | HELLO | {data_parsed} | Version not supported | {data_parsed['version'][:4]}")
+                return generateErrorMessage("Wrong hello version!")
         else:
-            return json.loads("{'type': 'error', 'error': 'No version type!'}")
+            logging.error(f"| ERROR | {sender_address} | HELLO | {data_parsed} | No version in data_parsed")
+            return generateErrorMessage("No version in hello!")
     except Exception as e:
         logging.error(f"| ERROR | {sender_address} | HELLO | {data_parsed} | {e} | {e.args}")
         print(f"\nError on hello! {e} | {e.args}\n")
@@ -43,7 +55,7 @@ def handleHello(data_parsed, sender_address):
 
 def handleGetPeers(data_parsed, sender_address):
     try:
-        response = json.dumps({"type": "peers", "peers": KNOWN_ADDRESSES})
+        response = generatePeersMessage(KNOWN_CREDENTIALS)
         return response
     except Exception as e:
         logging.error(f"| ERROR | {sender_address} | GETPEERS | {data_parsed} | {e} | {e.args}")
@@ -63,7 +75,7 @@ def handlePeers(data_parsed, sender_address):
                     print(f"\n{peer} already known!\n")
         else:
             logging.error(f"| ERROR | {sender_address} | PEERS | {data_parsed} | No peers in data_parsed")
-            return json.loads("{'type': 'error', 'error': 'No peers type!'}")
+            return generateErrorMessage("No peers in data_parsed!")
     except Exception as e:
         logging.error(f"| ERROR | {sender_address} | PEERS | {data_parsed} | {e} | {e.args}")
         print(f"\nError on peers! {e} | {e.args}\n")
