@@ -85,15 +85,15 @@ def loadAddresses():
     print(KNOWN_CREDENTIALS, end="\n\n")
 
 # adds an address into the list of addresses
-def addAddress(address):
-    if address not in KNOWN_CREDENTIALS:
+def addCredentials(credentials):
+    if credentials not in KNOWN_CREDENTIALS:
         with open(KNOWN_CREDENTIALS, 'a') as f:
-            f.write(f"{address[0]}")
-            f.write(f":{address[1]}\n")
-        KNOWN_CREDENTIALS.append(address[0])
-        logging.info(f"| SAVED ADDRESS | {address}")
+            f.write(f"{credentials[0]}")
+            f.write(f":{credentials[1]}\n")
+        KNOWN_CREDENTIALS.append(credentials[0])
+        logging.info(f"| SAVED ADDRESS | {credentials}")
     else:
-        print(f"\nKnown address {address}.")
+        print(f"\nKnown address {credentials}.")
 
 # checks if the passed address is in the list of known ones, and if not adds it.
 def checkAddresses(credentials):
@@ -101,7 +101,7 @@ def checkAddresses(credentials):
     if ip_port[0] not in KNOWN_CREDENTIALS:
         if isValidCredentials(credentials):
             print(f"\nUnknown address {credentials}! Saving it...")
-            addAddress(ip_port[0])
+            addCredentials(credentials)
             logging.info(f"| SAVED ADDRESS | {credentials}")
         else:
             print(f"\nInvalid address {credentials}!")

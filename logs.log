@@ -484,3 +484,11 @@
 31/10/2022 20:36:30 | RECEIVED | ('192.168.56.1', 54370) | b'getpeers'
 31/10/2022 20:36:30 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
 31/10/2022 20:36:30 | SENT | ('192.168.56.1', 54370) | b'getpeers'
+31/10/2022 20:37:48 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:37:50 | ERROR | 192.168.56.1:54386 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:38:50 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:38:53 | ERROR | 192.168.56.1:54394 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:42:23 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:42:24 | ERROR | 192.168.56.1:54436 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:44:38 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:44:39 | ERROR | 192.168.56.1:54445 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)

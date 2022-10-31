@@ -52,6 +52,7 @@ def multi_threaded_client(connection, client_address):
 # Mateus is working on a better solution
 def startSocket():
     serverSideSocket = socket.socket()
+    serverSideSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     threadCount = 0 # stores the number of total threads opened by the server
 
     try:
@@ -70,11 +71,12 @@ def startSocket():
         connection, client_address = serverSideSocket.accept()
 
         try:
-            print('---------- Connection from', client_address, " ----------")
             ip = client_address[0]
             port = str(client_address[1])
-            checkAddresses(ip + port)
+            client_address = str(ip + ":" + port)
+            checkAddresses(client_address)
             
+            print('---------- Connection from', client_address, " ----------")
             start_new_thread(multi_threaded_client, (connection, client_address))
             threadCount += 1
             print('Thread Number: ' + str(threadCount))
