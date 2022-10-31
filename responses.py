@@ -9,6 +9,8 @@ def hello(connection, client_address, data):
     try:
         data_parsed = json.loads(str(data, encoding="utf-8"))
 
+        checkAndAddAddresses(client_address)
+
         if "version" in data_parsed:
             if data_parsed["version"][:4] != "0.8.":
                 logging.error(f"| ERROR | {client_address} | HELLO | {data} | Version not supported")
@@ -29,7 +31,7 @@ def hello(connection, client_address, data):
     finally:
         pass
         
-def getPeers(connection, client_address, data):
+def getpeers(connection, client_address, data):
     try:
         data_to_send = json.dumps({"type": "peers", "peers": KNOWN_CREDENTIALS})
         data_to_send = str.encode(str(data_to_send + "\n"))
@@ -56,7 +58,7 @@ def peers(connection, client_address, data):
             nPeers = len(data_parsed["peers"])
             if nPeers > 0: # might be empty, we don't know
                 for peer in data_parsed["peers"]:
-                    checkAddresses(peer)
+                    checkAndAddAddresses(peer)
                 print(f"\nChecked {nPeers} new peers!\n")
             else:
                 logging.error(f"| ERROR | {client_address} | PEERS | {data} | Received empty peers list!")

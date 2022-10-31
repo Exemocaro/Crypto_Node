@@ -63,10 +63,7 @@ def loadAddresses():
     try:
         with open(ADDRESSES_FILE, 'r') as f:
             addresses_unparsed = f.readlines()
-            print(addresses_unparsed)
             temp = [x.strip("\n") for x in addresses_unparsed] # to remove whitespace characters like `\n` at the end of each line
-            print("\ntemp:")
-            print(temp)
             for a in temp:
                 a = a.split(":")[0] # removes the ip out of the address
                 print("\na:")
@@ -76,7 +73,7 @@ def loadAddresses():
             size = len(KNOWN_CREDENTIALS)
             logging.info(f"| READING ADDRESSES | Addresses read: {size}")
     except IOError: # if the file doesn't exist
-        with open(KNOWN_CREDENTIALS, 'w+') as f:
+        with open(ADDRESSES_FILE, 'w+') as f:
             addresses_unparsed = f.readlines()
             logging.info(f"| CREATING ADDRESSES FILE")
             KNOWN_CREDENTIALS = [x.strip() for x in addresses_unparsed] # to remove whitespace characters like `\n` at the end of each line
@@ -86,17 +83,17 @@ def loadAddresses():
 
 # adds an address into the list of addresses
 def addCredentials(credentials):
+    ip_port = credentials.split(":") # list with ip and port
     if credentials not in KNOWN_CREDENTIALS:
-        with open(KNOWN_CREDENTIALS, 'a') as f:
-            f.write(f"{credentials[0]}")
-            f.write(f":{credentials[1]}\n")
-        KNOWN_CREDENTIALS.append(credentials[0])
+        with open(ADDRESSES_FILE, 'a') as f:
+            f.write(f"{credentials}\n")
+        KNOWN_CREDENTIALS.append(ip_port[0])
         logging.info(f"| SAVED ADDRESS | {credentials}")
     else:
         print(f"\nKnown address {credentials}.")
 
 # checks if the passed address is in the list of known ones, and if not adds it.
-def checkAddresses(credentials):
+def checkAndAddAddresses(credentials):
     ip_port = credentials.split(":") # list with ip and port
     if ip_port[0] not in KNOWN_CREDENTIALS:
         if isValidCredentials(credentials):
@@ -108,11 +105,6 @@ def checkAddresses(credentials):
             logging.info(f"| INVALID ADDRESS | {credentials}")
     else:
         print(f"\nKnown address {credentials}.")
-
-# returns true if an address is already known to us
-def checkAddress(credentials):
-    credentials.split(":")[0]
-    return credentials in KNOWN_CREDENTIALS
 
 """ 
 def validateAdress(connection, address):

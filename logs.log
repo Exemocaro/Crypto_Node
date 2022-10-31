@@ -492,3 +492,55 @@
 31/10/2022 20:42:24 | ERROR | 192.168.56.1:54436 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
 31/10/2022 20:44:38 | READING ADDRESSES | Addresses read: 0
 31/10/2022 20:44:39 | ERROR | 192.168.56.1:54445 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:47:47 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:58:22 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:58:24 | SAVED ADDRESS | 127.0.0.1:54605
+31/10/2022 20:58:24 | SAVED ADDRESS | 127.0.0.1:54605
+31/10/2022 20:59:35 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:59:37 | SAVED ADDRESS | 127.0.0.1:54618
+31/10/2022 20:59:37 | SAVED ADDRESS | 127.0.0.1:54618
+31/10/2022 20:59:42 | RECEIVED | 127.0.0.1:54618 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 20:59:42 | SENT | 127.0.0.1:54618 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:00:16 | READING ADDRESSES | Addresses read: 0
+31/10/2022 21:00:17 | SAVED ADDRESS | 127.0.0.1:54627
+31/10/2022 21:00:17 | SAVED ADDRESS | 127.0.0.1:54627
+31/10/2022 21:00:20 | RECEIVED | 127.0.0.1:54627 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:00:20 | SENT | 127.0.0.1:54627 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:00:28 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:00:28 | RECEIVED | 127.0.0.1:54627 | b'{"type": "peers", "peers": ["127.0.0.1"]}'
+31/10/2022 21:00:33 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:00:33 | RECEIVED | 127.0.0.1:54627 | b'{"type": "peers", "peers": ["127.0.0.1"]}'
+31/10/2022 21:00:34 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:00:34 | RECEIVED | 127.0.0.1:54627 | b'{"type": "peers", "peers": ["127.0.0.1"]}'
+31/10/2022 21:00:35 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:00:35 | RECEIVED | 127.0.0.1:54627 | b'{"type": "peers", "peers": ["127.0.0.1"]}'
+31/10/2022 21:00:38 | RECEIVED | 127.0.0.1:54627 | b'{"type": "getpeers"}'
+31/10/2022 21:00:38 | ERROR | getpeers | Wrong message type or type not yet supported
+31/10/2022 21:00:38 | SENT | 127.0.0.1:54627 | b'{"type": "getpeers"}'
+31/10/2022 21:00:41 | RECEIVED | 127.0.0.1:54627 | b'getpeers'
+31/10/2022 21:00:41 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 21:00:41 | SENT | 127.0.0.1:54627 | b'getpeers'
+31/10/2022 21:02:09 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:02:12 | RECEIVED | 127.0.0.1:54632 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:02:12 | SENT | 127.0.0.1:54632 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:05:48 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:05:55 | RECEIVED | 127.0.0.1:54653 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:05:55 | SENT | 127.0.0.1:54653 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:05:57 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:05:57 | RECEIVED | 127.0.0.1:54653 | b'{"type": "peers", "peers": ["127.0.0.1"]}'
+31/10/2022 21:06:00 | RECEIVED | 127.0.0.1:54653 | b'{"type": "getpeers"}'
+31/10/2022 21:06:00 | ERROR | getpeers | Wrong message type or type not yet supported
+31/10/2022 21:06:00 | SENT | 127.0.0.1:54653 | b'{"type": "getpeers"}'
+31/10/2022 21:06:02 | RECEIVED | 127.0.0.1:54653 | b'{"type": "getpeers"}'
+31/10/2022 21:06:02 | ERROR | getpeers | Wrong message type or type not yet supported
+31/10/2022 21:06:02 | SENT | 127.0.0.1:54653 | b'{"type": "getpeers"}'
+31/10/2022 21:06:04 | RECEIVED | 127.0.0.1:54653 | b'{"type": "getpeers"}'
+31/10/2022 21:06:04 | ERROR | getpeers | Wrong message type or type not yet supported
+31/10/2022 21:06:04 | SENT | 127.0.0.1:54653 | b'{"type": "getpeers"}'
+31/10/2022 21:07:05 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:07:09 | RECEIVED | 127.0.0.1:54656 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:07:09 | SENT | 127.0.0.1:54656 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 21:07:11 | RECEIVED | 127.0.0.1:54656 | b'{"type": "getpeers"}'
+31/10/2022 21:07:11 | SENT | 127.0.0.1:54656 | {"type": "getpeers"}
+31/10/2022 21:07:13 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:07:13 | RECEIVED | 127.0.0.1:54656 | b'{"type": "peers", "peers": ["127.0.0.1"]}'

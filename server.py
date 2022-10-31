@@ -26,10 +26,10 @@ def multi_threaded_client(connection, client_address):
             data_parsed = json.loads(str(data, encoding="utf-8"))
 
             # run function with name 
-            function_name = data_parsed["type"]
+            function_name = data_parsed["type"].lower()
 
             # if the function exists
-            if function_name in ["hello", "getPeers", "peers", "error"]:
+            if function_name in ["hello", "getpeers", "peers", "error"]:
                 if function_name == "error":
                     print(f"\nReceived error message.")
                     logging.info(f"| ERROR | {function_name} | Received an error message, something probably went wrong")
@@ -74,7 +74,7 @@ def startSocket():
             ip = client_address[0]
             port = str(client_address[1])
             client_address = str(ip + ":" + port)
-            checkAddresses(client_address)
+            #checkAndAddAddresses(client_address)
             
             print('---------- Connection from', client_address, " ----------")
             start_new_thread(multi_threaded_client, (connection, client_address))

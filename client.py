@@ -3,11 +3,11 @@ import json
 
 from config import *
 
-HOST = "192.168.56.1" # LOCAL
+#HOST = "192.168.56.1" # LOCAL
 #HOST = "143.244.205.206"  # MATEUS
 #HOST = "144.126.247.134" # JAN
 #HOST = "128.130.122.101" # bootstrapping node
-#HOST = "127.0.0.1" # localhost
+HOST = "127.0.0.1" # localhost
 
 host = HOST
 port = PORT
@@ -32,7 +32,7 @@ while True:
         Input = json.dumps({"type": "peers", "peers": KNOWN_CREDENTIALS})
         waitForResponse = False
 
-    elif Input == "getPeers":
+    elif Input.lower() == "getpeers":
         Input = json.dumps({"type": "getpeers"})
         
     ClientMultiSocket.send(str.encode(Input))
