@@ -3,16 +3,13 @@ import logging
 import json
 import socket
 
-HOST = "192.168.56.1" # LOCAL
-#HOST = "143.244.205.206"  # MINE
-#HOST = "144.126.247.134" #JAN
 PORT = 18018  # The port used by the server
 
 CLIENTS_NUMBER = 5000
 DATA_SIZE = 2048 # size of data to read from each received message
-KNOWN_ADDRESSES = [] # stores all the addresses this node knows
+KNOWN_CREDENTIALS = [] # stores all the addresses this node knows
 VALIDATION_PENDING_CREDENTIALS = [] # stores the addresses that are waiting for validation
-ADDRESSES_FILE = 'known_addresses.txt' # file that stores the known addresses
+ADDRESSES_FILE = 'known_credentials.txt' # file that stores the known addresses
 SYSTEM = platform.system().lower() # our operating system
 SERVER_ADDRESS = ('', PORT)
 
@@ -61,7 +58,7 @@ def isValidPort(port):
 
 # loads the addresses from the file into the list of addresses
 def loadAddresses():
-    global KNOWN_ADDRESSES
+    global KNOWN_CREDENTIALS
     try:
         with open(ADDRESSES_FILE, 'r') as f:
             addresses_unparsed = f.readlines()
@@ -73,33 +70,33 @@ def loadAddresses():
                 a = a.split(":")[0] # removes the ip out of the address
                 print("\na:")
                 print(a)
-                if a not in KNOWN_ADDRESSES:
-                    KNOWN_ADDRESSES.append(a)
-            size = len(KNOWN_ADDRESSES)
+                if a not in KNOWN_CREDENTIALS:
+                    KNOWN_CREDENTIALS.append(a)
+            size = len(KNOWN_CREDENTIALS)
             logging.info(f"| READING ADDRESSES | Addresses read: {size}")
     except IOError: # if the file doesn't exist
-        with open('known_addresses.txt', 'w+') as f:
+        with open(KNOWN_CREDENTIALS, 'w+') as f:
             addresses_unparsed = f.readlines()
             logging.info(f"| CREATING ADDRESSES FILE")
-            KNOWN_ADDRESSES = [x.strip() for x in addresses_unparsed] # to remove whitespace characters like `\n` at the end of each line
+            KNOWN_CREDENTIALS = [x.strip() for x in addresses_unparsed] # to remove whitespace characters like `\n` at the end of each line
 
     print("Known Addresses:")
-    print(KNOWN_ADDRESSES, end="\n\n")
+    print(KNOWN_CREDENTIALS, end="\n\n")
 
 # adds an address into the list of addresses
 def addAddress(address):
-    if address not in KNOWN_ADDRESSES:
-        with open('known_addresses.txt', 'a') as f:
+    if address not in KNOWN_CREDENTIALS:
+        with open(KNOWN_CREDENTIALS, 'a') as f:
             f.write(f"{address[0]}")
             f.write(f":{address[1]}\n")
-        KNOWN_ADDRESSES.append(address[0])
+        KNOWN_CREDENTIALS.append(address[0])
         logging.info(f"| SAVED ADDRESS | {address}")
     else:
         print(f"\nKnown address {address}.")
 
 # checks if the passed address is in the list of known ones, and if not adds it.
 def checkAddresses(client_address):
-    if client_address[0] not in KNOWN_ADDRESSES:
+    if client_address[0] not in KNOWN_CREDENTIALS:
         print(f"\nUnknown address {client_address}! Saving it...")
         addAddress(client_address)
         logging.info(f"| SAVED ADDRESS | {client_address}")
@@ -109,7 +106,7 @@ def checkAddresses(client_address):
 # returns true if an address is already known to us
 def checkAddress(client_address):
     client_address.split(":")[0]
-    return client_address in KNOWN_ADDRESSES
+    return client_address in KNOWN_CREDENTIALS
 
 
 """ 

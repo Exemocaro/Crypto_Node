@@ -8,6 +8,9 @@ from tracemalloc import start # new threading lib
 from config import *
 from responses import *
 
+def isClientAlive():
+    pass
+
 def newClient():
     pass
 

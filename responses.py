@@ -31,7 +31,7 @@ def hello(connection, client_address, data):
         
 def getPeers(connection, client_address, data):
     try:
-        data_to_send = json.dumps({"type": "peers", "peers": KNOWN_ADDRESSES})
+        data_to_send = json.dumps({"type": "peers", "peers": KNOWN_CREDENTIALS})
         data_to_send = str.encode(str(data_to_send + "\n"))
 
         #data_to_send = b'{"type " : " peers " ,"peers " : }'
