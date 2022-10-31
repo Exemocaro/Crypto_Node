@@ -685,3 +685,9 @@
 31/10/2022 17:39:30 | ERROR | ('', 18018) | [WinError 10048] Normalerweise darf jede Socketadresse (Protokoll, Netzwerkadresse oder Anschluss) nur jeweils einmal verwendet werden | (10048, 'Normalerweise darf jede Socketadresse (Protokoll, Netzwerkadresse oder Anschluss) nur jeweils einmal verwendet werden', None, 10048, None) | Error when binding the socket to the server address
 31/10/2022 17:39:40 | RECEIVED | ('127.0.0.1', 63923) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
 31/10/2022 17:39:40 | ERROR | ('127.0.0.1', 63923) | HELLO | {'type': 'hello', 'version': '0.8.0', 'agent ': 'Kerma-Core Client 0.8'} | name 'isValidationPending' is not defined | ("name 'isValidationPending' is not defined",)
+31/10/2022 17:45:34 | READING ADDRESSES | Addresses read: 2
+31/10/2022 17:45:44 | RECEIVED | ('127.0.0.1', 61576) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 17:45:46 | RECEIVED | ('127.0.0.1', 61576) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 17:45:47 | RECEIVED | ('127.0.0.1', 61576) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 17:46:07 | READING ADDRESSES | Addresses read: 0
+31/10/2022 17:46:10 | RECEIVED | ('127.0.0.1', 61583) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'

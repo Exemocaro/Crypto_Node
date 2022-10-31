@@ -124,3 +124,17 @@ def validateAdress(connection, address):
         print(f"\nError on validate! {e} | {e.args}\n")
     finally:
         pass
+
+
+# checks if the passed ip address is in the validation list
+def isValidationPending(address):
+    return address in VALIDATION_PENDING_ADRESSES
+
+# validates  
+def finalizeValidation(address):
+    if address in VALIDATION_PENDING_ADRESSES:
+        VALIDATION_PENDING_ADRESSES.remove(address)
+    VALIDATION_PENDING_ADRESSES.remove(address)
+    KNOWN_CREDENTIALS.append(address)
+    print(f"\nValidation finalized for {address}!")
+    logging.info(f"| VALIDATION FINALIZED | {address}")

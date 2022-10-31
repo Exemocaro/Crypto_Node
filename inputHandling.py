@@ -36,7 +36,7 @@ def handleHello(data_parsed, sender_address):
             if data_parsed["version"][:4] == "0.8.":
                 if isValidationPending(sender_address):
                     print(f"\nValidating {sender_address}\n")
-                    finanlizeValidation(sender_address)
+                    finalizeValidation(sender_address)
                     print("\nValidation finished!\n")
                 else:
                     print("Just answering hello")
