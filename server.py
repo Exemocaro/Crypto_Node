@@ -29,7 +29,7 @@ def multi_threaded_client(connection, client_address):
             function_name = data_parsed["type"]
 
             # if the function exists
-            if function_name in ["hello", "getPeers", "peers", "error"]:
+            if function_name in ["hello", "getpeers", "peers", "error"]:
                 if function_name == "error":
                     print(f"\nReceived error message.")
                     logging.info(f"| ERROR | {function_name} | Received an error message, something probably went wrong")
