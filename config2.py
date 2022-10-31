@@ -10,7 +10,7 @@ PORT = 18018  # The port used by the server
 CLIENTS_NUMBER = 5000
 DATA_SIZE = 2048 # size of data to read from each received message
 KNOWN_CREDENTIALS = [] # stores all the addresses this node knows
-VALIDATION_PENDING_ADRESSES = [] # stores the addresses that are waiting for validation
+VALIDATION_PENDING_CREDENTIALS = [] # stores the addresses that are waiting for validation
 ADDRESSES_FILE = 'known_credentials.json'  # file that stores the known addresses
 SYSTEM = platform.system().lower() # our operating system
 SERVER_ADDRESS = ('', PORT)
@@ -132,7 +132,7 @@ def validateAdress(address):
         data_to_send = json.dumps(data)
         data_to_send = str.encode(str(data_to_send + "\n"))
 
-        VALIDATION_PENDING_ADRESSES.append(address)
+        VALIDATION_PENDING_CREDENTIALS.append(address)
 
         connection = connectToServer(address)
         multi_threaded_client(connection, address)
@@ -146,13 +146,13 @@ def validateAdress(address):
 
 # TODO
 def isValidationPending(address):
-    return address in VALIDATION_PENDING_ADRESSES
+    return address in VALIDATION_PENDING_CREDENTIALS
 
 # TODO
 def finanlizeValidation(ip_address):
-    if ip_address in VALIDATION_PENDING_ADRESSES:
-        VALIDATION_PENDING_ADRESSES.remove(ip_address)
-    VALIDATION_PENDING_ADRESSES.remove(ip_address)
+    if ip_address in VALIDATION_PENDING_CREDENTIALS:
+        VALIDATION_PENDING_CREDENTIALS.remove(ip_address)
+    VALIDATION_PENDING_CREDENTIALS.remove(ip_address)
     KNOWN_CREDENTIALS.append(ip_address)
     print(f"\nValidation finalized for {ip_address}!")
     logging.info(f"| VALIDATION FINALIZED | {ip_address}")

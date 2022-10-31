@@ -3,6 +3,7 @@ import json
 
 from config import *
 from generateMessage import *
+from client import *
 
 def handleInput(connection, sender_address, data):
     try:
@@ -67,13 +68,13 @@ def handlePeers(data_parsed, sender_address):
     try:
         if "peers" in data_parsed:
             #for peer in data_parsed["peers"]:
+            peers = data_parsed["peers"]
                 
-            for peer in data_parsed["peers"]:
-                if not checkAddress(peer):
+            for credential_string in peers:
+                peer = (credential_string.split(":")[0], int(credential_string.split(":")[1]))
+                if not checkCredentials(peer):
                     print(f"\nValidating {peer}\n")
-                    client_adress = (peer.split(":")[0], int(peer.split(":")[1]))
-                    print("\n\n\n\n Client Address:" + client_adress + "\n\n\n\n")
-                    validateAdress(client_adress)
+                    validateNode(peer)
                 else:
                     print(f"\n{peer} already known!\n")
         else:

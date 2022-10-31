@@ -4,15 +4,17 @@ import json
 import socket
 
 HOST = "192.168.56.1" # LOCAL
-#HOST = "143.244.205.206"  # MINE
+#HOST = "143.244.205.206"  # MATEUS
 #HOST = "4.231.16.23" #JAN
 #HOST = "139.59.205.101" #SIMÃO
+#HOST = "128.130.122.101" #BOOTSTRAPPING NODE
 PORT = 18018  # The port used by the server
 
 CLIENTS_NUMBER = 5000
 DATA_SIZE = 2048 # size of data to read from each received message
 KNOWN_CREDENTIALS = [] # stores all the addresses this node knows
-VALIDATION_PENDING_ADRESSES = [] # stores the addresses that are waiting for validation
+# TODO: store the credentials of validation pending in a file
+VALIDATION_PENDING_CREDENTIALS = [] # stores the addresses that are waiting for validation
 ADDRESSES_FILE = 'known_credentials.txt' # file that stores the known addresses
 SYSTEM = platform.system().lower() # our operating system
 SERVER_ADDRESS = ('', PORT)
@@ -103,6 +105,12 @@ def checkAddresses(client_address):
     else:
         print(f"\nKnown address {client_address}.")
 
+def checkCredentials(credentials):
+    if credentials in KNOWN_CREDENTIALS:
+        return True
+    else:
+        return False
+
 def checkAddress(client_address):
     return client_address[0] in KNOWN_CREDENTIALS
 
@@ -113,7 +121,7 @@ def validateAdress(connection, address):
         data_to_send = json.dumps(data)
         data_to_send = str.encode(str(data_to_send + "\n"))
 
-        VALIDATION_PENDING_ADRESSES.append(address)
+        VALIDATION_PENDING_CREDENTIALS.append(address)
 
         print(f"\nSending data: \n{data}")
         connection.sendall(data_to_send) # we can't send str(data) because it must be a "byte-like object"
@@ -126,15 +134,40 @@ def validateAdress(connection, address):
         pass
 
 
-# checks if the passed ip address is in the validation list
+# checks if the passed address is in the validation list
 def isValidationPending(address):
-    return address in VALIDATION_PENDING_ADRESSES
+    return address in extractAddresses(VALIDATION_PENDING_CREDENTIALS)
 
 # validates  
 def finalizeValidation(address):
-    if address in VALIDATION_PENDING_ADRESSES:
-        VALIDATION_PENDING_ADRESSES.remove(address)
-    VALIDATION_PENDING_ADRESSES.remove(address)
-    KNOWN_CREDENTIALS.append(address)
-    print(f"\nValidation finalized for {address}!")
-    logging.info(f"| VALIDATION FINALIZED | {address}")
+    if isValidationPending(address):
+        index = extractAddresses(VALIDATION_PENDING_CREDENTIALS).index(address)
+        credentials = VALIDATION_PENDING_CREDENTIALS[index]
+        VALIDATION_PENDING_CREDENTIALS.pop(index)
+        KNOWN_CREDENTIALS.append(credentials)
+        print(f"\nValidation finalized for {address}!")
+        logging.info(f"| VALIDATION FINALIZED | {address}")
+
+def parseCredentials(credentials_string_list):
+    parsed_credentials = []
+    for c in credentials_list:
+        c = c.split(":")
+        parsed_credentials.append((c[0], c[1]))
+    return parsed_credentials
+
+def extractAddresses(credentials_string_list):
+    addresses = []
+    for c in credentials_string_list:
+        c = c.split(":")
+        addresses.append(c[0])
+    return addresses
+
+def extractPorts(credentials_string_list):
+    ports = []
+    for c in credentials_string_list:
+        c = c.split(":")
+        ports.append(c[1])
+    return ports
+
+def validatePeer(credentials):
+    clie

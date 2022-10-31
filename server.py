@@ -40,6 +40,9 @@ def multi_threaded_client(connection, client_address):
 # Mateus is working on a better solution
 def startSocket():
     serverSideSocket = socket.socket()
+    # prevent glow down after closing the program
+    serverSideSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
     threadCount = 0 # stores the number of total threads opened by the server
 
     try:

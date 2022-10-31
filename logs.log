@@ -691,3 +691,86 @@
 31/10/2022 17:45:47 | RECEIVED | ('127.0.0.1', 61576) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
 31/10/2022 17:46:07 | READING ADDRESSES | Addresses read: 0
 31/10/2022 17:46:10 | RECEIVED | ('127.0.0.1', 61583) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 17:47:07 | READING ADDRESSES | Addresses read: 0
+31/10/2022 17:47:07 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 17:47:10 | READING ADDRESSES | Addresses read: 0
+31/10/2022 17:47:10 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 17:47:11 | READING ADDRESSES | Addresses read: 0
+31/10/2022 17:47:11 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 17:47:26 | READING ADDRESSES | Addresses read: 0
+31/10/2022 17:47:26 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 17:47:28 | READING ADDRESSES | Addresses read: 0
+31/10/2022 17:47:28 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 17:47:30 | READING ADDRESSES | Addresses read: 0
+31/10/2022 17:47:30 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 17:47:33 | READING ADDRESSES | Addresses read: 0
+31/10/2022 17:47:33 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 17:47:35 | READING ADDRESSES | Addresses read: 0
+31/10/2022 17:47:41 | RECEIVED | ('127.0.0.1', 64478) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 17:47:51 | RECEIVED | ('127.0.0.1', 64478) | b'{"type": "getPeers"}'
+31/10/2022 18:00:13 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:00:13 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 18:00:16 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:00:16 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 18:00:18 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:00:18 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 18:00:18 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:00:18 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 18:00:32 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:00:32 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 18:00:40 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:00:51 | RECEIVED | ('127.0.0.1', 49469) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 18:00:51 | ERROR | ('127.0.0.1', 49469) | HELLO | {'type': 'hello', 'version': '0.8.0', 'agent ': 'Kerma-Core Client 0.8'} | name 'VALIDATION_PENDING_ADRESSES' is not defined | ("name 'VALIDATION_PENDING_ADRESSES' is not defined",)
+31/10/2022 18:01:38 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:01:38 | ERROR | ('', 18018) | [Errno 48] Address already in use | (48, 'Address already in use') | Error when binding the socket to the server address
+31/10/2022 18:02:57 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:03:01 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:03:08 | RECEIVED | ('127.0.0.1', 49717) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 18:03:16 | RECEIVED | ('127.0.0.1', 49717) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 18:03:25 | RECEIVED | ('127.0.0.1', 49717) | b'{"type": "getPeers"}'
+31/10/2022 18:03:32 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:03:32 | RECEIVED | ('127.0.0.1', 49717) | b'{"type": "peers", "peers": "[143.244.205.206:18018]"}'
+31/10/2022 18:03:32 | ERROR | ('127.0.0.1', 49717) | PEERS | {'type': 'peers', 'peers': '[143.244.205.206:18018]'} | list index out of range | ('list index out of range',)
+31/10/2022 18:04:14 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:04:18 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:04:35 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:04:35 | RECEIVED | ('127.0.0.1', 49753) | b'{"type": "peers", "peers": "[143.244.205.206:18018]"}'
+31/10/2022 18:05:17 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:05:23 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:05:23 | RECEIVED | ('127.0.0.1', 49821) | b'{"type": "peers", "peers": "[143.244.205.206:18018]"}'
+31/10/2022 18:06:02 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:06:02 | RECEIVED | ('127.0.0.1', 49888) | b'{"type": "peers", "peers": ["143.244.205.206:18018"]}'
+31/10/2022 18:06:08 | ERROR | ('127.0.0.1', 49888) | PEERS | {'type': 'peers', 'peers': ['143.244.205.206:18018']} | can only concatenate str (not "tuple") to str | ('can only concatenate str (not "tuple") to str',)
+31/10/2022 18:06:08 | ERROR | ('127.0.0.1', 49821) | PEERS | {'type': 'peers', 'peers': '[143.244.205.206:18018]'} | list index out of range | ('list index out of range',)
+31/10/2022 18:06:10 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:06:14 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:06:14 | RECEIVED | ('127.0.0.1', 49902) | b'{"type": "peers", "peers": ["143.244.205.206:18018"]}'
+31/10/2022 18:06:17 | ERROR | ('127.0.0.1', 49902) | PEERS | {'type': 'peers', 'peers': ['143.244.205.206:18018']} | can only concatenate str (not "tuple") to str | ('can only concatenate str (not "tuple") to str',)
+31/10/2022 18:06:28 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:06:28 | RECEIVED | ('127.0.0.1', 49902) | b'{"type": "peers", "peers": ["143.244.205.206:18018"]}'
+31/10/2022 18:10:06 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:10:11 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:10:11 | RECEIVED | ('127.0.0.1', 50525) | b'{"type": "peers", "peers": ["143.244.205.206:18018"]}'
+31/10/2022 18:10:14 | ERROR | Error validating node! | connect(): AF_INET address must be tuple, not str | ('connect(): AF_INET address must be tuple, not str',)
+31/10/2022 18:10:27 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:10:27 | RECEIVED | ('127.0.0.1', 50525) | b'{"type": "peers", "peers": ["143.244.205.206:18018"]}'
+31/10/2022 18:12:08 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:12:12 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:12:12 | RECEIVED | ('127.0.0.1', 50745) | b'{"type": "peers", "peers": ["143.244.205.206:18018"]}'
+31/10/2022 18:12:15 | ERROR | Error validating node! | connect(): AF_INET address must be tuple, not list | ('connect(): AF_INET address must be tuple, not list',)
+31/10/2022 18:12:24 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:12:24 | RECEIVED | ('127.0.0.1', 50745) | b'{"type": "peers", "peers": ["143.244.205.206:18018"]}'
+31/10/2022 18:12:58 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:12:59 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:13:05 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:13:05 | RECEIVED | ('127.0.0.1', 50814) | b'{"type": "peers", "peers": ["143.244.205.206:18018"]}'
+31/10/2022 18:13:09 | ERROR | Error validating node! | [Errno 61] Connection refused | (61, 'Connection refused')
+31/10/2022 18:15:41 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:15:41 | RECEIVED | ('127.0.0.1', 51131) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 18:15:44 | ERROR | Error validating node! | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)
+31/10/2022 18:18:07 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:18:10 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:18:57 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:19:11 | READING ADDRESSES | Addresses read: 0
+31/10/2022 18:19:11 | RECEIVED | ('127.0.0.1', 51255) | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 18:19:22 | ERROR | Error validating node! | a bytes-like object is required, not 'str' | ("a bytes-like object is required, not 'str'",)

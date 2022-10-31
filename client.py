@@ -12,7 +12,7 @@ def validateNode(credentials):
         client_socket.connect(credentials)
         data_to_send = generateHelloMessage()
         client_socket.sendall(data_to_send)
-        VALIDATION_PENDING_ADRESSES.append(credentials["ip"])
+        VALIDATION_PENDING_CREDENTIALS.append(credentials["ip"])
     except Exception as e:
         print(f"\nError validating node! {e} | {e.args}\n")
         logging.info(f"| ERROR | Error validating node! | {e} | {e.args}")

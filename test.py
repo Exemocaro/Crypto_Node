@@ -6,7 +6,7 @@ from config import *
 #HOST = "192.168.56.1" # LOCAL
 #HOST = "143.244.205.206" #MATEUS
 #HOST = "144.126.247.134" #JAN
-#HOST = 139.59.205.101" #SIMÃO
+#HOST = "139.59.205.101" #SIMÃO
 HOST = "127.0.0.1"  # LOCALHOST
 
 PORT = 18018  # The port used by the server
@@ -33,7 +33,7 @@ while True:
 
     elif Input == "peers":
         loadAddresses()
-        Input = json.dumps({"type": "peers", "peers": "[143.244.205.206:18018]"})
+        Input = json.dumps({"type": "peers", "peers": ["128.130.122.101:18018"]})
         waitForResponse = False
 
     elif Input == "getPeers":
