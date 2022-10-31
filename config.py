@@ -1,3 +1,4 @@
+from http import client
 import platform
 import logging
 import json
@@ -95,19 +96,23 @@ def addAddress(address):
         print(f"\nKnown address {address}.")
 
 # checks if the passed address is in the list of known ones, and if not adds it.
-def checkAddresses(client_address):
-    if client_address[0] not in KNOWN_CREDENTIALS:
-        print(f"\nUnknown address {client_address}! Saving it...")
-        addAddress(client_address)
-        logging.info(f"| SAVED ADDRESS | {client_address}")
+def checkAddresses(credentials):
+    ip_port = credentials.split(":") # list with ip and port
+    if ip_port[0] not in KNOWN_CREDENTIALS:
+        if isValidCredentials(credentials):
+            print(f"\nUnknown address {credentials}! Saving it...")
+            addAddress(ip_port[0])
+            logging.info(f"| SAVED ADDRESS | {credentials}")
+        else:
+            print(f"\nInvalid address {credentials}!")
+            logging.info(f"| INVALID ADDRESS | {credentials}")
     else:
-        print(f"\nKnown address {client_address}.")
+        print(f"\nKnown address {credentials}.")
 
 # returns true if an address is already known to us
-def checkAddress(client_address):
-    client_address.split(":")[0]
-    return client_address in KNOWN_CREDENTIALS
-
+def checkAddress(credentials):
+    credentials.split(":")[0]
+    return credentials in KNOWN_CREDENTIALS
 
 """ 
 def validateAdress(connection, address):

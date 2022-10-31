@@ -71,7 +71,9 @@ def startSocket():
 
         try:
             print('---------- Connection from', client_address, " ----------")
-            #checkAddresses(client_address)
+            ip = client_address[0]
+            port = str(client_address[1])
+            checkAddresses(ip + port)
             
             start_new_thread(multi_threaded_client, (connection, client_address))
             threadCount += 1

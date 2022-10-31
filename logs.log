@@ -459,3 +459,28 @@
 31/10/2022 18:37:31 | SAVED ADDRESS | 192.168.56.1
 31/10/2022 20:06:19 | READING ADDRESSES | Addresses read: 1
 31/10/2022 20:14:56 | READING ADDRESSES | Addresses read: 1
+31/10/2022 20:19:24 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:19:40 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:19:41 | ERROR | ('192.168.56.1', 52649) | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:20:04 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:20:05 | ERROR | ('192.168.56.1', 52651) | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:20:15 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:32:06 | READING ADDRESSES | Addresses read: 1
+31/10/2022 20:32:08 | ERROR | ('192.168.56.1', 54322) | 'tuple' object has no attribute 'split' | ("'tuple' object has no attribute 'split'",)
+31/10/2022 20:32:27 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:32:28 | ERROR | ('192.168.56.1', 54328) | 'tuple' object has no attribute 'split' | ("'tuple' object has no attribute 'split'",)
+31/10/2022 20:34:47 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:34:48 | ERROR | ('192.168.56.1', 54364) | sequence item 1: expected str instance, int found | ('sequence item 1: expected str instance, int found',)
+31/10/2022 20:35:51 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:35:52 | INVALID ADDRESS | 192.168.56.154370
+31/10/2022 20:35:55 | RECEIVED | ('192.168.56.1', 54370) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 20:35:55 | SENT | ('192.168.56.1', 54370) | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+31/10/2022 20:36:12 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:36:12 | RECEIVED | ('192.168.56.1', 54370) | b'{"type": "peers", "peers": []}'
+31/10/2022 20:36:12 | ERROR | ('192.168.56.1', 54370) | PEERS | b'{"type": "peers", "peers": []}' | Received empty peers list!
+31/10/2022 20:36:28 | RECEIVED | ('192.168.56.1', 54370) | b'{"type": "getpeers"}'
+31/10/2022 20:36:28 | ERROR | getpeers | Wrong message type or type not yet supported
+31/10/2022 20:36:28 | SENT | ('192.168.56.1', 54370) | b'{"type": "getpeers"}'
+31/10/2022 20:36:30 | RECEIVED | ('192.168.56.1', 54370) | b'getpeers'
+31/10/2022 20:36:30 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+31/10/2022 20:36:30 | SENT | ('192.168.56.1', 54370) | b'getpeers'
