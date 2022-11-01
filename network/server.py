@@ -106,11 +106,6 @@ def startSocket():
             logging.error(f"| ERROR | {client_address} | {e} | {e.args}")
     
     serverSideSocket.close()
-    
-# main
-def main():
-    loadAddresses()
-    startSocket()
 
 if __name__ == "__main__":
     main()

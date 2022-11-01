@@ -2,7 +2,7 @@ import logging
 import json
 
 from config import *
-from generateMessage import *
+from engine.generateMessage import *
 
 # This is called when a message is received
 # It calls the appropriate function based on the type of the message
