@@ -492,3 +492,36 @@
 31/10/2022 20:42:24 | ERROR | 192.168.56.1:54436 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
 31/10/2022 20:44:38 | READING ADDRESSES | Addresses read: 0
 31/10/2022 20:44:39 | ERROR | 192.168.56.1:54445 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:46:17 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:46:46 | ERROR | 127.0.0.1:51442 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:47:02 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:47:03 | ERROR | 127.0.0.1:51453 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:47:50 | ERROR | 127.0.0.1:51470 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:48:43 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:51:58 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:52:35 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:52:52 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:53:17 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:54:34 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:54:41 | ERROR | 127.0.0.1:51930 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:54:55 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:55:02 | ERROR | 127.0.0.1:51959 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:55:40 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:55:43 | ERROR | 127.0.0.1:52031 | expected str, bytes or os.PathLike object, not list | ('expected str, bytes or os.PathLike object, not list',)
+31/10/2022 20:56:22 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:57:52 | READING ADDRESSES | Addresses read: 0
+31/10/2022 20:58:08 | SAVED ADDRESS | 127.0.0.1:52191
+31/10/2022 20:58:08 | SAVED ADDRESS | 127.0.0.1:52191
+31/10/2022 20:58:19 | READING ADDRESSES | Addresses read: 1
+31/10/2022 20:58:19 | RECEIVED | 127.0.0.1:52191 | b'{"type": "peers", "peers": ["127.0.0.1"]}'
+31/10/2022 20:58:45 | READING ADDRESSES | Addresses read: 1
+31/10/2022 20:58:45 | RECEIVED | 127.0.0.1:52191 | b'{"type": "peers", "peers": ["127.0.0.1"]}'
+31/10/2022 21:01:28 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:01:28 | RECEIVED | 127.0.0.1:52191 | b'{"type": "peers", "peers": ["127.0.0.1"]}'
+31/10/2022 21:01:59 | READING ADDRESSES | Addresses read: 1
+31/10/2022 21:01:59 | RECEIVED | 127.0.0.1:52301 | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 21:01:59 | SAVED ADDRESS | 128.130.122.101:18018
+31/10/2022 21:01:59 | SAVED ADDRESS | 128.130.122.101:18018
+31/10/2022 21:02:53 | RECEIVED | 127.0.0.1:52301 | b'{"type": "getpeers"}'
+31/10/2022 21:02:53 | ERROR | getpeers | Wrong message type or type not yet supported
+31/10/2022 21:02:53 | SENT | 127.0.0.1:52301 | b'{"type": "getpeers"}'

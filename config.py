@@ -87,10 +87,9 @@ def loadAddresses():
 # adds an address into the list of addresses
 def addCredentials(credentials):
     if credentials not in KNOWN_CREDENTIALS:
-        with open(KNOWN_CREDENTIALS, 'a') as f:
-            f.write(f"{credentials[0]}")
-            f.write(f":{credentials[1]}\n")
-        KNOWN_CREDENTIALS.append(credentials[0])
+        with open(ADDRESSES_FILE, 'a') as f:
+            f.write(f"{credentials}")
+        KNOWN_CREDENTIALS.append(credentials.split(":")[0])
         logging.info(f"| SAVED ADDRESS | {credentials}")
     else:
         print(f"\nKnown address {credentials}.")

@@ -3,11 +3,11 @@ import json
 
 from config import *
 
-HOST = "192.168.56.1" # LOCAL
+#HOST = "192.168.56.1" # LOCAL
 #HOST = "143.244.205.206"  # MATEUS
 #HOST = "144.126.247.134" # JAN
 #HOST = "128.130.122.101" # bootstrapping node
-#HOST = "127.0.0.1" # localhost
+HOST = "127.0.0.1" # localhost
 
 host = HOST
 port = PORT
@@ -29,7 +29,7 @@ while True:
     
     elif Input == "peers":
         loadAddresses()
-        Input = json.dumps({"type": "peers", "peers": KNOWN_CREDENTIALS})
+        Input = json.dumps({"type": "peers", "peers": ["128.130.122.101:18018"]})
         waitForResponse = False
 
     elif Input == "getPeers":
