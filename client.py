@@ -54,23 +54,32 @@ while True:
     waitForResponse = True  
     Input = input('Hey there: ')
     if Input == "hello":
-        Input = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"})
+        output = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"})
+        output += "\n"
     
     elif Input == "peers":
         loadAddresses()
         #loadAddressesWithPorts()
-        Input = json.dumps({"type": "peers", "peers": KNOWN_CREDENTIALS})
+        output = json.dumps({"type": "peers", "peers": KNOWN_CREDENTIALS})
+        output += "\n"
         waitForResponse = False
 
     elif Input.lower() == "getpeers":
-        Input = json.dumps({"type": "getpeers"})
+        output = json.dumps({"type": "getpeers"})
+        output += "\n"
 
-    elif Input.lower() == "doublemessage":
-        Input = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}) + "\n" + \
+    elif Input == "doublemessage":
+        output = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}) + "\n" + \
                 json.dumps({"type": "getpeers"})
+        output += "\n"
+    elif Input == "splitA": # send only the first part of the message
+        output = '{"type": "hello", "version": "0.8'
+        waitForResponse = False
+    elif Input == "splitB": # send only the second part of the message
+        output = '.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
         
-    ClientMultiSocket.send(str.encode(Input))
+    ClientMultiSocket.send(str.encode(output))
     if waitForResponse:
         res = ClientMultiSocket.recv(DATA_SIZE)
-    print(res.decode('utf-8'))
+        print(res.decode('utf-8'))
 ClientMultiSocket.close()
