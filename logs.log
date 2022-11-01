@@ -562,3 +562,71 @@
 31/10/2022 21:12:43 | RECEIVED | 127.0.0.1:54686 | b'{"type": "peers", "peers": ["127.0.0.1:54627"]}'
 31/10/2022 21:13:09 | RECEIVED | 127.0.0.1:54686 | b'{"type": "getpeers"}'
 31/10/2022 21:13:09 | SENT | 127.0.0.1:54686 | {"type": "getpeers"}
+31/10/2022 21:21:37 | READING ADDRESSES | Addresses read: 2
+31/10/2022 21:21:46 | READING ADDRESSES | Addresses read: 2
+31/10/2022 21:21:46 | RECEIVED | 127.0.0.1:52546 | b'{"type": "peers", "peers": ["128.130.122.101:18018"]}'
+31/10/2022 21:21:46 | SAVED ADDRESS | 128.130.122.101:18018
+31/10/2022 21:21:46 | SAVED ADDRESS | 128.130.122.101:18018
+31/10/2022 21:31:38 | READING ADDRESSES | Addresses read: 3
+31/10/2022 21:31:58 | READING ADDRESSES | Addresses read: 3
+01/11/2022 10:02:32 | READING ADDRESSES | Addresses read: 3
+01/11/2022 10:05:03 | READING ADDRESSES | Addresses read: 3
+01/11/2022 10:05:34 | READING ADDRESSES | Addresses read: 3
+01/11/2022 10:06:57 | READING ADDRESSES | Addresses read: 3
+01/11/2022 10:07:13 | RECEIVED | 127.0.0.1:57009 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 10:07:42 | READING ADDRESSES | Addresses read: 3
+01/11/2022 10:07:47 | RECEIVED | 127.0.0.1:57093 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 10:07:47 | ERROR | 127.0.0.1:57093 | HANDLEINPUT | {"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"} | decoding str is not supported | ('decoding str is not supported',)
+01/11/2022 10:08:12 | READING ADDRESSES | Addresses read: 3
+01/11/2022 10:08:16 | RECEIVED | 127.0.0.1:57159 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 10:08:16 | ERROR | 127.0.0.1:57159 | HANDLEINPUT | {"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"} | decoding str is not supported | ('decoding str is not supported',)
+01/11/2022 10:09:23 | READING ADDRESSES | Addresses read: 3
+01/11/2022 10:09:28 | RECEIVED | 127.0.0.1:57347 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 10:09:28 | ERROR | 127.0.0.1:57347 | HANDLEINPUT | {"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"} | decoding str is not supported | ('decoding str is not supported',)
+01/11/2022 10:10:41 | READING ADDRESSES | Addresses read: 3
+01/11/2022 10:10:49 | RECEIVED | 127.0.0.1:57526 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 10:10:49 | ERROR | 127.0.0.1:57526 | HANDLEINPUT | {"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"} | decoding str is not supported | ('decoding str is not supported',)
+01/11/2022 10:10:49 | SENT | 127.0.0.1:57526 | b'{"type": "error", "error": "invalid json"}\n'
+01/11/2022 10:11:36 | RECEIVED | 127.0.0.1:57526 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 10:12:15 | READING ADDRESSES | Addresses read: 3
+01/11/2022 10:12:19 | RECEIVED | 127.0.0.1:57733 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 10:12:23 | ERROR | 127.0.0.1:57733 | HANDLEINPUT | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}' | name 'isValidationPending' is not defined | ("name 'isValidationPending' is not defined",)
+01/11/2022 10:12:23 | SENT | 127.0.0.1:57733 | b'{"type": "error", "error": "invalid json"}\n'
+01/11/2022 11:47:13 | READING ADDRESSES | Addresses read: 3
+01/11/2022 11:47:21 | SENT | 127.0.0.1:50243 | HELLO | GETPEERS
+01/11/2022 11:47:50 | READING ADDRESSES | Addresses read: 3
+01/11/2022 11:47:52 | SENT | 127.0.0.1:50318 | HELLO | GETPEERS
+01/11/2022 11:48:23 | READING ADDRESSES | Addresses read: 3
+01/11/2022 11:48:26 | SENT | 127.0.0.1:50424 | HELLO | GETPEERS
+01/11/2022 11:49:12 | READING ADDRESSES | Addresses read: 3
+01/11/2022 11:49:19 | SENT | 127.0.0.1:50518 | HELLO | GETPEERS
+01/11/2022 11:49:51 | SENT | 127.0.0.1:50549 | HELLO | GETPEERS
+01/11/2022 11:50:27 | READING ADDRESSES | Addresses read: 3
+01/11/2022 11:50:31 | SENT | 127.0.0.1:50621 | HELLO | GETPEERS
+01/11/2022 11:51:25 | READING ADDRESSES | Addresses read: 3
+01/11/2022 11:51:28 | SENT | 127.0.0.1:50750 | HELLO | GETPEERS
+01/11/2022 11:52:24 | READING ADDRESSES | Addresses read: 3
+01/11/2022 11:55:07 | READING ADDRESSES | Addresses read: 3
+01/11/2022 11:55:24 | SENT | 127.0.0.1:51183 | HELLO | GETPEERS
+01/11/2022 11:56:19 | READING ADDRESSES | Addresses read: 3
+01/11/2022 11:56:22 | SENT | 127.0.0.1:51287 | HELLO | GETPEERS
+01/11/2022 11:59:38 | READING ADDRESSES | Addresses read: 3
+01/11/2022 11:59:43 | SENT | 127.0.0.1:51588 | HELLO | GETPEERS
+01/11/2022 12:00:16 | SENT | 127.0.0.1:51674 | HELLO | GETPEERS
+01/11/2022 12:00:40 | READING ADDRESSES | Addresses read: 3
+01/11/2022 12:01:34 | READING ADDRESSES | Addresses read: 3
+01/11/2022 12:01:39 | SENT | 127.0.0.1:51857 | HELLO | GETPEERS
+01/11/2022 12:02:05 | READING ADDRESSES | Addresses read: 3
+01/11/2022 12:03:03 | READING ADDRESSES | Addresses read: 3
+01/11/2022 12:03:06 | SENT | 127.0.0.1:52113 | HELLO | GETPEERS
+01/11/2022 12:03:35 | READING ADDRESSES | Addresses read: 3
+01/11/2022 12:03:38 | SENT | 127.0.0.1:52200 | HELLO | GETPEERS
+01/11/2022 12:03:57 | SENT | 127.0.0.1:52214 | HELLO | GETPEERS
+01/11/2022 12:04:37 | READING ADDRESSES | Addresses read: 3
+01/11/2022 12:04:43 | SENT | 127.0.0.1:52345 | HELLO | GETPEERS
+01/11/2022 12:04:49 | SENT | 127.0.0.1:52349 | HELLO | GETPEERS
+01/11/2022 12:04:57 | SENT | 127.0.0.1:52354 | HELLO | GETPEERS
+01/11/2022 12:05:35 | SENT | 127.0.0.1:52416 | HELLO | GETPEERS
+01/11/2022 12:05:44 | SENT | 127.0.0.1:52431 | HELLO | GETPEERS
+01/11/2022 12:05:46 | RECEIVED | 127.0.0.1:52431 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 12:05:46 | SENT | 127.0.0.1:52431 | b'{"type": "hello", "version": "0.8.0", "agent": "Kerma-Core Client 0.8"}\n'

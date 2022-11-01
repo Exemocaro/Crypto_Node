@@ -1,34 +1,61 @@
 import socket
+import json
 
+from config import *
 
-HOST = "192.168.56.1" # LOCAL
-#HOST = "143.244.205.206"  # MINE
-#HOST = "144.126.247.134" #JAN
-PORT = 18018  # The port used by the server
-
-CLIENTS_NUMBER = 5000
-DATA_SIZE = 2048 # size of data to read from each received message
-KNOWN_ADDRESSES = [] # stores all the addresses this node knows
-ADDRESSES_FILE = 'known_addresses.txt' # file that stores the known addresses
-#SYSTEM = platform.system().lower() # our operating system
-
+#HOST = "192.168.56.1" # LOCAL
+#HOST = "143.244.205.206"  # MATEUS
+#HOST = "4.231.16.23" # JAN
+#HOST = "128.130.122.101" # bootstrapping node
+HOST = "127.0.0.1" # localhost
 
 host = HOST
 port = PORT
+""" 
+CREDENTIALS = []
 
+# loads the addresses from the file into the list of addresses
+def loadAddressesWithPorts():
+    with open(ADDRESSES_FILE, 'r') as f:
+        addresses_unparsed = f.readlines()
+        temp = [x.strip("\n") for x in addresses_unparsed] # to remove whitespace characters like `\n` at the end of each line
+        for a in temp:
+            if a not in CREDENTIALS:
+                CREDENTIALS.append(a)
+        size = len(CREDENTIALS) """
+    
 ClientMultiSocket = socket.socket()
-#host = '127.0.0.1'
-#port = 2004
 
-print('Waiting for connection response')
+print('Waiting for connection response: ' + host)
 try:
     ClientMultiSocket.connect((host, port))
 except socket.error as e:
     print(str(e))
+
 res = ClientMultiSocket.recv(DATA_SIZE)
+print('"' + res.decode("utf-8") + '"')
+res = ClientMultiSocket.recv(DATA_SIZE)
+print('"' + res.decode("utf-8") + '"')
+
+print("Connected to " + host + ":" + str(port))
 while True:
-    Input = input('Hey there: ')
-    ClientMultiSocket.send(str.encode(Input))
-    res = ClientMultiSocket.recv(DATA_SIZE)
-    print(res.decode('utf-8'))
+    waitForResponse = True
+    input_data = input('Hey there: ')
+    if input_data == "hello":
+        print("Sending hello")
+        input_data = json.dumps({"type": "hello", "version": "0.8.0" , "agent " : "Kerma-Core Client 0.8"})
+    
+    elif input_data == "peers":
+        loadAddresses()
+        #loadAddressesWithPorts()
+        input_data = json.dumps({"type": "peers", "peers": ["128.130.122.101:18018"]})
+        waitForResponse = False
+
+    elif input_data.lower() == "getpeers":
+        input_data = json.dumps({"type": "getpeers"})
+        
+    ClientMultiSocket.send(str.encode(input_data + "\n"))
+    if waitForResponse:
+        res = ClientMultiSocket.recv(DATA_SIZE)
+    print('"' + res.decode('utf-8') + '"')
 ClientMultiSocket.close()
