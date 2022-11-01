@@ -40,6 +40,15 @@ print("First received: " + str(res))
 res = ClientMultiSocket.recv(DATA_SIZE)
 print("First received: " + str(res))
 
+# sending hello
+
+output = json.dumps({"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"})
+output += "\n"
+output = str.encode(str(output))
+ClientMultiSocket.send(output)
+
+res = ClientMultiSocket.recv(DATA_SIZE)
+print(res.decode('utf-8'))
 
 while True:
     waitForResponse = True  
