@@ -5,7 +5,7 @@ from config import *
 
 #HOST = "192.168.56.1" # LOCAL
 #HOST = "143.244.205.206"  # MATEUS
-#HOST = "144.126.247.134" # JAN
+#HOST = "4.231.16.23" # JAN
 #HOST = "128.130.122.101" # bootstrapping node
 HOST = "127.0.0.1" # localhost
 
@@ -26,30 +26,36 @@ def loadAddressesWithPorts():
     
 ClientMultiSocket = socket.socket()
 
-print('Waiting for connection response')
+print('Waiting for connection response: ' + host)
 try:
     ClientMultiSocket.connect((host, port))
 except socket.error as e:
     print(str(e))
-res = ClientMultiSocket.recv(DATA_SIZE)
 
+res = ClientMultiSocket.recv(DATA_SIZE)
+print('"' + res.decode("utf-8") + '"')
+res = ClientMultiSocket.recv(DATA_SIZE)
+print('"' + res.decode("utf-8") + '"')
+
+print("Connected to " + host + ":" + str(port))
 while True:
-    waitForResponse = True  
-    Input = input('Hey there: ')
-    if Input == "hello":
-        Input = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"})
+    waitForResponse = True
+    input_data = input('Hey there: ')
+    if input_data == "hello":
+        print("Sending hello")
+        input_data = json.dumps({"type": "hello", "version": "0.8.0" , "agent " : "Kerma-Core Client 0.8"})
     
-    elif Input == "peers":
+    elif input_data == "peers":
         loadAddresses()
         #loadAddressesWithPorts()
-        Input = json.dumps({"type": "peers", "peers": KNOWN_CREDENTIALS})
+        input_data = json.dumps({"type": "peers", "peers": ["128.130.122.101:18018"]})
         waitForResponse = False
 
-    elif Input.lower() == "getpeers":
-        Input = json.dumps({"type": "getpeers"})
+    elif input_data.lower() == "getpeers":
+        input_data = json.dumps({"type": "getpeers"})
         
-    ClientMultiSocket.send(str.encode(Input))
+    ClientMultiSocket.send(str.encode(input_data + "\n"))
     if waitForResponse:
         res = ClientMultiSocket.recv(DATA_SIZE)
-    print(res.decode('utf-8'))
+    print('"' + res.decode('utf-8') + '"')
 ClientMultiSocket.close()

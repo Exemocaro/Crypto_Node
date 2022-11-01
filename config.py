@@ -3,6 +3,7 @@ import platform
 import logging
 import json
 import socket
+from utility.format_validation import *
 
 PORT = 18018  # The port used by the server
 
@@ -27,35 +28,7 @@ logging.basicConfig(
 # ------------------------------------------- AUX FUNCTIONS ------------------------------------------- #
 
 
-# checking if the credentials are valid
-def isValidCredentials(credentials):
-    credentials = credentials.split(":")
-    if len(credentials) == 2:
-        if isValidIP(credentials[0]) and isValidPort(credentials[1]):
-            return True
-        else:
-            return False
-    else:
-        return False
 
-# checking if the format of the ip-address is valid
-def isValidIP(address):
-    try:
-        socket.inet_aton(address)
-        return True
-    except socket.error:
-        return False
-
-# checking if the format of the port is valid
-def isValidPort(port):
-    try:
-        port = int(port)
-        if port > 0 and port < 65536:
-            return True
-        else:
-            return False
-    except ValueError:
-        return False
 
 # loads the addresses from the file into the list of addresses
 def loadAddresses():
@@ -94,7 +67,7 @@ def addCredentials(credentials):
 def checkAndAddAddresses(credentials):
     #ip_port = credentials.split(":") # list with ip and port
     if credentials not in KNOWN_CREDENTIALS:
-        if isValidCredentials(credentials):
+        if is_credentials_format(credentials):
             print(f"\nUnknown address {credentials}! Saving it...")
             addCredentials(credentials)
             logging.info(f"| SAVED ADDRESS | {credentials}")
