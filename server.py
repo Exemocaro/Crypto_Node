@@ -36,7 +36,8 @@ def multi_threaded_client(connection, client_address):
         connection.close()
         isRunning = False
 
-
+    # buffer incoming data and split at new line
+    buffer = b''
 
     while isRunning:
         data = connection.recv(DATA_SIZE)
@@ -48,29 +49,40 @@ def multi_threaded_client(connection, client_address):
         print('Received: \n"%s"' % data)
         logging.info(f"| RECEIVED | {client_address} | {data}")
 
-        # process the data into a json file and send back the appropriate response
-        try:
-            data_parsed = json.loads(str(data, encoding="utf-8"))
+        buffer += data
 
-            # run function with name 
-            function_name = data_parsed["type"].lower()
+        if b'\n' in buffer:
+            lines = buffer.split(b'\n')
+            buffer = lines.pop()
 
-            # if the function exists
-            if function_name in ["hello", "getpeers", "peers", "error"]:
-                if function_name == "error":
-                    print(f"\nReceived error message.")
-                    logging.info(f"| ERROR | {function_name} | Received an error message, something probably went wrong")
-                else:
-                    eval(function_name + "(connection, client_address, data)") #runs the functions with the type name
-            else:
-                print(f"\nError unknown type.")
-                logging.info(f"| ERROR | {function_name} | Wrong message type or type not yet supported")
-                error(connection, client_address, data, "Wrong message type or type not yet supported")
+            print("lines: ", lines)
 
-        except Exception as e:
-            print(f"\nError parsing json.")
-            logging.info(f"| ERROR | Error parsing json. | {e} | {e.args}")
-            error(connection, client_address, data, "Error parsing json")
+            for line in lines:
+                if line:
+                    print('Processing: "%s"' % line)
+                    # process the data into a json file and send back the appropriate response
+                    try:
+                        data_parsed = json.loads(str(line, encoding="utf-8"))
+
+                        # run function with name
+                        function_name = data_parsed["type"].lower()
+
+                        # if the function exists
+                        if function_name in ["hello", "getpeers", "peers", "error"]:
+                            if function_name == "error":
+                                print(f"\nReceived error message.")
+                                logging.info(f"| ERROR | {function_name} | Received an error message, something probably went wrong")
+                            else:
+                                eval(function_name + "(connection, client_address, line)") #runs the functions with the type name
+                        else:
+                            print(f"\nError unknown type.")
+                            logging.info(f"| ERROR | {function_name} | Wrong message type or type not yet supported")
+                            error(connection, client_address, line, "Wrong message type or type not yet supported")
+
+                    except Exception as e:
+                        print(f"\nError parsing json.")
+                        logging.info(f"| ERROR | Error parsing json. | {e} | {e.args}")
+                        error(connection, client_address, line, "Error parsing json")
 
     connection.close()
 
