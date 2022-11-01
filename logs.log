@@ -747,3 +747,62 @@
 31/10/2022 22:49:40 | SAVED ADDRESS | 127.0.0.1:60434
 31/10/2022 22:49:40 | SENT | 127.0.0.1:60434 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
 31/10/2022 22:49:42 | SENT | 127.0.0.1:60434 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 12:11:18 | READING ADDRESSES | Addresses read: 5
+01/11/2022 12:11:29 | SAVED ADDRESS | 127.0.0.1:18018
+01/11/2022 12:11:29 | SAVED ADDRESS | 127.0.0.1:53226
+01/11/2022 12:11:29 | SENT | 127.0.0.1:53226 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:11:34 | SENT | 127.0.0.1:53226 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 12:12:01 | RECEIVED | 127.0.0.1:53226 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n{"type": "getpeers"}'
+01/11/2022 12:12:01 | ERROR | 127.0.0.1:53226 | HELLO | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n{"type": "getpeers"}' | Extra data: line 2 column 1 (char 73) | ('Extra data: line 2 column 1 (char 73)',)
+01/11/2022 12:12:01 | SENT | 127.0.0.1:53226 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n{"type": "getpeers"}'
+01/11/2022 12:13:20 | READING ADDRESSES | Addresses read: 6
+01/11/2022 12:13:25 | SENT | 127.0.0.1:53393 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:13:31 | SENT | 127.0.0.1:53393 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 12:13:58 | RECEIVED | 127.0.0.1:53393 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 12:18:57 | SENT | 127.0.0.1:53731 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:18:59 | SENT | 127.0.0.1:53731 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:19:05 | RECEIVED | 127.0.0.1:53731 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:19:05 | SENT | 127.0.0.1:53731 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:19:16 | RECEIVED | 127.0.0.1:53731 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n{"type": "getpeers"}\n'
+01/11/2022 12:19:16 | ERROR | 127.0.0.1:53731 | HELLO | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n{"type": "getpeers"}\n' | Extra data: line 2 column 1 (char 73) | ('Extra data: line 2 column 1 (char 73)',)
+01/11/2022 12:19:16 | SENT | 127.0.0.1:53731 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n{"type": "getpeers"}\n'
+01/11/2022 12:19:16 | SENT | 127.0.0.1:53731 | {"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}
+{"type": "getpeers"}
+
+01/11/2022 12:20:16 | RECEIVED | 127.0.0.1:53731 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n{"type": "getpeers"}\n'
+01/11/2022 12:20:54 | READING ADDRESSES | Addresses read: 6
+01/11/2022 12:21:00 | SENT | 127.0.0.1:53956 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:21:06 | ERROR | Error parsing json. | Extra data: line 2 column 1 (char 73) | ('Extra data: line 2 column 1 (char 73)',)
+01/11/2022 12:21:06 | SENT | 127.0.0.1:53956 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n{"type": "getpeers"}\n'
+01/11/2022 12:21:21 | SENT | 127.0.0.1:53966 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:21:32 | ERROR | Error parsing json. | Extra data: line 2 column 1 (char 73) | ('Extra data: line 2 column 1 (char 73)',)
+01/11/2022 12:21:32 | SENT | 127.0.0.1:53966 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n{"type": "getpeers"}\n'
+01/11/2022 12:21:38 | SENT | 127.0.0.1:53984 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:21:43 | SENT | 127.0.0.1:53984 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:21:52 | RECEIVED | 127.0.0.1:53984 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:21:57 | SENT | 127.0.0.1:53984 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:22:01 | RECEIVED | 127.0.0.1:53984 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n{"type": "getpeers"}\n'
+01/11/2022 12:23:12 | READING ADDRESSES | Addresses read: 6
+01/11/2022 12:23:27 | SENT | 127.0.0.1:54131 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:23:30 | SENT | 127.0.0.1:54131 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:23:34 | RECEIVED | 127.0.0.1:54131 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n{"type": "getpeers"}\n'
+01/11/2022 12:23:34 | SENT | 127.0.0.1:54131 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}'
+01/11/2022 12:23:40 | SENT | 127.0.0.1:54131 | {"type": "getpeers"}
+01/11/2022 12:26:11 | READING ADDRESSES | Addresses read: 6
+01/11/2022 12:26:18 | SENT | 127.0.0.1:54698 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:26:22 | SENT | 127.0.0.1:54698 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:26:30 | RECEIVED | 127.0.0.1:54698 | b'splitA'
+01/11/2022 12:26:42 | SENT | 127.0.0.1:54736 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:26:44 | SENT | 127.0.0.1:54736 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:26:49 | RECEIVED | 127.0.0.1:54736 | b'splitA'
+01/11/2022 12:27:09 | SENT | 127.0.0.1:54770 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:27:47 | ERROR | Error parsing json. | Expecting value: line 1 column 1 (char 0) | ('Expecting value: line 1 column 1 (char 0)',)
+01/11/2022 12:27:47 | SENT | 127.0.0.1:54770 | b''
+01/11/2022 12:27:50 | SENT | 127.0.0.1:54952 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:27:50 | SENT | 127.0.0.1:54952 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:27:57 | RECEIVED | 127.0.0.1:54952 | b'splitA'
+01/11/2022 12:29:09 | SENT | 127.0.0.1:55214 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:29:09 | SENT | 127.0.0.1:55214 | b'{"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:29:14 | RECEIVED | 127.0.0.1:55214 | b'{"type": "hello", "version": "0.8'
+01/11/2022 12:29:18 | RECEIVED | 127.0.0.1:55214 | b'.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+01/11/2022 12:29:18 | SENT | 127.0.0.1:55214 | b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}'

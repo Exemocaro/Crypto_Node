@@ -7,7 +7,8 @@ from config import *
 
 def hello(connection, client_address, data):
     try:
-        data_parsed = json.loads(str(data, encoding="utf-8"))
+        data_string = str(data, encoding="utf-8")
+        data_parsed = json.loads(data_string)
 
         checkAndAddAddresses(client_address)
 
@@ -17,7 +18,7 @@ def hello(connection, client_address, data):
                 print(f"\nWrong hello version!\n")
                 error(connection, client_address, data)
             else:
-                data_to_send = b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+                data_to_send = b'{"type": "hello", "version": "0.8.0" ,"agent " : "Jans Node"}\n'
 
                 print(f"\nSending data: \n{data_to_send}")
                 #data_string = str(data, encoding="utf-8")

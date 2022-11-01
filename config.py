@@ -111,7 +111,7 @@ def checkAndAddAddresses(credentials):
 """ 
 def validateAdress(connection, address):
     try:
-        data = {"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}
+        data = {"type": "hello", "version": "0.8.0" ,"agent " : "Jans Node"}
         data_to_send = json.dumps(data)
         data_to_send = str.encode(str(data_to_send + "\n"))
 

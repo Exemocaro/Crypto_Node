@@ -5,10 +5,10 @@ from config import *
 
 #HOST = "192.168.56.1" # LOCAL
 #HOST = "143.244.205.206"  # MATEUS
-#HOST = "4.231.16.23" # JAN
+HOST = "4.231.16.23" # JAN
 #HOST = "139.59.205.101" # SIMÃO
 #HOST = "128.130.122.101" # bootstrapping node
-HOST = "127.0.0.1" # localhost
+#HOST = "127.0.0.1" # localhost
 #HOST = "134.122.88.104" # RANDOM PERSON 1 
 
 host = HOST
@@ -42,7 +42,7 @@ print("First received: " + str(res))
 
 # sending hello
 
-output = json.dumps({"type": "hello", "version": "0.8.0", "agent ": "Kerma-Core Client 0.8"})
+output = json.dumps({"type": "hello", "version": "0.8.0", "agent ": "test-client"})
 output += "\n"
 output = str.encode(str(output))
 ClientMultiSocket.send(output)
@@ -54,7 +54,7 @@ while True:
     waitForResponse = True  
     Input = input('Hey there: ')
     if Input == "hello":
-        output = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"})
+        output = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "test-client"})
         output += "\n"
     
     elif Input == "peers":
@@ -69,14 +69,14 @@ while True:
         output += "\n"
 
     elif Input == "doublemessage":
-        output = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}) + "\n" + \
+        output = json.dumps({"type": "hello", "version": "0.8.0" ,"agent " : "Jans Node"}) + "\n" + \
                 json.dumps({"type": "getpeers"})
         output += "\n"
     elif Input == "splitA": # send only the first part of the message
         output = '{"type": "hello", "version": "0.8'
         waitForResponse = False
     elif Input == "splitB": # send only the second part of the message
-        output = '.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+        output = '.0" ,"agent " : "Jans Node"}\n'
         
     ClientMultiSocket.send(str.encode(output))
     if waitForResponse:
