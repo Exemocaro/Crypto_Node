@@ -44,7 +44,7 @@ def getpeers(connection, client_address, data):
         connection.sendall(data_to_send) # we can't send str(data) because it must be a "byte-like object"
         logging.info(f"| SENT | {client_address} | {data_string}")
     except Exception as e:
-        logging.error(f"| ERROR | {client_address} | GETPEERS | {data_string} | {e} | {e.args}")
+        logging.error(f"| ERROR | {client_address} | GETPEERS | {data} | {e} | {e.args}")
         print(f"\nError on getPeers! {e} | {e.args}\n")
         error(connection, client_address, data)
     finally:
