@@ -39,7 +39,7 @@ def getpeers(connection, client_address, data):
         #data_to_send = b'{"type " : " peers " ,"peers " : }'
 
         print(f"\nSending data: \n{data_to_send}")
-        data_string = str(data, encoding="utf-8")
+        data_string = str(data_to_send, encoding="utf-8")
 
         connection.sendall(data_to_send) # we can't send str(data) because it must be a "byte-like object"
         logging.info(f"| SENT | {client_address} | {data_string}")
