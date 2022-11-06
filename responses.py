@@ -17,7 +17,7 @@ def hello(connection, client_address, data):
                 print(f"\nWrong hello version!\n")
                 error(connection, client_address, data)
             else:
-                data_to_send = b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n'
+                data_to_send = b'{"type": "hello", "version": "0.8.0" ,"agent" : "Kerma-Core Client 0.8"}\n'
 
                 print(f"\nSending data: \n{data_to_send}")
                 #data_string = str(data, encoding="utf-8")
@@ -72,7 +72,7 @@ def peers(connection, client_address, data):
 
 def error(connection, client_address, data, message="Wrong hello version type!"):
     try:
-        data_to_send = json.dumps({"type " : " error " , "error " : message})
+        data_to_send = json.dumps({"type" : "error" , "error" : message})
         data_to_send = str.encode(str(data_to_send + "\n"))
 
         print(f"\nSending data: \n{data_to_send}")
