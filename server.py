@@ -115,7 +115,7 @@ def startSocket():
         client_address = str(ip + ":" + port)
         
         # introductions:
-        hello(connection, client_address, b'{"type": "hello", "version": "0.8.0" ,"agent " : "Kerma-Core Client 0.8"}\n')
+        hello(connection, client_address, b'{"type": "hello", "version": "0.8.0", "agent" : "Kerma-Core Client 0.8"}\n')
         connection.sendall(b'{"type": "getpeers"}\n')
 
         try:
