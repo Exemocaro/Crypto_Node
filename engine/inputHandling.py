@@ -3,6 +3,10 @@ import json
 
 from config import *
 from engine.generateMessage import *
+from utility.credentials_utility import *
+from database.KnownNodesHandler import *
+from utility.logplus import *
+
 
 # This is called when a message is received
 # It calls the appropriate function based on the type of the message
@@ -15,61 +19,57 @@ def handle_input(data, sender_address):
         print("Data parsed: ", data_parsed)
 
         if "type" in data_parsed:
-            type = data_parsed["type"]
+            message_type = data_parsed["type"]
             if type in ["hello", "getpeers", "peers", "error"]:
                 function_name = data_parsed["type"]
                 return eval("handle_" + function_name + "(data_parsed, sender_address)")
             else:
-                logging.warning(f"| WARNING | {sender_address} | HANDLEINPUT | {data} | Invalid type | {type}")
-                return generate_error_message("Type \"" + type + "\"invalid or not supported!")
+                LogPlus.warning(f"| WARNING | {sender_address} | HANDLEINPUT | {data} | Invalid type | {message_type}")
+                return MessageGenerator.generate_error_message("Type \"" + message_type + "\"invalid or not supported!")
         else:
-            logging.warning(f"| WARNING | {sender_address} | HANDLEINPUT | {data} | No type in message")
-            return generate_error_message("No type in message!")
+            LogPlus.warning(f"| WARNING | {sender_address} | HANDLEINPUT | {data} | No type in message")
+            return MessageGenerator.generate_error_message("No type in message!")
     except Exception as e:
-        logging.error(f"| ERROR | {sender_address} | HANDLEINPUT | {data} | {e} | {e.args}")
-        print(f"\nError on handleInput! {e} | {e.args}\n")
-        return generate_error_message("Invalid json.")
-    finally:
-        pass
+        LogPlus.error(f"| ERROR | {sender_address} | HANDLEINPUT | {data} | {e} | {e.args}")
+        return MessageGenerator.generate_error_message("Invalid json.")
+
 
 # This is called when a hello message is received
 def handle_hello(data_parsed, sender_address):
     if "version" in data_parsed:
         if data_parsed["version"][:4] == "0.8.":
-            print("Just answering hello")
-            return generate_hello_message()
+            return MessageGenerator.generate_hello_message()
         else:
-            logging.warning(f"| WARNING | {sender_address} | HELLO | {data_parsed} | Version not supported | {data_parsed['version'][:4]}")
-            return generate_error_message("Wrong hello version!")
+            LogPlus.warning(f"| WARNING | {sender_address} | HELLO | {data_parsed} | Version not supported | {data_parsed['version'][:4]}")
+            return MessageGenerator.generate_error_message("Wrong hello version!")
     else:
-        logging.error(f"| ERROR | {sender_address} | HELLO | {data_parsed} | No version in data_parsed")
-        return generate_error_message("No version in hello!")
+        LogPlus.error(f"| ERROR | {sender_address} | HELLO | {data_parsed} | No version in data_parsed")
+        return MessageGenerator.generate_error_message("No version in hello!")
+
 
 # This is called when a getpeers message is received
 def handle_getpeers(data_parsed, sender_address):
-    response = generate_peers_message(KNOWN_CREDENTIALS)
+    peers_db = KnownNodesHandler()
+    peers = peers_db.known_nodes
+    response = MessageGenerator.generate_peers_message(peers)
     return response
+
 
 # This in called when a peers message is received
 def handle_peers(data_parsed, sender_address):
     if "peers" in data_parsed:
         for credential_string in data_parsed["peers"]:
-            peer = (credential_string.split(":")[0], int(credential_string.split(":")[1]))
-            #if not checkCredentials(peer): # This is to validate, that the address belongs to a valid node
-            #    print(f"\nValidating {peer}\n")
-            #    validateNode(peer)
-            #else:
-            #    print(f"\n{peer} already known!\n")
-            if peer not in KNOWN_CREDENTIALS:
-                KNOWN_CREDENTIALS.append(peer)
-                print(f"\nAdded {peer} to known credentials!\n")
+            peers_db = KnownNodesHandler()
+
+            if not peers_db.is_known(credential_string):
+                peers_db.add_node(credential_string)
+                LogPlus.info(f"| INFO | {sender_address} | PEERS | {data_parsed} | New peer added | {credential_string}")
     else:
-        logging.error(f"| ERROR | {sender_address} | PEERS | {data_parsed} | No peers in data_parsed")
-        return generate_error_message("No peers in data_parsed!")
+        LogPlus.error(f"| ERROR | {sender_address} | PEERS | {data_parsed} | No peers in data_parsed")
+        return MessageGenerator.generate_error_message("No peers in data_parsed!")
 
 
 # This is called when an error message is received
 def handle_error(data_parsed, sender_address):
-    logging.error(f"| ERROR | {sender_address} | ERROR | {data_parsed} | Error message received")
-    print(f"\nError message received!\n")
-    return generate_error_message("Error message received")
+    LogPlus.error(f"| ERROR | {sender_address} | ERROR | {data_parsed} | Error message received")
+    return MessageGenerator.generate_error_message("Error message received")

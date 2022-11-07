@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dfcfa24e-9f33-4c86-9114-728c69cfb63e" name="Changes" comment="Include test messages to client to test the split message support">
+    <list default="true" id="dfcfa24e-9f33-4c86-9114-728c69cfb63e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/example.env.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jan.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/network/ConnectionHandler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/network/NewServer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/new_but_not_integrated_yet/InputHandler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newservertest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/old_codebase/Client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/old_codebase/Server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utility/logplus.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/KnownPeerHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/KnownNodesHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/known_credentials.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database/known_credentials.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/generateMessage.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/generateMessage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/inputHandling.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/inputHandling.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/network/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/network/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/network/clientHandler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/network/server.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/format_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/utility/credentials_utility.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +57,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/network" />
-      <recent name="$PROJECT_DIR$/test" />
-      <recent name="$PROJECT_DIR$/database" />
-      <recent name="$PROJECT_DIR$/engine" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/new_but_not_integrated_yet" />
+      <recent name="$PROJECT_DIR$/engine" />
+      <recent name="$PROJECT_DIR$/old_codebase" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/network" />
     </key>
   </component>
   <component name="RunManager">
@@ -89,6 +109,10 @@
       <option name="presentableId" value="Default" />
       <updated>1667314629148</updated>
       <workItem from="1667314631516" duration="817000" />
+      <workItem from="1667392594072" duration="17109000" />
+      <workItem from="1667656233022" duration="82000" />
+      <workItem from="1667674749297" duration="609000" />
+      <workItem from="1667766367199" duration="6408000" />
     </task>
     <servers />
   </component>
@@ -107,8 +131,19 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Crypto_Node$server.coverage" NAME="server Coverage Results" MODIFIED="1667301970974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Crypto_Node$main.coverage" NAME="main Coverage Results" MODIFIED="1667318828876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Crypto_Node$main.coverage" NAME="main Coverage Results" MODIFIED="1667408841796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

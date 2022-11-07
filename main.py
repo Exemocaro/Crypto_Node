@@ -1,9 +1,11 @@
-from network.server import *
+from network.NewServer import *
+from database.KnownNodesHandler import *
 
 
 def main():
-    loadAddresses()
-    startSocket()
+    peers_db = KnownNodesHandler("database/known_credentials.txt")
+    networking = NodeNetworking(peers_db)
+    networking.start_server()
 
 
 if __name__ == "__main__":
