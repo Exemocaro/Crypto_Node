@@ -71,14 +71,14 @@ class ConnectionHandler:
             return False
         return True
 
+    # Check if there is data to receive else return False (or None??)
     def receive(self):
         try:
             self.connection.setblocking(False)
-            message = self.connection.recv(1024)
+            return self.connection.recv(1024)
         except Exception as e:
             # this will happen when there is no data to receive (so almost every time)
             return False
-        return message
 
     def close(self):
         self.is_open = False
