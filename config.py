@@ -3,6 +3,7 @@ import platform
 import logging
 
 from database.KnownNodesHandler import KnownNodesHandler
+from database.ObjectHandler import ObjectHandler
 
 PORT = 18018  # The port used by the server
 SERVER_ADDRESS = ('', PORT)
@@ -11,12 +12,14 @@ CLIENTS_NUMBER = 500
 DATA_SIZE = 2048  # size of data to read from each received message
 
 ADDRESSES_FILE = 'database/known_credentials.txt'  # file that stores the known addresses
+OBJECTS_FILE = 'database/known_objects.json'  # file that stores the known objects
 
 SYSTEM = platform.system().lower()  # our operating system
 
 AGENT_NAME = "This could be your node!"
 
 NODE_HANDLER = KnownNodesHandler(known_nodes_file=ADDRESSES_FILE)
+OBJECT_HANDLER = ObjectHandler(objects_file=OBJECTS_FILE)
 
 # logging things
 logging.basicConfig(
