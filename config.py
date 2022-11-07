@@ -2,6 +2,8 @@ from http import client
 import platform
 import logging
 
+from database.KnownNodesHandler import KnownNodesHandler
+
 PORT = 18018  # The port used by the server
 SERVER_ADDRESS = ('', PORT)
 
@@ -14,6 +16,8 @@ SYSTEM = platform.system().lower()  # our operating system
 
 AGENT_NAME = "This could be your node!"
 
+NODE_HANDLER = KnownNodesHandler(known_nodes_file=ADDRESSES_FILE)
+
 # logging things
 logging.basicConfig(
     filename='logs.log',
@@ -21,4 +25,6 @@ logging.basicConfig(
     format='%(asctime)s %(message)s', 
     datefmt='%d/%m/%Y %H:%M:%S'
 )
+
+
 

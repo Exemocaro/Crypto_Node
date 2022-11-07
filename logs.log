@@ -641,3 +641,221 @@
 02/11/2022 16:16:20 | ERROR | [Errno 2] No such file or directory: 'known_nodes.txt' | (2, 'No such file or directory')
 02/11/2022 16:16:35 | ERROR | [Errno 2] No such file or directory: 'known_credentials.txt' | (2, 'No such file or directory')
 02/11/2022 16:16:35 | ERROR | [Errno 2] No such file or directory: 'known_credentials.txt' | (2, 'No such file or directory')
+07/11/2022 12:03:55 | WARNING | ('127.0.0.1', 54092) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' | Invalid type | hello
+07/11/2022 12:04:44 | WARNING | ('127.0.0.1', 54210) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' | Invalid type | hello
+07/11/2022 12:13:10 | WARNING | ('127.0.0.1', 56168) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' | Invalid type | hello
+07/11/2022 12:14:11 | WARNING | ('127.0.0.1', 56397) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' | Invalid type | hello
+07/11/2022 12:14:24 | WARNING | ('127.0.0.1', 56469) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' | Invalid type | hello
+07/11/2022 13:29:57 | WARNING | ('127.0.0.1', 64852) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' | Invalid type | hello
+07/11/2022 13:30:55 | WARNING | ('127.0.0.1', 65059) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' | Invalid type | hello
+07/11/2022 13:32:08 | WARNING | ('127.0.0.1', 65189) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' | Invalid type | hello
+07/11/2022 13:32:41 | WARNING | ('127.0.0.1', 65237) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' | Invalid type | hello
+07/11/2022 13:32:44 | WARNING | ('127.0.0.1', 65237) | HANDLEINPUT | b'{"type": "getpeers"}\n' | Invalid type | getpeers
+07/11/2022 13:32:46 | ERROR | ('127.0.0.1', 65237) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:32:48 | WARNING | ('127.0.0.1', 65237) | HANDLEINPUT | b'{"type": "peers", "peers": ["104.52.188.229:44642"]}' | Invalid type | peers
+07/11/2022 13:32:50 | WARNING | ('127.0.0.1', 65237) | HANDLEINPUT | b'{"type": "getpeers"}\n' | Invalid type | getpeers
+07/11/2022 13:33:08 | WARNING | ('127.0.0.1', 65253) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' | Invalid type | hello
+07/11/2022 13:33:10 | WARNING | ('127.0.0.1', 65253) | HANDLEINPUT | b'{"type": "getpeers"}\n' | Invalid type | getpeers
+07/11/2022 13:33:12 | ERROR | ('127.0.0.1', 65253) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:33:14 | WARNING | ('127.0.0.1', 65253) | HANDLEINPUT | b'{"type": "peers", "peers": ["105.181.111.189:45104"]}' | Invalid type | peers
+07/11/2022 13:33:16 | WARNING | ('127.0.0.1', 65253) | HANDLEINPUT | b'{"type": "getpeers"}\n' | Invalid type | getpeers
+07/11/2022 13:34:54 | WARNING | ('127.0.0.1', 65332) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' | Invalid type | hello
+07/11/2022 13:34:56 | WARNING | ('127.0.0.1', 65332) | HANDLEINPUT | b'{"type": "getpeers"}\n' | Invalid type | getpeers
+07/11/2022 13:34:58 | ERROR | ('127.0.0.1', 65332) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:35:00 | WARNING | ('127.0.0.1', 65332) | HANDLEINPUT | b'{"type": "peers", "peers": ["101.243.24.254:15760"]}' | Invalid type | peers
+07/11/2022 13:35:02 | WARNING | ('127.0.0.1', 65332) | HANDLEINPUT | b'{"type": "getpeers"}\n' | Invalid type | getpeers
+07/11/2022 13:35:12 | WARNING | ('127.0.0.1', 65371) | HANDLEINPUT | b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' | Invalid type | hello
+07/11/2022 13:35:14 | WARNING | ('127.0.0.1', 65371) | HANDLEINPUT | b'{"type": "getpeers"}\n' | Invalid type | getpeers
+07/11/2022 13:35:16 | ERROR | ('127.0.0.1', 65371) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:35:18 | WARNING | ('127.0.0.1', 65371) | HANDLEINPUT | b'{"type": "peers", "peers": ["135.105.99.111:48023"]}' | Invalid type | peers
+07/11/2022 13:35:20 | WARNING | ('127.0.0.1', 65371) | HANDLEINPUT | b'{"type": "getpeers"}\n' | Invalid type | getpeers
+07/11/2022 13:35:58 | ERROR | Couldn't load nodes | [Errno 2] No such file or directory: 'known_credentials.txt' | (2, 'No such file or directory')
+07/11/2022 13:35:58 | ERROR | Couldn't load nodes | [Errno 2] No such file or directory: 'known_credentials.txt' | (2, 'No such file or directory')
+07/11/2022 13:36:00 | ERROR | ('127.0.0.1', 65447) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:36:02 | ERROR | Couldn't load nodes | [Errno 2] No such file or directory: 'known_credentials.txt' | (2, 'No such file or directory')
+07/11/2022 13:36:02 | ERROR | Couldn't load nodes | [Errno 2] No such file or directory: 'known_credentials.txt' | (2, 'No such file or directory')
+07/11/2022 13:36:02 | ERROR | ('127.0.0.1', 65447) | HANDLEINPUT | b'{"type": "peers", "peers": ["119.145.95.41:30490"]}' | 'KnownNodesHandler' object has no attribute 'is_known' | ("'KnownNodesHandler' object has no attribute 'is_known'",)
+07/11/2022 13:36:04 | ERROR | Couldn't load nodes | [Errno 2] No such file or directory: 'known_credentials.txt' | (2, 'No such file or directory')
+07/11/2022 13:36:04 | ERROR | Couldn't load nodes | [Errno 2] No such file or directory: 'known_credentials.txt' | (2, 'No such file or directory')
+07/11/2022 13:43:54 | INFO | New connection from ('127.0.0.1', 50867)
+07/11/2022 13:43:54 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 50867)
+07/11/2022 13:43:54 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to 127.0.0.1:50867
+07/11/2022 13:43:56 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 50867)
+07/11/2022 13:43:56 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to 127.0.0.1:50867
+07/11/2022 13:43:58 | INFO | Received b'{"te": "get\n' from ('127.0.0.1', 50867)
+07/11/2022 13:43:58 | ERROR | ('127.0.0.1', 50867) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:43:58 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:50867
+07/11/2022 13:44:00 | INFO | Received b'{"type": "peers", "peers": ["0.61.39.99:24454"]}' from ('127.0.0.1', 50867)
+07/11/2022 13:44:00 | ERROR | ('127.0.0.1', 50867) | HANDLEINPUT | b'{"type": "peers", "peers": ["0.61.39.99:24454"]}' | 'KnownNodesHandler' object has no attribute 'is_known' | ("'KnownNodesHandler' object has no attribute 'is_known'",)
+07/11/2022 13:44:00 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:50867
+07/11/2022 13:44:02 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 50867)
+07/11/2022 13:44:02 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to 127.0.0.1:50867
+07/11/2022 13:46:32 | INFO | New connection from ('127.0.0.1', 51396)
+07/11/2022 13:46:32 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 51396) queue
+07/11/2022 13:46:32 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 51396) queue
+07/11/2022 13:46:32 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 51396). Added to queue.
+07/11/2022 13:46:32 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 51396)
+07/11/2022 13:46:32 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to 127.0.0.1:51396
+07/11/2022 13:46:32 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 51396) queue
+07/11/2022 13:46:34 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 51396). Added to queue.
+07/11/2022 13:46:34 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 51396)
+07/11/2022 13:46:34 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to 127.0.0.1:51396
+07/11/2022 13:46:34 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to ('127.0.0.1', 51396) queue
+07/11/2022 13:46:36 | INFO | Received message b'{"te": "get\n' from ('127.0.0.1', 51396). Added to queue.
+07/11/2022 13:46:36 | INFO | Received b'{"te": "get\n' from ('127.0.0.1', 51396)
+07/11/2022 13:46:36 | ERROR | ('127.0.0.1', 51396) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:46:36 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:51396
+07/11/2022 13:46:36 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 51396) queue
+07/11/2022 13:46:38 | INFO | Received message b'{"type": "peers", "peers": ["97.31.235.39:44971"]}' from ('127.0.0.1', 51396). Added to queue.
+07/11/2022 13:46:38 | INFO | Received b'{"type": "peers", "peers": ["97.31.235.39:44971"]}' from ('127.0.0.1', 51396)
+07/11/2022 13:46:38 | ERROR | ('127.0.0.1', 51396) | HANDLEINPUT | b'{"type": "peers", "peers": ["97.31.235.39:44971"]}' | 'KnownNodesHandler' object has no attribute 'is_known' | ("'KnownNodesHandler' object has no attribute 'is_known'",)
+07/11/2022 13:46:38 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:51396
+07/11/2022 13:46:38 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 51396) queue
+07/11/2022 13:46:40 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 51396). Added to queue.
+07/11/2022 13:46:40 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 51396)
+07/11/2022 13:46:40 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to 127.0.0.1:51396
+07/11/2022 13:46:40 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to ('127.0.0.1', 51396) queue
+07/11/2022 13:46:45 | INFO | New connection from ('127.0.0.1', 51402)
+07/11/2022 13:46:45 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 51402) queue
+07/11/2022 13:46:45 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 51402) queue
+07/11/2022 13:46:45 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 51402). Added to queue.
+07/11/2022 13:46:45 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 51402)
+07/11/2022 13:46:45 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to 127.0.0.1:51402
+07/11/2022 13:46:45 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 51402) queue
+07/11/2022 13:46:47 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 51402). Added to queue.
+07/11/2022 13:46:47 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 51402)
+07/11/2022 13:46:47 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to 127.0.0.1:51402
+07/11/2022 13:46:47 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to ('127.0.0.1', 51402) queue
+07/11/2022 13:46:49 | INFO | Received message b'{"te": "get\n' from ('127.0.0.1', 51402). Added to queue.
+07/11/2022 13:46:49 | INFO | Received b'{"te": "get\n' from ('127.0.0.1', 51402)
+07/11/2022 13:46:49 | ERROR | ('127.0.0.1', 51402) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:46:49 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:51402
+07/11/2022 13:46:49 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 51402) queue
+07/11/2022 13:46:51 | INFO | Received message b'{"type": "peers", "peers": ["48.0.60.135:28622"]}' from ('127.0.0.1', 51402). Added to queue.
+07/11/2022 13:46:51 | INFO | Received b'{"type": "peers", "peers": ["48.0.60.135:28622"]}' from ('127.0.0.1', 51402)
+07/11/2022 13:46:51 | ERROR | ('127.0.0.1', 51402) | HANDLEINPUT | b'{"type": "peers", "peers": ["48.0.60.135:28622"]}' | 'KnownNodesHandler' object has no attribute 'is_known' | ("'KnownNodesHandler' object has no attribute 'is_known'",)
+07/11/2022 13:46:51 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:51402
+07/11/2022 13:46:51 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 51402) queue
+07/11/2022 13:46:53 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 51402). Added to queue.
+07/11/2022 13:46:53 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 51402)
+07/11/2022 13:46:53 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to 127.0.0.1:51402
+07/11/2022 13:46:53 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to ('127.0.0.1', 51402) queue
+07/11/2022 13:48:01 | INFO | New connection from ('127.0.0.1', 51613)
+07/11/2022 13:48:01 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 51613) queue
+07/11/2022 13:48:01 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 51613) queue
+07/11/2022 13:48:01 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 51613). Added to queue.
+07/11/2022 13:48:01 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 51613)
+07/11/2022 13:48:01 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to 127.0.0.1:51613
+07/11/2022 13:48:01 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 51613) queue
+07/11/2022 13:48:03 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 51613). Added to queue.
+07/11/2022 13:48:03 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 51613)
+07/11/2022 13:48:03 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to 127.0.0.1:51613
+07/11/2022 13:48:03 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to ('127.0.0.1', 51613) queue
+07/11/2022 13:48:05 | INFO | Received message b'{"te": "get\n' from ('127.0.0.1', 51613). Added to queue.
+07/11/2022 13:48:05 | INFO | Received b'{"te": "get\n' from ('127.0.0.1', 51613)
+07/11/2022 13:48:05 | ERROR | ('127.0.0.1', 51613) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:48:05 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:51613
+07/11/2022 13:48:05 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 51613) queue
+07/11/2022 13:48:07 | INFO | Received message b'{"type": "peers", "peers": ["191.46.102.58:45053"]}' from ('127.0.0.1', 51613). Added to queue.
+07/11/2022 13:48:07 | INFO | Received b'{"type": "peers", "peers": ["191.46.102.58:45053"]}' from ('127.0.0.1', 51613)
+07/11/2022 13:48:07 | ERROR | ('127.0.0.1', 51613) | HANDLEINPUT | b'{"type": "peers", "peers": ["191.46.102.58:45053"]}' | 'KnownNodesHandler' object has no attribute 'is_known' | ("'KnownNodesHandler' object has no attribute 'is_known'",)
+07/11/2022 13:48:07 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:51613
+07/11/2022 13:48:07 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 51613) queue
+07/11/2022 13:48:09 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 51613). Added to queue.
+07/11/2022 13:48:09 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 51613)
+07/11/2022 13:48:09 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to 127.0.0.1:51613
+07/11/2022 13:48:09 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to ('127.0.0.1', 51613) queue
+07/11/2022 13:50:10 | INFO | New connection from ('127.0.0.1', 52278)
+07/11/2022 13:50:10 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 52278) queue
+07/11/2022 13:50:10 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 52278) queue
+07/11/2022 13:50:10 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 52278). Added to queue.
+07/11/2022 13:50:10 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 52278)
+07/11/2022 13:50:10 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to 127.0.0.1:52278
+07/11/2022 13:50:10 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 52278) queue
+07/11/2022 13:50:12 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 52278). Added to queue.
+07/11/2022 13:50:12 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 52278)
+07/11/2022 13:50:12 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to 127.0.0.1:52278
+07/11/2022 13:50:12 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to ('127.0.0.1', 52278) queue
+07/11/2022 13:50:14 | INFO | Received message b'{"te": "get\n' from ('127.0.0.1', 52278). Added to queue.
+07/11/2022 13:50:14 | INFO | Received b'{"te": "get\n' from ('127.0.0.1', 52278)
+07/11/2022 13:50:14 | ERROR | ('127.0.0.1', 52278) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:50:14 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:52278
+07/11/2022 13:50:14 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 52278) queue
+07/11/2022 13:50:16 | INFO | Received message b'{"type": "peers", "peers": ["170.103.141.130:30487"]}' from ('127.0.0.1', 52278). Added to queue.
+07/11/2022 13:50:16 | INFO | Received b'{"type": "peers", "peers": ["170.103.141.130:30487"]}' from ('127.0.0.1', 52278)
+07/11/2022 13:50:16 | ERROR | ('127.0.0.1', 52278) | HANDLEINPUT | b'{"type": "peers", "peers": ["170.103.141.130:30487"]}' | 'KnownNodesHandler' object has no attribute 'is_known' | ("'KnownNodesHandler' object has no attribute 'is_known'",)
+07/11/2022 13:50:16 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:52278
+07/11/2022 13:50:16 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 52278) queue
+07/11/2022 13:50:18 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 52278). Added to queue.
+07/11/2022 13:50:18 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 52278)
+07/11/2022 13:50:18 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to 127.0.0.1:52278
+07/11/2022 13:50:18 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to ('127.0.0.1', 52278) queue
+07/11/2022 13:51:27 | INFO | New connection from ('127.0.0.1', 52538)
+07/11/2022 13:51:27 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 52538) queue
+07/11/2022 13:51:27 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 52538) queue
+07/11/2022 13:51:27 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 52538). Added to queue.
+07/11/2022 13:51:27 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 52538)
+07/11/2022 13:51:27 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to 127.0.0.1:52538
+07/11/2022 13:51:27 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 52538) queue
+07/11/2022 13:51:29 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 52538). Added to queue.
+07/11/2022 13:51:29 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 52538)
+07/11/2022 13:51:29 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to 127.0.0.1:52538
+07/11/2022 13:51:29 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018"]}\n' to ('127.0.0.1', 52538) queue
+07/11/2022 13:51:31 | INFO | Received message b'{"te": "get\n' from ('127.0.0.1', 52538). Added to queue.
+07/11/2022 13:51:31 | INFO | Received b'{"te": "get\n' from ('127.0.0.1', 52538)
+07/11/2022 13:51:31 | ERROR | ('127.0.0.1', 52538) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:51:31 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:52538
+07/11/2022 13:51:31 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 52538) queue
+07/11/2022 13:51:33 | INFO | Received message b'{"type": "peers", "peers": ["221.130.168.74:21934"]}' from ('127.0.0.1', 52538). Added to queue.
+07/11/2022 13:51:33 | INFO | Received b'{"type": "peers", "peers": ["221.130.168.74:21934"]}' from ('127.0.0.1', 52538)
+07/11/2022 13:51:33 | INFO | ('127.0.0.1', 52538) | PEERS | {'type': 'peers', 'peers': ['221.130.168.74:21934']} | New peer added | 221.130.168.74:21934
+07/11/2022 13:51:35 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 52538). Added to queue.
+07/11/2022 13:51:35 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 52538)
+07/11/2022 13:51:35 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934"]}\n' to 127.0.0.1:52538
+07/11/2022 13:51:35 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934"]}\n' to ('127.0.0.1', 52538) queue
+07/11/2022 13:52:19 | INFO | New connection from ('127.0.0.1', 52771)
+07/11/2022 13:52:19 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 52771) queue
+07/11/2022 13:52:19 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 52771) queue
+07/11/2022 13:52:19 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 52771). Added to queue.
+07/11/2022 13:52:19 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 52771)
+07/11/2022 13:52:19 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to 127.0.0.1:52771
+07/11/2022 13:52:19 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 52771) queue
+07/11/2022 13:52:21 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 52771). Added to queue.
+07/11/2022 13:52:21 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 52771)
+07/11/2022 13:52:21 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934"]}\n' to 127.0.0.1:52771
+07/11/2022 13:52:21 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934"]}\n' to ('127.0.0.1', 52771) queue
+07/11/2022 13:52:23 | INFO | Received message b'{"te": "get\n' from ('127.0.0.1', 52771). Added to queue.
+07/11/2022 13:52:23 | INFO | Received b'{"te": "get\n' from ('127.0.0.1', 52771)
+07/11/2022 13:52:23 | ERROR | ('127.0.0.1', 52771) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:52:23 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:52771
+07/11/2022 13:52:23 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 52771) queue
+07/11/2022 13:52:25 | INFO | Received message b'{"type": "peers", "peers": ["152.49.3.254:17483"]}' from ('127.0.0.1', 52771). Added to queue.
+07/11/2022 13:52:25 | INFO | Received b'{"type": "peers", "peers": ["152.49.3.254:17483"]}' from ('127.0.0.1', 52771)
+07/11/2022 13:52:25 | INFO | ('127.0.0.1', 52771) | PEERS | {'type': 'peers', 'peers': ['152.49.3.254:17483']} | New peer added | 152.49.3.254:17483
+07/11/2022 13:52:27 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 52771). Added to queue.
+07/11/2022 13:52:27 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 52771)
+07/11/2022 13:52:27 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934", "152.49.3.254:17483"]}\n' to 127.0.0.1:52771
+07/11/2022 13:52:27 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934", "152.49.3.254:17483"]}\n' to ('127.0.0.1', 52771) queue
+07/11/2022 13:52:37 | INFO | New connection from ('127.0.0.1', 52784)
+07/11/2022 13:52:37 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 52784) queue
+07/11/2022 13:52:37 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 52784) queue
+07/11/2022 13:52:37 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 52784). Added to queue.
+07/11/2022 13:52:37 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}\n' from ('127.0.0.1', 52784)
+07/11/2022 13:52:37 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to 127.0.0.1:52784
+07/11/2022 13:52:37 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "This could be your node!"}\n' to ('127.0.0.1', 52784) queue
+07/11/2022 13:52:39 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 52784). Added to queue.
+07/11/2022 13:52:39 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 52784)
+07/11/2022 13:52:39 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934", "152.49.3.254:17483", "128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934", "152.49.3.254:17483"]}\n' to 127.0.0.1:52784
+07/11/2022 13:52:39 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934", "152.49.3.254:17483", "128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934", "152.49.3.254:17483"]}\n' to ('127.0.0.1', 52784) queue
+07/11/2022 13:52:41 | INFO | Received message b'{"te": "get\n' from ('127.0.0.1', 52784). Added to queue.
+07/11/2022 13:52:41 | INFO | Received b'{"te": "get\n' from ('127.0.0.1', 52784)
+07/11/2022 13:52:41 | ERROR | ('127.0.0.1', 52784) | HANDLEINPUT | b'{"te": "get\n' | Invalid control character at: line 1 column 12 (char 11) | ('Invalid control character at: line 1 column 12 (char 11)',)
+07/11/2022 13:52:41 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:52784
+07/11/2022 13:52:41 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 52784) queue
+07/11/2022 13:52:43 | INFO | Received message b'{"type": "peers", "peers": ["186.227.205.96:47766"]}' from ('127.0.0.1', 52784). Added to queue.
+07/11/2022 13:52:43 | INFO | Received b'{"type": "peers", "peers": ["186.227.205.96:47766"]}' from ('127.0.0.1', 52784)
+07/11/2022 13:52:43 | INFO | ('127.0.0.1', 52784) | PEERS | {'type': 'peers', 'peers': ['186.227.205.96:47766']} | New peer added | 186.227.205.96:47766
+07/11/2022 13:52:45 | INFO | Received message b'{"type": "getpeers"}\n' from ('127.0.0.1', 52784). Added to queue.
+07/11/2022 13:52:45 | INFO | Received b'{"type": "getpeers"}\n' from ('127.0.0.1', 52784)
+07/11/2022 13:52:45 | INFO | Sending b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934", "152.49.3.254:17483", "128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934", "152.49.3.254:17483", "186.227.205.96:47766"]}\n' to 127.0.0.1:52784
+07/11/2022 13:52:45 | INFO | Adding message b'{"type": "peers", "peers": ["128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934", "152.49.3.254:17483", "128.130.122.101:18018", "128.130.122.101:18018", "221.130.168.74:21934", "152.49.3.254:17483", "186.227.205.96:47766"]}\n' to ('127.0.0.1', 52784) queue

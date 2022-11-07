@@ -16,11 +16,10 @@ from utility.logplus import *
 def handle_input(data, sender_address):
     try:
         data_parsed = json.loads(str(data, encoding="utf-8"))
-        print("Data parsed: ", data_parsed)
 
         if "type" in data_parsed:
             message_type = data_parsed["type"]
-            if type in ["hello", "getpeers", "peers", "error"]:
+            if message_type in ["hello", "getpeers", "peers", "error"]:
                 function_name = data_parsed["type"]
                 return eval("handle_" + function_name + "(data_parsed, sender_address)")
             else:
@@ -49,8 +48,7 @@ def handle_hello(data_parsed, sender_address):
 
 # This is called when a getpeers message is received
 def handle_getpeers(data_parsed, sender_address):
-    peers_db = KnownNodesHandler()
-    peers = peers_db.known_nodes
+    peers = NODE_HANDLER.known_nodes
     response = MessageGenerator.generate_peers_message(peers)
     return response
 
@@ -59,10 +57,8 @@ def handle_getpeers(data_parsed, sender_address):
 def handle_peers(data_parsed, sender_address):
     if "peers" in data_parsed:
         for credential_string in data_parsed["peers"]:
-            peers_db = KnownNodesHandler()
-
-            if not peers_db.is_known(credential_string):
-                peers_db.add_node(credential_string)
+            if not NODE_HANDLER.is_node_known(credential_string):
+                NODE_HANDLER.add_node(credential_string)
                 LogPlus.info(f"| INFO | {sender_address} | PEERS | {data_parsed} | New peer added | {credential_string}")
     else:
         LogPlus.error(f"| ERROR | {sender_address} | PEERS | {data_parsed} | No peers in data_parsed")

@@ -26,7 +26,7 @@ class NodeNetworking:
         self.check_received_data_thread = None
 
     def start_server(self):
-        self.server = socket.socket()
+        self.server = socket()
         self.server.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
         self.server.bind(SERVER_ADDRESS)
         self.server.listen(CLIENTS_NUMBER)
@@ -41,7 +41,7 @@ class NodeNetworking:
     def accept_connections(self):
         while True:
             connection, credentials = self.server.accept()
-            print(f"New connection from {credentials}")
+            LogPlus.info(f"| INFO | New connection from {credentials}")
             handler = self.handle_connection(connection, credentials)
             handler.send(MessageGenerator.generate_hello_message())
             handler.send(MessageGenerator.generate_getpeers_message())
@@ -64,26 +64,30 @@ class NodeNetworking:
             for handler in self.handlers:
                 if not handler.in_queue.empty():
                     data = handler.in_queue.get()
-                    print(f"Received {data} from {handler.credentials}")
-                    res = handle_input(data)
+                    LogPlus.info(f"| INFO | Received {data} from {handler.credentials}")
+                    res = handle_input(data, handler.credentials)
                     if res:
                         # if we know the node, we change the port to the known one
                         if self.peers_db:
-                            cleaned_credentials = self.peers_db.clean_credentials(handler.credentials)
+                            cleaned_credentials = self.peers_db.clean_credentials(convert_tuple_to_string(handler.credentials))
                             self.send_to_node(cleaned_credentials, res)
 
     # creating a new connection to the credentials, returning handler
     def connect_to_node(self, credentials):
-        print(f"Connecting to {credentials}")
-        connection = socket.socket()
-        connection.connect(convert_string_to_tuple(credentials))
-        print(f"Connected to {credentials}")
-        return self.handle_connection(connection, credentials)
+        LogPlus.info(f"| INFO | Connecting to {credentials}")
+        try:
+            connection = socket()
+            connection.connect(convert_string_to_tuple(credentials))
+            LogPlus.info(f"| INFO | Connected to {credentials}")
+            return self.handle_connection(connection, credentials)
+        except Exception as e:
+            LogPlus.error(f"| ERROR | Error when connecting to {credentials} | {e}")
+            return None
 
     def send_to_node(self, credentials, data):
-        print(f"Sending {data} to {credentials}")
+        LogPlus.info(f"| INFO | Sending {data} to {credentials}")
         for handler in self.handlers:
-            if handler.credentials == credentials:
+            if handler.credentials == convert_string_to_tuple(credentials):
                 handler.send(data)
                 return True
 

@@ -3,6 +3,8 @@ from queue import Queue
 from threading import Thread
 from socket import socket, SOL_SOCKET, SO_REUSEADDR
 
+from utility.logplus import LogPlus
+
 # What ConnectionHandler does:
 # - Store connection, credentials, in_queue and out_queue
 # - Send messages from out_queue regularly
@@ -25,8 +27,7 @@ class ConnectionHandler:
         try:
             self.connection.connect(self.credentials)
         except Exception as e:
-            print(f"Error when connecting to {self.credentials}")
-            print(e)
+            LogPlus.error(f"| ERROR | Could not connect to {self.credentials}")
             return False
 
         self.is_open = True
@@ -51,11 +52,11 @@ class ConnectionHandler:
         message = self.receive()
         if message:
             self.in_queue.put(message)
-            print(message)
+            LogPlus.info(f"| INFO | Received message {message} from {self.credentials}. Added to queue.")
 
     # normal send function just adds to the queue
     def send(self, message):
-        print(f'Sending message {message} to {self.credentials}')
+        LogPlus.info(f"| INFO | Adding message {message} to {self.credentials} queue")
         self.out_queue.put(message)
 
     def send_packet_instantly(self, message):
@@ -65,8 +66,7 @@ class ConnectionHandler:
                 message = str(message).encode()
             self.connection.sendall(message)
         except Exception as e:
-            print(f"Error when sending message to {self.credentials}")
-            print(e)
+            LogPlus.error(f"| ERROR | Could not send message {message} to {self.credentials}")
             self.is_open = False
             return False
         return True

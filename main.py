@@ -1,10 +1,10 @@
 from network.NewServer import *
 from database.KnownNodesHandler import *
+from config import *
 
 
 def main():
-    peers_db = KnownNodesHandler("database/known_credentials.txt")
-    networking = NodeNetworking(peers_db)
+    networking = NodeNetworking(NODE_HANDLER)
     networking.start_server()
 
 
