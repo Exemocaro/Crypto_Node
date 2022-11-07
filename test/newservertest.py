@@ -19,7 +19,7 @@ node_networking = NodeNetworking()
 def main():
     node_networking.start_server()
 
-    peer_db = KnownNodesHandler("database/known_credentials.txt")
+    peer_db = KnownNodesHandler("../database/known_credentials.txt")
     peer_db.load_known_nodes()
 
     print(peer_db.known_nodes)
