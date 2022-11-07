@@ -2,9 +2,8 @@ import json
 import json_canonical
 import hashlib
 
-import null as null
-
 from utility.logplus import LogPlus
+from engine.Object import Object
 
 GENESIS_BLOCK = {
     "T": "00000002af000000000000000000000000000000000000000000000000000000",
@@ -12,7 +11,7 @@ GENESIS_BLOCK = {
     "miner": "dionyziz",
     "nonce": "0000000000000000000000000000000000000000000000000000002634878840",
     "note": "The Economist 2021−06−20: Crypto−miners are probably to blame for the graphics−chip shortage",
-    "previd": null,
+    "previd": None,
     "txids ": [],
     "type": "block"
 }
@@ -70,19 +69,22 @@ GENESIS_BLOCK = {
 class ObjectHandler:
 
     def __init__(self, objects_file="objects.json"):
-        self.objects = []
         self.id_to_index = {}
-        self.update_id_to_index()
         self.objects_file = objects_file
+        self.objects = []
+        self.load_objects()
+        self.update_id_to_index()
 
     def update_id_to_index(self):
         self.id_to_index = {}
         for i in range(len(self.objects)):
-            self.id_to_index[self.objects[i]["id"]] = i
+            object_id = Object.get_id_from_json(self.objects[i])
+            self.id_to_index[object_id] = i
 
     def add_object(self, obj):
         self.objects.append(obj)
-        self.id_to_index[obj["id"]] = len(self.objects) - 1
+        self.id_to_index[Object.get_id_from_json(obj)] = len(self.objects) - 1
+        self.save_objects()
 
     def get_object(self, id):
         if id in self.id_to_index:
@@ -94,6 +96,9 @@ class ObjectHandler:
                 return self.objects[self.id_to_index[id]]
             else:
                 return None
+
+    def is_object_known(self, object_id):
+        return object_id in self.id_to_index.keys()
 
     def validate_object(self, obj):
         if obj["type"] == "transaction":
@@ -229,6 +234,23 @@ class ObjectHandler:
 
         # if all checks passed, return True
         return True
+
+    # Saving and loading objects from file
+
+    def save_objects(self):
+        try:
+            with open(self.objects_file, "w") as f:
+                json.dump(self.objects, f)
+        except Exception as e:
+            LogPlus().error(f"| ERROR | ObjectHandler | save_objects failed | {e}")
+
+    def load_objects(self):
+        try:
+            with open(self.objects_file, "r") as f:
+                self.objects = json.load(f)
+        except Exception as e:
+            LogPlus().error(f"| ERROR | ObjectHandler | load_objects failed | {e}")
+
 
 
 

@@ -16,6 +16,7 @@ class ConnectionHandler:
     def __init__(self, connection=None, credentials=None):
         self.connection = connection
         self.credentials = credentials
+        self.in_buffer = b""
         self.in_queue = Queue()
         self.out_queue = Queue()
         self.is_open = connection is not None
@@ -40,7 +41,7 @@ class ConnectionHandler:
     def run(self):
         while self.is_open:
             self.send_from_queue()
-            self.receive_to_queue()
+            self.receive()
 
     def send_from_queue(self):
         if not self.out_queue.empty():
@@ -48,11 +49,26 @@ class ConnectionHandler:
             if not self.send_packet_instantly(message):
                 self.is_open = False
 
-    def receive_to_queue(self):
-        message = self.receive()
-        if message:
-            self.in_queue.put(message)
-            LogPlus.info(f"| INFO | Received message {message} from {self.credentials}. Added to queue.")
+    def receive(self):
+        try:
+            self.connection.setblocking(False)
+            incoming_data = self.connection.recv(1024)
+        except Exception as e:
+            # this will happen when there is no data to receive (so almost every time)
+            return
+
+        if incoming_data not in [None, b'']:
+            self.in_buffer += incoming_data
+
+        if b'\n' in self.in_buffer:
+            # split buffer into messages
+            messages = self.in_buffer.split(b'\n')
+            # put all messages except the last one in the queue
+            for message in messages[:-1]:
+                self.in_queue.put(message)
+                LogPlus.info(f"| INFO | Received message {message} from {self.credentials}. Added to queue.")
+            # put the last message in the buffer
+            self.in_buffer = messages[-1]
 
     # normal send function just adds to the queue
     def send(self, message):
@@ -70,15 +86,6 @@ class ConnectionHandler:
             self.is_open = False
             return False
         return True
-
-    # Check if there is data to receive else return False (or None??)
-    def receive(self):
-        try:
-            self.connection.setblocking(False)
-            return self.connection.recv(1024)
-        except Exception as e:
-            # this will happen when there is no data to receive (so almost every time)
-            return False
 
     def close(self):
         self.is_open = False

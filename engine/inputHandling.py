@@ -6,6 +6,7 @@ from engine.generateMessage import *
 from utility.credentials_utility import *
 from database.KnownNodesHandler import *
 from utility.logplus import *
+from engine.Object import *
 
 
 # This is called when a message is received
@@ -21,7 +22,8 @@ def handle_input(data, sender_address):
             message_type = data_parsed["type"]
             if message_type in ["hello", "getpeers", "peers", "error", "ihaveobject", "getobject", "object"]:
                 function_name = data_parsed["type"]
-                return eval("handle_" + function_name + "(data_parsed, sender_address)")
+                response = globals()["handle_" + function_name](data_parsed, sender_address)
+                return response
             else:
                 LogPlus.warning(f"| WARNING | {sender_address} | HANDLEINPUT | {data} | Invalid type | {message_type}")
                 return MessageGenerator.generate_error_message("Type \"" + message_type + "\"invalid or not supported!")
@@ -72,40 +74,43 @@ def handle_error(data_parsed, sender_address):
 
 # This is called when an ihaveobject message is received
 def handle_ihaveobject(data_parsed, sender_adress):
-    if "objectid" in data_parsed:
-        if not OBJECT_HANDLER.is_object_known(data_parsed["objectid"]):
-            LogPlus.info(f"| INFO | {sender_adress} | IHAVEOBJECT | {data_parsed} | New object requested | {data_parsed['objectid']}")
-            return MessageGenerator.generate_getobject_message(data_parsed["objectid"])
+    if "object_id" in data_parsed:
+        if not OBJECT_HANDLER.is_object_known(data_parsed["object_id"]):
+            LogPlus.info(f"| INFO | IHAVEOBJECT | New object requested | {data_parsed['object_id']}")
+            return MessageGenerator.generate_getobject_message(data_parsed["object_id"])
         else:
-            LogPlus.info(f"| INFO | {sender_adress} | IHAVEOBJECT | {data_parsed} | Object already known | {data_parsed['object']}")
+            LogPlus.info(f"| INFO | IHAVEOBJECT | Object already known | {data_parsed['object']}")
     else:
-        LogPlus.error(f"| ERROR | {sender_adress} | IHAVEOBJECT | {data_parsed} | No object in data_parsed")
-        return MessageGenerator.generate_error_message("No objectid in ihaveobject")
+        LogPlus.error(f"| ERROR | IHAVEOBJECT | No object in data_parsed | {data_parsed}")
+        return MessageGenerator.generate_error_message("No object_id in ihaveobject")
 
 
 # This is called when a getobject message is received
 def handle_getobject(data_parsed, sender_adress):
-    if "objectid" in data_parsed:
-        if OBJECT_HANDLER.is_object_known(data_parsed["objectid"]):
-            LogPlus.info(f"| INFO | {sender_adress} | GETOBJECT | {data_parsed} | Object requested | {data_parsed['objectid']}")
-            return MessageGenerator.generate_object_message(OBJECT_HANDLER.get_object(data_parsed["objectid"]))
+    if "object_id" in data_parsed:
+        if OBJECT_HANDLER.is_object_known(data_parsed["object_id"]):
+            LogPlus.info(f"| INFO | {sender_adress} | GETOBJECT | {data_parsed} | Object requested | {data_parsed['object_id']}")
+            return MessageGenerator.generate_object_message(OBJECT_HANDLER.get_object(data_parsed["object_id"]))
         else:
-            LogPlus.info(f"| INFO | {sender_adress} | GETOBJECT | {data_parsed} | Object not known | {data_parsed['objectid']}")
+            LogPlus.info(f"| INFO | {sender_adress} | GETOBJECT | {data_parsed} | Object not known | {data_parsed['object_id']}")
             return MessageGenerator.generate_error_message("Object not known")
     else:
         LogPlus.error(f"| ERROR | {sender_adress} | GETOBJECT | {data_parsed} | No object in data_parsed")
-        return MessageGenerator.generate_error_message("No objectid in getobject")
+        return MessageGenerator.generate_error_message("No object_id in getobject")
 
 
 # This is called when an object message is received
 def handle_object(data_parsed, sender_adress):
     if "object" in data_parsed:
-        object_id = OBJECT_HANDLER.get_id(data_parsed["object"])
+        object_id = Object.get_id_from_json(data_parsed["object"])
         if not OBJECT_HANDLER.is_object_known(object_id):
-            LogPlus.info(f"| INFO | {sender_adress} | OBJECT | {data_parsed} | New object received | {object_id}")
-            OBJECT_HANDLER.add_object(data_parsed["object"])
+            LogPlus.info(f"| INFO | OBJECT | New object received | {object_id}")
+            try:
+                OBJECT_HANDLER.add_object(data_parsed["object"])
+            except Exception as e:
+                LogPlus.error(f"| ERROR | OBJECT | Couldn't add object | {e} | {e.args}")
         else:
-            LogPlus.info(f"| INFO | {sender_adress} | OBJECT | {data_parsed} | Object already known | {object_id}")
+            LogPlus.info(f"| INFO | OBJECT | Object already known | {object_id}")
     else:
-        LogPlus.error(f"| ERROR | {sender_adress} | OBJECT | {data_parsed} | No object in data_parsed")
+        LogPlus.error(f"| ERROR | OBJECT | No object in data_parsed | {data_parsed}")
         return MessageGenerator.generate_error_message("No object in object message")

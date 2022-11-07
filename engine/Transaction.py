@@ -1,9 +1,11 @@
+import copy
 import hashlib
 import json
 from nacl.signing import *
 from json_canonical import canonicalize
 
 from config import *
+from engine.Object import Object
 
 
 # Format of a regular transaction:
@@ -24,7 +26,7 @@ from config import *
 #     ]
 # }
 
-class Transaction:
+class Transaction(Object):
 
     def __init__(self, inputs, outputs):
         self.inputs = inputs
@@ -65,10 +67,12 @@ class Transaction:
     def verify_signature(self, pubkey, sig):
         # verify the signature
         no_sig_tx_json = self.remove_signatures().get_json()
+        print("no_sig_tx_json: ", no_sig_tx_json)
         # make signature bytes if it is not already
         if type(sig) is str:
             sig = sig.encode()
         combined = canonicalize(no_sig_tx_json) + sig
+        print("combined: ", combined)
         try:
             VerifyKey(pubkey).verify(combined)
             return True
@@ -78,7 +82,7 @@ class Transaction:
     # To check if a signature is valid, we need to remove the signature from the input
     def remove_signatures(self):
         # remove the signatures from the transaction
-        tx_copy = self.copy()
+        tx_copy = copy.deepcopy(self)
         for tx_input in tx_copy.inputs:
             tx_input["sig"] = None
         return tx_copy
@@ -86,19 +90,12 @@ class Transaction:
     def get_json(self):
         # get the json representation of the transaction
         tx_json = {
-            "type": "transaction",
-            "inputs": self.inputs,
-            "outputs": self.outputs
+            "type": "object",
+            "object": {
+                "type": "transaction",
+                "inputs": self.inputs,
+                "outputs": self.outputs
+            }
         }
         return tx_json
 
-    def get_txid(self):
-        # get the id of the transaction
-        tx_json = self.get_json()
-        canonical_tx_json = canonicalize(tx_json)
-        txid = hashlib.sha256(canonical_tx_json).hexdigest()
-        return txid
-
-    def copy(self):
-        # copy the transaction
-        return Transaction(self.inputs, self.outputs)
