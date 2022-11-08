@@ -8,7 +8,7 @@ from utility.logplus import *
 from engine.Object import *
 from engine.generateMessage import MessageGenerator
 
-from network.NewServer import *
+from network.NodeNetworking import *
 
 from config import *
 
@@ -53,7 +53,7 @@ def handle_hello(data_parsed, sender_address):
 
 # This is called when a getpeers message is received
 def handle_getpeers(data_parsed, sender_address):
-    peers = NODE_HANDLER.known_nodes
+    peers = KnownNodesHandler.known_nodes
     response = MessageGenerator.generate_peers_message(peers)
     return response
 
@@ -62,8 +62,8 @@ def handle_getpeers(data_parsed, sender_address):
 def handle_peers(data_parsed, sender_address):
     if "peers" in data_parsed:
         for credential_string in data_parsed["peers"]:
-            if not NODE_HANDLER.is_node_known(credential_string):
-                NODE_HANDLER.add_node(credential_string)
+            if not KnownNodesHandler.is_node_known(credential_string):
+                KnownNodesHandler.add_node(credential_string)
                 LogPlus.info(f"| INFO | {sender_address} | PEERS | {data_parsed} | New peer added | {credential_string}")
     else:
         LogPlus.error(f"| ERROR | {sender_address} | PEERS | {data_parsed} | No peers in data_parsed")
@@ -78,7 +78,7 @@ def handle_error(data_parsed, sender_address):
 # This is called when an ihaveobject message is received
 def handle_ihaveobject(data_parsed, sender_adress):
     if "object_id" in data_parsed:
-        if not OBJECT_HANDLER.is_object_known(data_parsed["object_id"]):
+        if not ObjectHandler.is_object_known(data_parsed["object_id"]):
             LogPlus.info(f"| INFO | IHAVEOBJECT | New object requested | {data_parsed['object_id']}")
             return MessageGenerator.generate_getobject_message(data_parsed["object_id"])
         else:
@@ -91,9 +91,9 @@ def handle_ihaveobject(data_parsed, sender_adress):
 # This is called when a getobject message is received
 def handle_getobject(data_parsed, sender_adress):
     if "object_id" in data_parsed:
-        if OBJECT_HANDLER.is_object_known(data_parsed["object_id"]):
+        if ObjectHandler.is_object_known(data_parsed["object_id"]):
             LogPlus.info(f"| INFO | {sender_adress} | GETOBJECT | {data_parsed} | Object requested | {data_parsed['object_id']}")
-            return MessageGenerator.generate_object_message(OBJECT_HANDLER.get_object(data_parsed["object_id"]))
+            return MessageGenerator.generate_object_message(ObjectHandler.get_object(data_parsed["object_id"]))
         else:
             LogPlus.info(f"| INFO | {sender_adress} | GETOBJECT | {data_parsed} | Object not known | {data_parsed['object_id']}")
             return MessageGenerator.generate_error_message("Object not known")
@@ -106,24 +106,25 @@ def handle_getobject(data_parsed, sender_adress):
 def handle_object(data_parsed, sender_adress):
     if "object" in data_parsed:
         object_id = Object.get_id_from_json(data_parsed["object"])
-        if not OBJECT_HANDLER.is_object_known(object_id): # If the object is not known, right?
+        if not ObjectHandler.is_object_known(object_id): # If the object is not known, right?
             LogPlus.info(f"| INFO | OBJECT | New object received | {object_id}")
 
             # validate object and add it to the database
             try:
-                if OBJECT_HANDLER.validate_object(data_parsed):
-                    OBJECT_HANDLER.add_object(data_parsed["object"])
+                if ObjectHandler.validate_object(data_parsed):
+                    ObjectHandler.add_object(data_parsed["object"])
             except Exception as e:
                 LogPlus.error(f"| ERROR | OBJECT | Couldn't add object | {e} | {e.args}")
             
             # send ihaveobject message to active nodes
             try:
                 message = MessageGenerator.generate_ihaveobject_message(object_id)
-                for node_credentials in NODE_HANDLER.active_nodes:
-                    cleaned_credentials = NETWORKING.peers_db.clean_credentials(convert_tuple_to_string(node_credentials))
-                    NETWORKING.send_to_node(cleaned_credentials, message)
+                print(message)
+                print(KnownNodesHandler.active_nodes)
+                for node_credentials in KnownNodesHandler.active_nodes:
+                    NodeNetworking.send_to_node(node_credentials, message)
 
-                #NODE_HANDLER.get_active_object(object_id)
+                #KnownNodesHandler.get_active_object(object_id)
                 #return MessageGenerator.generate_ihaveobject_message(object_id)
 
                 # return MessageGenerator.generate_error_message("No object_id in ihaveobject")

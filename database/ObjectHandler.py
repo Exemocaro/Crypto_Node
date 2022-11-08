@@ -67,51 +67,48 @@ GENESIS_BLOCK = {
 # The object handler also needs a mapping from id to index in object list / object
 
 class ObjectHandler:
+  
+    id_to_index = {}
+    objects_file = "objects.json"
+    objects = []
 
-    def __init__(self, objects_file="objects.json"):
-        self.id_to_index = {}
-        self.objects_file = objects_file
-        self.objects = []
-        self.load_objects()
-        self.update_id_to_index()
+    def update_id_to_index():
+        ObjectHandler.id_to_index = {}
+        for i in range(len(ObjectHandler.objects)):
+            object_id = Object.get_id_from_json(ObjectHandler.objects[i])
+            ObjectHandler.id_to_index[object_id] = i
 
-    def update_id_to_index(self):
-        self.id_to_index = {}
-        for i in range(len(self.objects)):
-            object_id = Object.get_id_from_json(self.objects[i])
-            self.id_to_index[object_id] = i
+    def add_object(obj):
+        objects.append(obj)
+        ObjectHandler.id_to_index[Object.get_id_from_json(obj)] = len(ObjectHandler.objects) - 1
+        ObjectHandler.save_objects()
 
-    def add_object(self, obj):
-        self.objects.append(obj)
-        self.id_to_index[Object.get_id_from_json(obj)] = len(self.objects) - 1
-        self.save_objects()
-
-    def get_object(self, id):
-        if id in self.id_to_index:
-            return self.objects[self.id_to_index[id]]
+    def get_object(id):
+        if id in ObjectHandler.id_to_index:
+            return ObjectHandler.objects[iObjectHandler.d_to_index[id]]
         else:
             # refresh id_to_index and try again (just in case)
-            self.update_id_to_index()
-            if id in self.id_to_index:
-                return self.objects[self.id_to_index[id]]
+            ObjectHandler.update_id_to_index()
+            if id in ObjectHandler.id_to_index:
+                return ObjectHandler.objects[id_to_index[id]]
             else:
                 return None
 
-    def is_object_known(self, object_id):
-        return object_id in self.id_to_index.keys()
+    def is_object_known(object_id):
+        return object_id in ObjectHandler.id_to_index.keys()
 
-    def validate_object(self, obj):
+    def validate_object(obj):
         if obj["type"] == "transaction":
-            return self.validate_transaction(obj)
+            return ObjectHandler.validate_transaction(obj)
         elif obj["type"] == "block":
-            return self.validate_block(obj)
+            return ObjectHandler.validate_block(obj)
         else:
             return False
 
-    def validate_transaction(self, tx):
+    def validate_transaction(tx):
         # check if its a coinbase transaction
         if "height" in tx:
-            return self.validate_coinbase_transaction(tx)
+            return ObjectHandler.validate_coinbase_transaction(tx)
 
         # otherwise its a regular transaction
         try:
@@ -152,49 +149,49 @@ class ObjectHandler:
             return False
         # check if all inputs are valid
         for input in inputs:
-            if not self.validate_input(input):
+            if not ObjectHandler.validate_input(input):
                 return False
         # if all checks passed, return True
         return True
 
     def validate_input(self, input):
         # check if the input outpoint is valid
-        if not self.validate_outpoint(input["outpoint"]):
+        if not ObjectHandler.validate_outpoint(input["outpoint"]):
             return False
         # check if the input signature is valid
-        if not self.validate_signature(input["sig"]):
+        if not ObjectHandler.validate_signature(input["sig"]):
             return False
         # if all checks passed, return True
         return True
 
-    def validate_outpoint(self, outpoint):
+    def validate_outpoint(outpoint):
         # check if the outpoint txid is valid
-        if not self.validate_txid(outpoint["txid"]):
+        if not ObjectHandler.validate_txid(outpoint["txid"]):
             return False
         # check if the outpoint index is valid
-        if not self.validate_index(outpoint["index"]):
+        if not ObjectHandler.validate_index(outpoint["index"]):
             return False
         # if all checks passed, return True
         return True
 
-    def validate_txid(self, txid):
+    def validate_txid(txid):
         # check if the txid is a valid sha256 hash
         try:
             hashlib.sha256(bytes.fromhex(txid)).hexdigest()
         except Exception as e:
             return False
         # check if the txid is in the object list
-        if not self.get_object(txid):
+        if not ObjectHandler.get_object(txid):
             return False
         # if all checks passed, return True
         return True
 
-    def validate_index(self, index, txid):
+    def validate_index(index, txid):
         # check if the index is an integer
         if not isinstance(index, int):
             return False
         # check if the index is valid
-        if index < 0 or index >= len(self.get_object(txid)["outputs"]):
+        if index < 0 or index >= len(ObjectHandler.get_object(txid)["outputs"]):
             return False
         # if all checks passed, return True
         return True
@@ -202,9 +199,9 @@ class ObjectHandler:
     # This is just format validation, not signature validation (therefore all static)
 
     @staticmethod
-    def validate_outputs(self, outputs):
+    def validate_outputs(outputs):
         for output in outputs:
-            if not self.validate_output(output):
+            if not ObjectHandler.validate_output(output):
                 return False
         return True
 
@@ -235,23 +232,21 @@ class ObjectHandler:
 
     # Saving and loading objects from file
 
-    def save_objects(self):
+    def save_objects():
         try:
-            with open(self.objects_file, "w") as f:
-                json.dump(self.objects, f)
+            with open(ObjectHandler.objects_file, "w") as f:
+                json.dump(ObjectHandler.objects, f)
         except Exception as e:
             LogPlus().error(f"| ERROR | ObjectHandler | save_objects failed | {e}")
 
-    def load_objects(self):
+    def load_objects():
         try:
-            with open(self.objects_file, "r") as f:
-                self.objects = json.load(f)
+            with open(ObjectHandler.objects_file, "r") as f:
+                objects = json.load(f)
         except Exception as e:
             LogPlus().error(f"| ERROR | ObjectHandler | load_objects failed | {e}")
 
 
-
-
-
-
+ObjectHandler.load_objects()
+ObjectHandler.update_id_to_index()
 

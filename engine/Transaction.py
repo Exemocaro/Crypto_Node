@@ -50,7 +50,7 @@ class Transaction(Object):
             txid = outpoint["txid"]
             index = outpoint["index"]
             # get the transaction with id txid
-            previous_tx = OBJECT_HANDLER.get_transaction(txid)
+            previous_tx = ObjectHandler.get_transaction(txid)
             if previous_tx is None:
                 return False
             # get the output at index index

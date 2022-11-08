@@ -6,13 +6,6 @@ from random import randint
 from nacl.encoding import Base64Encoder
 from colorama import Fore
 
-from utility.credentials_utility import *
-
-from engine.Transaction import *
-from engine.CoinbaseTransaction import *
-from engine.generateMessage import *
-from engine.Object import *
-
 jans_ip = "4.231.16.23"
 mateus_ip = "143.244.205.206"
 simaos_ip = "139.59.205.101"
@@ -30,11 +23,9 @@ ip_names = {
 MESSAGE_SIZE = 1024
 TIMEOUT_SECONDS = 2
 
-random_other_peers = [jans_ip, mateus_ip, simaos_ip, localhost, "51.137.60.68"]
+random_other_peers = [localhost]
 
 ips_to_check = random_other_peers
-
-
 
 def check_host(graded_ip):
     if graded_ip in ip_names:

@@ -1,10 +1,11 @@
-from network.NewServer import *
+from network.NodeNetworking import *
 from database.KnownNodesHandler import *
 from config import *
 
+
 def main():
-    #networking = NodeNetworking(NODE_HANDLER)
-    NETWORKING.start_server()
+    #NETWORKING = NodeNetworking(KnownNodesHandler)
+    NodeNetworking.start_server()
 
 if __name__ == "__main__":
     main()

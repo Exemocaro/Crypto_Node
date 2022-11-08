@@ -1,5 +1,5 @@
 
-from network.NewServer import *
+from network.NodeNetworking import *
 from database.KnownNodesHandler import *
 
 from config import *

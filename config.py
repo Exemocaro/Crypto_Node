@@ -2,11 +2,6 @@ from http import client
 import platform
 import logging
 
-from database.KnownNodesHandler import KnownNodesHandler
-from database.ObjectHandler import ObjectHandler
-from network.NewServer import *
-from database.KnownNodesHandler import *
-
 PORT = 18018  # The port used by the server
 SERVER_ADDRESS = ('', PORT)
 
@@ -22,9 +17,6 @@ SYSTEM = platform.system().lower()  # our operating system
 
 AGENT_NAME = "This could be your node!"
 
-NODE_HANDLER = KnownNodesHandler(known_nodes_file=ADDRESSES_FILE)
-OBJECT_HANDLER = ObjectHandler(objects_file=OBJECTS_FILE)
-NETWORKING = NodeNetworking(NODE_HANDLER)
 
 # logging things
 logging.basicConfig(
