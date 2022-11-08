@@ -1,13 +1,16 @@
 import logging
 import json
 
-from config import *
 from engine.generateMessage import *
 from utility.credentials_utility import *
 from database.KnownNodesHandler import *
 from utility.logplus import *
 from engine.Object import *
+from engine.generateMessage import MessageGenerator
 
+from network.NewServer import *
+
+from config import *
 
 # This is called when a message is received
 # It calls the appropriate function based on the type of the message
@@ -103,12 +106,31 @@ def handle_getobject(data_parsed, sender_adress):
 def handle_object(data_parsed, sender_adress):
     if "object" in data_parsed:
         object_id = Object.get_id_from_json(data_parsed["object"])
-        if not OBJECT_HANDLER.is_object_known(object_id):
+        if not OBJECT_HANDLER.is_object_known(object_id): # If the object is not known, right?
             LogPlus.info(f"| INFO | OBJECT | New object received | {object_id}")
+
+            # validate object and add it to the database
             try:
-                OBJECT_HANDLER.add_object(data_parsed["object"])
+                if OBJECT_HANDLER.validate_object(data_parsed):
+                    OBJECT_HANDLER.add_object(data_parsed["object"])
             except Exception as e:
                 LogPlus.error(f"| ERROR | OBJECT | Couldn't add object | {e} | {e.args}")
+            
+            # send ihaveobject message to active nodes
+            try:
+                message = MessageGenerator.generate_ihaveobject_message(object_id)
+                for node_credentials in NODE_HANDLER.active_nodes:
+                    cleaned_credentials = NETWORKING.peers_db.clean_credentials(convert_tuple_to_string(node_credentials))
+                    NETWORKING.send_to_node(cleaned_credentials, message)
+
+                #NODE_HANDLER.get_active_object(object_id)
+                #return MessageGenerator.generate_ihaveobject_message(object_id)
+
+                # return MessageGenerator.generate_error_message("No object_id in ihaveobject")
+                # NODE_NETWOKRING.send_to_node(credentials, data)
+            except Exception as e:
+                LogPlus.error(f"| ERROR | OBJECT | Couldn't add object | {e} | {e.args}")
+            
         else:
             LogPlus.info(f"| INFO | OBJECT | Object already known | {object_id}")
     else:

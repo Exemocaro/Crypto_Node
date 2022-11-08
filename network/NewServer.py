@@ -11,9 +11,11 @@ from engine.inputHandling import *
 from network.ConnectionHandler import ConnectionHandler
 from utility.credentials_utility import *
 from engine.generateMessage import *
-from config import *
 
-from database.KnownNodesHandler import KnownNodesHandler
+from network.NewServer import *
+from database.KnownNodesHandler import *
+
+from config import *
 
 
 class NodeNetworking:

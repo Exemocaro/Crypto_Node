@@ -52,7 +52,7 @@ class ConnectionHandler:
     def receive(self):
         try:
             self.connection.setblocking(False)
-            incoming_data = self.connection.recv(1024)
+            incoming_data = self.connection.recv(INCOMING_DATA_BUFFER) # maybe store it as a global variable?
         except Exception as e:
             # this will happen when there is no data to receive (so almost every time)
             return

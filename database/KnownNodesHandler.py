@@ -12,7 +12,8 @@ class KnownNodesHandler:
         self.known_nodes = []
         self.known_nodes_file = known_nodes_file
         self.load_known_nodes()
-        self.load_known_nodes()
+        #self.load_known_nodes() # why twice?
+        self.active_nodes = self.set_active_nodes()
 
     # load known nodes from file
     def load_known_nodes(self):
@@ -40,6 +41,10 @@ class KnownNodesHandler:
                     f.write(f"{node}\n")
                 except Exception as e:
                     LogPlus.error(f"| ERROR | Nodes couldn't be saved | {e} | {e.args}")
+
+    # determines which nodes from our known nodes are active
+    def set_active_nodes(self):
+        self.active_nodes = self.known_nodes
 
     # Making handling ip and port easier
 
