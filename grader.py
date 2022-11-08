@@ -1,14 +1,12 @@
 import socket
 import json
-from random import randint
+import time
 
+from random import randint
 from nacl.encoding import Base64Encoder
+from colorama import Fore
 
 from utility.credentials_utility import *
-import colorama
-from colorama import Fore
-import time
-import binascii
 
 from engine.Transaction import *
 from engine.CoinbaseTransaction import *
