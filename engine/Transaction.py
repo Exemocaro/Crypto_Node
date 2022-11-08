@@ -39,7 +39,8 @@ class Transaction(Object):
         tx_outputs = tx_json["outputs"]
         return Transaction(tx_inputs, tx_outputs)
 
-    def check_signature(self, ):
+    # TODO : Not working currntly
+    def check_signature(self):
         # check if the signature is valid
         # we need to check if the signature is valid for each tx_input
         cleared_copy = self.remove_signatures()
@@ -71,7 +72,7 @@ class Transaction(Object):
         # make signature bytes if it is not already
         if type(sig) is str:
             sig = sig.encode()
-        combined = canonicalize(no_sig_tx_json) + sig
+        combined = sig + canonicalize(no_sig_tx_json)
         print("combined: ", combined)
         try:
             VerifyKey(pubkey).verify(combined)
@@ -90,12 +91,9 @@ class Transaction(Object):
     def get_json(self):
         # get the json representation of the transaction
         tx_json = {
-            "type": "object",
-            "object": {
-                "type": "transaction",
-                "inputs": self.inputs,
-                "outputs": self.outputs
-            }
+            "type": "transaction",
+            "inputs": self.inputs,
+            "outputs": self.outputs
         }
         return tx_json
 

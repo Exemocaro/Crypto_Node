@@ -15,7 +15,7 @@ class Object(ABC):
         return json_canonical.canonicalize(self.get_json())
 
     def get_id(self):
-        return hashlib.sha256(self.get_canonical_json_bytes()).digest().hex()
+        return Object.get_id_from_json(self.get_json())
 
     @staticmethod
     def get_id_from_json(json):

@@ -14,15 +14,6 @@ class Block:
         self.created = created
         self.t = t
 
-    def __init__(self, block_json):
-        self.txids = block_json["txids"]
-        self.nonce = block_json["nonce"]
-        self.miner = block_json["miner"]
-        self.note = block_json["note"]
-        self.previd = block_json["previd"]
-        self.created = block_json["created"]
-        self.t = block_json["T"]
-
     def get_json(self):
         block_json = {
             "type": "block",
@@ -42,6 +33,14 @@ class Block:
         blockid = hashlib.sha256(canonical_block_json).hexdigest()
         return blockid
 
-
-
-
+    def from_json(block_json):
+        block = Block(
+            block_json["txids"],
+            block_json["nonce"],
+            block_json["miner"],
+            block_json["note"],
+            block_json["previd"],
+            block_json["created"],
+            block_json["T"]
+        )
+        return block

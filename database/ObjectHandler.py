@@ -199,8 +199,6 @@ class ObjectHandler:
         # if all checks passed, return True
         return True
 
-
-
     # This is just format validation, not signature validation (therefore all static)
 
     @staticmethod

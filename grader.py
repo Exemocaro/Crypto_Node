@@ -32,7 +32,7 @@ ip_names = {
 MESSAGE_SIZE = 1024
 TIMEOUT_SECONDS = 2
 
-random_other_peers = [jans_ip, mateus_ip, simaos_ip, localhost]
+random_other_peers = [jans_ip, mateus_ip, simaos_ip, localhost, "51.137.60.68"]
 
 ips_to_check = random_other_peers
 

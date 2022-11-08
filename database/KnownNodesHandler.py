@@ -8,7 +8,7 @@ from utility.logplus import *
 # let's us add and remove nodes
 # handles saving to file
 class KnownNodesHandler:
-    def __init__(self, known_nodes_file="known_credentials.txt"):
+    def __init__(self, known_nodes_file="known_credentials.txt", active_nodes_file="active_credentials.txt"):
         self.known_nodes = []
         self.known_nodes_file = known_nodes_file
         self.load_known_nodes()
