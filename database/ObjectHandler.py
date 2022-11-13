@@ -5,6 +5,10 @@ import hashlib
 from utility.logplus import LogPlus
 from engine.Object import Object
 
+from colorama import Fore, Style
+
+from config import *
+
 GENESIS_BLOCK = {
     "T": "00000002af000000000000000000000000000000000000000000000000000000",
     "created": 1624219079,
@@ -69,7 +73,7 @@ GENESIS_BLOCK = {
 class ObjectHandler:
   
     id_to_index = {}
-    objects_file = "objects.json"
+    objects_file = OBJECTS_FILE
     objects = []
 
     @staticmethod
@@ -81,19 +85,26 @@ class ObjectHandler:
 
     @staticmethod
     def add_object(obj):
-        ObjectHandler.objects.append(obj)
-        ObjectHandler.id_to_index[Object.get_id_from_json(obj)] = len(ObjectHandler.objects) - 1
-        ObjectHandler.save_objects()
+        try:
+            ObjectHandler.objects.append(obj)
+            print(Fore.GREEN + "Object appended" + Style.RESET_ALL)
+            ObjectHandler.id_to_index[Object.get_id_from_json(obj)] = len(ObjectHandler.objects) - 1
+            print(Fore.GREEN + "Object indexed" + Style.RESET_ALL)
+            ObjectHandler.save_objects()
+            print(Fore.GREEN + "Objects saved" + Style.RESET_ALL)
+        except Exception as e:
+            LogPlus.error("| ERROR | ObjectHandler.add_object | " + str(e))
+
 
     @staticmethod
     def get_object(id):
         if id in ObjectHandler.id_to_index:
-            return ObjectHandler.objects[iObjectHandler.d_to_index[id]]
+            return ObjectHandler.objects[ObjectHandler.id_to_index[id]]
         else:
             # refresh id_to_index and try again (just in case)
             ObjectHandler.update_id_to_index()
             if id in ObjectHandler.id_to_index:
-                return ObjectHandler.objects[id_to_index[id]]
+                return ObjectHandler.objects[ObjectHandler.id_to_index[id]]
             else:
                 return None
 
@@ -103,11 +114,16 @@ class ObjectHandler:
 
     @staticmethod
     def validate_object(obj):
-        if obj["type"] == "transaction":
-            return ObjectHandler.validate_transaction(obj)
-        elif obj["type"] == "block":
-            return ObjectHandler.validate_block(obj)
-        else:
+        print(obj)
+        try:
+            if obj["type"] == "transaction":
+                return ObjectHandler.validate_transaction(obj)
+            elif obj["type"] == "block":
+                return ObjectHandler.validate_block(obj)
+            else:
+                return False
+        except Exception as e:
+            LogPlus().error(f"| ERROR | ObjectHandler.validate_object | {e} | {obj}")
             return False
 
     @staticmethod
@@ -249,7 +265,14 @@ class ObjectHandler:
     def save_objects():
         try:
             with open(ObjectHandler.objects_file, "w") as f:
-                json.dump(ObjectHandler.objects, f)
+                file_data = json.dump(ObjectHandler.objects, indent=4)
+                print(file_data)
+
+                f.truncate()
+                f.write(file_data)
+
+            f.close()
+
         except Exception as e:
             LogPlus().error(f"| ERROR | ObjectHandler | save_objects failed | {e}")
 
@@ -257,8 +280,10 @@ class ObjectHandler:
     def load_objects():
         try:
             with open(ObjectHandler.objects_file, "r") as f:
-                objects = json.load(f)
+                ObjectHandler.objects = json.load(f)
         except Exception as e:
+            ObjectHandler.objects = []
+            ObjectHandler.save_objects()
             LogPlus().error(f"| ERROR | ObjectHandler | load_objects failed | {e}")
 
 

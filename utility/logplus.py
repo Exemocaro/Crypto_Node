@@ -1,4 +1,5 @@
 import logging
+from colorama import Fore, Back, Style
 
 # LogPlus is like logging, but it also prints the message
 
@@ -18,12 +19,12 @@ class LogPlus:
     @staticmethod
     def warning(message):
         logging.warning(message)
-        print(message)
+        print(Fore.YELLOW + message + Style.RESET_ALL)
 
     @staticmethod
     def error(message):
         logging.error(message)
-        print(message)
+        print(Fore.RED + message + Style.RESET_ALL)
 
     @staticmethod
     def critical(message):

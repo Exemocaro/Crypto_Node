@@ -4,7 +4,10 @@ import time
 
 from random import randint
 from nacl.encoding import Base64Encoder
+from nacl.signing import SigningKey
 from colorama import Fore
+
+from engine.CoinbaseTransaction import CoinbaseTransaction
 
 jans_ip = "4.231.16.23"
 mateus_ip = "143.244.205.206"

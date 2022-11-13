@@ -4,6 +4,8 @@ import hashlib
 
 from abc import ABC, abstractmethod
 
+from network.NodeNetworking import *
+
 
 class Object(ABC):
 

@@ -12,7 +12,6 @@ from network.ConnectionHandler import ConnectionHandler
 from utility.credentials_utility import *
 from engine.generateMessage import *
 
-from network.NodeNetworking import *
 from database.KnownNodesHandler import *
 
 from config import *
@@ -23,7 +22,6 @@ class NodeNetworking:
     handlers = []
     server = None
     server_thread = None
-    peers_db = None
     check_received_data_thread = None
 
     @staticmethod
@@ -71,12 +69,15 @@ class NodeNetworking:
                 if not handler.in_queue.empty():
                     data = handler.in_queue.get()
                     LogPlus.info(f"| INFO | Received {data} from {handler.credentials}")
-                    res = handle_input(data, handler.credentials)
-                    if res:
-                        # if we know the node, we change the port to the known one
-                        if NodeNetworking.peers_db:
-                            cleaned_credentials = NodeNetworking.peers_db.clean_credentials(convert_tuple_to_string(handler.credentials))
-                            NodeNetworking.send_to_node(cleaned_credentials, res)
+                    responses = handle_input(data, handler.credentials)
+                    if responses is None:
+                        continue
+                    for (cleaned_credentials, res) in responses:
+                        # if cleanead credentials is a tuple, convert it to a string
+                        if type(cleaned_credentials) is tuple:
+                            cleaned_credentials = convert_tuple_to_string(cleaned_credentials)
+                        cleaned_credentials = KnownNodesHandler.clean_credentials(cleaned_credentials)
+                        NodeNetworking.send_to_node(cleaned_credentials, res)
 
     # creating a new connection to the credentials, returning handler
     @staticmethod
@@ -101,7 +102,11 @@ class NodeNetworking:
 
         # no connection found
         # so we create a new connection and send the data there
-        NodeNetworking.connect_to_node(credentials).send(data)
+
+        handler = NodeNetworking.connect_to_node(credentials)
+        if handler is None:
+            return False
+        handler.send(data)
 
 
 
