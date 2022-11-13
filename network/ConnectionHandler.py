@@ -23,7 +23,7 @@ class ConnectionHandler:
 
     def start_connection(self):
         self.is_open = False
-        self.connection = socket.socket()
+        self.connection = socket()
         self.connection.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
         try:
             self.connection.connect(self.credentials)
@@ -39,6 +39,8 @@ class ConnectionHandler:
         thread.start()
 
     def run(self):
+        if not self.is_open:
+            self.start_connection()
         while self.is_open:
             self.send_from_queue()
             self.receive()

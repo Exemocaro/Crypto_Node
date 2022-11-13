@@ -84,10 +84,10 @@ class NodeNetworking:
     def connect_to_node(credentials):
         LogPlus.info(f"| INFO | Connecting to {credentials}")
         try:
-            connection = socket()
-            connection.connect(convert_string_to_tuple(credentials))
-            LogPlus.info(f"| INFO | Connected to {credentials}")
-            return NodeNetworking.handle_connection(connection, credentials)
+            # connection = socket()
+            # connection.connect(convert_string_to_tuple(credentials))
+            # LogPlus.info(f"| INFO | Connected to {credentials}")
+            return NodeNetworking.handle_connection(None, credentials)
         except Exception as e:
             LogPlus.error(f"| ERROR | Error when connecting to {credentials} | {e}")
             return None
@@ -96,7 +96,10 @@ class NodeNetworking:
     def send_to_node(credentials, data):
         LogPlus.info(f"| INFO | Sending {data} to {credentials}")
         for handler in NodeNetworking.handlers:
-            if handler.credentials == convert_string_to_tuple(credentials):
+            # convert credentials to tuple if it is a string
+            if type(credentials) is str:
+                credentials = convert_string_to_tuple(credentials)
+            if handler.credentials == credentials:
                 handler.send(data)
                 return True
 

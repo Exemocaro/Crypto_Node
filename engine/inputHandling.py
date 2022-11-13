@@ -59,7 +59,7 @@ def handle_hello(data_parsed, sender_address):
             LogPlus.error(f"| ERROR | {sender_address} | HELLO | {data_parsed} | No version in data_parsed")
             return [(sender_address, MessageGenerator.generate_error_message("No version in hello!"))]
     except Exception as e:
-        LogPlus.error(f"| ERROR | ObjectHandler | handle_hello | {data} | {sender_address} | {e}")
+        LogPlus.error(f"| ERROR | ObjectHandler | handle_hello | {data_parsed} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
 
 
@@ -70,7 +70,7 @@ def handle_getpeers(data_parsed, sender_address):
         response = MessageGenerator.generate_peers_message(peers)
         return [(sender_address, response)]
     except Exception as e:
-        LogPlus.error(f"| ERROR | ObjectHandler | handle_hello | {data} | {sender_address} | {e}")
+        LogPlus.error(f"| ERROR | ObjectHandler | handle_getpeers | {data_parsed} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
 
 
@@ -86,7 +86,7 @@ def handle_peers(data_parsed, sender_address):
             LogPlus.error(f"| ERROR | {sender_address} | PEERS | {data_parsed} | No peers in data_parsed")
             return [(sender_address, MessageGenerator.generate_error_message("No peers in data_parsed!"))]
     except Exception as e:
-        LogPlus.error(f"| ERROR | ObjectHandler | handle_hello | {data} | {sender_address} | {e}")
+        LogPlus.error(f"| ERROR | ObjectHandler | handle_peers | {data_parsed} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
 
 
@@ -95,7 +95,7 @@ def handle_error(data_parsed, sender_address):
     try:
         LogPlus.error(f"| ERROR | {sender_address} | ERROR | {data_parsed} | Error message received")
     except Exception as e:
-        LogPlus.error(f"| ERROR | ObjectHandler | handle_hello | {data} | {sender_address} | {e}")
+        LogPlus.error(f"| ERROR | inputHandling | handle_error | {data_parsed} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
 
 
@@ -107,13 +107,13 @@ def handle_ihaveobject(data_parsed, sender_address):
                 LogPlus.info(f"| INFO | IHAVEOBJECT | New object requested | {data_parsed['object_id']}")
                 return [(sender_address, MessageGenerator.generate_getobject_message(data_parsed["object_id"]))]
             else:
-                LogPlus.info(f"| INFO | IHAVEOBJECT | Object already known | {data_parsed['object']}")
+                LogPlus.info(f"| INFO | inputHandling | handle_ihaveobject | Object already known | {data_parsed['object_id']}")
                 return []
         else:
             LogPlus.error(f"| ERROR | IHAVEOBJECT | No object in data_parsed | {data_parsed}")
             return [(sender_address, MessageGenerator.generate_error_message("No object_id in ihaveobject"))]
     except Exception as e:
-        LogPlus.error(f"| ERROR | ObjectHandler | handle_hello | {data} | {sender_address} | {e}")
+        LogPlus.error(f"| ERROR | inputHandling | handle_ihaveobject | {data_parsed} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
 
 
@@ -133,7 +133,7 @@ def handle_getobject(data_parsed, sender_address):
             LogPlus.error(f"| ERROR | {sender_address} | GETOBJECT | {data_parsed} | No object in data_parsed")
             return [(sender_address, MessageGenerator.generate_error_message("No object_id in getobject"))]
     except Exception as e:
-        LogPlus.error(f"| ERROR | ObjectHandler | handle_hello | {sender_address} | {e}")
+        LogPlus.error(f"| ERROR | inputHandling | handle_getobjet | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
 
 
@@ -143,16 +143,17 @@ def handle_object(data_parsed, sender_address):
         responses = []
         if "object" in data_parsed:
             object = data_parsed["object"]
+            print(Fore.CYAN + str(object) + Style.RESET_ALL)
             object_id = Object.get_id_from_json(object)
             if not ObjectHandler.is_object_known(object_id): # If the object is not known, right?
-                LogPlus.info(f"| INFO | OBJECT | New object received | {object_id}")
+                LogPlus.info(f"| INFO | inputHandling | handle_object | New object received | {object_id}")
 
                 # validate object and add it to the database
                 try:
                     if ObjectHandler.validate_object(object):
                         ObjectHandler.add_object(object)
                     else:
-                        LogPlus.error(f"| ERROR | OBJECT | Object not valid | {object_id}")
+                        LogPlus.warning(f"| WARNING | inputHandling | hande_object | Object not valid | {object_id}")
                         return [(sender_address, MessageGenerator.generate_error_message("Object not valid"))]
                 except Exception as e:
                     LogPlus.error(f"| ERROR | inputHandler | handle_object | Couldn't add object | {e} | {e.args}")
@@ -184,7 +185,7 @@ def handle_object(data_parsed, sender_address):
             LogPlus.error(f"| ERROR | OBJECT | No object in data_parsed | {data_parsed}")
             return [(sender_address, MessageGenerator.generate_error_message("No object in object message"))]
     except Exception as e:
-        LogPlus.error(f"| ERROR | ObjectHandler | handle_hello | {data} | {sender_address} | {e}")
+        LogPlus.error(f"| ERROR | inputHandling | handle_object | {data_parsed} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
 
 

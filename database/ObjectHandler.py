@@ -121,15 +121,18 @@ class ObjectHandler:
             elif obj["type"] == "block":
                 return ObjectHandler.validate_block(obj)
             else:
+                LogPlus.warning(f"| WARNING | ObjectHandler.validate_object | Unknown object type: " + obj["type"])
                 return False
         except Exception as e:
-            LogPlus().error(f"| ERROR | ObjectHandler.validate_object | {e} | {obj}")
+            LogPlus.error(f"| ERROR | ObjectHandler.validate_object | {e} | {obj}")
             return False
 
     @staticmethod
     def validate_transaction(tx):
         # check if its a coinbase transaction
+        print(Fore.CYAN + "Validating transaction" + Style.RESET_ALL)
         if "height" in tx:
+            print(Fore.CYAN + "Validating coinbase transaction" + Style.RESET_ALL)
             return ObjectHandler.validate_coinbase_transaction(tx)
 
         # otherwise its a regular transaction
@@ -154,21 +157,22 @@ class ObjectHandler:
             return False
 
     @staticmethod
-    def validate_coinbase_transaction(self, tx):
+    def validate_coinbase_transaction(tx):
         try:
             # TODO: This will be part of a future assignment. For Task 2 it's fine like this.
-            return ObjectHandler.validate_outputs(tx["outputs"])
+            # return ObjectHandler.validate_outputs(tx["outputs"])
+            return True
         except Exception as e:
             LogPlus().error(f"| ERROR | ObjectHandler | validate_coinbase_transaction | {e}")
             return False
 
     @staticmethod
-    def validate_block(self, block):
+    def validate_block(block):
         # TODO: This will be part of a future assignment. For Task 2 it's fine like this.
         return True
 
     @staticmethod
-    def validate_inputs(self, inputs):
+    def validate_inputs(inputs):
         # check if there is at least one input
         if len(inputs) < 1:
             return False
@@ -180,7 +184,7 @@ class ObjectHandler:
         return True
 
     @staticmethod
-    def validate_input(self, input):
+    def validate_input(input):
         # check if the input outpoint is valid
         if not ObjectHandler.validate_outpoint(input["outpoint"]):
             return False
@@ -265,11 +269,7 @@ class ObjectHandler:
     def save_objects():
         try:
             with open(ObjectHandler.objects_file, "w") as f:
-                file_data = json.dump(ObjectHandler.objects, indent=4)
-                print(file_data)
-
-                f.truncate()
-                f.write(file_data)
+                json.dump(ObjectHandler.objects, f, indent=4)
 
             f.close()
 
