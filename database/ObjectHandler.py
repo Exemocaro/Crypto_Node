@@ -81,6 +81,7 @@ class ObjectHandler:
 
     @staticmethod
     def add_object(obj):
+        ObjectHandler.objects.append(obj)
         ObjectHandler.id_to_index[Object.get_id_from_json(obj)] = len(ObjectHandler.objects) - 1
         ObjectHandler.save_objects()
 
