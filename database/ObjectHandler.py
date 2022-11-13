@@ -72,17 +72,19 @@ class ObjectHandler:
     objects_file = "objects.json"
     objects = []
 
+    @staticmethod
     def update_id_to_index():
         ObjectHandler.id_to_index = {}
         for i in range(len(ObjectHandler.objects)):
             object_id = Object.get_id_from_json(ObjectHandler.objects[i])
             ObjectHandler.id_to_index[object_id] = i
 
+    @staticmethod
     def add_object(obj):
-        objects.append(obj)
         ObjectHandler.id_to_index[Object.get_id_from_json(obj)] = len(ObjectHandler.objects) - 1
         ObjectHandler.save_objects()
 
+    @staticmethod
     def get_object(id):
         if id in ObjectHandler.id_to_index:
             return ObjectHandler.objects[iObjectHandler.d_to_index[id]]
@@ -94,9 +96,11 @@ class ObjectHandler:
             else:
                 return None
 
+    @staticmethod
     def is_object_known(object_id):
         return object_id in ObjectHandler.id_to_index.keys()
 
+    @staticmethod
     def validate_object(obj):
         if obj["type"] == "transaction":
             return ObjectHandler.validate_transaction(obj)
@@ -105,6 +109,7 @@ class ObjectHandler:
         else:
             return False
 
+    @staticmethod
     def validate_transaction(tx):
         # check if its a coinbase transaction
         if "height" in tx:
@@ -131,6 +136,7 @@ class ObjectHandler:
             LogPlus().error(f"| ERROR | ObjectHandler | validate_transaction | {e}")
             return False
 
+    @staticmethod
     def validate_coinbase_transaction(self, tx):
         try:
             # TODO: This will be part of a future assignment. For Task 2 it's fine like this.
@@ -139,10 +145,12 @@ class ObjectHandler:
             LogPlus().error(f"| ERROR | ObjectHandler | validate_coinbase_transaction | {e}")
             return False
 
+    @staticmethod
     def validate_block(self, block):
         # TODO: This will be part of a future assignment. For Task 2 it's fine like this.
         return True
 
+    @staticmethod
     def validate_inputs(self, inputs):
         # check if there is at least one input
         if len(inputs) < 1:
@@ -154,6 +162,7 @@ class ObjectHandler:
         # if all checks passed, return True
         return True
 
+    @staticmethod
     def validate_input(self, input):
         # check if the input outpoint is valid
         if not ObjectHandler.validate_outpoint(input["outpoint"]):
@@ -164,6 +173,7 @@ class ObjectHandler:
         # if all checks passed, return True
         return True
 
+    @staticmethod
     def validate_outpoint(outpoint):
         # check if the outpoint txid is valid
         if not ObjectHandler.validate_txid(outpoint["txid"]):
@@ -174,6 +184,7 @@ class ObjectHandler:
         # if all checks passed, return True
         return True
 
+    @staticmethod
     def validate_txid(txid):
         # check if the txid is a valid sha256 hash
         try:
@@ -186,6 +197,7 @@ class ObjectHandler:
         # if all checks passed, return True
         return True
 
+    @staticmethod
     def validate_index(index, txid):
         # check if the index is an integer
         if not isinstance(index, int):
@@ -232,6 +244,7 @@ class ObjectHandler:
 
     # Saving and loading objects from file
 
+    @staticmethod
     def save_objects():
         try:
             with open(ObjectHandler.objects_file, "w") as f:
@@ -239,6 +252,7 @@ class ObjectHandler:
         except Exception as e:
             LogPlus().error(f"| ERROR | ObjectHandler | save_objects failed | {e}")
 
+    @staticmethod
     def load_objects():
         try:
             with open(ObjectHandler.objects_file, "r") as f:
