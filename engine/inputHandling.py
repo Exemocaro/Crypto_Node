@@ -20,7 +20,8 @@ from engine.ObjectCreator import ObjectCreator
 # It returns the response (as byte-like data) to be sent back to the sender
 # If no response is needed, it returns None
 # If the message is not valid, it returns an error message
-def handle_input(data, sender_address):
+def handle_input(data, handler):
+    sender_address = handler.credentials
     try:
         data_parsed = json.loads(str(data, encoding="utf-8"))
     except Exception as e:
@@ -33,6 +34,14 @@ def handle_input(data, sender_address):
             if message_type in ["hello", "getpeers", "peers", "error", "ihaveobject", "getobject", "object"]:
                 function_name = data_parsed["type"]
                 print("function name: ", function_name)
+                if handler.message_count == 0: # first message
+                    if function_name != "hello":
+                        handler.close()
+                        return None
+                elif handler.message_count == 1: # second message
+                    if function_name != "getpeers":
+                        handler.close()
+                        return None
                 response = globals()["handle_" + function_name](data_parsed, sender_address)
                 print(response)
                 return response

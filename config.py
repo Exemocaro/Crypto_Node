@@ -5,7 +5,7 @@ import logging
 PORT = 18018  # The port used by the server
 SERVER_ADDRESS = ('', PORT)
 
-TIMEOUT = 10  # The timeout for the server
+TIMEOUT = 2  # The timeout for the server
 
 INCOMING_DATA_BUFFER = 1024
 

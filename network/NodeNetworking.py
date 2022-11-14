@@ -69,7 +69,7 @@ class NodeNetworking:
                 if not handler.in_queue.empty():
                     data = handler.in_queue.get()
                     LogPlus.info(f"| INFO | Received {data} from {handler.credentials}")
-                    responses = handle_input(data, handler.credentials)
+                    responses = handle_input(data, handler)
                     if responses is None:
                         continue
                     for (cleaned_credentials, res) in responses:
