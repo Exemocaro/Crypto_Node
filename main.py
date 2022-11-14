@@ -17,10 +17,10 @@ def main():
 
 if __name__ == "__main__":
     # clear the two files
-    with open(ADDRESSES_FILE, "w") as f:
-        f.truncate(0)
-        f.close()
-    with open(OBJECTS_FILE, "w") as f:
-        f.truncate(0)
-        f.close()
+    #with open(ADDRESSES_FILE, "w") as f:
+    #    f.truncate(0)
+    #    f.close()
+    #with open(OBJECTS_FILE, "w") as f:
+    #    f.truncate(0)
+    #    f.close()
     main()
