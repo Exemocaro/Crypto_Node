@@ -113,9 +113,6 @@ class Transaction(Object):
                 # Check that the signature is valid
                 combined = bytes.fromhex(sig) + json_canonical.canonicalize(self.copy_without_sig().get_json())
                 try:
-                    print(Fore.LIGHTMAGENTA_EX + str(pubkey_bytes) + Style.RESET_ALL)
-                    print(len(pubkey_bytes))
-                    print(Fore.LIGHTMAGENTA_EX + str(combined) + Style.RESET_ALL)
                     VerifyKey(pubkey_bytes).verify(combined) # will raise an exception if the signature is invalid
                 except Exception as e:
                     LogPlus.warning(f"| WARNING | Transaction.verify | input signature is invalid | {e}")
@@ -147,12 +144,9 @@ class Transaction(Object):
             # 5. Check that the transaction is not a double spend
             # TODO : This is not mentioned in the task, but it's required to make sense
             # go through all saved transactions and check if the txid is already used as an input
-            print(Fore.LIGHTMAGENTA_EX + "I think the problem is here..." + Style.RESET_ALL)
             used_inputs = [] # stores txid and index as tuple
             for input in self.inputs:
                 used_inputs.append((input["outpoint"]["txid"], input["outpoint"]["index"]))
-
-            print(Fore.LIGHTMAGENTA_EX + "... nah nevermind :)" + Style.RESET_ALL)
 
             for tx in ObjectHandler.objects:
                try:

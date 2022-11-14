@@ -38,7 +38,6 @@ class CoinbaseTransaction(Object):
         tx_height = tx_json["height"]
         tx_outputs = tx_json["outputs"]
         coinbase_tx = CoinbaseTransaction(tx_height, tx_outputs)
-        print(Fore.BLUE + "CHECKPOINT" + Style.RESET_ALL)
         return coinbase_tx
 
     def get_json(self):

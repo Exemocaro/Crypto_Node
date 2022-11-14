@@ -103,11 +103,8 @@ class ObjectHandler:
 
         try:
             ObjectHandler.objects.append(obj.get_json())
-            print(Fore.GREEN + "Object appended" + Style.RESET_ALL)
             ObjectHandler.id_to_index[obj.get_id()] = len(ObjectHandler.objects) - 1
-            print(Fore.GREEN + "Object indexed" + Style.RESET_ALL)
             ObjectHandler.save_objects()
-            print(Fore.GREEN + "Object saved: " + obj.get_id() + Style.RESET_ALL)
         except Exception as e:
             LogPlus.error("| ERROR | ObjectHandler.add_object | " + str(e))
             return False
@@ -126,8 +123,6 @@ class ObjectHandler:
 
     @staticmethod
     def is_object_known(object_id):
-        print(Fore.CYAN + str(ObjectHandler.id_to_index.keys()))
-        print(object_id + Style.RESET_ALL)
         return object_id in ObjectHandler.id_to_index.keys()
 
     # Saving and loading objects from file

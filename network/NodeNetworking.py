@@ -40,12 +40,16 @@ class NodeNetworking:
 
     @staticmethod
     def accept_connections():
+        print("Accepting connections...")
         while True:
-            connection, credentials = NodeNetworking.server.accept()
-            LogPlus.info(f"| INFO | New connection from {credentials}")
-            NodeNetworking.handler = NodeNetworking.handle_connection(connection, credentials)
-            NodeNetworking.handler.send(MessageGenerator.generate_hello_message())
-            NodeNetworking.handler.send(MessageGenerator.generate_getpeers_message())
+            try:
+                connection, credentials = NodeNetworking.server.accept()
+                LogPlus.info(f"| INFO | New connection from {credentials}")
+                NodeNetworking.handler = NodeNetworking.handle_connection(connection, credentials)
+                NodeNetworking.handler.send(MessageGenerator.generate_hello_message())
+                NodeNetworking.handler.send(MessageGenerator.generate_getpeers_message())
+            except Exception as e:
+                LogPlus.error(f"| ERROR | NodeNetworking.accept_connections | {e}")
 
     @staticmethod
     def handle_connection(connection, credentials):

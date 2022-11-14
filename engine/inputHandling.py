@@ -33,7 +33,6 @@ def handle_input(data, handler):
             message_type = data_parsed["type"]
             if message_type in ["hello", "getpeers", "peers", "error", "ihaveobject", "getobject", "object"]:
                 function_name = data_parsed["type"]
-                print("function name: ", function_name)
                 if handler.message_count == 0: # first message
                     if function_name != "hello":
                         handler.close()
@@ -43,7 +42,6 @@ def handle_input(data, handler):
                         handler.close()
                         return None
                 response = globals()["handle_" + function_name](data_parsed, sender_address)
-                print(response)
                 return response
             else:
                 LogPlus.warning(f"| WARNING | {sender_address} | HANDLEINPUT | {data} | Invalid type | {message_type}")
@@ -129,7 +127,6 @@ def handle_ihaveobject(data_parsed, sender_address):
 
 # This is called when a getobject message is received
 def handle_getobject(data_parsed, sender_address):
-    print("getobject starting")
     try:
         LogPlus.info(f"| INFO | ObjectHandler | handle_getobject |")
         if "object_id" in data_parsed:
@@ -153,18 +150,15 @@ def handle_object(data_parsed, sender_address):
         responses = []
         if "object" in data_parsed:
             object_json = data_parsed["object"]
-            print(Fore.CYAN + str(object_json) + Style.RESET_ALL)
             object = ObjectCreator.create_object(object_json)
             object_id = object.get_id()
 
-            print(Fore.BLUE + str(object) + Style.RESET_ALL)
             if not ObjectHandler.is_object_known(object_id):  # If the object is not known, right? -- yes!
                 LogPlus.info(f"| INFO | inputHandling | handle_object | New object received | {object_id}")
 
                 # validate object and add it to the database
                 try:
                     if object.verify():
-                        print(Fore.GREEN + "Object verified" + Style.RESET_ALL)
                         ObjectHandler.add_object(object)
                     else:
                         LogPlus.warning(f"| WARNING | inputHandling | hande_object | Object not valid | {object_id}")
@@ -175,8 +169,6 @@ def handle_object(data_parsed, sender_address):
                 # send ihaveobject message to active nodes
                 try:
                     message = MessageGenerator.generate_ihaveobject_message(object_id)
-                    print(message)
-                    print(KnownNodesHandler.active_nodes)
                     #for node_credentials in KnownNodesHandler.active_nodes:
                     #    responses.append((node_credentials, message))
 
