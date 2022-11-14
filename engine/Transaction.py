@@ -147,23 +147,26 @@ class Transaction(Object):
             # 5. Check that the transaction is not a double spend
             # TODO : This is not mentioned in the task, but it's required to make sense
             # go through all saved transactions and check if the txid is already used as an input
-            #print(Fore.LIGHTMAGENTA_EX + "I think the problem is here..." + Style.RESET_ALL)
-            #used_inputs = [input["txid"] for input in tx.inputs]
-            #print(Fore.LIGHTMAGENTA_EX + "... nah nevermind :)" + Style.RESET_ALL)
-#
-            #for tx in ObjectHandler.get_all_objects():
-            #    try:
-            #        tx = Transaction.from_json(tx)
-            #    except jsonschema.exceptions.ValidationError:
-            #        continue
-            #    for input in tx.inputs:
-            #        if input["txid"] in used_inputs:
-            #            LogPlus.warning("| WARNING | Transaction.verify | double spend")
-            #            return False
+            print(Fore.LIGHTMAGENTA_EX + "I think the problem is here..." + Style.RESET_ALL)
+            used_inputs = [] # stores txid and index as tuple
+            for input in self.inputs:
+                used_inputs.append((input["outpoint"]["txid"], input["outpoint"]["index"]))
+
+            print(Fore.LIGHTMAGENTA_EX + "... nah nevermind :)" + Style.RESET_ALL)
+
+            for tx in ObjectHandler.objects:
+               try:
+                   tx = Transaction.from_json(tx)
+               except jsonschema.exceptions.ValidationError:
+                   continue
+               for input in tx.inputs:
+                   if input["txid"] in used_inputs:
+                       LogPlus.warning("| WARNING | Transaction.verify | double spend")
+                       return False
 #
             return True
         except Exception as e:
-            LogPlus.error(f"| ERROR | Transaction.verify | {e}")
+            LogPlus.error(f"| ERROR | Transaction.verify | {self.get_id()[:10]}... | {e}")
             return False
 
     def __str__(self):
