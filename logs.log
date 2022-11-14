@@ -1,0 +1,7 @@
+14/11/2022 22:55:40 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+14/11/2022 22:55:43 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+14/11/2022 22:55:43 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+14/11/2022 22:57:11 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+14/11/2022 22:57:14 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+14/11/2022 22:57:14 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+14/11/2022 22:57:14 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s

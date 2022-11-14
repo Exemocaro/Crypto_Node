@@ -27,20 +27,23 @@ class LogPlus:
     @staticmethod
     def warning(message):
         if len(message) > LOG_LIMIT:
-            message = message[0:LOG_LIMIT]
+            logging.warning(message[0:LOG_LIMIT])
+            print(Fore.YELLOW + message[0:LOG_LIMIT] + Style.RESET_ALL)
         logging.warning(message)
         print(Fore.YELLOW + message + Style.RESET_ALL)
 
     @staticmethod
     def error(message):
         if len(message) > LOG_LIMIT:
-            message = message[0:LOG_LIMIT]
-        logging.error(message)
+            logging.error(message[0:LOG_LIMIT])
+            print(Fore.RED + message[0:LOG_LIMIT] + Style.RESET_ALL)
+        logging.warning(message)
         print(Fore.RED + message + Style.RESET_ALL)
 
     @staticmethod
     def critical(message):
         if len(message) > LOG_LIMIT:
-            message = message[0:LOG_LIMIT]
-        logging.critical(message)
-        print(message)
+            logging.critical(message[0:LOG_LIMIT])
+            print(message[0:LOG_LIMIT])
+        logging.warning(message)
+        print(Fore.RED + message + Style.RESET_ALL)

@@ -36,5 +36,25 @@
                 "value": 50
             }
         ]
+    },
+    {
+        "type": "transaction",
+        "height": 0,
+        "outputs": [
+            {
+                "pubkey": "wnsccDk2Oo2UX3jCzQAgUPiXvj4otIBNeizctBEtABw=",
+                "value": 1000
+            }
+        ]
+    },
+    {
+        "type": "transaction",
+        "height": 0,
+        "outputs": [
+            {
+                "pubkey": "7rCZLVC6uyCNVj8hOd887UdFo/0lhrWTd+J8PsPS6aU=",
+                "value": 1000
+            }
+        ]
     }
 ]
