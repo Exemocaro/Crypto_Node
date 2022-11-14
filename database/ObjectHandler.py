@@ -4,6 +4,7 @@ import hashlib
 
 from utility.logplus import LogPlus
 from engine.Object import Object
+from engine.Transaction import Transaction
 
 from colorama import Fore, Style
 
@@ -130,7 +131,7 @@ class ObjectHandler:
     @staticmethod
     def validate_transaction(tx):
         # check if its a coinbase transaction
-        print(Fore.CYAN + "Validating transaction" + Style.RESET_ALL)
+        print(Fore.CYAN + f"Validating transaction {tx}" + Style.RESET_ALL)
         if "height" in tx:
             print(Fore.CYAN + "Validating coinbase transaction" + Style.RESET_ALL)
             return ObjectHandler.validate_coinbase_transaction(tx)
@@ -138,22 +139,87 @@ class ObjectHandler:
         # otherwise its a regular transaction
         try:
             # check if inputs and outputs are valid
-            if not ObjectHandler.validate_inputs(tx["inputs"]):
-                return False
-            if not ObjectHandler.validate_outputs(tx["outputs"]):
-                return False
-            # check if there are no duplicate inputs
-            if len(tx["inputs"]) != len(set([json.dumps(i, sort_keys=True) for i in tx["inputs"]])):
-                return False
-            # check if there are no duplicate outputs
-            if len(tx["outputs"]) != len(set([json.dumps(o, sort_keys=True) for o in tx["outputs"]])):
+            if not ObjectHandler.validate_transaction_format(tx):
                 return False
             # check if the transaction is valid
             if not ObjectHandler.validate_transaction_signature(tx):
+                LogPlus.warning(f"| WARNING | ObjectHandler.validate_transaction | Invalid signature | {tx}")
                 return False
             return True
         except Exception as e:
             LogPlus().error(f"| ERROR | ObjectHandler | validate_transaction | {e}")
+            return False
+
+    @staticmethod
+    def validate_transaction_signature(tx):
+        transaction = Transaction.from_json(tx)
+
+        for i in transaction.inputs:
+            sig = i.sig
+            outpoint_id = i.outpoint.txid
+            outpoint_index = i.outpoint.index
+            pubkey = ObjectHandler.get_pubkey_from_output(outpoint_id, outpoint_index)
+            if not pubkey:
+                return False
+            if not transaction.verify_signature(sig, pubkey):
+                return False
+        return True
+
+    @staticmethod
+    def get_pubkey_from_output(txid, index):
+        tx = ObjectHandler.get_object(txid)
+        if tx is None:
+            return None
+        if "outputs" not in tx:
+            return None
+        if index >= len(tx["outputs"]):
+            return None
+        return tx["outputs"][index]["pubkey"]
+
+    @staticmethod
+    def validate_transaction_format(tx):
+        try:
+            if not "type" in tx:
+                return False
+            if not "inputs" in tx:
+                return False
+            if not "outputs" in tx:
+                return False
+            if not tx["type"] == "transaction":
+                return False
+            if not isinstance(tx["inputs"], list):
+                return False
+            if not isinstance(tx["outputs"], list):
+                return False
+            if not len(tx["inputs"]) > 0:
+                return False
+            for i in tx["inputs"]:
+                if not "outpoint" in i:
+                    return False
+                if not "sig" in i:
+                    return False
+                if not "txid" in i["outpoint"]:
+                    return False
+                if not "index" in i["outpoint"]:
+                    return False
+                if not isinstance(i["outpoint"]["txid"], str):
+                    return False
+                if not isinstance(i["outpoint"]["index"], int):
+                    return False
+                if not isinstance(i["sig"], str):
+                    return False
+            for o in tx["outputs"]:
+                if not "pubkey" in o:
+                    return False
+                if not "value" in o:
+                    return False
+                if not isinstance(o["pubkey"], str):
+                    return False
+                if not isinstance(o["value"], int):
+                    return False
+            return True
+        except Exception as e:
+            LogPlus.error(f"| ERROR | ObjectHandler.validate_transaction_format | {e} | {tx}")
             return False
 
     @staticmethod

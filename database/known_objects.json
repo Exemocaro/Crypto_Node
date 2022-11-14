@@ -3,7 +3,7 @@
         "height": 0,
         "outputs": [
             {
-                "pubkey": "dC8zeQ9cLanDF9vQIinTGwSoz4P1WgXL98Av2Xmgqtk=",
+                "pubkey": "dbtha65P5STK0birQICOCwbCbK5+b81gXTL7d7Iches=",
                 "value": 1000
             }
         ],
@@ -13,18 +13,8 @@
         "height": 0,
         "outputs": [
             {
-                "pubkey": "pNqYMsX1CkgAvZejyF2qPHJC85n75g38HM8VuYNxLAY=",
-                "value": 1000
-            }
-        ],
-        "type": "transaction"
-    },
-    {
-        "height": 0,
-        "outputs": [
-            {
-                "pubkey": "K2HwQomF/4eaxdQMOYXDydfdOfN5yekoaKoLQ/tW0a8=",
-                "value": 1000
+                "pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e",
+                "value": 50
             }
         ],
         "type": "transaction"

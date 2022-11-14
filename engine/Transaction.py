@@ -1,12 +1,12 @@
 import copy
 import hashlib
 import json
-from nacl.signing import *
+
 from json_canonical import canonicalize
+from nacl.signing import *
 
 from config import *
 from engine.Object import Object
-
 
 # Format of a regular transaction:
 # {

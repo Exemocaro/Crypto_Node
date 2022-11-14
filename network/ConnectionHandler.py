@@ -1,3 +1,5 @@
+import time
+
 from config import *
 from queue import Queue
 from threading import Thread
@@ -25,10 +27,11 @@ class ConnectionHandler:
         self.is_open = False
         self.connection = socket()
         self.connection.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+        self.connection.settimeout(TIMEOUT)
         try:
             self.connection.connect(self.credentials)
         except Exception as e:
-            LogPlus.error(f"| ERROR | Could not connect to {self.credentials}")
+            LogPlus.error(f"| ERROR | ConnectionHandler.start_connection | Could not connect to {self.credentials}, timeout after {TIMEOUT}s")
             return False
 
         self.is_open = True
