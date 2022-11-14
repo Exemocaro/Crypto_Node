@@ -17,9 +17,8 @@ OBJECTS_FILE = 'database/known_objects.json'  # file that stores the known objec
 
 SYSTEM = platform.system().lower()  # our operating system
 
-AGENT_NAME = "This could be your node!"
-
-
+AGENT_NAME = "Cavalex Node"
+LOG_LIMIT = 300
 # logging things
 logging.basicConfig(
     filename='logs.log',
@@ -27,6 +26,3 @@ logging.basicConfig(
     format='%(asctime)s %(message)s', 
     datefmt='%d/%m/%Y %H:%M:%S'
 )
-
-
-
