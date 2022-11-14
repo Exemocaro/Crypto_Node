@@ -2,6 +2,9 @@ import json
 import hashlib
 from json_canonical import canonicalize
 
+import jsonschema
+from utility.json_validation import block_schema
+
 
 class Block:
 
@@ -33,7 +36,9 @@ class Block:
         blockid = hashlib.sha256(canonical_block_json).hexdigest()
         return blockid
 
+    @staticmethod
     def from_json(block_json):
+        jsonschema.validate(block_json, block_schema)
         block = Block(
             block_json["txids"],
             block_json["nonce"],
@@ -44,3 +49,6 @@ class Block:
             block_json["T"]
         )
         return block
+
+    def verify(self):
+        return True

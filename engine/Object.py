@@ -20,12 +20,16 @@ class Object(ABC):
         return Object.get_id_from_json(self.get_json())
 
     @staticmethod
-    def get_id_from_json(json):
-        return hashlib.sha256(json_canonical.canonicalize(json)).digest().hex()
+    def get_id_from_json(object_json):
+        return hashlib.sha256(json_canonical.canonicalize(object_json)).digest().hex()
 
     @staticmethod
     @abstractmethod
-    def from_json(json):
+    def from_json(object_json):
+        pass
+
+    @abstractmethod
+    def verify(self):
         pass
 
     def __copy__(self):

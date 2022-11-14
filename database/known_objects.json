@@ -1,22 +1,22 @@
 [
     {
+        "type": "transaction",
         "height": 0,
         "outputs": [
             {
-                "pubkey": "dbtha65P5STK0birQICOCwbCbK5+b81gXTL7d7Iches=",
+                "pubkey": "n/MsFZw+ORdx/0+8RYhZ641ySVhMsT3tM13FLnv8yFI=",
                 "value": 1000
             }
-        ],
-        "type": "transaction"
+        ]
     },
     {
+        "type": "transaction",
         "height": 0,
         "outputs": [
             {
                 "pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e",
                 "value": 50
             }
-        ],
-        "type": "transaction"
+        ]
     }
 ]

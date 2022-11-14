@@ -86,6 +86,3 @@ class KnownNodesHandler:
         else:
             return credentials
 
-
-KnownNodesHandler.load_known_nodes()
-KnownNodesHandler.set_active_nodes()

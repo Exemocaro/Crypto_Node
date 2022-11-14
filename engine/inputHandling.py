@@ -7,10 +7,12 @@ from utility.logplus import *
 from database.KnownNodesHandler import *
 from database.ObjectHandler import *
 
-from engine.Object import *
+from engine.Object import Object
 from engine.generateMessage import MessageGenerator
 
 from config import *
+
+from engine.ObjectCreator import ObjectCreator
 
 
 # This is called when a message is received
@@ -22,7 +24,7 @@ def handle_input(data, sender_address):
     try:
         data_parsed = json.loads(str(data, encoding="utf-8"))
     except Exception as e:
-        LogPlus.error(f"| ERROR | {sender_address} | HANDLEINPUT | {data} | {e} | {e.args}")
+        LogPlus.error(f"| ERROR | inputHandler | handle_input | {data} | {e} | {e.args}")
         return [(sender_address, MessageGenerator.generate_error_message("Invalid json."))]
 
     try:
@@ -43,7 +45,6 @@ def handle_input(data, sender_address):
     except Exception as e:
         LogPlus.error(f"| ERROR | inputHandling | handle_input | {data} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
-
 
 
 # This is called when a hello message is received
@@ -104,7 +105,7 @@ def handle_ihaveobject(data_parsed, sender_address):
     try:
         if "object_id" in data_parsed:
             if not ObjectHandler.is_object_known(data_parsed["object_id"]):
-                LogPlus.info(f"| INFO | IHAVEOBJECT | New object requested | {data_parsed['object_id']}")
+                LogPlus.info(f"| INFO | inputHandling | handle_ihaveobject | New object requested | {data_parsed['object_id']}")
                 return [(sender_address, MessageGenerator.generate_getobject_message(data_parsed["object_id"]))]
             else:
                 LogPlus.info(f"| INFO | inputHandling | handle_ihaveobject | Object already known | {data_parsed['object_id']}")
@@ -133,7 +134,7 @@ def handle_getobject(data_parsed, sender_address):
             LogPlus.error(f"| ERROR | {sender_address} | GETOBJECT | {data_parsed} | No object in data_parsed")
             return [(sender_address, MessageGenerator.generate_error_message("No object_id in getobject"))]
     except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandling | handle_getobjet | {sender_address} | {e}")
+        LogPlus.error(f"| ERROR | inputHandling | handle_getobject | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
 
 
@@ -142,21 +143,25 @@ def handle_object(data_parsed, sender_address):
     try:
         responses = []
         if "object" in data_parsed:
-            object = data_parsed["object"]
-            print(Fore.CYAN + str(object) + Style.RESET_ALL)
-            object_id = Object.get_id_from_json(object)
-            if not ObjectHandler.is_object_known(object_id): # If the object is not known, right?
+            object_json = data_parsed["object"]
+            print(Fore.CYAN + str(object_json) + Style.RESET_ALL)
+            object = ObjectCreator.create_object(object_json)
+            object_id = object.get_id()
+
+            print(Fore.BLUE + str(object) + Style.RESET_ALL)
+            if not ObjectHandler.is_object_known(object_id):  # If the object is not known, right? -- yes!
                 LogPlus.info(f"| INFO | inputHandling | handle_object | New object received | {object_id}")
 
                 # validate object and add it to the database
                 try:
-                    if ObjectHandler.validate_object(object):
+                    if object.verify():
+                        print(Fore.GREEN + "Object verified" + Style.RESET_ALL)
                         ObjectHandler.add_object(object)
                     else:
                         LogPlus.warning(f"| WARNING | inputHandling | hande_object | Object not valid | {object_id}")
                         return [(sender_address, MessageGenerator.generate_error_message("Object not valid"))]
                 except Exception as e:
-                    LogPlus.error(f"| ERROR | inputHandler | handle_object | Couldn't add object | {e} | {e.args}")
+                    LogPlus.error(f"| ERROR | inputHandler | handle_object | Couldn't add object | {e} ")
                 
                 # send ihaveobject message to active nodes
                 try:
@@ -177,8 +182,7 @@ def handle_object(data_parsed, sender_address):
                     # return MessageGenerator.generate_error_message("No object_id in ihaveobject")
                     # NODE_NETWOKRING.send_to_node(credentials, data)
                 except Exception as e:
-                    LogPlus.error(f"| ERROR | OBJECT | Couldn't add object | {e} | {e.args}")
-                
+                    LogPlus.error(f"| ERROR | OBJECT | Couldn't gossip | {e} | {e.args}")
             else:
                 LogPlus.info(f"| INFO | OBJECT | Object already known | {object_id}")
         else:

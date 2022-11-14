@@ -2,11 +2,18 @@ import copy
 import hashlib
 import json
 
-from json_canonical import canonicalize
-from nacl.signing import *
+from colorama import Fore, Style
+
+import json_canonical
+import jsonschema
+
+from nacl.signing import VerifyKey, SigningKey
 
 from config import *
 from engine.Object import Object
+from database.ObjectHandler import ObjectHandler
+from utility.json_validation import regular_transaction_schema
+from utility.logplus import LogPlus
 
 # Format of a regular transaction:
 # {
@@ -26,67 +33,22 @@ from engine.Object import Object
 #     ]
 # }
 
+
 class Transaction(Object):
 
     def __init__(self, inputs, outputs):
         self.inputs = inputs
         self.outputs = outputs
 
+    # create a transaction from a json representation
     @staticmethod
     def from_json(tx_json):
-        # create a transaction from a json representation
+        # this will raise an exception if the json is invalid
+        jsonschema.validate(instance=tx_json, schema=regular_transaction_schema)
+        # without the validation, the inputs could contain invalid data and cause errors later
         tx_inputs = tx_json["inputs"]
         tx_outputs = tx_json["outputs"]
         return Transaction(tx_inputs, tx_outputs)
-
-    # TODO : Not working currntly
-    def check_signature(self):
-        # check if the signature is valid
-        # we need to check if the signature is valid for each tx_input
-        cleared_copy = self.remove_signatures()
-        for tx_input in self.inputs:
-            # get the public key of the owner of the outpoint
-            outpoint = tx_input["outpoint"]
-            txid = outpoint["txid"]
-            index = outpoint["index"]
-            # get the transaction with id txid
-            previous_tx = ObjectHandler.get_transaction(txid)
-            if previous_tx is None:
-                return False
-            # get the output at index index
-            output = previous_tx.outputs[index]
-            # get the public key of the owner of the output
-            pubkey = output["pubkey"]
-            # get the signature of the tx_input
-            sig = tx_input["sig"]
-            # check if the signature is valid
-            if not self.verify_signature(cleared_copy, pubkey, sig):
-                return False
-
-        return True
-
-    def verify_signature(self, pubkey, sig):
-        # verify the signature
-        no_sig_tx_json = self.remove_signatures().get_json()
-        print("no_sig_tx_json: ", no_sig_tx_json)
-        # make signature bytes if it is not already
-        if type(sig) is str:
-            sig = sig.encode()
-        combined = sig + canonicalize(no_sig_tx_json)
-        print("combined: ", combined)
-        try:
-            VerifyKey(pubkey).verify(combined)
-            return True
-        except Exception as e:
-            return False
-
-    # To check if a signature is valid, we need to remove the signature from the input
-    def remove_signatures(self):
-        # remove the signatures from the transaction
-        tx_copy = copy.deepcopy(self)
-        for tx_input in tx_copy.inputs:
-            tx_input["sig"] = None
-        return tx_copy
 
     def get_json(self):
         # get the json representation of the transaction
@@ -97,3 +59,99 @@ class Transaction(Object):
         }
         return tx_json
 
+    def copy_without_sig(self):
+        # create a copy of the transaction without the signatures
+        # this is used to verify the signatures
+        tx_copy = copy.deepcopy(self)
+        for input in tx_copy.inputs:
+            input["sig"] = ""
+        return tx_copy
+
+    def verify(self):
+        # we know that the format is valid
+        # Go step by step like in Task 2
+
+        try:
+
+            sum_input = 0
+
+            for input in self.inputs:
+                # 1. Check that each input is valid (txid exists, index is valid)
+                # Check that the txid exists
+                txid = input["outpoint"]["txid"]
+                tx = ObjectHandler.get_object(txid)
+                print(Fore.GREEN + str(tx) + Style.RESET_ALL)
+                if tx is None:
+                    LogPlus.warning("| WARNING | Transaction.verify | input txid does not exist")
+                    return False
+
+                # Check that the index is valid
+                index = input["outpoint"]["index"]
+                if index >= len(tx["outputs"]):
+                    LogPlus.warning("| WARNING | Transaction.verify | input index is invalid")
+                    return False
+
+                # 2. Check that each input is signed by the owner of the outpoint
+                # Get the public key of the owner of the outpoint
+                outpoint = tx["outputs"][index]
+                pubkey = outpoint["pubkey"]
+
+                # Get the signature of the input
+                sig = input["sig"]
+
+                # Check that the signature is valid
+                combined = bytes.fromhex(sig) + json_canonical.canonicalize(self.copy_without_sig())
+                try:
+                    VerifyKey(pubkey).verify(combined) # will raise an exception if the signature is invalid
+                except Exception as e:
+                    LogPlus.warning(f"| WARNING | Transaction.verify | input signature is invalid | {e}")
+                    return False
+
+                # get the sum already, will be checked in step 4
+                sum_input += outpoint["value"]
+
+            print(Fore.CYAN + "\nhellooooooooo\n" + Style.RESET_ALL)
+            sum_output = 0
+
+            # 3. Check that output pubkeys are valid (value is >= 0, already checked by jsonschema)
+            for output in self.outputs:
+                pubkey = output["pubkey"]
+                # should be 64 hex characters
+                try:
+                    int(pubkey, 16)
+                except ValueError:
+                    LogPlus.warning("| WARNING | Transaction.verify | output pubkey is invalid")
+                    return False
+
+                # get the sum already, will be checked in step 4
+                sum_output += output["value"]
+
+            # 4. Check that the sum of the inputs is equal to the sum of the outputs. Output can be equal or smaller than input
+            if sum_input < sum_output:
+                LogPlus.warning("| WARNING | Transaction.verify | sum of inputs is smaller than sum of outputs")
+                return False
+
+            print(Fore.CYAN + "CHECKPOINT ABC" + Style.RESET_ALL)
+
+            # 5. Check that the transaction is not a double spend
+            # TODO : This is not mentioned in the task, but it's required to make sense
+            # go through all saved transactions and check if the txid is already used as an input
+            used_inputs = [input["txid"] for input in tx["inputs"]]
+
+            for tx in ObjectHandler.get_all_objects():
+                try:
+                    tx = Transaction.from_json(tx)
+                except jsonschema.exceptions.ValidationError:
+                    continue
+                for input in tx.inputs:
+                    if input["txid"] in used_inputs:
+                        LogPlus.warning("| WARNING | Transaction.verify | double spend")
+                        return False
+
+            return True
+        except Exception as e:
+            LogPlus.error(f"| ERROR | Transaction.verify | {e}")
+            return False
+
+    def __str__(self):
+        return f"Transaction(inputs={self.inputs}, outputs={self.outputs})"
