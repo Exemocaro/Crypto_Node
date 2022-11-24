@@ -10,28 +10,33 @@ import jsonschema
 from nacl.signing import VerifyKey, SigningKey
 
 from config import *
-from engine.Object import Object
+from object.Object import Object
 from database.ObjectHandler import ObjectHandler
 from utility.json_validation import regular_transaction_schema
 from utility.logplus import LogPlus
+from database.UTXO import *
 
 # Format of a regular transaction:
-# {
-#     "type": "transaction",
-#     "inputs": [
-#         {
-#             "txid": sha256 hash of previous transaction,
-#             "index": index of output in previous transaction
-#         },
-#         "sig": signature of the input, created with the private key of the owner of the outpoint
-#     ],
-#     "outputs": [
-#         {
-#             "pubkey": public key of the owner of the recipient,
-#             "value": amount of coins, in picaker (1 ker = 10^12 picaker)
-#         }
-#     ]
-# }
+"""
+{
+    "type " : " transaction " ,
+    " inputs " : [
+        {
+            "outpoint ":{
+                "txid" : " f71408bf847d7dd15824574a7cd4afdfaaa2866286910675cd3fc371507aa196" ,
+                "index": 0
+            },
+            " sig":"3869a9ea9e7ed926a7c8b30fb71f6ed151a132b03fd5dae764f015c98271000e7da322dbcfc97af7931c23c0fae060e102446ccff0f54ec00f9978f3a69a6f0f"
+        }
+    ] ,
+    "outputs " : [
+        {
+            "pubkey":"077a2683d776a71139fd4db4d00c16703ba0753fc8bdc4bd6fc56614e659cde3" ,
+            "value":5100000000
+        }
+    ]
+}
+"""
 
 
 class Transaction(Object):
@@ -91,17 +96,17 @@ class Transaction(Object):
                 tx = ObjectHandler.get_object(txid)
                 if tx is None:
                     LogPlus.warning("| WARNING | Transaction.verify | input txid does not exist")
-                    return False
+                    return {"result": "False"}
 
                 # Check that the index is valid
                 index = outpoint["index"]
                 if index >= len(tx["outputs"]):
                     LogPlus.warning("| WARNING | Transaction.verify | input index is invalid")
-                    return False
+                    return {"result": "False"}
 
                 # 2. Check that each input is signed by the owner of the outpoint
                 # Get the public key of the owner of the outpoint
-                outpoint = tx["outputs"][index]
+                output = tx["outputs"][index]
                 pubkey = outpoint["pubkey"]
 
                 # get the pubkey bytes
@@ -116,10 +121,10 @@ class Transaction(Object):
                     VerifyKey(pubkey_bytes).verify(combined) # will raise an exception if the signature is invalid
                 except Exception as e:
                     LogPlus.warning(f"| WARNING | Transaction.verify | input signature is invalid | {e}")
-                    return False
+                    return {"result": "False"}
 
                 # get the sum already, will be checked in step 4
-                sum_input += outpoint["value"]
+                sum_input += output["value"]
 
             sum_output = 0
 
@@ -131,7 +136,7 @@ class Transaction(Object):
                     int(pubkey, 16)
                 except ValueError:
                     LogPlus.warning("| WARNING | Transaction.verify | output pubkey is invalid")
-                    return False
+                    return {"result": "False"}
 
                 # get the sum already, will be checked in step 4
                 sum_output += output["value"]
@@ -139,29 +144,48 @@ class Transaction(Object):
             # 4. Check that the sum of the inputs is equal to the sum of the outputs. Output can be equal or smaller than input
             if sum_input < sum_output:
                 LogPlus.warning("| WARNING | Transaction.verify | sum of inputs is smaller than sum of outputs")
-                return False
+                return {"result": "False"}
 
+
+            # TODO: REPLACE THIS BY UTXO SET
             # 5. Check that the transaction is not a double spend
             # TODO : This is not mentioned in the task, but it's required to make sense
             # go through all saved transactions and check if the txid is already used as an input
             used_inputs = [] # stores txid and index as tuple
-            for input in self.inputs:
-                used_inputs.append((input["outpoint"]["txid"], input["outpoint"]["index"]))
 
-            for tx in ObjectHandler.objects:
-               try:
-                   tx = Transaction.from_json(tx)
-               except jsonschema.exceptions.ValidationError:
-                   continue
-               for input in tx.inputs:
-                   if input["txid"] in used_inputs:
-                       LogPlus.warning("| WARNING | Transaction.verify | double spend")
-                       return False
-#
-            return True
+            if UTXO.isValid(self.inputs):
+                UTXO.addToSet(self.outputs) # should we add it here?
+                return True
+
+            return {"result": "True"}
         except Exception as e:
             LogPlus.error(f"| ERROR | Transaction.verify | {self.get_id()[:10]}... | {e}")
-            return False
+            return {"result": "False"}
+
+    def get_fee(self):
+
+        if not self.verify():
+            return 0
+
+        # calculate the fee of the transaction
+        sum_input = 0
+        sum_output = 0
+
+        for input in self.inputs:
+            outpoint = input["outpoint"]
+            txid = outpoint["txid"]
+            index = outpoint["index"]
+            tx = ObjectHandler.get_object(txid)
+            output = tx["outputs"][index]
+            sum_input += output["value"]
+
+
+        for output in self.outputs:
+            sum_output += output["value"]
+
+        return sum_input - sum_output
+
+
 
     def __str__(self):
         return f"Transaction(inputs={self.inputs}, outputs={self.outputs})"

@@ -5,6 +5,8 @@ import jsonschema
 # The format and the types will be tested, so all work afterwards can rely on valid data
 # (no need to check if a key exists anymore)
 
+# MESSAGE SCHEMAS
+
 # The schema for the hello message
 hello_message_schema = {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -20,6 +22,7 @@ hello_message_schema = {
         "version": {
             "description": "The version that the node is using",
             "type": "string",
+            "pattern": "^0\\.8\\.\\d+$"
         },
         "agent": {
             "description": "The name of the node",
@@ -67,6 +70,73 @@ getpeers_message_schema = {
     },
     "required": ["type"],
 }
+
+# error mesage schema
+
+# ihavebject message schema
+
+ihaveobject_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "ihaveobject message",
+    "title": "Ihaveobject message",
+    "description": "The schema for the ihaveobject message",
+    "type": "object",
+    "properties": {
+        "type": {
+            "description": "The type of the message",
+            "type": "string",
+        },
+        "objectid": {
+            "description": "The object that the node has",
+            "type": "string",
+        },
+    },
+    "required": ["type", "objectid"],
+}
+
+# getobject message schema
+getobject_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "getobject message",
+    "title": "Getobject message",
+    "description": "The schema for the getobject message",
+    "type": "object",
+    "properties": {
+        "type": {
+            "description": "The type of the message",
+            "type": "string",
+        },
+        "objectid": {
+            "description": "The object that the node wants",
+            "type": "string",
+        },
+    },
+    "required": ["type", "objectid"],
+}
+
+# object message schema
+
+object_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "object message",
+    "title": "Object message",
+    "description": "The schema for the object message",
+    "type": "object",
+    "properties": {
+        "type": {
+            "description": "The type of the message",
+            "type": "string",
+        },
+        "object": {
+            "description": "The object",
+            "type": "object",
+        },
+    },
+    "required": ["type", "object"],
+}
+
+
+# OBJECT SCHEMAS
 
 
 # The schema for a list of outputs (used in the transaction message)

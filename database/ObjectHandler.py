@@ -3,7 +3,7 @@ import json_canonical
 import hashlib
 
 from utility.logplus import LogPlus
-from engine.Object import Object
+from object.Object import Object
 
 from colorama import Fore, Style
 
