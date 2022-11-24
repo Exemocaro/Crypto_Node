@@ -134,25 +134,7 @@ def handle_getobject(data_parsed, sender_address):
     # send the object
     return [(sender_address, MessageGenerator.generate_object_message(object))]
 
-# temporary
-object_schema = {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "object message",
-    "title": "Object message",
-    "description": "The schema for the object message",
-    "type": "object",
-    "properties": {
-        "type": {
-            "description": "The type of the message",
-            "type": "string",
-        },
-        "object": {
-            "description": "The object",
-            "type": "object",
-        },
-    },
-    "required": ["type", "object"],
-}
+
 # This is called when an object message is received
 def handle_object(data_parsed, sender_address):
     """try:
@@ -213,5 +195,19 @@ def handle_object(data_parsed, sender_address):
     except Exception as e:
         LogPlus.error(f"| ERROR | inputHandling | handle_object | {data_parsed} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))] """
+    try:
+        jsonschema.validate(instance=data_parsed, schema=object_schema)
+    except Exception as e:
+        LogPlus.error(f"| ERROR | inputHandling.handle_object | {data_parsed} | {sender_address} | {e}")
+        return [(sender_address, MessageGenerator.generate_error_message("Invalid object message!"))]
+
+    # get the object
+    object = ObjectCreator.create_object(data_parsed["object"])
+
+    # add the object to the database
+    ObjectHandler.add_object(object)
+
+    # send the ihaveobject message
+    return [(sender_address, MessageGenerator.generate_ihaveobject_message(object.get_id()))]
 
 

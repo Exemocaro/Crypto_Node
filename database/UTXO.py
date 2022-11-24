@@ -18,10 +18,10 @@ class UTXO:
 
     # loads the set from the database files
     @staticmethod
-    def loadSet():
+    def load_set():
         # load all transactions from the database into the set
         for tx in ObjectHandler.getTransactions():
-            UTXO.set[tx["txid"]] = []
+            UTXO.set[tx["txid"]] = [i for i in range(len(tx.outputs) - 1)]
 
         # remove the outputs that are spent
         for tx in ObjectHandler.getTransactions():
@@ -31,27 +31,38 @@ class UTXO:
 
     # removes an output from the set
     @staticmethod
-    def removeFromSet(txid, index):
-        pass
+    def remove_from_set(txid, index):
+        try:
+          UTXO.set[txid].remove(index)
+        except:
+          pass
 
     # adds an output in the set
     @staticmethod
-    def addToSet(transaction):
-        pass
+    def add_to_set(txid, num_outputs):
+        UTXO.set[txid] = [i for i in range(num_outputs)]
 
     # checks if a given transaction is valid in the context of the UTXO set
     @staticmethod       
-    def isValid(inputs):
-        validTx = True
+    def is_available(inputs):
+        valid_tx = True
 
         # we first store the input outpoints of the given transaction
         outpoints = [] # stores a list of tuples (txid, index)
         for input in inputs:
-            inputs.append((input["outpoint"]["txid"], input["outpoint"]["index"]))
-        for set_txid, set_outputs in UTXO.set:
-            # check if the tx inputs match the ones stores in our set
+            outpoints.append((input["outpoint"]["txid"], input["outpoint"]["index"]))
+        for tx_txid, tx_index in outpoints:
+            pass
+                """ if set_txid != tx_txid: # there's no txid in the set to confirm the transaction
+                    valid_tx = False """
+            #if UTXO.set[]
+        
+        """ for set_txid, set_outputs in UTXO.set:
+            # check if the tx inputs match the ones stored in our set
             for tx_txid, tx_index in outpoints:
                 if set_txid != tx_txid: # there's no txid in the set to confirm the transaction
-                    validTx = False
+                    valid_tx = False """
 
-        return validTx
+        return valid_tx
+        
+        
