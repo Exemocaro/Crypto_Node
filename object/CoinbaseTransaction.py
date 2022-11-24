@@ -49,7 +49,7 @@ class CoinbaseTransaction(Object):
         }
 
     def verify(self):
-        return True
+        return {"result": "True"}
 
     def __str__(self):
         return "CoinbaseTransaction(height={}, outputs={})".format(self.height, self.outputs)

@@ -31,12 +31,12 @@ class MessageGenerator:
 
     @staticmethod
     def generate_ihaveobject_message(object_id):
-        message_json = {"type": "ihaveobject", "object_id": object_id}
+        message_json = {"type": "ihaveobject", "objectid": object_id}
         return MessageGenerator.get_bytes_from_json(message_json)
 
     @staticmethod
     def generate_getobject_message(object_id):
-        message_json = {"type": "getobject", "object_id": object_id}
+        message_json = {"type": "getobject", "objectid": object_id}
         return MessageGenerator.get_bytes_from_json(message_json)
 
     @staticmethod
