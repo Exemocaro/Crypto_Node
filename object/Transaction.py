@@ -153,7 +153,7 @@ class Transaction(Object):
             # go through all saved transactions and check if the txid is already used as an input
             used_inputs = [] # stores txid and index as tuple
 
-            if UTXO.isValid(self.inputs):
+            if UTXO.is_available(self.inputs):
                 UTXO.addToSet(self.outputs) # should we add it here?
                 return True
 
