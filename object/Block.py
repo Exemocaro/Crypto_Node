@@ -6,13 +6,14 @@ import jsonschema
 
 from utility.json_validation import *
 from utility.logplus import LogPlus
-
 from object.CoinbaseTransaction import CoinbaseTransaction
 from object.Transaction import Transaction
-
 from engine.generateMessage import MessageGenerator
 
-import database.ObjectHandler as ObjectHandler
+from config import *
+from utility.credentials_utility import *
+from database.ObjectHandler import *
+from network.NodeNetworking import *
 
 class Block:
 
@@ -64,7 +65,7 @@ class Block:
         - [x] Check that the block contains all required fields and that they are of the format specified
         - [x] Ensure the target is the one required, i.e. `00000002af000000000000000000000000000000000000000000000000000000`
         - [x] Check the proof-of-work.
-        - [ ] Check that for all the txids in the block, you have the corresponding transaction in your local object database. If not, then send a `getobject` message to your peers in order to get the transaction.
+        - [~] Check that for all the txids in the block, you have the corresponding transaction in your local object database. If not, then send a `getobject` message to your peers in order to get the transaction.
         - [ ] For each transaction in the block, check that the transaction is valid, and update your UTXO set based on the transaction. More details on this in Exercise B:. If any transaction is invalid, the whole block will be considered invalid.
         - [x] Check for coinbase transactions. There can be at most one coinbase transaction in a block. If present, then the txid of the coinbase transaction must be at index 0 in txids. The coinbase transaction cannot be spent in another transaction in the same block.
         - [x] Validate the coinbase transaction if there is one.
@@ -84,9 +85,6 @@ class Block:
         if int(blockid, 16) >= int(self.t, 16):
             LogPlus.info("| INFO | Block.verify | Proof-of-work is not valid")
             return {"result": "False"}
-
-        # TODO: Check that for all the txids in the block, you have the corresponding transaction in your local object database. 
-        # If not, then send a `getobject` message to your peers in order to get the transaction.
 
         unknown_txids = []
 
@@ -153,22 +151,22 @@ class Block:
             return { "result": "False" }
 
         # The block is valid
+
+        # Since it's valid, before sending back the result we should check if we have all txids with us, and if not ask for them
+        for object in ObjectHandler.objects: # fetch our known transactions
+            if object["type"] == "transaction":
+                for input in object.inputs:
+                    outpoint = input["outpoint"]
+                    transaction_txid = outpoint["txid"]
+                    if transaction_txid not in self.txids:
+                        # then this means that we have some transactions in the block which are not present in our database
+                        # so we have to request them to other people
+
+                        # TODO: implement sending the data to every node
+                        # I think it's working, but I'm not sure
+                        res = MessageGenerator.generate_getobject_message()
+                        if res is None:
+                            continue
+                        NodeNetworking.send_to_all_nodes(res)
+
         return { "result": "True" }
-
-
-
-        
-
-
-
-
-
-
-
-
-
-        
-
-            
-
-
