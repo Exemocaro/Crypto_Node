@@ -53,8 +53,8 @@ class UTXO:
             outpoints.append((input["outpoint"]["txid"], input["outpoint"]["index"]))
         for tx_txid, tx_index in outpoints:
             pass
-                """ if set_txid != tx_txid: # there's no txid in the set to confirm the transaction
-                    valid_tx = False """
+        """ if set_txid != tx_txid: # there's no txid in the set to confirm the transaction
+            valid_tx = False """
             #if UTXO.set[]
         
         """ for set_txid, set_outputs in UTXO.set:

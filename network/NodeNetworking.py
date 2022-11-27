@@ -115,5 +115,21 @@ class NodeNetworking:
             return False
         handler.send(data)
 
+    @staticmethod
+    def send_to_all_nodes(data):
+        LogPlus.info(f"| INFO | Sending {data} to {credentials}")
+        for handler in NodeNetworking.handlers:
+            # convert credentials to tuple if it is a string
+            if type(credentials) is str:
+                credentials = convert_string_to_tuple(credentials)
+            # we take out the check and send to everyone
+            handler.send(data)
+            return True
 
+        # no connection found
+        # so we create a new connection and send the data there
 
+        handler = NodeNetworking.connect_to_node(credentials)
+        if handler is None:
+            return False
+        handler.send(data)
