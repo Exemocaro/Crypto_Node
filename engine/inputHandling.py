@@ -1,23 +1,22 @@
-import logging
 import json
 import jsonschema
 
 
 from utility.credentials_utility import *
-from utility.logplus import *
+from utility.logplus import LogPlus
 
-from database.KnownNodesHandler import *
-from database.ObjectHandler import *
+from database.KnownNodesHandler import KnownNodesHandler
+from database.ObjectHandler import ObjectHandler
 
 from object.Object import Object
+from object.ObjectCreator import ObjectCreator
 
-from engine.generateMessage import MessageGenerator
+from engine.MessageGenerator import MessageGenerator
 
 from config import *
 
 from utility.json_validation import *
 
-from object.ObjectCreator import ObjectCreator
 
 
 # This is called when a message is received
@@ -78,7 +77,7 @@ def handle_getpeers(data_parsed, sender_address):
         LogPlus.error(f"| ERROR | inputHandling.handle_getpeers | {data_parsed} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Invalid getpeers message!"))]
 
-    return [(sender_address, MessageGenerator.generate_peers_message())]
+    return [(sender_address, MessageGenerator.generate_peers_message(KnownNodesHandler.known_nodes))]
 
 
 # This in called when a peers message is received
@@ -91,10 +90,12 @@ def handle_peers(data_parsed, sender_address):
 
     # add the peers to the known nodes
     for peer in data_parsed["peers"]:
-        KnownNodesHandler.add_known_node(peer)
+        KnownNodesHandler.add_node(peer)
 
-    # send the ihaveobject message
-    return [(sender_address, MessageGenerator.generate_ihaveobject_message())]
+    # we don't do anything besides saving!! 
+
+    ## send the ihaveobject message
+    #return [(sender_address, MessageGenerator.generate_ihaveobject_message())]
 
 # This is called when an error message is received
 def handle_error(data_parsed, sender_address):
@@ -108,16 +109,14 @@ def handle_error(data_parsed, sender_address):
 # This is called when an ihaveobject message is received
 def handle_ihaveobject(data_parsed, sender_address):
     try:
+        #print(data_parsed)
         jsonschema.validate(instance=data_parsed, schema=ihaveobject_schema)
     except Exception as e:
         LogPlus.error(f"| ERROR | inputHandling.handle_ihaveobject | {data_parsed} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Invalid ihaveobject message!"))]
 
-    # add the object to the known objects
-    ObjectHandler.add_known_object(data_parsed["objectid"])
-
     # send the getobject message
-    return [(sender_address, MessageGenerator.generate_getobject_message())]
+    return [(sender_address, MessageGenerator.generate_getobject_message(data_parsed["objectid"]))]
 
 
 # This is called when a getobject message is received
@@ -134,43 +133,52 @@ def handle_getobject(data_parsed, sender_address):
     # send the object
     return [(sender_address, MessageGenerator.generate_object_message(object))]
 
-
 # This is called when an object message is received
 def handle_object(data_parsed, sender_address):
-    """try:
+    try:
+        jsonschema.validate(instance=data_parsed, schema=object_schema)
+    except Exception as e:
+        LogPlus.error(f"| ERROR | inputHandling.handle_object | {data_parsed} | {sender_address} | {e}")
+        return [(sender_address, MessageGenerator.generate_error_message("Invalid object message!"))]
+
+    try:
         responses = []
-        if "object" in data_parsed:
-            object_json = data_parsed["object"]
-            object = ObjectCreator.create_object(object_json)
-            object_id = object.get_id()
+        object_json = data_parsed["object"]
+        object = ObjectCreator.create_object(object_json)
+        object_id = object.get_id()
 
-            if not ObjectHandler.is_object_known(object_id):  # If the object is not known, right? -- yes!
-                LogPlus.info(f"| INFO | inputHandling | handle_object | New object received | {object_id}")
+        if not ObjectHandler.is_object_known(object_id):
+            LogPlus.info(f"| INFO | inputHandling | handle_object | New object received | {object_id}")
 
-                # validate object and add it to the database
-                try:
-                    verification_result = object.verify()
-                    if not "result" in verification_result:
-                        LogPlus.error(f"| ERROR | inputHandling | handle_object | {object_id} | No result in verification_result")
-                        return []
-                    if verification_result["result"] == "True":
-                        ObjectHandler.add_object(object)
-                        LogPlus.info(f"| INFO | inputHandling | handle_object | {object_id} | Object added to database")
-                    elif verification_result["result"] == "False":
-                        LogPlus.error(f"| ERROR | inputHandling | handle_object | {object_id} | Object verification failed")
-                        return []
-                    elif verification_result["result"] == "Information missing":
-                        # request missing information (getobject)
-                        messages_to_send = []
-                        for txid in verification_result["txids"]:
-                            messages_to_send.append((sender_address, MessageGenerator.generate_getobject_message(txid)))
-                        return messages_to_send
-
-                except Exception as e:
-                    LogPlus.error(f"| ERROR | inputHandler | handle_object | Couldn't add object | {e} ")
+            verification_result = None
+            # validate object and add it to the database - first add the object to the database and then validate it!!
+            try:
+                # first we add the object
+                ObjectHandler.add_object(object)
+                LogPlus.info(f"| INFO | inputHandling | handle_object | {object_id} | Object added to database")
                 
-                # send ihaveobject message to active nodes
-                try:
+                verification_result = object.verify()
+                if not "result" in verification_result:
+                    LogPlus.error(f"| ERROR | inputHandling | handle_object | {object_id} | No result in verification_result")
+                    return []
+                if verification_result["result"] == "True":
+                    LogPlus.info(f"| INFO | inputHandling | handle_object | {object_id} | Object added to database")
+                elif verification_result["result"] == "False":
+                    LogPlus.error(f"| ERROR | inputHandling | handle_object | {object_id} | Object verification failed")
+                    return []
+                elif verification_result["result"] == "Information missing":
+                    # request missing information (getobject)
+                    messages_to_send = []
+                    for txid in verification_result["txids"]:
+                        messages_to_send.append((sender_address, MessageGenerator.generate_getobject_message(txid)))
+                    return messages_to_send
+
+            except Exception as e:
+                LogPlus.error(f"| ERROR | inputHandler | handle_object | Couldn't add object | {e} ")
+            
+            # send ihaveobject message to active nodes
+            try:
+                if verification_result["result"] == "True": # we only gossip if the verification was succesful
                     message = MessageGenerator.generate_ihaveobject_message(object_id)
                     #for node_credentials in KnownNodesHandler.active_nodes:
                     #    responses.append((node_credentials, message))
@@ -185,27 +193,22 @@ def handle_object(data_parsed, sender_address):
 
                     # return MessageGenerator.generate_error_message("No object_id in ihaveobject")
                     # NODE_NETWOKRING.send_to_node(credentials, data)
-                except Exception as e:
-                    LogPlus.error(f"| ERROR | OBJECT | Couldn't gossip | {e} | {e.args}")
-            else:
-                LogPlus.info(f"| INFO | OBJECT | Object already known | {object_id}")
-        else:
-            LogPlus.error(f"| ERROR | OBJECT | No object in data_parsed | {data_parsed}")
-            return [(sender_address, MessageGenerator.generate_error_message("No object in object message"))]
+                else:
+                    return [(sender_address, MessageGenerator.generate_error_message("Object not valid!"))]
+            except Exception as e:
+                LogPlus.error(f"| ERROR | OBJECT | Couldn't gossip | {e} | {e.args}")
+        else: # Object is already known
+            LogPlus.info(f"| INFO | OBJECT | Object already known | {object_id}")
     except Exception as e:
         LogPlus.error(f"| ERROR | inputHandling | handle_object | {data_parsed} | {sender_address} | {e}")
-        return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))] """
-    try:
-        jsonschema.validate(instance=data_parsed, schema=object_schema)
-    except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandling.handle_object | {data_parsed} | {sender_address} | {e}")
-        return [(sender_address, MessageGenerator.generate_error_message("Invalid object message!"))]
+        return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
+
 
     # get the object
-    object = ObjectCreator.create_object(data_parsed["object"])
+    #object = ObjectCreator.create_object(data_parsed["object"])
 
     # add the object to the database
-    ObjectHandler.add_object(object)
+    #ObjectHandler.add_object(object)
 
     # send the ihaveobject message
     return [(sender_address, MessageGenerator.generate_ihaveobject_message(object.get_id()))]

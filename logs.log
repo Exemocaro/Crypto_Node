@@ -5,3 +5,1090 @@
 14/11/2022 22:57:14 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
 14/11/2022 22:57:14 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
 14/11/2022 22:57:14 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:01:31 | ERROR | inputHandling | handle_input | b'{"type": "getpeers"}' | ('127.0.0.1', 59192) | MessageGenerator.generate_peers_message() missing 1 required positional argument: 'peers'
+28/11/2022 15:01:31 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 15:01:32 | ERROR | inputHandling | handle_input | b'{"type": "peers", "peers": ["197.109.135.72:420"]}' | ('127.0.0.1', 59192) | type object 'KnownNodesHandler' has no attribute 'add_known_
+28/11/2022 15:01:32 | ERROR | inputHandling | handle_input | b'{"type": "getpeers"}' | ('127.0.0.1', 59192) | MessageGenerator.generate_peers_message() missing 1 required positional argument: 'peers'
+28/11/2022 15:01:33 | ERROR | inputHandling.handle_ihaveobject | {'type': 'ihaveobject', 'object_id': 'dd9309b5b9cfac9f2ba39e50bc9e14e6e3e33689d8fb0929a5b3eb2cb17bb625'} | ('127.0.0.1', 59192) | 'obje
+28/11/2022 15:01:33 | ERROR | inputHandling.handle_getobject | {'type': 'getobject', 'object_id': 'dd9309b5b9cfac9f2ba39e50bc9e14e6e3e33689d8fb0929a5b3eb2cb17bb625'} | ('127.0.0.1', 59192) | 'objectid
+28/11/2022 15:01:33 | ERROR | inputHandling.handle_ihaveobject | {'type': 'ihaveobject', 'object_id': '8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea'} | ('127.0.0.1', 59192) | 'obje
+28/11/2022 15:01:35 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 15:01:35 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 15:01:35 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:01:38 | ERROR | inputHandling.handle_ihaveobject | {'type': 'ihaveobject', 'object_id': '113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875'} | ('127.0.0.1', 59192) | 'obje
+28/11/2022 15:01:38 | ERROR | Transaction.verify | 113b0c42f2... | 'pubkey'
+28/11/2022 15:01:38 | ERROR | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object verification failed
+28/11/2022 15:01:43 | ERROR | inputHandling.handle_getobject | {'type': 'getobject', 'object_id': '113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875'} | ('127.0.0.1', 59192) | 'objectid
+28/11/2022 15:01:43 | WARNING | Transaction.verify | input txid does not exist
+28/11/2022 15:01:43 | ERROR | inputHandling | handle_object | d4679f82277671ab1991cabbccacb2684e45053a990cf3d74fee2ecacb7f4196 | Object verification failed
+28/11/2022 15:10:24 | INFO | New connection from ('127.0.0.1', 59300)
+28/11/2022 15:10:24 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:24 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:24 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59300). Added to queue.
+28/11/2022 15:10:24 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59300)
+28/11/2022 15:10:24 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to 127.0.0.1:59300
+28/11/2022 15:10:24 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:25 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59300). Added to queue.
+28/11/2022 15:10:25 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59300)
+28/11/2022 15:10:25 | ERROR | inputHandling | handle_input | b'{"type": "getpeers"}' | ('127.0.0.1', 59300) | MessageGenerator.generate_peers_message() missing 1 required positional argument: 'peers'
+28/11/2022 15:10:25 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59300
+28/11/2022 15:10:25 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:25 | INFO | Received message b'{"te": "get' from ('127.0.0.1', 59300). Added to queue.
+28/11/2022 15:10:25 | INFO | Received b'{"te": "get' from ('127.0.0.1', 59300)
+28/11/2022 15:10:25 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 15:10:25 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:59300
+28/11/2022 15:10:25 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:25 | INFO | Received message b'{"type": "peers", "peers": ["209.5.30.165:420"]}' from ('127.0.0.1', 59300). Added to queue.
+28/11/2022 15:10:25 | INFO | Received b'{"type": "peers", "peers": ["209.5.30.165:420"]}' from ('127.0.0.1', 59300)
+28/11/2022 15:10:25 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59300). Added to queue.
+28/11/2022 15:10:25 | ERROR | inputHandling | handle_input | b'{"type": "peers", "peers": ["209.5.30.165:420"]}' | ('127.0.0.1', 59300) | type object 'KnownNodesHandler' has no attribute 'add_known_no
+28/11/2022 15:10:25 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59300
+28/11/2022 15:10:25 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:25 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59300)
+28/11/2022 15:10:25 | ERROR | inputHandling | handle_input | b'{"type": "getpeers"}' | ('127.0.0.1', 59300) | MessageGenerator.generate_peers_message() missing 1 required positional argument: 'peers'
+28/11/2022 15:10:25 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59300
+28/11/2022 15:10:25 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:26 | INFO | Received message b'{"type": "ihaveobject", "object_id": "3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b"}' from ('127.0.0.1', 59300). Added to queue.
+28/11/2022 15:10:26 | INFO | Received b'{"type": "ihaveobject", "object_id": "3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b"}' from ('127.0.0.1', 59300)
+28/11/2022 15:10:26 | ERROR | inputHandling.handle_ihaveobject | {'type': 'ihaveobject', 'object_id': '3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b'} | ('127.0.0.1', 59300) | 'obje
+28/11/2022 15:10:26 | INFO | Sending b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to 127.0.0.1:59300
+28/11/2022 15:10:26 | INFO | Adding message b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:26 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "4pNivxSmgzQAYj8TjY8d2yYwf37G1hFcVdmDoCSyGXM=", "value": 1000}], "type": "transaction"
+28/11/2022 15:10:26 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "4pNivxSmgzQAYj8TjY8d2yYwf37G1hFcVdmDoCSyGXM=", "value": 1000}], "type": "transaction"}}' from
+28/11/2022 15:10:26 | INFO | Received message b'{"type": "getobject", "object_id": "3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b"}' from ('127.0.0.1', 59300). Added to queue.
+28/11/2022 15:10:26 | INFO | inputHandling | handle_object | New object received | 3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b
+28/11/2022 15:10:26 | INFO | inputHandling | handle_object | 3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b | Object added to database
+28/11/2022 15:10:26 | INFO | OBJECT | ihaveobject message sent to active nodes | 3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b
+28/11/2022 15:10:26 | INFO | Sending b'{"type": "ihaveobject", "objectid": "3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b"}\n' to 41.202.75.120:420
+28/11/2022 15:10:26 | INFO | Connecting to ('41.202.75.120', 420)
+28/11/2022 15:10:26 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 15:10:26 | INFO | Sending b'{"type": "ihaveobject", "objectid": "3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b"}\n' to 54.237.70.245:420
+28/11/2022 15:10:26 | INFO | Connecting to ('54.237.70.245', 420)
+28/11/2022 15:10:26 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 15:10:26 | INFO | Sending b'{"type": "ihaveobject", "objectid": "3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b"}\n' to 89.141.56.248:420
+28/11/2022 15:10:26 | INFO | Connecting to ('89.141.56.248', 420)
+28/11/2022 15:10:26 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 15:10:26 | INFO | Received b'{"type": "getobject", "object_id": "3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b"}' from ('127.0.0.1', 59300)
+28/11/2022 15:10:26 | ERROR | inputHandling.handle_getobject | {'type': 'getobject', 'object_id': '3bcc5845070f39d6d30b8498d13e53f1d4deebff74b98053e486d4803e44598b'} | ('127.0.0.1', 59300) | 'objectid
+28/11/2022 15:10:26 | INFO | Sending b'{"type": "error", "error": "Invalid getobject message!"}\n' to 127.0.0.1:59300
+28/11/2022 15:10:26 | INFO | Adding message b'{"type": "error", "error": "Invalid getobject message!"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:26 | INFO | Received message b'{"type": "ihaveobject", "object_id": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59300). Added to queue.
+28/11/2022 15:10:26 | INFO | Received b'{"type": "ihaveobject", "object_id": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59300)
+28/11/2022 15:10:26 | ERROR | inputHandling.handle_ihaveobject | {'type': 'ihaveobject', 'object_id': '8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea'} | ('127.0.0.1', 59300) | 'obje
+28/11/2022 15:10:26 | INFO | Sending b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to 127.0.0.1:59300
+28/11/2022 15:10:26 | INFO | Adding message b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:26 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "ty
+28/11/2022 15:10:26 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "tr
+28/11/2022 15:10:26 | INFO | OBJECT | Object already known | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 15:10:26 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:59300
+28/11/2022 15:10:26 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:28 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 15:10:28 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:10:28 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 15:10:31 | INFO | Received message b'{"type": "ihaveobject", "object_id": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59300). Added to queue.
+28/11/2022 15:10:31 | INFO | Received b'{"type": "ihaveobject", "object_id": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59300)
+28/11/2022 15:10:31 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "
+28/11/2022 15:10:31 | ERROR | inputHandling.handle_ihaveobject | {'type': 'ihaveobject', 'object_id': '113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875'} | ('127.0.0.1', 59300) | 'obje
+28/11/2022 15:10:31 | INFO | Sending b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to 127.0.0.1:59300
+28/11/2022 15:10:31 | INFO | Adding message b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:32 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522
+28/11/2022 15:10:32 | INFO | inputHandling | handle_object | New object received | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875
+28/11/2022 15:10:32 | ERROR | Transaction.verify | 113b0c42f2... | 'pubkey'
+28/11/2022 15:10:32 | ERROR | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object verification failed
+28/11/2022 15:10:36 | INFO | Received message b'{"type": "getobject", "object_id": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59300). Added to queue.
+28/11/2022 15:10:36 | INFO | Received b'{"type": "getobject", "object_id": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59300)
+28/11/2022 15:10:36 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "c6fb5b09b22f57528535c456c46a02dcc6b4e988320391a1d4cc7110baa428c9", "index": 0}, "sig": "
+28/11/2022 15:10:36 | ERROR | inputHandling.handle_getobject | {'type': 'getobject', 'object_id': '113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875'} | ('127.0.0.1', 59300) | 'objectid
+28/11/2022 15:10:36 | INFO | Sending b'{"type": "error", "error": "Invalid getobject message!"}\n' to 127.0.0.1:59300
+28/11/2022 15:10:37 | INFO | Adding message b'{"type": "error", "error": "Invalid getobject message!"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:10:37 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "c6fb5b09b22f57528535c456c46a02dcc6b4e988320391a1d4cc7110baa428c9", "index": 0}, "sig": "abcd7d77
+28/11/2022 15:10:37 | INFO | inputHandling | handle_object | New object received | a8fcb373ce584eb3cc7075a0579334f378df1dd7d139fbc27ca2755459611df8
+28/11/2022 15:10:37 | INFO | Received message b'{"type": "getobject", "object_id": "a8fcb373ce584eb3cc7075a0579334f378df1dd7d139fbc27ca2755459611df8"}' from ('127.0.0.1', 59300). Added to queue.
+28/11/2022 15:10:37 | WARNING | Transaction.verify | input txid does not exist
+28/11/2022 15:10:37 | ERROR | inputHandling | handle_object | a8fcb373ce584eb3cc7075a0579334f378df1dd7d139fbc27ca2755459611df8 | Object verification failed
+28/11/2022 15:10:37 | INFO | Received b'{"type": "getobject", "object_id": "a8fcb373ce584eb3cc7075a0579334f378df1dd7d139fbc27ca2755459611df8"}' from ('127.0.0.1', 59300)
+28/11/2022 15:10:37 | ERROR | inputHandling.handle_getobject | {'type': 'getobject', 'object_id': 'a8fcb373ce584eb3cc7075a0579334f378df1dd7d139fbc27ca2755459611df8'} | ('127.0.0.1', 59300) | 'objectid
+28/11/2022 15:10:37 | INFO | Sending b'{"type": "error", "error": "Invalid getobject message!"}\n' to 127.0.0.1:59300
+28/11/2022 15:10:37 | INFO | Adding message b'{"type": "error", "error": "Invalid getobject message!"}\n' to ('127.0.0.1', 59300) queue
+28/11/2022 15:13:21 | INFO | New connection from ('127.0.0.1', 59399)
+28/11/2022 15:13:21 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59399) queue
+28/11/2022 15:13:21 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 59399) queue
+28/11/2022 15:13:22 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59399). Added to queue.
+28/11/2022 15:13:22 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59399)
+28/11/2022 15:13:22 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to 127.0.0.1:59399
+28/11/2022 15:13:22 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59399) queue
+28/11/2022 15:13:23 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59399). Added to queue.
+28/11/2022 15:13:23 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59399)
+28/11/2022 15:13:23 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420"]}\n' to 127.0.0.1:59399
+28/11/2022 15:13:23 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420"]}\n' to ('127.0.0.1', 59399) queue
+28/11/2022 15:13:23 | INFO | Received message b'{"te": "get' from ('127.0.0.1', 59399). Added to queue.
+28/11/2022 15:13:23 | INFO | Received b'{"te": "get' from ('127.0.0.1', 59399)
+28/11/2022 15:13:23 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 15:13:23 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:59399
+28/11/2022 15:13:23 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 59399) queue
+28/11/2022 15:13:23 | INFO | Received message b'{"type": "peers", "peers": ["194.184.209.120:420"]}' from ('127.0.0.1', 59399). Added to queue.
+28/11/2022 15:13:23 | INFO | Received b'{"type": "peers", "peers": ["194.184.209.120:420"]}' from ('127.0.0.1', 59399)
+28/11/2022 15:13:23 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59399). Added to queue.
+28/11/2022 15:13:23 | ERROR | inputHandling | handle_input | b'{"type": "peers", "peers": ["194.184.209.120:420"]}' | ('127.0.0.1', 59399) | type object 'KnownNodesHandler' has no attribute 'add_known
+28/11/2022 15:13:23 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59399
+28/11/2022 15:13:23 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59399) queue
+28/11/2022 15:13:23 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59399)
+28/11/2022 15:13:23 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420"]}\n' to 127.0.0.1:59399
+28/11/2022 15:13:23 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420"]}\n' to ('127.0.0.1', 59399) queue
+28/11/2022 15:13:24 | INFO | Received message b'{"type": "ihaveobject", "object_id": "749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957"}' from ('127.0.0.1', 59399). Added to queue.
+28/11/2022 15:13:24 | INFO | Received b'{"type": "ihaveobject", "object_id": "749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957"}' from ('127.0.0.1', 59399)
+28/11/2022 15:13:24 | ERROR | inputHandling.handle_ihaveobject | {'type': 'ihaveobject', 'object_id': '749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957'} | ('127.0.0.1', 59399) | 'obje
+28/11/2022 15:13:24 | INFO | Sending b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to 127.0.0.1:59399
+28/11/2022 15:13:24 | INFO | Adding message b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to ('127.0.0.1', 59399) queue
+28/11/2022 15:13:24 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "gLJKi51Sn81jTtYfNYH1iWzpqCCZM+puHi79YMKPBwo=", "value": 1000}], "type": "transaction"
+28/11/2022 15:13:24 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "gLJKi51Sn81jTtYfNYH1iWzpqCCZM+puHi79YMKPBwo=", "value": 1000}], "type": "transaction"}}' from
+28/11/2022 15:13:24 | INFO | Received message b'{"type": "getobject", "object_id": "749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957"}' from ('127.0.0.1', 59399). Added to queue.
+28/11/2022 15:13:24 | INFO | inputHandling | handle_object | New object received | 749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957
+28/11/2022 15:13:24 | INFO | inputHandling | handle_object | 749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957 | Object added to database
+28/11/2022 15:13:24 | INFO | OBJECT | ihaveobject message sent to active nodes | 749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957
+28/11/2022 15:13:24 | INFO | Sending b'{"type": "ihaveobject", "objectid": "749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957"}\n' to 41.202.75.120:420
+28/11/2022 15:13:24 | INFO | Connecting to ('41.202.75.120', 420)
+28/11/2022 15:13:24 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 15:13:24 | INFO | Sending b'{"type": "ihaveobject", "objectid": "749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957"}\n' to 54.237.70.245:420
+28/11/2022 15:13:24 | INFO | Connecting to ('54.237.70.245', 420)
+28/11/2022 15:13:24 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 15:13:24 | INFO | Sending b'{"type": "ihaveobject", "objectid": "749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957"}\n' to 89.141.56.248:420
+28/11/2022 15:13:24 | INFO | Connecting to ('89.141.56.248', 420)
+28/11/2022 15:13:24 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 15:13:24 | INFO | Received b'{"type": "getobject", "object_id": "749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957"}' from ('127.0.0.1', 59399)
+28/11/2022 15:13:24 | ERROR | inputHandling.handle_getobject | {'type': 'getobject', 'object_id': '749a5082bbd1032ebdab386baebddea2cb7dd48647366ba4741d74ba0037b957'} | ('127.0.0.1', 59399) | 'objectid
+28/11/2022 15:13:24 | INFO | Sending b'{"type": "error", "error": "Invalid getobject message!"}\n' to 127.0.0.1:59399
+28/11/2022 15:13:24 | INFO | Adding message b'{"type": "error", "error": "Invalid getobject message!"}\n' to ('127.0.0.1', 59399) queue
+28/11/2022 15:13:24 | INFO | Received message b'{"type": "ihaveobject", "object_id": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59399). Added to queue.
+28/11/2022 15:13:24 | INFO | Received b'{"type": "ihaveobject", "object_id": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59399)
+28/11/2022 15:13:24 | ERROR | inputHandling.handle_ihaveobject | {'type': 'ihaveobject', 'object_id': '8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea'} | ('127.0.0.1', 59399) | 'obje
+28/11/2022 15:13:24 | INFO | Sending b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to 127.0.0.1:59399
+28/11/2022 15:13:24 | INFO | Adding message b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to ('127.0.0.1', 59399) queue
+28/11/2022 15:13:24 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "ty
+28/11/2022 15:13:24 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "tr
+28/11/2022 15:13:24 | INFO | OBJECT | Object already known | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 15:13:24 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:59399
+28/11/2022 15:13:24 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 59399) queue
+28/11/2022 15:13:26 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:13:26 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 15:13:26 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 15:15:51 | INFO | New connection from ('127.0.0.1', 59449)
+28/11/2022 15:15:51 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:51 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:51 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59449). Added to queue.
+28/11/2022 15:15:51 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59449)
+28/11/2022 15:15:51 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to 127.0.0.1:59449
+28/11/2022 15:15:51 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:52 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59449). Added to queue.
+28/11/2022 15:15:52 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59449)
+28/11/2022 15:15:52 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420"]}\n' to 127.0.0.1:59449
+28/11/2022 15:15:52 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420"]}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:52 | INFO | Received message b'{"te": "get' from ('127.0.0.1', 59449). Added to queue.
+28/11/2022 15:15:52 | INFO | Received b'{"te": "get' from ('127.0.0.1', 59449)
+28/11/2022 15:15:52 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 15:15:52 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:59449
+28/11/2022 15:15:52 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:52 | INFO | Received message b'{"type": "peers", "peers": ["88.73.117.159:420"]}' from ('127.0.0.1', 59449). Added to queue.
+28/11/2022 15:15:52 | INFO | Received b'{"type": "peers", "peers": ["88.73.117.159:420"]}' from ('127.0.0.1', 59449)
+28/11/2022 15:15:52 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59449). Added to queue.
+28/11/2022 15:15:52 | ERROR | inputHandling | handle_input | b'{"type": "peers", "peers": ["88.73.117.159:420"]}' | ('127.0.0.1', 59449) | MessageGenerator.generate_ihaveobject_message() missing 1 req
+28/11/2022 15:15:52 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59449
+28/11/2022 15:15:52 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:52 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59449)
+28/11/2022 15:15:52 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420"]}\n' to 127.0.0.1:59449
+28/11/2022 15:15:52 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420"]}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:53 | INFO | Received message b'{"type": "ihaveobject", "object_id": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}' from ('127.0.0.1', 59449). Added to queue.
+28/11/2022 15:15:53 | INFO | Received b'{"type": "ihaveobject", "object_id": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}' from ('127.0.0.1', 59449)
+28/11/2022 15:15:53 | ERROR | inputHandling.handle_ihaveobject | {'type': 'ihaveobject', 'object_id': '85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db'} | ('127.0.0.1', 59449) | 'obje
+28/11/2022 15:15:53 | INFO | Sending b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to 127.0.0.1:59449
+28/11/2022 15:15:53 | INFO | Adding message b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:53 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "HZEHXgju6EbSCngAF26dwfG538d+ddbHgs9zh8TDX04=", "value": 1000}], "type": "transaction"
+28/11/2022 15:15:53 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "HZEHXgju6EbSCngAF26dwfG538d+ddbHgs9zh8TDX04=", "value": 1000}], "type": "transaction"}}' from
+28/11/2022 15:15:53 | INFO | Received message b'{"type": "getobject", "object_id": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}' from ('127.0.0.1', 59449). Added to queue.
+28/11/2022 15:15:53 | INFO | inputHandling | handle_object | New object received | 85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db
+28/11/2022 15:15:53 | INFO | inputHandling | handle_object | 85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db | Object added to database
+28/11/2022 15:15:53 | INFO | OBJECT | ihaveobject message sent to active nodes | 85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db
+28/11/2022 15:15:53 | INFO | Sending b'{"type": "ihaveobject", "objectid": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}\n' to 41.202.75.120:420
+28/11/2022 15:15:53 | INFO | Connecting to ('41.202.75.120', 420)
+28/11/2022 15:15:53 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 15:15:53 | INFO | Sending b'{"type": "ihaveobject", "objectid": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}\n' to 54.237.70.245:420
+28/11/2022 15:15:53 | INFO | Connecting to ('54.237.70.245', 420)
+28/11/2022 15:15:53 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 15:15:53 | INFO | Sending b'{"type": "ihaveobject", "objectid": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}\n' to 89.141.56.248:420
+28/11/2022 15:15:53 | INFO | Connecting to ('89.141.56.248', 420)
+28/11/2022 15:15:53 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 15:15:53 | INFO | Sending b'{"type": "ihaveobject", "objectid": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}\n' to 88.73.117.159:420
+28/11/2022 15:15:53 | INFO | Connecting to ('88.73.117.159', 420)
+28/11/2022 15:15:53 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}\n' to ('88.73.117.159', 420) queue
+28/11/2022 15:15:53 | INFO | Received b'{"type": "getobject", "object_id": "85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db"}' from ('127.0.0.1', 59449)
+28/11/2022 15:15:53 | ERROR | inputHandling.handle_getobject | {'type': 'getobject', 'object_id': '85c942e9587f9124f7c39bb608a4ec1438f1d59819771d1cb1f4128e7b9fe0db'} | ('127.0.0.1', 59449) | 'objectid
+28/11/2022 15:15:53 | INFO | Sending b'{"type": "error", "error": "Invalid getobject message!"}\n' to 127.0.0.1:59449
+28/11/2022 15:15:53 | INFO | Adding message b'{"type": "error", "error": "Invalid getobject message!"}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:54 | INFO | Received message b'{"type": "ihaveobject", "object_id": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59449). Added to queue.
+28/11/2022 15:15:54 | INFO | Received b'{"type": "ihaveobject", "object_id": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59449)
+28/11/2022 15:15:54 | ERROR | inputHandling.handle_ihaveobject | {'type': 'ihaveobject', 'object_id': '8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea'} | ('127.0.0.1', 59449) | 'obje
+28/11/2022 15:15:54 | INFO | Sending b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to 127.0.0.1:59449
+28/11/2022 15:15:54 | INFO | Adding message b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:54 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "ty
+28/11/2022 15:15:54 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "tr
+28/11/2022 15:15:54 | INFO | OBJECT | Object already known | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 15:15:54 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:59449
+28/11/2022 15:15:54 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:55 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 15:15:55 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:15:56 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 15:15:56 | ERROR | ConnectionHandler.start_connection | Could not connect to ('88.73.117.159', 420), timeout after 2s
+28/11/2022 15:15:59 | INFO | Received message b'{"type": "ihaveobject", "object_id": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59449). Added to queue.
+28/11/2022 15:15:59 | INFO | Received b'{"type": "ihaveobject", "object_id": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59449)
+28/11/2022 15:15:59 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "
+28/11/2022 15:15:59 | ERROR | inputHandling.handle_ihaveobject | {'type': 'ihaveobject', 'object_id': '113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875'} | ('127.0.0.1', 59449) | 'obje
+28/11/2022 15:15:59 | INFO | Sending b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to 127.0.0.1:59449
+28/11/2022 15:15:59 | INFO | Adding message b'{"type": "error", "error": "Invalid ihaveobject message!"}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:15:59 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522
+28/11/2022 15:15:59 | INFO | inputHandling | handle_object | New object received | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875
+28/11/2022 15:15:59 | ERROR | Transaction.verify | 113b0c42f2... | 'pubkey'
+28/11/2022 15:15:59 | ERROR | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object verification failed
+28/11/2022 15:16:04 | INFO | Received message b'{"type": "getobject", "object_id": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59449). Added to queue.
+28/11/2022 15:16:04 | INFO | Received b'{"type": "getobject", "object_id": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59449)
+28/11/2022 15:16:04 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "85430b900807e36d3d92ab5f99858c61e5f23f141e34f0eff8809e7518ed6d62", "index": 0}, "sig": "
+28/11/2022 15:16:04 | ERROR | inputHandling.handle_getobject | {'type': 'getobject', 'object_id': '113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875'} | ('127.0.0.1', 59449) | 'objectid
+28/11/2022 15:16:04 | INFO | Sending b'{"type": "error", "error": "Invalid getobject message!"}\n' to 127.0.0.1:59449
+28/11/2022 15:16:04 | INFO | Adding message b'{"type": "error", "error": "Invalid getobject message!"}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:16:04 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "85430b900807e36d3d92ab5f99858c61e5f23f141e34f0eff8809e7518ed6d62", "index": 0}, "sig": "abcd7d77
+28/11/2022 15:16:04 | INFO | inputHandling | handle_object | New object received | 71103bd5fc2f876a434f35b97421cf9cb7c14f6cf0f89915140d6aa8f296dafe
+28/11/2022 15:16:04 | INFO | Received message b'{"type": "getobject", "object_id": "71103bd5fc2f876a434f35b97421cf9cb7c14f6cf0f89915140d6aa8f296dafe"}' from ('127.0.0.1', 59449). Added to queue.
+28/11/2022 15:16:04 | WARNING | Transaction.verify | input txid does not exist
+28/11/2022 15:16:04 | ERROR | inputHandling | handle_object | 71103bd5fc2f876a434f35b97421cf9cb7c14f6cf0f89915140d6aa8f296dafe | Object verification failed
+28/11/2022 15:16:04 | INFO | Received b'{"type": "getobject", "object_id": "71103bd5fc2f876a434f35b97421cf9cb7c14f6cf0f89915140d6aa8f296dafe"}' from ('127.0.0.1', 59449)
+28/11/2022 15:16:04 | ERROR | inputHandling.handle_getobject | {'type': 'getobject', 'object_id': '71103bd5fc2f876a434f35b97421cf9cb7c14f6cf0f89915140d6aa8f296dafe'} | ('127.0.0.1', 59449) | 'objectid
+28/11/2022 15:16:04 | INFO | Sending b'{"type": "error", "error": "Invalid getobject message!"}\n' to 127.0.0.1:59449
+28/11/2022 15:16:04 | INFO | Adding message b'{"type": "error", "error": "Invalid getobject message!"}\n' to ('127.0.0.1', 59449) queue
+28/11/2022 15:19:38 | INFO | New connection from ('127.0.0.1', 59535)
+28/11/2022 15:19:39 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59535) queue
+28/11/2022 15:19:39 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 59535) queue
+28/11/2022 15:19:39 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59535). Added to queue.
+28/11/2022 15:19:39 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59535)
+28/11/2022 15:19:39 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to 127.0.0.1:59535
+28/11/2022 15:19:39 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59535) queue
+28/11/2022 15:19:40 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59535). Added to queue.
+28/11/2022 15:19:40 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59535)
+28/11/2022 15:19:40 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420"]}\n' to 127.0.0.1:59535
+28/11/2022 15:19:40 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420"]}\n' to ('127.0.0.1', 59535) queue
+28/11/2022 15:19:40 | INFO | Received message b'{"te": "get' from ('127.0.0.1', 59535). Added to queue.
+28/11/2022 15:19:40 | INFO | Received b'{"te": "get' from ('127.0.0.1', 59535)
+28/11/2022 15:19:40 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 15:19:40 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:59535
+28/11/2022 15:19:40 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 59535) queue
+28/11/2022 15:19:40 | INFO | Received message b'{"type": "peers", "peers": ["163.137.37.153:420"]}' from ('127.0.0.1', 59535). Added to queue.
+28/11/2022 15:19:40 | INFO | Received b'{"type": "peers", "peers": ["163.137.37.153:420"]}' from ('127.0.0.1', 59535)
+28/11/2022 15:19:40 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59535). Added to queue.
+28/11/2022 15:19:40 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59535)
+28/11/2022 15:19:40 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420"]}\n' to 127.0.0.1:59535
+28/11/2022 15:19:40 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420"]}\n' to ('127.0.0.1',
+28/11/2022 15:19:41 | INFO | Received message b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}' from ('127.0.0.1', 59535). Added to queue.
+28/11/2022 15:19:41 | INFO | Received b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}' from ('127.0.0.1', 59535)
+28/11/2022 15:19:41 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}' | ('127.0.0.1', 59535) | type ob
+28/11/2022 15:19:41 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59535
+28/11/2022 15:19:41 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59535) queue
+28/11/2022 15:19:41 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "07ylEUkuOf0ci9QLv3XLKjRwM+hnm6d508rMI71b9gc=", "value": 1000}], "type": "transaction"
+28/11/2022 15:19:41 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "07ylEUkuOf0ci9QLv3XLKjRwM+hnm6d508rMI71b9gc=", "value": 1000}], "type": "transaction"}}' from
+28/11/2022 15:19:41 | INFO | Received message b'{"type": "getobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}' from ('127.0.0.1', 59535). Added to queue.
+28/11/2022 15:19:41 | INFO | inputHandling | handle_object | New object received | 0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695
+28/11/2022 15:19:41 | INFO | inputHandling | handle_object | 0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695 | Object added to database
+28/11/2022 15:19:41 | INFO | OBJECT | ihaveobject message sent to active nodes | 0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695
+28/11/2022 15:19:41 | INFO | Sending b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}\n' to 41.202.75.120:420
+28/11/2022 15:19:41 | INFO | Connecting to ('41.202.75.120', 420)
+28/11/2022 15:19:41 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 15:19:41 | INFO | Sending b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}\n' to 54.237.70.245:420
+28/11/2022 15:19:41 | INFO | Connecting to ('54.237.70.245', 420)
+28/11/2022 15:19:41 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 15:19:41 | INFO | Sending b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}\n' to 89.141.56.248:420
+28/11/2022 15:19:41 | INFO | Connecting to ('89.141.56.248', 420)
+28/11/2022 15:19:41 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 15:19:41 | INFO | Sending b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}\n' to 88.73.117.159:420
+28/11/2022 15:19:41 | INFO | Connecting to ('88.73.117.159', 420)
+28/11/2022 15:19:41 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}\n' to ('88.73.117.159', 420) queue
+28/11/2022 15:19:41 | INFO | Sending b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}\n' to 163.137.37.153:420
+28/11/2022 15:19:41 | INFO | Connecting to ('163.137.37.153', 420)
+28/11/2022 15:19:41 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}\n' to ('163.137.37.153', 420) queue
+28/11/2022 15:19:41 | INFO | Received b'{"type": "getobject", "objectid": "0d456c6c9b19e908bd7b18000a5a86d33705af7ce091f22736c34e1491b19695"}' from ('127.0.0.1', 59535)
+28/11/2022 15:19:41 | INFO | Sending b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "07ylEUkuOf0ci9QLv3XLKjRwM+hnm6d508rMI71b9gc=", "value": 1000}]}}\n' to 
+28/11/2022 15:19:41 | INFO | Adding message b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "07ylEUkuOf0ci9QLv3XLKjRwM+hnm6d508rMI71b9gc=", "value": 1000}]}}
+28/11/2022 15:19:41 | INFO | Received message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59535). Added to queue.
+28/11/2022 15:19:41 | INFO | Received b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59535)
+28/11/2022 15:19:41 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' | ('127.0.0.1', 59535) | type ob
+28/11/2022 15:19:41 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59535
+28/11/2022 15:19:41 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59535) queue
+28/11/2022 15:19:41 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "ty
+28/11/2022 15:19:41 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "tr
+28/11/2022 15:19:41 | INFO | OBJECT | Object already known | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 15:19:41 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:59535
+28/11/2022 15:19:41 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 59535) queue
+28/11/2022 15:19:43 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 15:19:43 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 15:19:43 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:19:43 | ERROR | ConnectionHandler.start_connection | Could not connect to ('163.137.37.153', 420), timeout after 2s
+28/11/2022 15:19:43 | ERROR | ConnectionHandler.start_connection | Could not connect to ('88.73.117.159', 420), timeout after 2s
+28/11/2022 15:19:46 | INFO | Received message b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59535). Added to queue.
+28/11/2022 15:19:46 | INFO | Received b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59535)
+28/11/2022 15:19:46 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "
+28/11/2022 15:19:46 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' | ('127.0.0.1', 59535) | type ob
+28/11/2022 15:19:46 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59535
+28/11/2022 15:19:46 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59535) queue
+28/11/2022 15:19:46 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522
+28/11/2022 15:19:46 | INFO | inputHandling | handle_object | New object received | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875
+28/11/2022 15:19:46 | ERROR | Transaction.verify | 113b0c42f2... | 'pubkey'
+28/11/2022 15:19:46 | ERROR | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object verification failed
+28/11/2022 15:19:51 | INFO | Received message b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59535). Added to queue.
+28/11/2022 15:19:51 | INFO | Received b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59535)
+28/11/2022 15:19:51 | INFO | Sending b'{"type": "object", "object": null}\n' to 127.0.0.1:59535
+28/11/2022 15:19:51 | INFO | Adding message b'{"type": "object", "object": null}\n' to ('127.0.0.1', 59535) queue
+28/11/2022 15:19:52 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "e3768eeceddd8845dd43a9dd5b27acf298a37c089d65ab5aab3905de9f1ab913", "index": 0}, "sig": "
+28/11/2022 15:19:52 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "e3768eeceddd8845dd43a9dd5b27acf298a37c089d65ab5aab3905de9f1ab913", "index": 0}, "sig": "abcd7d77
+28/11/2022 15:19:52 | INFO | inputHandling | handle_object | New object received | f5631bcadc7f9ddaa425dfb2a5818c85e05ee20d5f1f0273354419f86b9bf223
+28/11/2022 15:19:52 | WARNING | Transaction.verify | input txid does not exist
+28/11/2022 15:19:52 | ERROR | inputHandling | handle_object | f5631bcadc7f9ddaa425dfb2a5818c85e05ee20d5f1f0273354419f86b9bf223 | Object verification failed
+28/11/2022 15:25:43 | INFO | New connection from ('127.0.0.1', 59708)
+28/11/2022 15:25:43 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59708) queue
+28/11/2022 15:25:43 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 59708) queue
+28/11/2022 15:25:43 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59708). Added to queue.
+28/11/2022 15:25:43 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59708)
+28/11/2022 15:25:43 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to 127.0.0.1:59708
+28/11/2022 15:25:43 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59708) queue
+28/11/2022 15:25:44 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59708). Added to queue.
+28/11/2022 15:25:44 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59708)
+28/11/2022 15:25:44 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420"]}\n' to 127.0.0.1:59708
+28/11/2022 15:25:44 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420"]}\n' to ('127.0.0.1',
+28/11/2022 15:25:44 | INFO | Received message b'{"te": "get' from ('127.0.0.1', 59708). Added to queue.
+28/11/2022 15:25:44 | INFO | Received b'{"te": "get' from ('127.0.0.1', 59708)
+28/11/2022 15:25:44 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 15:25:44 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:59708
+28/11/2022 15:25:44 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 59708) queue
+28/11/2022 15:25:44 | INFO | Received message b'{"type": "peers", "peers": ["12.121.128.206:420"]}' from ('127.0.0.1', 59708). Added to queue.
+28/11/2022 15:25:44 | INFO | Received b'{"type": "peers", "peers": ["12.121.128.206:420"]}' from ('127.0.0.1', 59708)
+28/11/2022 15:25:44 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59708). Added to queue.
+28/11/2022 15:25:44 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59708)
+28/11/2022 15:25:44 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420"]}\n' t
+28/11/2022 15:25:44 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420"
+28/11/2022 15:25:45 | INFO | Received message b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}' from ('127.0.0.1', 59708). Added to queue.
+28/11/2022 15:25:45 | INFO | Received b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}' from ('127.0.0.1', 59708)
+28/11/2022 15:25:45 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}' | ('127.0.0.1', 59708) | type ob
+28/11/2022 15:25:45 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59708
+28/11/2022 15:25:45 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59708) queue
+28/11/2022 15:25:45 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "dxkQif62K2+UIPATGyXZDXTRB4n6d2/laOGCpJLu10g=", "value": 1000}], "type": "transaction"
+28/11/2022 15:25:45 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "dxkQif62K2+UIPATGyXZDXTRB4n6d2/laOGCpJLu10g=", "value": 1000}], "type": "transaction"}}' from
+28/11/2022 15:25:45 | INFO | Received message b'{"type": "getobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}' from ('127.0.0.1', 59708). Added to queue.
+28/11/2022 15:25:45 | INFO | inputHandling | handle_object | New object received | 60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800
+28/11/2022 15:25:45 | INFO | inputHandling | handle_object | 60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800 | Object added to database
+28/11/2022 15:25:45 | INFO | OBJECT | ihaveobject message sent to active nodes | 60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800
+28/11/2022 15:25:45 | INFO | Sending b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to 41.202.75.120:420
+28/11/2022 15:25:45 | INFO | Connecting to ('41.202.75.120', 420)
+28/11/2022 15:25:45 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 15:25:45 | INFO | Sending b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to 54.237.70.245:420
+28/11/2022 15:25:45 | INFO | Connecting to ('54.237.70.245', 420)
+28/11/2022 15:25:45 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 15:25:45 | INFO | Sending b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to 89.141.56.248:420
+28/11/2022 15:25:45 | INFO | Connecting to ('89.141.56.248', 420)
+28/11/2022 15:25:45 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 15:25:45 | INFO | Sending b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to 88.73.117.159:420
+28/11/2022 15:25:45 | INFO | Connecting to ('88.73.117.159', 420)
+28/11/2022 15:25:45 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to ('88.73.117.159', 420) queue
+28/11/2022 15:25:45 | INFO | Sending b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to 163.137.37.153:420
+28/11/2022 15:25:45 | INFO | Connecting to ('163.137.37.153', 420)
+28/11/2022 15:25:45 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to ('163.137.37.153', 420) queue
+28/11/2022 15:25:45 | INFO | Sending b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to 12.121.128.206:420
+28/11/2022 15:25:45 | INFO | Connecting to ('12.121.128.206', 420)
+28/11/2022 15:25:45 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}\n' to ('12.121.128.206', 420) queue
+28/11/2022 15:25:45 | INFO | Received b'{"type": "getobject", "objectid": "60a02ddf3598534f213d7463382d551e0e8676c35b09af72fe77c82d3b832800"}' from ('127.0.0.1', 59708)
+28/11/2022 15:25:45 | INFO | Sending b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "dxkQif62K2+UIPATGyXZDXTRB4n6d2/laOGCpJLu10g=", "value": 1000}]}}\n' to 
+28/11/2022 15:25:45 | INFO | Adding message b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "dxkQif62K2+UIPATGyXZDXTRB4n6d2/laOGCpJLu10g=", "value": 1000}]}}
+28/11/2022 15:25:45 | INFO | Received message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59708). Added to queue.
+28/11/2022 15:25:45 | INFO | Received b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59708)
+28/11/2022 15:25:45 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' | ('127.0.0.1', 59708) | type ob
+28/11/2022 15:25:45 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59708
+28/11/2022 15:25:45 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59708) queue
+28/11/2022 15:25:45 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "ty
+28/11/2022 15:25:45 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "tr
+28/11/2022 15:25:45 | INFO | OBJECT | Object already known | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 15:25:45 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:59708
+28/11/2022 15:25:45 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 59708) queue
+28/11/2022 15:25:47 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:25:47 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 15:25:47 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 15:25:47 | ERROR | ConnectionHandler.start_connection | Could not connect to ('163.137.37.153', 420), timeout after 2s
+28/11/2022 15:25:47 | ERROR | ConnectionHandler.start_connection | Could not connect to ('88.73.117.159', 420), timeout after 2s
+28/11/2022 15:25:47 | ERROR | ConnectionHandler.start_connection | Could not connect to ('12.121.128.206', 420), timeout after 2s
+28/11/2022 15:25:50 | INFO | Received message b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59708). Added to queue.
+28/11/2022 15:25:50 | INFO | Received b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59708)
+28/11/2022 15:25:50 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "
+28/11/2022 15:25:50 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' | ('127.0.0.1', 59708) | type ob
+28/11/2022 15:25:50 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59708
+28/11/2022 15:25:50 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59708) queue
+28/11/2022 15:25:50 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522
+28/11/2022 15:25:50 | INFO | inputHandling | handle_object | New object received | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875
+28/11/2022 15:25:50 | ERROR | Transaction.verify | 113b0c42f2... | 'pubkey'
+28/11/2022 15:25:50 | ERROR | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object verification failed
+28/11/2022 15:27:28 | INFO | New connection from ('127.0.0.1', 59759)
+28/11/2022 15:27:28 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:28 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:28 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:28 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:28 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to 127.0.0.1:59759
+28/11/2022 15:27:28 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:29 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:29 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:29 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420"]}\n' to 127.0.0.1:59759
+28/11/2022 15:27:29 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420"]}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:29 | INFO | Received message b'{"te": "get' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:29 | INFO | Received b'{"te": "get' from ('127.0.0.1', 59759)
+28/11/2022 15:27:29 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 15:27:29 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:59759
+28/11/2022 15:27:29 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:29 | INFO | Received message b'{"type": "peers", "peers": ["7.220.91.97:420"]}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:29 | INFO | Received b'{"type": "peers", "peers": ["7.220.91.97:420"]}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:29 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:29 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:29 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420"]}\n' to 127.0.0.1:59759
+28/11/2022 15:27:29 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420"]}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:30 | INFO | Received message b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:30 | INFO | Received b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:30 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}' | ('127.0.0.1', 59759) | type object 'ObjectHandler' has no attribute 'add_known_object'
+28/11/2022 15:27:30 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59759
+28/11/2022 15:27:30 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:30 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "ixqjmA1L+S/ubsFqW3ZjLTvV3wQ61e9pyDG8/XqBN0g=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:30 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "ixqjmA1L+S/ubsFqW3ZjLTvV3wQ61e9pyDG8/XqBN0g=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:30 | INFO | Received message b'{"type": "getobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:30 | INFO | inputHandling | handle_object | New object received | 06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0
+28/11/2022 15:27:30 | INFO | inputHandling | handle_object | 06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0 | Object added to database
+28/11/2022 15:27:30 | INFO | OBJECT | ihaveobject message sent to active nodes | 06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0
+28/11/2022 15:27:30 | INFO | Sending b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to 41.202.75.120:420
+28/11/2022 15:27:30 | INFO | Connecting to ('41.202.75.120', 420)
+28/11/2022 15:27:30 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 15:27:30 | INFO | Sending b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to 54.237.70.245:420
+28/11/2022 15:27:30 | INFO | Connecting to ('54.237.70.245', 420)
+28/11/2022 15:27:30 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 15:27:30 | INFO | Sending b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to 89.141.56.248:420
+28/11/2022 15:27:30 | INFO | Connecting to ('89.141.56.248', 420)
+28/11/2022 15:27:30 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 15:27:30 | INFO | Sending b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to 88.73.117.159:420
+28/11/2022 15:27:30 | INFO | Connecting to ('88.73.117.159', 420)
+28/11/2022 15:27:30 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to ('88.73.117.159', 420) queue
+28/11/2022 15:27:30 | INFO | Sending b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to 163.137.37.153:420
+28/11/2022 15:27:30 | INFO | Connecting to ('163.137.37.153', 420)
+28/11/2022 15:27:30 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to ('163.137.37.153', 420) queue
+28/11/2022 15:27:30 | INFO | Sending b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to 12.121.128.206:420
+28/11/2022 15:27:30 | INFO | Connecting to ('12.121.128.206', 420)
+28/11/2022 15:27:30 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to ('12.121.128.206', 420) queue
+28/11/2022 15:27:30 | INFO | Sending b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to 7.220.91.97:420
+28/11/2022 15:27:30 | INFO | Connecting to ('7.220.91.97', 420)
+28/11/2022 15:27:30 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}\n' to ('7.220.91.97', 420) queue
+28/11/2022 15:27:30 | INFO | Received b'{"type": "getobject", "objectid": "06734e3f7c8eaba3ac6e74df978e39a92392053ccd4b6382aace6780ca7b4db0"}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:30 | INFO | Sending b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "ixqjmA1L+S/ubsFqW3ZjLTvV3wQ61e9pyDG8/XqBN0g=", "value": 1000}]}}\n' to 127.0.0.1:59759
+28/11/2022 15:27:30 | INFO | Adding message b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "ixqjmA1L+S/ubsFqW3ZjLTvV3wQ61e9pyDG8/XqBN0g=", "value": 1000}]}}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:30 | INFO | Received message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:30 | INFO | Received b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:30 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' | ('127.0.0.1', 59759) | type object 'ObjectHandler' has no attribute 'add_known_object'
+28/11/2022 15:27:30 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59759
+28/11/2022 15:27:30 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:30 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:30 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:30 | INFO | OBJECT | Object already known | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 15:27:30 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:59759
+28/11/2022 15:27:30 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:32 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 15:27:32 | ERROR | ConnectionHandler.start_connection | Could not connect to ('88.73.117.159', 420), timeout after 2s
+28/11/2022 15:27:32 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 15:27:32 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:27:32 | ERROR | ConnectionHandler.start_connection | Could not connect to ('12.121.128.206', 420), timeout after 2s
+28/11/2022 15:27:32 | ERROR | ConnectionHandler.start_connection | Could not connect to ('7.220.91.97', 420), timeout after 2s
+28/11/2022 15:27:32 | ERROR | ConnectionHandler.start_connection | Could not connect to ('163.137.37.153', 420), timeout after 2s
+28/11/2022 15:27:35 | INFO | Received message b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:35 | INFO | Received b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:35 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:35 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' | ('127.0.0.1', 59759) | type object 'ObjectHandler' has no attribute 'add_known_object'
+28/11/2022 15:27:35 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59759
+28/11/2022 15:27:35 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:35 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:35 | INFO | inputHandling | handle_object | New object received | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875
+28/11/2022 15:27:35 | ERROR | Transaction.verify | 113b0c42f2... | 'pubkey'
+28/11/2022 15:27:35 | ERROR | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object verification failed
+28/11/2022 15:27:40 | INFO | Received message b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:40 | INFO | Received b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:40 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "e1903e77310cab12358faf29e68b227c91b3380849fd70d20d8d2391e281850e", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:40 | INFO | Sending b'{"type": "object", "object": null}\n' to 127.0.0.1:59759
+28/11/2022 15:27:40 | INFO | Adding message b'{"type": "object", "object": null}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:27:40 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "e1903e77310cab12358faf29e68b227c91b3380849fd70d20d8d2391e281850e", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:40 | INFO | inputHandling | handle_object | New object received | 20f6bcdecbce6f88ddf7725045d3e9462d8dc13660c6f062120aa8d6c7bb3b0c
+28/11/2022 15:27:40 | INFO | Received message b'{"type": "getobject", "objectid": "20f6bcdecbce6f88ddf7725045d3e9462d8dc13660c6f062120aa8d6c7bb3b0c"}' from ('127.0.0.1', 59759). Added to queue.
+28/11/2022 15:27:40 | WARNING | Transaction.verify | input txid does not exist
+28/11/2022 15:27:40 | ERROR | inputHandling | handle_object | 20f6bcdecbce6f88ddf7725045d3e9462d8dc13660c6f062120aa8d6c7bb3b0c | Object verification failed
+28/11/2022 15:27:40 | INFO | Received b'{"type": "getobject", "objectid": "20f6bcdecbce6f88ddf7725045d3e9462d8dc13660c6f062120aa8d6c7bb3b0c"}' from ('127.0.0.1', 59759)
+28/11/2022 15:27:40 | INFO | Sending b'{"type": "object", "object": null}\n' to 127.0.0.1:59759
+28/11/2022 15:27:40 | INFO | Adding message b'{"type": "object", "object": null}\n' to ('127.0.0.1', 59759) queue
+28/11/2022 15:28:50 | INFO | New connection from ('127.0.0.1', 59803)
+28/11/2022 15:28:50 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:28:50 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:28:50 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:50 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59803)
+28/11/2022 15:28:50 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to 127.0.0.1:59803
+28/11/2022 15:28:50 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:28:51 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:51 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59803)
+28/11/2022 15:28:51 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420"]}\n' to 127.0.0.1:59803
+28/11/2022 15:28:51 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420"]}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:28:51 | INFO | Received message b'{"te": "get' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:51 | INFO | Received b'{"te": "get' from ('127.0.0.1', 59803)
+28/11/2022 15:28:51 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 15:28:51 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:59803
+28/11/2022 15:28:51 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:28:51 | INFO | Received message b'{"type": "peers", "peers": ["118.8.221.193:420"]}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:51 | INFO | Received b'{"type": "peers", "peers": ["118.8.221.193:420"]}' from ('127.0.0.1', 59803)
+28/11/2022 15:28:51 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:51 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59803)
+28/11/2022 15:28:51 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420"]}\n' to 127.0.0.1:59803
+28/11/2022 15:28:51 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420"]}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:28:52 | INFO | Received message b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:52 | INFO | Received b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}' from ('127.0.0.1', 59803)
+28/11/2022 15:28:52 | ERROR | ObjectHandler.add_object | Verification failed | 'str' object has no attribute 'verify'
+28/11/2022 15:28:52 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}' | ('127.0.0.1', 59803) | MessageGenerator.generate_getobject_message() missing 1 required positional argument: 'object_id'
+28/11/2022 15:28:52 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59803
+28/11/2022 15:28:52 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:28:52 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5yHlY4c3u8IsRVA5wA0y2dcA9QuHvB6A3qgECg1B0Mo=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:52 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5yHlY4c3u8IsRVA5wA0y2dcA9QuHvB6A3qgECg1B0Mo=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59803)
+28/11/2022 15:28:52 | INFO | Received message b'{"type": "getobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:52 | INFO | inputHandling | handle_object | New object received | c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff
+28/11/2022 15:28:52 | INFO | inputHandling | handle_object | c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff | Object added to database
+28/11/2022 15:28:52 | INFO | OBJECT | ihaveobject message sent to active nodes | c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff
+28/11/2022 15:28:52 | INFO | Sending b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to 41.202.75.120:420
+28/11/2022 15:28:52 | INFO | Connecting to ('41.202.75.120', 420)
+28/11/2022 15:28:52 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 15:28:52 | INFO | Sending b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to 54.237.70.245:420
+28/11/2022 15:28:52 | INFO | Connecting to ('54.237.70.245', 420)
+28/11/2022 15:28:52 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 15:28:52 | INFO | Sending b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to 89.141.56.248:420
+28/11/2022 15:28:52 | INFO | Connecting to ('89.141.56.248', 420)
+28/11/2022 15:28:52 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 15:28:52 | INFO | Sending b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to 88.73.117.159:420
+28/11/2022 15:28:52 | INFO | Connecting to ('88.73.117.159', 420)
+28/11/2022 15:28:52 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to ('88.73.117.159', 420) queue
+28/11/2022 15:28:52 | INFO | Sending b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to 163.137.37.153:420
+28/11/2022 15:28:52 | INFO | Connecting to ('163.137.37.153', 420)
+28/11/2022 15:28:52 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to ('163.137.37.153', 420) queue
+28/11/2022 15:28:52 | INFO | Sending b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to 12.121.128.206:420
+28/11/2022 15:28:52 | INFO | Connecting to ('12.121.128.206', 420)
+28/11/2022 15:28:52 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to ('12.121.128.206', 420) queue
+28/11/2022 15:28:52 | INFO | Sending b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to 7.220.91.97:420
+28/11/2022 15:28:52 | INFO | Connecting to ('7.220.91.97', 420)
+28/11/2022 15:28:52 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to ('7.220.91.97', 420) queue
+28/11/2022 15:28:52 | INFO | Sending b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to 118.8.221.193:420
+28/11/2022 15:28:52 | INFO | Connecting to ('118.8.221.193', 420)
+28/11/2022 15:28:52 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}\n' to ('118.8.221.193', 420) queue
+28/11/2022 15:28:52 | INFO | Received b'{"type": "getobject", "objectid": "c9e3a36e42d469aa74ac11222df28c332b8073a6aee80bd674ea0fd4f97cadff"}' from ('127.0.0.1', 59803)
+28/11/2022 15:28:52 | INFO | Sending b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "5yHlY4c3u8IsRVA5wA0y2dcA9QuHvB6A3qgECg1B0Mo=", "value": 1000}]}}\n' to 127.0.0.1:59803
+28/11/2022 15:28:52 | INFO | Adding message b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "5yHlY4c3u8IsRVA5wA0y2dcA9QuHvB6A3qgECg1B0Mo=", "value": 1000}]}}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:28:53 | INFO | Received message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:53 | INFO | Received b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59803)
+28/11/2022 15:28:53 | ERROR | ObjectHandler.add_object | Verification failed | 'str' object has no attribute 'verify'
+28/11/2022 15:28:53 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' | ('127.0.0.1', 59803) | MessageGenerator.generate_getobject_message() missing 1 required positional argument: 'object_id'
+28/11/2022 15:28:53 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59803
+28/11/2022 15:28:53 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:28:53 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:53 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59803)
+28/11/2022 15:28:53 | INFO | OBJECT | Object already known | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 15:28:53 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:59803
+28/11/2022 15:28:53 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:28:54 | ERROR | ConnectionHandler.start_connection | Could not connect to ('7.220.91.97', 420), timeout after 2s
+28/11/2022 15:28:54 | ERROR | ConnectionHandler.start_connection | Could not connect to ('88.73.117.159', 420), timeout after 2s
+28/11/2022 15:28:54 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:28:54 | ERROR | ConnectionHandler.start_connection | Could not connect to ('118.8.221.193', 420), timeout after 2s
+28/11/2022 15:28:54 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 15:28:54 | ERROR | ConnectionHandler.start_connection | Could not connect to ('12.121.128.206', 420), timeout after 2s
+28/11/2022 15:28:54 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 15:28:54 | ERROR | ConnectionHandler.start_connection | Could not connect to ('163.137.37.153', 420), timeout after 2s
+28/11/2022 15:28:58 | INFO | Received message b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:58 | INFO | Received b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59803)
+28/11/2022 15:28:58 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:28:58 | ERROR | ObjectHandler.add_object | Verification failed | 'str' object has no attribute 'verify'
+28/11/2022 15:28:58 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' | ('127.0.0.1', 59803) | MessageGenerator.generate_getobject_message() missing 1 required positional argument: 'object_id'
+28/11/2022 15:28:58 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59803
+28/11/2022 15:28:58 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:28:58 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59803)
+28/11/2022 15:28:58 | INFO | inputHandling | handle_object | New object received | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875
+28/11/2022 15:28:58 | ERROR | Transaction.verify | 113b0c42f2... | 'pubkey'
+28/11/2022 15:28:58 | ERROR | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object verification failed
+28/11/2022 15:29:03 | INFO | Received message b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:29:03 | INFO | Received b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59803)
+28/11/2022 15:29:03 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "a7c815989136ab9ad316ff227b6742f8b32bff92766d631deff7b416120b25f3", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:29:03 | INFO | Sending b'{"type": "object", "object": null}\n' to 127.0.0.1:59803
+28/11/2022 15:29:03 | INFO | Adding message b'{"type": "object", "object": null}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:29:03 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "a7c815989136ab9ad316ff227b6742f8b32bff92766d631deff7b416120b25f3", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59803)
+28/11/2022 15:29:03 | INFO | inputHandling | handle_object | New object received | e3656788413dafa199a2457d417ba522ab6cdff25cfc335165c99eeda5a3ce81
+28/11/2022 15:29:03 | INFO | Received message b'{"type": "getobject", "objectid": "e3656788413dafa199a2457d417ba522ab6cdff25cfc335165c99eeda5a3ce81"}' from ('127.0.0.1', 59803). Added to queue.
+28/11/2022 15:29:03 | WARNING | Transaction.verify | input txid does not exist
+28/11/2022 15:29:03 | ERROR | inputHandling | handle_object | e3656788413dafa199a2457d417ba522ab6cdff25cfc335165c99eeda5a3ce81 | Object verification failed
+28/11/2022 15:29:03 | INFO | Received b'{"type": "getobject", "objectid": "e3656788413dafa199a2457d417ba522ab6cdff25cfc335165c99eeda5a3ce81"}' from ('127.0.0.1', 59803)
+28/11/2022 15:29:03 | INFO | Sending b'{"type": "object", "object": null}\n' to 127.0.0.1:59803
+28/11/2022 15:29:03 | INFO | Adding message b'{"type": "object", "object": null}\n' to ('127.0.0.1', 59803) queue
+28/11/2022 15:30:23 | INFO | New connection from ('127.0.0.1', 59841)
+28/11/2022 15:30:23 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:23 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:23 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:23 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:23 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to 127.0.0.1:59841
+28/11/2022 15:30:23 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:24 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:24 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:24 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420"]}\n' to 127.0.0.1:59841
+28/11/2022 15:30:24 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420"]}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:24 | INFO | Received message b'{"te": "get' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:24 | INFO | Received b'{"te": "get' from ('127.0.0.1', 59841)
+28/11/2022 15:30:24 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 15:30:24 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:59841
+28/11/2022 15:30:24 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:24 | INFO | Received message b'{"type": "peers", "peers": ["160.213.178.85:420"]}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:24 | INFO | Received b'{"type": "peers", "peers": ["160.213.178.85:420"]}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:24 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:24 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:24 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420"]}\n' to 127.0.0.1:59841
+28/11/2022 15:30:24 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420"]}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:25 | INFO | Received message b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:25 | INFO | Received b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:25 | ERROR | ObjectHandler.add_object | Verification failed | 'str' object has no attribute 'verify'
+28/11/2022 15:30:25 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}' | ('127.0.0.1', 59841) | MessageGenerator.generate_getobject_message() missing 1 required positional argument: 'object_id'
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59841
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:25 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "NdbXH1mI5bgOy+4R1ZRdMcoFejqKwNuSqmJ5NbqAqiw=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:25 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "NdbXH1mI5bgOy+4R1ZRdMcoFejqKwNuSqmJ5NbqAqiw=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:25 | INFO | Received message b'{"type": "getobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:25 | INFO | inputHandling | handle_object | New object received | d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8
+28/11/2022 15:30:25 | INFO | inputHandling | handle_object | d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8 | Object added to database
+28/11/2022 15:30:25 | INFO | OBJECT | ihaveobject message sent to active nodes | d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to 41.202.75.120:420
+28/11/2022 15:30:25 | INFO | Connecting to ('41.202.75.120', 420)
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to 54.237.70.245:420
+28/11/2022 15:30:25 | INFO | Connecting to ('54.237.70.245', 420)
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to 89.141.56.248:420
+28/11/2022 15:30:25 | INFO | Connecting to ('89.141.56.248', 420)
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to 88.73.117.159:420
+28/11/2022 15:30:25 | INFO | Connecting to ('88.73.117.159', 420)
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to ('88.73.117.159', 420) queue
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to 163.137.37.153:420
+28/11/2022 15:30:25 | INFO | Connecting to ('163.137.37.153', 420)
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to ('163.137.37.153', 420) queue
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to 12.121.128.206:420
+28/11/2022 15:30:25 | INFO | Connecting to ('12.121.128.206', 420)
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to ('12.121.128.206', 420) queue
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to 7.220.91.97:420
+28/11/2022 15:30:25 | INFO | Connecting to ('7.220.91.97', 420)
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to ('7.220.91.97', 420) queue
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to 118.8.221.193:420
+28/11/2022 15:30:25 | INFO | Connecting to ('118.8.221.193', 420)
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to ('118.8.221.193', 420) queue
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to 160.213.178.85:420
+28/11/2022 15:30:25 | INFO | Connecting to ('160.213.178.85', 420)
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}\n' to ('160.213.178.85', 420) queue
+28/11/2022 15:30:25 | INFO | Received b'{"type": "getobject", "objectid": "d9ef2939f1ef934316560265cbd06a3567f80cfe368564c193a8bf68e8b82cf8"}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "NdbXH1mI5bgOy+4R1ZRdMcoFejqKwNuSqmJ5NbqAqiw=", "value": 1000}]}}\n' to 127.0.0.1:59841
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "NdbXH1mI5bgOy+4R1ZRdMcoFejqKwNuSqmJ5NbqAqiw=", "value": 1000}]}}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:25 | INFO | Received message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:25 | INFO | Received b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:25 | ERROR | ObjectHandler.add_object | Verification failed | 'str' object has no attribute 'verify'
+28/11/2022 15:30:25 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' | ('127.0.0.1', 59841) | MessageGenerator.generate_getobject_message() missing 1 required positional argument: 'object_id'
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59841
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:25 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:25 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:25 | INFO | OBJECT | Object already known | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 15:30:25 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:59841
+28/11/2022 15:30:25 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:27 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 15:30:27 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 15:30:27 | ERROR | ConnectionHandler.start_connection | Could not connect to ('118.8.221.193', 420), timeout after 2s
+28/11/2022 15:30:27 | ERROR | ConnectionHandler.start_connection | Could not connect to ('7.220.91.97', 420), timeout after 2s
+28/11/2022 15:30:27 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:30:27 | ERROR | ConnectionHandler.start_connection | Could not connect to ('12.121.128.206', 420), timeout after 2s
+28/11/2022 15:30:27 | ERROR | ConnectionHandler.start_connection | Could not connect to ('88.73.117.159', 420), timeout after 2s
+28/11/2022 15:30:27 | ERROR | ConnectionHandler.start_connection | Could not connect to ('160.213.178.85', 420), timeout after 2s
+28/11/2022 15:30:27 | ERROR | ConnectionHandler.start_connection | Could not connect to ('163.137.37.153', 420), timeout after 2s
+28/11/2022 15:30:30 | INFO | Received message b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:30 | INFO | Received b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:30 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:30 | ERROR | ObjectHandler.add_object | Verification failed | 'str' object has no attribute 'verify'
+28/11/2022 15:30:30 | ERROR | inputHandling | handle_input | b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' | ('127.0.0.1', 59841) | MessageGenerator.generate_getobject_message() missing 1 required positional argument: 'object_id'
+28/11/2022 15:30:30 | INFO | Sending b'{"type": "error", "error": "Unknown Error"}\n' to 127.0.0.1:59841
+28/11/2022 15:30:30 | INFO | Adding message b'{"type": "error", "error": "Unknown Error"}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:30 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:30 | INFO | inputHandling | handle_object | New object received | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875
+28/11/2022 15:30:30 | ERROR | Transaction.verify | 113b0c42f2... | 'pubkey'
+28/11/2022 15:30:30 | ERROR | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object verification failed
+28/11/2022 15:30:35 | INFO | Received message b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:35 | INFO | Received b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:35 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "accc59fda5fce404cc15ecec534de8aad4860df217693798b5b019c2e22ae659", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:35 | INFO | Sending b'{"type": "object", "object": null}\n' to 127.0.0.1:59841
+28/11/2022 15:30:35 | INFO | Adding message b'{"type": "object", "object": null}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:30:35 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "accc59fda5fce404cc15ecec534de8aad4860df217693798b5b019c2e22ae659", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:35 | INFO | inputHandling | handle_object | New object received | 7ae40ef3792dacaa64eb075e9612565920dec7eb88c5326486e017da0f060371
+28/11/2022 15:30:35 | INFO | Received message b'{"type": "getobject", "objectid": "7ae40ef3792dacaa64eb075e9612565920dec7eb88c5326486e017da0f060371"}' from ('127.0.0.1', 59841). Added to queue.
+28/11/2022 15:30:35 | WARNING | Transaction.verify | input txid does not exist
+28/11/2022 15:30:35 | ERROR | inputHandling | handle_object | 7ae40ef3792dacaa64eb075e9612565920dec7eb88c5326486e017da0f060371 | Object verification failed
+28/11/2022 15:30:35 | INFO | Received b'{"type": "getobject", "objectid": "7ae40ef3792dacaa64eb075e9612565920dec7eb88c5326486e017da0f060371"}' from ('127.0.0.1', 59841)
+28/11/2022 15:30:35 | INFO | Sending b'{"type": "object", "object": null}\n' to 127.0.0.1:59841
+28/11/2022 15:30:35 | INFO | Adding message b'{"type": "object", "object": null}\n' to ('127.0.0.1', 59841) queue
+28/11/2022 15:36:57 | INFO | New connection from ('127.0.0.1', 60055)
+28/11/2022 15:36:57 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:36:58 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:36:58 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:36:58 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 60055)
+28/11/2022 15:36:58 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to 127.0.0.1:60055
+28/11/2022 15:36:58 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:36:59 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:36:59 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 60055)
+28/11/2022 15:36:59 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420"]}\n' to 127.0.0.1:60055
+28/11/2022 15:36:59 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420"]}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:36:59 | INFO | Received message b'{"te": "get' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:36:59 | INFO | Received b'{"te": "get' from ('127.0.0.1', 60055)
+28/11/2022 15:36:59 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 15:36:59 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:60055
+28/11/2022 15:36:59 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:36:59 | INFO | Received message b'{"type": "peers", "peers": ["12.139.196.57:420"]}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:36:59 | INFO | Received b'{"type": "peers", "peers": ["12.139.196.57:420"]}' from ('127.0.0.1', 60055)
+28/11/2022 15:36:59 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:36:59 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 60055)
+28/11/2022 15:36:59 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420", "12.139.196.57:420"]}\n' to 127.0.0.1:60055
+28/11/2022 15:36:59 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420", "12.139.196.57:420"]}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:37:00 | INFO | Received message b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:37:00 | INFO | Received b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}' from ('127.0.0.1', 60055)
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "getobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to 127.0.0.1:60055
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "getobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:37:00 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "gxGc2e9BtFaMN/nawpRQVLxW1+d1R4yJBxcrYOtq1ko=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:37:00 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "gxGc2e9BtFaMN/nawpRQVLxW1+d1R4yJBxcrYOtq1ko=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60055)
+28/11/2022 15:37:00 | INFO | Received message b'{"type": "getobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:37:00 | INFO | inputHandling | handle_object | New object received | 5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8
+28/11/2022 15:37:00 | INFO | inputHandling | handle_object | 5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8 | Object added to database
+28/11/2022 15:37:00 | INFO | OBJECT | ihaveobject message sent to active nodes | 5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to 41.202.75.120:420
+28/11/2022 15:37:00 | INFO | Connecting to ('41.202.75.120', 420)
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to 54.237.70.245:420
+28/11/2022 15:37:00 | INFO | Connecting to ('54.237.70.245', 420)
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to 89.141.56.248:420
+28/11/2022 15:37:00 | INFO | Connecting to ('89.141.56.248', 420)
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to 88.73.117.159:420
+28/11/2022 15:37:00 | INFO | Connecting to ('88.73.117.159', 420)
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to ('88.73.117.159', 420) queue
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to 163.137.37.153:420
+28/11/2022 15:37:00 | INFO | Connecting to ('163.137.37.153', 420)
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to ('163.137.37.153', 420) queue
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to 12.121.128.206:420
+28/11/2022 15:37:00 | INFO | Connecting to ('12.121.128.206', 420)
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to ('12.121.128.206', 420) queue
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to 7.220.91.97:420
+28/11/2022 15:37:00 | INFO | Connecting to ('7.220.91.97', 420)
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to ('7.220.91.97', 420) queue
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to 118.8.221.193:420
+28/11/2022 15:37:00 | INFO | Connecting to ('118.8.221.193', 420)
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to ('118.8.221.193', 420) queue
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to 160.213.178.85:420
+28/11/2022 15:37:00 | INFO | Connecting to ('160.213.178.85', 420)
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to ('160.213.178.85', 420) queue
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to 12.139.196.57:420
+28/11/2022 15:37:00 | INFO | Connecting to ('12.139.196.57', 420)
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}\n' to ('12.139.196.57', 420) queue
+28/11/2022 15:37:00 | INFO | Received b'{"type": "getobject", "objectid": "5f77132f0338b1af60b15c1a5b64d20584515d24251e2a3291866ef328e797f8"}' from ('127.0.0.1', 60055)
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "gxGc2e9BtFaMN/nawpRQVLxW1+d1R4yJBxcrYOtq1ko=", "value": 1000}]}}\n' to 127.0.0.1:60055
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "gxGc2e9BtFaMN/nawpRQVLxW1+d1R4yJBxcrYOtq1ko=", "value": 1000}]}}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:37:00 | INFO | Received message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:37:00 | INFO | Received b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 60055)
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "getobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:60055
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "getobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:37:00 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:37:00 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60055)
+28/11/2022 15:37:00 | INFO | OBJECT | Object already known | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 15:37:00 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:60055
+28/11/2022 15:37:00 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:37:02 | ERROR | ConnectionHandler.start_connection | Could not connect to ('12.121.128.206', 420), timeout after 2s
+28/11/2022 15:37:02 | ERROR | ConnectionHandler.start_connection | Could not connect to ('88.73.117.159', 420), timeout after 2s
+28/11/2022 15:37:02 | ERROR | ConnectionHandler.start_connection | Could not connect to ('7.220.91.97', 420), timeout after 2s
+28/11/2022 15:37:02 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 15:37:02 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 15:37:02 | ERROR | ConnectionHandler.start_connection | Could not connect to ('163.137.37.153', 420), timeout after 2s
+28/11/2022 15:37:02 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:37:02 | ERROR | ConnectionHandler.start_connection | Could not connect to ('12.139.196.57', 420), timeout after 2s
+28/11/2022 15:37:02 | ERROR | ConnectionHandler.start_connection | Could not connect to ('160.213.178.85', 420), timeout after 2s
+28/11/2022 15:37:02 | ERROR | ConnectionHandler.start_connection | Could not connect to ('118.8.221.193', 420), timeout after 2s
+28/11/2022 15:37:05 | INFO | Received message b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:37:05 | INFO | Received b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60055)
+28/11/2022 15:37:05 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:37:05 | INFO | Sending b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}\n' to 127.0.0.1:60055
+28/11/2022 15:37:05 | INFO | Adding message b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:37:05 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60055)
+28/11/2022 15:37:05 | INFO | inputHandling | handle_object | New object received | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875
+28/11/2022 15:37:05 | ERROR | Transaction.verify | 113b0c42f2... | 'pubkey'
+28/11/2022 15:37:05 | ERROR | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object verification failed
+28/11/2022 15:37:10 | INFO | Received message b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:37:10 | INFO | Received b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60055)
+28/11/2022 15:37:10 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "f59fbdfdc3cd580001a8321459db9cc4301dc11595e74ede8f0f000f21647e94", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:37:10 | INFO | Sending b'{"type": "object", "object": null}\n' to 127.0.0.1:60055
+28/11/2022 15:37:10 | INFO | Adding message b'{"type": "object", "object": null}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:37:10 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "f59fbdfdc3cd580001a8321459db9cc4301dc11595e74ede8f0f000f21647e94", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60055)
+28/11/2022 15:37:10 | INFO | inputHandling | handle_object | New object received | da8afafb743258002d76adac7008fe6002ed72699a8c6067cf5734bffdc6db8e
+28/11/2022 15:37:10 | INFO | Received message b'{"type": "getobject", "objectid": "da8afafb743258002d76adac7008fe6002ed72699a8c6067cf5734bffdc6db8e"}' from ('127.0.0.1', 60055). Added to queue.
+28/11/2022 15:37:10 | WARNING | Transaction.verify | input txid does not exist
+28/11/2022 15:37:10 | ERROR | inputHandling | handle_object | da8afafb743258002d76adac7008fe6002ed72699a8c6067cf5734bffdc6db8e | Object verification failed
+28/11/2022 15:37:10 | INFO | Received b'{"type": "getobject", "objectid": "da8afafb743258002d76adac7008fe6002ed72699a8c6067cf5734bffdc6db8e"}' from ('127.0.0.1', 60055)
+28/11/2022 15:37:10 | INFO | Sending b'{"type": "object", "object": null}\n' to 127.0.0.1:60055
+28/11/2022 15:37:10 | INFO | Adding message b'{"type": "object", "object": null}\n' to ('127.0.0.1', 60055) queue
+28/11/2022 15:47:09 | INFO | New connection from ('127.0.0.1', 60277)
+28/11/2022 15:47:09 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:09 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:09 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:09 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:09 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to 127.0.0.1:60277
+28/11/2022 15:47:09 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:10 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:10 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:10 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420", "12.139.196.57:420"]}\n' to 127.0.0.1:60277
+28/11/2022 15:47:10 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420", "12.139.196.57:420"]}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:10 | INFO | Received message b'{"te": "get' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:10 | INFO | Received b'{"te": "get' from ('127.0.0.1', 60277)
+28/11/2022 15:47:10 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 15:47:10 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:60277
+28/11/2022 15:47:10 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:10 | INFO | Received message b'{"type": "peers", "peers": ["74.249.129.171:420"]}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:10 | INFO | Received b'{"type": "peers", "peers": ["74.249.129.171:420"]}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:10 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:10 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:10 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420", "12.139.196.57:420", "74.249.129.171:420"]}\n' to 127.0.0.1:60277
+28/11/2022 15:47:10 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420", "12.139.196.57:420", "74.249.129.171:420"]}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:11 | INFO | Received message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:11 | INFO | Received b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "getobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 127.0.0.1:60277
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "getobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:11 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "S0g6zpXAWpUWPptpAblNFpxduhC5KMygc6Jm5sHRkFY=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:11 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "S0g6zpXAWpUWPptpAblNFpxduhC5KMygc6Jm5sHRkFY=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:11 | INFO | Received message b'{"type": "getobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:11 | INFO | inputHandling | handle_object | New object received | 30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225
+28/11/2022 15:47:11 | INFO | inputHandling | handle_object | 30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225 | Object added to database
+28/11/2022 15:47:11 | INFO | OBJECT | ihaveobject message sent to active nodes | 30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 41.202.75.120:420
+28/11/2022 15:47:11 | INFO | Connecting to ('41.202.75.120', 420)
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 54.237.70.245:420
+28/11/2022 15:47:11 | INFO | Connecting to ('54.237.70.245', 420)
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 89.141.56.248:420
+28/11/2022 15:47:11 | INFO | Connecting to ('89.141.56.248', 420)
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 88.73.117.159:420
+28/11/2022 15:47:11 | INFO | Connecting to ('88.73.117.159', 420)
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('88.73.117.159', 420) queue
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 163.137.37.153:420
+28/11/2022 15:47:11 | INFO | Connecting to ('163.137.37.153', 420)
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('163.137.37.153', 420) queue
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 12.121.128.206:420
+28/11/2022 15:47:11 | INFO | Connecting to ('12.121.128.206', 420)
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('12.121.128.206', 420) queue
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 7.220.91.97:420
+28/11/2022 15:47:11 | INFO | Connecting to ('7.220.91.97', 420)
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('7.220.91.97', 420) queue
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 118.8.221.193:420
+28/11/2022 15:47:11 | INFO | Connecting to ('118.8.221.193', 420)
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('118.8.221.193', 420) queue
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 160.213.178.85:420
+28/11/2022 15:47:11 | INFO | Connecting to ('160.213.178.85', 420)
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('160.213.178.85', 420) queue
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 12.139.196.57:420
+28/11/2022 15:47:11 | INFO | Connecting to ('12.139.196.57', 420)
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('12.139.196.57', 420) queue
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to 74.249.129.171:420
+28/11/2022 15:47:11 | INFO | Connecting to ('74.249.129.171', 420)
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}\n' to ('74.249.129.171', 420) queue
+28/11/2022 15:47:11 | INFO | Received b'{"type": "getobject", "objectid": "30e1883dba0beddded772a4209e806a0a04070df364f2af483ff9ea41519f225"}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "S0g6zpXAWpUWPptpAblNFpxduhC5KMygc6Jm5sHRkFY=", "value": 1000}]}}\n' to 127.0.0.1:60277
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "S0g6zpXAWpUWPptpAblNFpxduhC5KMygc6Jm5sHRkFY=", "value": 1000}]}}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:11 | INFO | Received message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:11 | INFO | Received b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "getobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:60277
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "getobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:11 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:11 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:11 | INFO | OBJECT | Object already known | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 15:47:11 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:60277
+28/11/2022 15:47:11 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:13 | ERROR | ConnectionHandler.start_connection | Could not connect to ('88.73.117.159', 420), timeout after 2s
+28/11/2022 15:47:13 | ERROR | ConnectionHandler.start_connection | Could not connect to ('74.249.129.171', 420), timeout after 2s
+28/11/2022 15:47:13 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 15:47:13 | ERROR | ConnectionHandler.start_connection | Could not connect to ('160.213.178.85', 420), timeout after 2s
+28/11/2022 15:47:13 | ERROR | ConnectionHandler.start_connection | Could not connect to ('118.8.221.193', 420), timeout after 2s
+28/11/2022 15:47:13 | ERROR | ConnectionHandler.start_connection | Could not connect to ('12.139.196.57', 420), timeout after 2s
+28/11/2022 15:47:13 | ERROR | ConnectionHandler.start_connection | Could not connect to ('7.220.91.97', 420), timeout after 2s
+28/11/2022 15:47:13 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 15:47:13 | ERROR | ConnectionHandler.start_connection | Could not connect to ('163.137.37.153', 420), timeout after 2s
+28/11/2022 15:47:13 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 15:47:13 | ERROR | ConnectionHandler.start_connection | Could not connect to ('12.121.128.206', 420), timeout after 2s
+28/11/2022 15:47:16 | INFO | Received message b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:16 | INFO | Received b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:16 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:16 | INFO | Sending b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}\n' to 127.0.0.1:60277
+28/11/2022 15:47:16 | INFO | Adding message b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:16 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:16 | INFO | inputHandling | handle_object | New object received | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875
+28/11/2022 15:47:16 | ERROR | Transaction.verify | 113b0c42f2... | 'pubkey'
+28/11/2022 15:47:16 | ERROR | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object verification failed
+28/11/2022 15:47:21 | INFO | Received message b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:21 | INFO | Received b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:21 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "76f3d89bf053b7cd26bbbdb816b38f08cd6e2185c76894854503bea16d1b78b9", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:21 | INFO | Sending b'{"type": "object", "object": null}\n' to 127.0.0.1:60277
+28/11/2022 15:47:21 | INFO | Adding message b'{"type": "object", "object": null}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 15:47:21 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "76f3d89bf053b7cd26bbbdb816b38f08cd6e2185c76894854503bea16d1b78b9", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:21 | INFO | inputHandling | handle_object | New object received | ab58d03f6d9d3414884dac204087dfb5c4e771423077b137eca14f3d4c7dfeea
+28/11/2022 15:47:21 | INFO | Received message b'{"type": "getobject", "objectid": "ab58d03f6d9d3414884dac204087dfb5c4e771423077b137eca14f3d4c7dfeea"}' from ('127.0.0.1', 60277). Added to queue.
+28/11/2022 15:47:21 | WARNING | Transaction.verify | input txid does not exist
+28/11/2022 15:47:21 | ERROR | inputHandling | handle_object | ab58d03f6d9d3414884dac204087dfb5c4e771423077b137eca14f3d4c7dfeea | Object verification failed
+28/11/2022 15:47:21 | INFO | Received b'{"type": "getobject", "objectid": "ab58d03f6d9d3414884dac204087dfb5c4e771423077b137eca14f3d4c7dfeea"}' from ('127.0.0.1', 60277)
+28/11/2022 15:47:21 | INFO | Sending b'{"type": "object", "object": null}\n' to 127.0.0.1:60277
+28/11/2022 15:47:21 | INFO | Adding message b'{"type": "object", "object": null}\n' to ('127.0.0.1', 60277) queue
+28/11/2022 16:07:46 | ERROR | ObjectHandler | load_objects failed | Expecting value: line 25 column 11 (char 491)
+28/11/2022 16:09:30 | INFO | New connection from ('127.0.0.1', 60644)
+28/11/2022 16:09:30 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 60644) queue
+28/11/2022 16:09:30 | INFO | Adding message b'{"type": "getpeers"}\n' to ('127.0.0.1', 60644) queue
+28/11/2022 16:09:30 | INFO | Received message b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:30 | INFO | Received b'{"type":"hello","version":"0.8.0","agent":"Fake Grader"}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:30 | INFO | Sending b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to 127.0.0.1:60644
+28/11/2022 16:09:30 | INFO | Adding message b'{"type": "hello", "version": "0.8.0", "agent": "Cavalex Node"}\n' to ('127.0.0.1', 60644) queue
+28/11/2022 16:09:31 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:31 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:31 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420", "12.139.196.57:420", "74.249.129.171:420"]}\n' to 127.0.0.1:60644
+28/11/2022 16:09:31 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420", "12.139.196.57:420", "74.249.129.171:420"]}\n' to ('127.0.0.1', 60644) queue
+28/11/2022 16:09:31 | INFO | Received message b'{"te": "get' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:31 | INFO | Received b'{"te": "get' from ('127.0.0.1', 60644)
+28/11/2022 16:09:31 | ERROR | inputHandler | handle_input | b'{"te": "get' | Unterminated string starting at: line 1 column 8 (char 7) | ('Unterminated string starting at: line 1 column 8 (char 7)',)
+28/11/2022 16:09:31 | INFO | Sending b'{"type": "error", "error": "Invalid json."}\n' to 127.0.0.1:60644
+28/11/2022 16:09:31 | INFO | Adding message b'{"type": "error", "error": "Invalid json."}\n' to ('127.0.0.1', 60644) queue
+28/11/2022 16:09:31 | INFO | Received message b'{"type": "peers", "peers": ["107.11.10.250:420"]}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:31 | INFO | Received b'{"type": "peers", "peers": ["107.11.10.250:420"]}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:31 | INFO | Received message b'{"type": "getpeers"}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:31 | INFO | Received b'{"type": "getpeers"}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:31 | INFO | Sending b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420", "12.139.196.57:420", "74.249.129.171:420", "107.11.10.250:420"]}\n' to 127.0.0.1:60644
+28/11/2022 16:09:31 | INFO | Adding message b'{"type": "peers", "peers": ["41.202.75.120:420", "54.237.70.245:420", "89.141.56.248:420", "88.73.117.159:420", "163.137.37.153:420", "12.121.128.206:420", "7.220.91.97:420", "118.8.221.193:420", "160.213.178.85:420", "12.139.196.57:420", "74.249.129.171:420", "107.11.10.250:420"]}\n' to ('127.0.0.1', 60644) queue
+28/11/2022 16:09:32 | INFO | Received message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:32 | INFO | Received b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "getobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 127.0.0.1:60644
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "getobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('127.0.0.1', 60644) queue
+28/11/2022 16:09:32 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "YJYhPK4ygyj24IBSsbd3LdZ0l9FncZ702v29Ztu7nF4=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:32 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "YJYhPK4ygyj24IBSsbd3LdZ0l9FncZ702v29Ztu7nF4=", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:32 | INFO | Received message b'{"type": "getobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:32 | INFO | inputHandling | handle_object | New object received | 9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c
+28/11/2022 16:09:32 | INFO | inputHandling | handle_object | 9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c | Object added to database
+28/11/2022 16:09:32 | INFO | inputHandling | handle_object | 9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c | Object added to database
+28/11/2022 16:09:32 | INFO | OBJECT | ihaveobject message sent to active nodes | 9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 41.202.75.120:420
+28/11/2022 16:09:32 | INFO | Connecting to ('41.202.75.120', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 54.237.70.245:420
+28/11/2022 16:09:32 | INFO | Connecting to ('54.237.70.245', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 89.141.56.248:420
+28/11/2022 16:09:32 | INFO | Connecting to ('89.141.56.248', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 88.73.117.159:420
+28/11/2022 16:09:32 | INFO | Connecting to ('88.73.117.159', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('88.73.117.159', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 163.137.37.153:420
+28/11/2022 16:09:32 | INFO | Connecting to ('163.137.37.153', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('163.137.37.153', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 12.121.128.206:420
+28/11/2022 16:09:32 | INFO | Connecting to ('12.121.128.206', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('12.121.128.206', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 7.220.91.97:420
+28/11/2022 16:09:32 | INFO | Connecting to ('7.220.91.97', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('7.220.91.97', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 118.8.221.193:420
+28/11/2022 16:09:32 | INFO | Connecting to ('118.8.221.193', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('118.8.221.193', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 160.213.178.85:420
+28/11/2022 16:09:32 | INFO | Connecting to ('160.213.178.85', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('160.213.178.85', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 12.139.196.57:420
+28/11/2022 16:09:32 | INFO | Connecting to ('12.139.196.57', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('12.139.196.57', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 74.249.129.171:420
+28/11/2022 16:09:32 | INFO | Connecting to ('74.249.129.171', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('74.249.129.171', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to 107.11.10.250:420
+28/11/2022 16:09:32 | INFO | Connecting to ('107.11.10.250', 420)
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}\n' to ('107.11.10.250', 420) queue
+28/11/2022 16:09:32 | INFO | Received b'{"type": "getobject", "objectid": "9c327d75fcb5ac46a3adfa317d4061fb668124e96b847bacd51b8c2f80f0c92c"}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "YJYhPK4ygyj24IBSsbd3LdZ0l9FncZ702v29Ztu7nF4=", "value": 1000}]}}\n' to 127.0.0.1:60644
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "object", "object": {"type": "transaction", "height": 0, "outputs": [{"pubkey": "YJYhPK4ygyj24IBSsbd3LdZ0l9FncZ702v29Ztu7nF4=", "value": 1000}]}}\n' to ('127.0.0.1', 60644) queue
+28/11/2022 16:09:32 | INFO | Received message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:32 | INFO | Received b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "getobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 127.0.0.1:60644
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "getobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('127.0.0.1', 60644) queue
+28/11/2022 16:09:32 | INFO | Received message b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:32 | INFO | Received b'{"type": "object", "object": {"height": 0, "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:32 | INFO | inputHandling | handle_object | New object received | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 16:09:32 | INFO | inputHandling | handle_object | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea | Object added to database
+28/11/2022 16:09:32 | INFO | inputHandling | handle_object | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea | Object added to database
+28/11/2022 16:09:32 | INFO | OBJECT | ihaveobject message sent to active nodes | 8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 41.202.75.120:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('41.202.75.120', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 54.237.70.245:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('54.237.70.245', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 89.141.56.248:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('89.141.56.248', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 88.73.117.159:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('88.73.117.159', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 163.137.37.153:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('163.137.37.153', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 12.121.128.206:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('12.121.128.206', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 7.220.91.97:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('7.220.91.97', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 118.8.221.193:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('118.8.221.193', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 160.213.178.85:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('160.213.178.85', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 12.139.196.57:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('12.139.196.57', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 74.249.129.171:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('74.249.129.171', 420) queue
+28/11/2022 16:09:32 | INFO | Sending b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to 107.11.10.250:420
+28/11/2022 16:09:32 | INFO | Adding message b'{"type": "ihaveobject", "objectid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}\n' to ('107.11.10.250', 420) queue
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('12.121.128.206', 420), timeout after 2s
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('54.237.70.245', 420), timeout after 2s
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('88.73.117.159', 420), timeout after 2s
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('89.141.56.248', 420), timeout after 2s
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('41.202.75.120', 420), timeout after 2s
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('163.137.37.153', 420), timeout after 2s
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('7.220.91.97', 420), timeout after 2s
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('118.8.221.193', 420), timeout after 2s
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('74.249.129.171', 420), timeout after 2s
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('160.213.178.85', 420), timeout after 2s
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('107.11.10.250', 420), timeout after 2s
+28/11/2022 16:09:34 | ERROR | ConnectionHandler.start_connection | Could not connect to ('12.139.196.57', 420), timeout after 2s
+28/11/2022 16:09:37 | INFO | Received message b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:37 | INFO | Received b'{"type": "ihaveobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:37 | INFO | Sending b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}\n' to 127.0.0.1:60644
+28/11/2022 16:09:37 | INFO | Adding message b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}\n' to ('127.0.0.1', 60644) queue
+28/11/2022 16:09:38 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:38 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}], "type": "transaction"}}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:38 | INFO | inputHandling | handle_object | New object received | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875
+28/11/2022 16:09:38 | INFO | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object added to database
+28/11/2022 16:09:38 | ERROR | Transaction.verify | 113b0c42f2... | 'pubkey'
+28/11/2022 16:09:38 | ERROR | inputHandling | handle_object | 113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875 | Object verification failed
+28/11/2022 16:09:43 | INFO | Received message b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:43 | INFO | Received b'{"type": "getobject", "objectid": "113b0c42f250b2d87fc4460cbe053b393d6cf829e9ca9c53c354a8885ef79875"}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:43 | INFO | Sending b'{"type": "object", "object": {"type": "transaction", "inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}]}}\n' to 127.0.0.1:60644
+28/11/2022 16:09:43 | INFO | Adding message b'{"type": "object", "object": {"type": "transaction", "inputs": [{"outpoint": {"index": 0, "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"}, "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"}], "outputs": [{"pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e", "value": 50}]}}\n' to ('127.0.0.1', 60644) queue
+28/11/2022 16:09:43 | INFO | Received message b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "04e3c65106f02ad2efd1853755d2723022771547d44b2ba4dce86a87415431a3", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60644). Added to queue.
+28/11/2022 16:09:43 | INFO | Received b'{"type": "object", "object": {"inputs": [{"outpoint": {"txid": "04e3c65106f02ad2efd1853755d2723022771547d44b2ba4dce86a87415431a3", "index": 0}, "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"}], "outputs": [{"pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540", "value": 1000}], "type": "transaction"}}' from ('127.0.0.1', 60644)
+28/11/2022 16:09:43 | INFO | inputHandling | handle_object | New object received | 293d7d74037173caed5a929b9a9ce8b68cd13f27907b3ef038e45d924078afa8
+28/11/2022 16:09:43 | INFO | inputHandling | handle_object | 293d7d74037173caed5a929b9a9ce8b68cd13f27907b3ef038e45d924078afa8 | Object added to database
+28/11/2022 16:09:43 | WARNING | Transaction.verify | input txid does not exist
+28/11/2022 16:09:43 | ERROR | inputHandling | handle_object | 293d7d74037173caed5a929b9a9ce8b68cd13f27907b3ef038e45d924078afa8 | Object verification failed

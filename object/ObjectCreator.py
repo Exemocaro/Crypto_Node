@@ -1,6 +1,6 @@
-from engine.Transaction import Transaction
-from engine.CoinbaseTransaction import CoinbaseTransaction
-from engine.Block import Block
+from object.Transaction import Transaction
+from object.CoinbaseTransaction import CoinbaseTransaction
+from object.Block import Block
 
 
 # apparently this is the way to do it, to avoid circular imports
@@ -10,7 +10,7 @@ class ObjectCreator:
     @staticmethod
     def create_object(json_object):
         if json_object["type"] == "transaction":
-            if "height" in json_object:
+            if "height" in json_object: # check if it's a coinbase transaction
                 try:
                     return CoinbaseTransaction.from_json(json_object)
                 except Exception as e:

@@ -6,13 +6,17 @@ import jsonschema
 
 from utility.json_validation import *
 from utility.logplus import LogPlus
+from utility.credentials_utility import *
+
 from object.CoinbaseTransaction import CoinbaseTransaction
 from object.Transaction import Transaction
-from engine.generateMessage import MessageGenerator
+
+from engine.MessageGenerator import MessageGenerator
 
 from config import *
-from utility.credentials_utility import *
+
 from database.ObjectHandler import *
+
 from network.NodeNetworking import *
 
 class Block:
@@ -75,7 +79,7 @@ class Block:
 
         """
 
-        # Ensure the targer is the one required
+        # Ensure the target is the one required
         if self.t != "00000002af000000000000000000000000000000000000000000000000000000":
             LogPlus.info("| INFO | Block.verify | Target is not the one required")
             return {"result": "False"}

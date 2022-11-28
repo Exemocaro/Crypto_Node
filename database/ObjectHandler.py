@@ -2,10 +2,12 @@ import json
 import json_canonical
 import hashlib
 
-from utility.logplus import LogPlus
-from object.Object import Object
-
 from colorama import Fore, Style
+
+from utility.logplus import LogPlus
+
+from object.Object import Object
+#from object.ObjectCreator import ObjectCreator
 
 from config import *
 
@@ -85,7 +87,7 @@ class ObjectHandler:
 
     @staticmethod
     def add_object(obj):
-        # check if the obj is a json
+        """# check if the obj is a json
         if type(obj) is dict:
             try:
                 # check if the object can be initialized -> valid json
@@ -100,7 +102,7 @@ class ObjectHandler:
         except Exception as e:
             LogPlus.error("| ERROR | ObjectHandler.add_object | Verification failed | " + str(e))
             return False
-
+        """
         try:
             ObjectHandler.objects.append(obj.get_json())
             ObjectHandler.id_to_index[obj.get_id()] = len(ObjectHandler.objects) - 1
