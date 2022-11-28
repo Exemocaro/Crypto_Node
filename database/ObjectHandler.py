@@ -82,30 +82,20 @@ class ObjectHandler:
     def update_id_to_index():
         ObjectHandler.id_to_index = {}
         for i in range(len(ObjectHandler.objects)):
-            object_id = Object.get_id_from_json(ObjectHandler.objects[i])
+            object_id = ObjectHandler.objects[i]["txid"]
             ObjectHandler.id_to_index[object_id] = i
 
     @staticmethod
-    def add_object(obj):
-        """# check if the obj is a json
-        if type(obj) is dict:
-            try:
-                # check if the object can be initialized -> valid json
-                obj = Object.from_json(obj)
-            except Exception as e:
-                LogPlus.error("| ERROR | ObjectHandler.add_object | " + str(e))
-                return False
-
+    def add_object(obj, validity=True):
+        print(type(obj))
         try:
-            # check if the object is valid
-            obj.verify()
-        except Exception as e:
-            LogPlus.error("| ERROR | ObjectHandler.add_object | Verification failed | " + str(e))
-            return False
-        """
-        try:
-            ObjectHandler.objects.append(obj.get_json())
-            ObjectHandler.id_to_index[obj.get_id()] = len(ObjectHandler.objects) - 1
+            txid = Object.get_id_from_json(obj)
+            ObjectHandler.objects.append({
+                "txid": txid,
+                "validity": validity,
+                "object": obj
+            })
+            ObjectHandler.id_to_index[txid] = len(ObjectHandler.objects) - 1
             ObjectHandler.save_objects()
         except Exception as e:
             LogPlus.error("| ERROR | ObjectHandler.add_object | " + str(e))
@@ -114,12 +104,12 @@ class ObjectHandler:
     @staticmethod
     def get_object(object_id):
         if object_id in ObjectHandler.id_to_index:
-            return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]
+            return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["object"]
         else:
             # refresh id_to_index and try again (just in case)
             ObjectHandler.update_id_to_index()
             if object_id in ObjectHandler.id_to_index:
-                return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]
+                return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["object"]
             else:
                 return None
 

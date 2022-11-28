@@ -7,7 +7,7 @@
 from threading import Thread
 from socket import socket, SOL_SOCKET, SO_REUSEADDR
 
-from engine.inputHandling import *
+from engine.inputHandler import *
 from engine.MessageGenerator import *
 
 from network.ConnectionHandler import ConnectionHandler
@@ -76,6 +76,7 @@ class NodeNetworking:
                     data = handler.in_queue.get()
                     LogPlus.info(f"| INFO | Received {data} from {handler.credentials}")
                     responses = handle_input(data, handler)
+                    print(responses)
                     if responses is None:
                         continue
                     for (cleaned_credentials, res) in responses:

@@ -155,8 +155,9 @@ class Block:
             return { "result": "False" }
 
         # The block is valid
+        return { "result": "True" }
 
-        # Since it's valid, before sending back the result we should check if we have all txids with us, and if not ask for them
+        """ # Since it's valid, before sending back the result we should check if we have all txids with us, and if not ask for them
         for object in ObjectHandler.objects: # fetch our known transactions
             if object["type"] == "transaction":
                 for input in object.inputs:
@@ -172,5 +173,4 @@ class Block:
                         if res is None:
                             continue
                         NodeNetworking.send_to_all_nodes(res)
-
-        return { "result": "True" }
+        return { "result": "True" } """
