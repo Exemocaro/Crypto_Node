@@ -1,16 +1,16 @@
 import json
 import json_canonical
 import hashlib
+from colorama import Fore, Style
 
 from utility.logplus import LogPlus
-from object.Object import Object
-from database.ObjectHandler import *
 
-from colorama import Fore, Style
+from object.Object import Object
+
+from database.ObjectHandler import ObjectHandler
 
 from config import *
 
-# we will work with tuples on the from (txid, outputs)
 class UTXO:
 
     set = {} # dict that stores every valid output of valid stored tansactions in json format
@@ -52,17 +52,10 @@ class UTXO:
         for input in inputs:
             outpoints.append((input["outpoint"]["txid"], input["outpoint"]["index"]))
         for tx_txid, tx_index in outpoints:
-            pass
-        """ if set_txid != tx_txid: # there's no txid in the set to confirm the transaction
-            valid_tx = False """
-            #if UTXO.set[]
-        
-        """ for set_txid, set_outputs in UTXO.set:
-            # check if the tx inputs match the ones stored in our set
-            for tx_txid, tx_index in outpoints:
-                if set_txid != tx_txid: # there's no txid in the set to confirm the transaction
-                    valid_tx = False """
+            if tx_txid not in UTXO.set:
+                valid_tx = False
+            else:
+                if tx_index not in UTXO.set[tx_txid]:
+                    valid_tx = False
 
         return valid_tx
-        
-        

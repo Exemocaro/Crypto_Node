@@ -11,10 +11,12 @@ from nacl.signing import VerifyKey, SigningKey
 
 from config import *
 from object.Object import Object
+
 from database.ObjectHandler import ObjectHandler
+from database.UTXO import *
+
 from utility.json_validation import regular_transaction_schema
 from utility.logplus import LogPlus
-from database.UTXO import *
 
 # Format of a regular transaction:
 """
@@ -184,7 +186,6 @@ class Transaction(Object):
             sum_output += output["value"]
 
         return sum_input - sum_output
-
 
 
     def __str__(self):

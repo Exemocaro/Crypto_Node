@@ -1,12 +1,10 @@
-import logging
-
 from utility.credentials_utility import *
 from utility.logplus import *
 
 from config import *
 
 
-# handles the known nodes database
+# handles the known nodes database\\
 # let's us add and remove nodes
 # handles saving to file
 class KnownNodesHandler:

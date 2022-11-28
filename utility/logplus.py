@@ -10,18 +10,18 @@ class LogPlus:
 
     @staticmethod
     def debug(message):
-        """ if len(message) > LOG_LIMIT:
+        if len(message) > LOG_LIMIT:
             message = message[0:LOG_LIMIT]
         logging.debug(message)
-        print(message) """
+        print(message)
         pass
 
     @staticmethod
     def info(message):
-        """ if len(message) > LOG_LIMIT:
+        if len(message) > LOG_LIMIT:
             message = message[0:LOG_LIMIT]
         logging.info(message)
-        print(message) """
+        print(message)
         pass
 
     @staticmethod

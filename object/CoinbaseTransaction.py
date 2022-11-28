@@ -9,7 +9,7 @@ from colorama import Fore, Style
 
 from utility.json_validation import coinbase_transaction_schema
 
-from engine.Object import Object
+from object.Object import Object
 
 # structure of a coinbase transaction:
 # {

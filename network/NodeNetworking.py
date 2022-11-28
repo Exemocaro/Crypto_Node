@@ -8,9 +8,11 @@ from threading import Thread
 from socket import socket, SOL_SOCKET, SO_REUSEADDR
 
 from engine.inputHandling import *
+from engine.MessageGenerator import *
+
 from network.ConnectionHandler import ConnectionHandler
+
 from utility.credentials_utility import *
-from engine.generateMessage import *
 
 from database.KnownNodesHandler import *
 

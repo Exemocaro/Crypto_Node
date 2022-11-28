@@ -1,1 +1,58 @@
-[]
+[
+    {
+        "type": "transaction",
+        "height": 0,
+        "outputs": [
+            {
+                "pubkey": "YJYhPK4ygyj24IBSsbd3LdZ0l9FncZ702v29Ztu7nF4=",
+                "value": 1000
+            }
+        ]
+    },
+    {
+        "type": "transaction",
+        "height": 0,
+        "outputs": [
+            {
+                "pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e",
+                "value": 50
+            }
+        ]
+    },
+    {
+        "type": "transaction",
+        "inputs": [
+            {
+                "outpoint": {
+                    "index": 0,
+                    "txid": "8a6fdba6541db169d9bb3249e91bfde5692048818031aa55062a41c673bd01ea"
+                },
+                "sig": "6f3d4522bf29e55becb3ce707830f62954cb109464737ea37bd0213f14ea52b530fe0c13d56c9496fa72466cbd94fb0a927e53a57786bca2dfa7214c89580403"
+            }
+        ],
+        "outputs": [
+            {
+                "pubkey": "5e3f197d8b63a853b79330d96a82d2ad51ff06605879f5f4b664c1d9a6b9c02e",
+                "value": 50
+            }
+        ]
+    },
+    {
+        "type": "transaction",
+        "inputs": [
+            {
+                "outpoint": {
+                    "txid": "04e3c65106f02ad2efd1853755d2723022771547d44b2ba4dce86a87415431a3",
+                    "index": 0
+                },
+                "sig": "abcd7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726c519e92266957429ced875256e6915eb8cea2ea66366e739415efc47a6805"
+            }
+        ],
+        "outputs": [
+            {
+                "pubkey": "abcdeabcde6a6d5d06ab7f85520df08a309b1a67c1e9d00e60c574885c48d540",
+                "value": 1000
+            }
+        ]
+    }
+]
