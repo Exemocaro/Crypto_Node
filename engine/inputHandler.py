@@ -18,12 +18,12 @@ from config import *
 from utility.json_validation import *
 
 
-
 # This is called when a message is received
 # It calls the appropriate function based on the type of the message
 # It returns the response (as byte-like data) to be sent back to the sender
 # If no response is needed, it returns None
 # If the message is not valid, it returns an error message
+
 def handle_input(data, handler):
     sender_address = handler.credentials
     try:
@@ -45,8 +45,7 @@ def handle_input(data, handler):
                     if function_name != "getpeers":
                         handler.close()
                         return None
-                response = globals()["handle_" + function_name](data_parsed, sender_address)
-                return response
+                return  globals()["handle_" + function_name](data_parsed, sender_address)
             else:
                 LogPlus.warning(f"| WARNING | {sender_address} | HANDLEINPUT | {data} | Invalid type | {message_type}")
                 return [(sender_address, MessageGenerator.generate_error_message("Type \"" + message_type + "\"invalid or not supported!"))]
@@ -59,6 +58,7 @@ def handle_input(data, handler):
 
 
 # This is called when a hello message is received
+@staticmethod
 def handle_hello(data_parsed, sender_address):
     try:
         jsonschema.validate(instance=data_parsed, schema=hello_message_schema)
@@ -70,6 +70,7 @@ def handle_hello(data_parsed, sender_address):
 
 
 # This is called when a getpeers message is received
+@staticmethod
 def handle_getpeers(data_parsed, sender_address):
     try:
         jsonschema.validate(instance=data_parsed, schema=getpeers_message_schema)
@@ -81,6 +82,7 @@ def handle_getpeers(data_parsed, sender_address):
 
 
 # This in called when a peers message is received
+@staticmethod
 def handle_peers(data_parsed, sender_address):
     try:
         jsonschema.validate(instance=data_parsed, schema=peers_message_schema)
@@ -98,6 +100,7 @@ def handle_peers(data_parsed, sender_address):
     #return [(sender_address, MessageGenerator.generate_ihaveobject_message())]
 
 # This is called when an error message is received
+@staticmethod
 def handle_error(data_parsed, sender_address):
     try:
         LogPlus.error(f"| ERROR | {sender_address} | ERROR | {data_parsed} | Error message received")
@@ -107,6 +110,7 @@ def handle_error(data_parsed, sender_address):
 
 
 # This is called when an ihaveobject message is received
+@staticmethod
 def handle_ihaveobject(data_parsed, sender_address):
     try:
         #print(data_parsed)
@@ -120,6 +124,7 @@ def handle_ihaveobject(data_parsed, sender_address):
 
 
 # This is called when a getobject message is received
+@staticmethod
 def handle_getobject(data_parsed, sender_address):
     try:
         jsonschema.validate(instance=data_parsed, schema=getobject_schema)
@@ -130,10 +135,17 @@ def handle_getobject(data_parsed, sender_address):
     # get the object
     object = ObjectHandler.get_object(data_parsed["objectid"])
 
-    # send the object
-    return [(sender_address, MessageGenerator.generate_object_message(object))]
+    # send the object only if it is valid
+    #if object.verify():
+    res =  [(sender_address, MessageGenerator.generate_object_message(object))]
+    print(res)
+    return res
+    #else:
+    #    LogPlus.error(f"| ERROR | inputHandling.handle_getobject | {data_parsed} | {sender_address} | Object is invalid!")
+    #    return [(sender_address, MessageGenerator.generate_error_message("Object is invalid!"))]
 
 # This is called when an object message is received
+@staticmethod
 def handle_object(data_parsed, sender_address):
     try:
         jsonschema.validate(instance=data_parsed, schema=object_schema)
@@ -154,7 +166,7 @@ def handle_object(data_parsed, sender_address):
             # validate object and add it to the database - first add the object to the database and then validate it!!
             try:
                 # first we add the object
-                ObjectHandler.add_object(object)
+                ObjectHandler.add_object(object.get_json())
                 LogPlus.info(f"| INFO | inputHandling | handle_object | {object_id} | Object added to database")
                 
                 verification_result = object.verify()
@@ -170,6 +182,8 @@ def handle_object(data_parsed, sender_address):
                     # request missing information (getobject)
                     messages_to_send = []
                     for txid in verification_result["txids"]:
+                        # TODO: send to everyone instead of just the sender
+                        #responses = [(node_credentials, message) for node_credentials in KnownNodesHandler.active_nodes]
                         messages_to_send.append((sender_address, MessageGenerator.generate_getobject_message(txid)))
                     return messages_to_send
 
@@ -202,13 +216,6 @@ def handle_object(data_parsed, sender_address):
     except Exception as e:
         LogPlus.error(f"| ERROR | inputHandling | handle_object | {data_parsed} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
-
-
-    # get the object
-    #object = ObjectCreator.create_object(data_parsed["object"])
-
-    # add the object to the database
-    #ObjectHandler.add_object(object)
 
     # send the ihaveobject message
     return [(sender_address, MessageGenerator.generate_ihaveobject_message(object.get_id()))]
