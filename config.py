@@ -7,8 +7,9 @@ SERVER_ADDRESS = ('', PORT)
 
 TIMEOUT = 2  # The timeout for the server
 
-INCOMING_DATA_BUFFER = 1024
+BLOCK_REWARD = 50 * (10 ** 12)
 
+INCOMING_DATA_BUFFER = 1024
 CLIENTS_NUMBER = 500
 DATA_SIZE = 2048  # size of data to read from each received message
 
@@ -26,3 +27,27 @@ logging.basicConfig(
     format='%(asctime)s %(message)s', 
     datefmt='%d/%m/%Y %H:%M:%S'
 )
+
+
+GENESIS_BLOCK = {
+    "T": "00000002af000000000000000000000000000000000000000000000000000000" ,
+    "created": 1624219079,
+    "miner" : "dionyziz",
+    "nonce": "0000000000000000000000000000000000000000000000000000002634878840",
+    "note" : "The Economist 2021-06-20: Crypto-miners are probably to blame for the graphics-chip shortage" ,
+    "previd" : None,
+    "txids" : [],
+    "type" : "block"
+}
+
+SAMPLE_BLOCK = {
+            "type": "block",
+            "txids": [],
+            "nonce": "c5ee71be4ca85b160d352923a84f86f44b7fc4fe60002214bc1236ceedc5c615",
+            "miner": "Jan",
+            "note": "420",
+            "previd": "00000000a420b7cefa2b7730243316921ed59ffe836e111ca3801f82a4f5360e",
+            "created": 1649827795114,
+            "T": "00000002af000000000000000000000000000000000000000000000000000000"
+        }
+

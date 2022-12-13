@@ -47,6 +47,7 @@ class Transaction(Object):
         self.inputs = inputs
         self.outputs = outputs
 
+
     # create a transaction from a json representation
     @staticmethod
     def from_json(tx_json):
@@ -56,12 +57,15 @@ class Transaction(Object):
         tx_inputs = tx_json["inputs"]
         tx_outputs = tx_json["outputs"]
         return Transaction(tx_inputs, tx_outputs)
+    
+    def get_type(self):
+        return "transaction" 
 
     def get_json(self):
         try:
             # get the json representation of the transaction
             tx_json = {
-                "type": "transaction",
+                type_key: "transaction",
                 "inputs": self.inputs,
                 "outputs": self.outputs
             }
@@ -153,11 +157,11 @@ class Transaction(Object):
             # 5. Check that the transaction is not a double spend
             # TODO : This is not mentioned in the task, but it's required to make sense
             # go through all saved transactions and check if the txid is already used as an input
-            used_inputs = [] # stores txid and index as tuple
+            """used_inputs = [] # stores txid and index as tuple
 
             if UTXO.is_available(self.inputs):
                 UTXO.addToSet(self.outputs) # should we add it here?
-                return True
+                return True"""
 
             return {"result": "True"}
         except Exception as e:

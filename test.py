@@ -43,14 +43,14 @@ print("Sent hello message")
 
 def get_input():
     input_data = input('Hey there: ')
-    if input_data == "hello":
+    if input_data == hello_key:
         print("Sending hello")
         input_data = MessageGenerator.generate_hello_message()
 
-    elif input_data == "peers":
-        input_data = json.dumps({"type": "peers", "peers": ["128.130.122.101:18018"]})
+    elif input_data == peers_key:
+        input_data = json.dumps({type_key: peers_key, peers_key: ["128.130.122.101:18018"]})
 
-    elif input_data.lower() == "getpeers":
+    elif input_data.lower() == getpeers_key:
         input_data = MessageGenerator.generate_getpeers_message().decode("utf-8")
         print("Sending" + input_data)
 

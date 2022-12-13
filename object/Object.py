@@ -4,9 +4,6 @@ import hashlib
 
 from abc import ABC, abstractmethod
 
-from network.NodeNetworking import *
-
-
 class Object(ABC):
 
     @abstractmethod
@@ -19,6 +16,10 @@ class Object(ABC):
     def get_id(self):
         return Object.get_id_from_json(self.get_json())
 
+    @abstractmethod
+    def get_type(self):
+        pass
+    
     @staticmethod
     def get_id_from_json(object_json):
         return hashlib.sha256(json_canonical.canonicalize(object_json)).digest().hex()

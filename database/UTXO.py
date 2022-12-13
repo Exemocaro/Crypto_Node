@@ -13,35 +13,53 @@ from config import *
 
 class UTXO:
 
-    set = {} # dict that stores every valid output of valid stored tansactions in json format
-    # {txid: [indexes]}
+    sets = {
+        "00000000a420b7cefa2b7730243316921ed59ffe836e111ca3801f82a4f5360e": [] # genesis block
+    }
+    
+    # dict that stores every valid output of valid stored tansactions in json format
+    # {block: [(txid, [indexes])]}
 
     # loads the set from the database files
     @staticmethod
     def load_set():
-        # load all transactions from the database into the set
-        for tx in ObjectHandler.getTransactions():
-            UTXO.set[tx["txid"]] = [i for i in range(len(tx.outputs) - 1)]
+        # recalculate the set from the database for each block
+        for block in ObjectHandler.get_blocks():
+            UTXO.sets[block.get_id()] = UTXO.calculate_set(block)
 
-        # remove the outputs that are spent
-        for tx in ObjectHandler.getTransactions():
-            for input in tx["inputs"]:
-                # remove the index from the set
-                UTXO.set[input["outpoint"]["txid"]].remove(input["outpoint"]["index"])
 
-    # removes an output from the set
+    @staticmethod
+    def clear():
+        UTXO.sets = {}
+
+    @staticmethod
+    def get_utxo(blockid):
+        if blockid in UTXO.sets:
+            return UTXO.sets[blockid]
+        else:
+            return None
+
+
+
+    """# removes an output from the set
     @staticmethod
     def remove_from_set(txid, index):
         try:
           UTXO.set[txid].remove(index)
         except:
-          pass
+          pass"""
 
     # adds an output in the set
     @staticmethod
-    def add_to_set(txid, num_outputs):
-        UTXO.set[txid] = [i for i in range(num_outputs)]
+    def add_new_set(blockid, set):
+        UTXO.set[blockid] = set
 
+    # get a set for a block
+    @staticmethod
+    def get_set(blockid):
+        return UTXO.set[blockid]
+
+    """
     # checks if a given transaction is valid in the context of the UTXO set
     @staticmethod       
     def is_available(inputs):
@@ -58,4 +76,4 @@ class UTXO:
                 if tx_index not in UTXO.set[tx_txid]:
                     valid_tx = False
 
-        return valid_tx
+        return valid_tx"""

@@ -5,30 +5,21 @@ import hashlib
 from colorama import Fore, Style
 
 from utility.logplus import LogPlus
-
+#from UTXO import *
 from object.Object import Object
 #from object.ObjectCreator import ObjectCreator
 
 from config import *
 
-GENESIS_BLOCK = {
-    "T": "00000002af000000000000000000000000000000000000000000000000000000",
-    "created": 1624219079,
-    "miner": "dionyziz",
-    "nonce": "0000000000000000000000000000000000000000000000000000002634878840",
-    "note": "The Economist 2021−06−20: Crypto−miners are probably to blame for the graphics−chip shortage",
-    "previd": None,
-    "txids ": [],
-    "type": "block"
-}
+from json_keys import *
 
 
 # This class handles all objects
 # Objects can be either transactions or blocks
-# The type of the object is stored in the object itself in the "type" field
+# The type of the object is stored in the object itself in the type_key field
 # structure of a regular transaction:
 # {
-#     "type": "transaction",
+#     type_key: "transaction",
 #     "inputs": [
 #         {
 #             "outpoint": {
@@ -48,7 +39,7 @@ GENESIS_BLOCK = {
 #
 # structure of a coinbase transaction:
 # {
-#     "type": "transaction",
+#     type_key: "transaction",
 #     "height": height of the block this transaction is in,
 #     "outputs": [
 #         {
@@ -60,7 +51,7 @@ GENESIS_BLOCK = {
 #
 # structure of a block:
 # {
-#     "type": "block",
+#     type_key: "block",
 #     "txids": [sha256-hash of all transactions in the block],
 #     "nonce": nonce of the block (sha256 format),
 #     "previd": sha256-hash of the previous block,
@@ -86,17 +77,22 @@ class ObjectHandler:
             ObjectHandler.id_to_index[object_id] = i
 
     @staticmethod
-    def add_object(obj, validity=True):
-        print(type(obj))
+    def add_object(obj, validity=True, type="unknown"):
         try:
             txid = Object.get_id_from_json(obj)
             ObjectHandler.objects.append({
                 "txid": txid,
                 "validity": validity,
-                "object": obj
+                object_key: obj,
+                type_key: type
             })
             ObjectHandler.id_to_index[txid] = len(ObjectHandler.objects) - 1
             ObjectHandler.save_objects()
+            ObjectHandler.update_id_to_index()
+            """if validity == "valid":
+                if UTXO.is_available(self.inputs):
+                UTXO.addToSet(self.outputs) # should we add it here?"""
+
         except Exception as e:
             LogPlus.error("| ERROR | ObjectHandler.add_object | " + str(e))
             return False
@@ -104,14 +100,58 @@ class ObjectHandler:
     @staticmethod
     def get_object(object_id):
         if object_id in ObjectHandler.id_to_index:
-            return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["object"]
+            return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]][object_key]
         else:
-            # refresh id_to_index and try again (just in case)
-            ObjectHandler.update_id_to_index()
-            if object_id in ObjectHandler.id_to_index:
-                return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["object"]
-            else:
-                return None
+            return None
+    
+    @staticmethod
+    def get_pending_objects():
+        return [obj[object_key] for obj in ObjectHandler.objects if obj["validity"] == "pending"]
+
+    @staticmethod
+    def update_object_status(object_id, validity):
+        if object_id in ObjectHandler.id_to_index:
+            ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["validity"] = validity
+            ObjectHandler.save_objects()
+
+    @staticmethod
+    def get_block_containing_object(object_id):
+        # get all objects of type block
+        blocks = [obj[object_key] for obj in ObjectHandler.objects if obj[type_key] == "block"]
+        
+        for block in blocks:
+            # check if the object is in txids of the block
+            if object_id in block["txids"]:
+                return Object.get_id_from_json(block)
+
+    @staticmethod
+    def get_chaintip():
+        # get all objects of type block
+        blocks = [obj[object_key] for obj in ObjectHandler.objects if obj[type_key] == "block"]
+        # check height in coinbase transaction, return the blockid with the highest height
+
+        return max(blocks, key=lambda block: block["txids"][0]["height"])["txid"]
+        #return max(blocks, key=lambda block: get_block_height(block))["txid"]
+
+    @staticmethod
+    def get_block_height(object_id):
+        try:
+            # get block
+            block = ObjectHandler.get_object(object_id)
+            # get coinbase transaction
+            coinbase = block["txids"][0]
+            # return height
+            return coinbase["height"]
+        except:
+            return -1
+        
+
+    @staticmethod
+    def is_valid(object_id):
+        if object_id in ObjectHandler.id_to_index:
+            return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["validity"] == "valid"
+        else:
+            return False
 
     @staticmethod
     def is_object_known(object_id):

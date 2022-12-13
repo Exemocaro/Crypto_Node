@@ -34,7 +34,7 @@ tx_json = {
             "value": 10
         }
     ],
-    "type": "transaction"
+    type_key: "transaction"
 }
 
 print(Fore.CYAN + str(pubkey == tx.outputs[0]["pubkey"]))
