@@ -12,7 +12,6 @@ class KnownNodesHandler:
     known_nodes = []
     known_nodes_file = ADDRESSES_FILE
 
-
     # load known nodes from file
     @staticmethod
     def load_known_nodes():

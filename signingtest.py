@@ -24,7 +24,7 @@ print()
 
 # Now, we can sign a transaction
 tx = {
-    "type": "transaction",
+    type_key: "transaction",
     "inputs": [
         {
             "outpoint": {

@@ -2,6 +2,9 @@ from network.NodeNetworking import *
 from database.KnownNodesHandler import *
 from config import *
 
+from object.Block import *
+
+from Miner import Miner
 
 def main():
     #NETWORKING = NodeNetworking(KnownNodesHandler)
@@ -17,3 +20,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    #mined_block = Miner.mine(SAMPLE_BLOCK)

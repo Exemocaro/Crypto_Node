@@ -11,9 +11,11 @@ from utility.json_validation import coinbase_transaction_schema
 
 from object.Object import Object
 
+from database.ObjectHandler import ObjectHandler
+
 # structure of a coinbase transaction:
 # {
-#     "type": "transaction",
+#     type_key: "transaction",
 #     "height": height of the block this transaction is in,
 #     "outputs": [
 #         {
@@ -40,18 +42,25 @@ class CoinbaseTransaction(Object):
         coinbase_tx = CoinbaseTransaction(tx_height, tx_outputs)
         return coinbase_tx
 
+    def get_type(self):
+        return "coinbase"
+
     def get_json(self):
         # return a json representation of the transaction
         return {
-            "type": "transaction",
+            type_key: "transaction",
             "height": self.height,
             "outputs": self.outputs
         }
 
     def verify(self):
         return {"result": "True"}
-
+        """# we can only verify them, if they are in a block
+        block = ObjectHandler.get_block_containing_object(self)
+        if block is None:
+            return {"result": "Information missing"}
+        # verify the value of the coinbase transaction
+        # the value of the coinbase transaction is the block reward"""
+        
     def __str__(self):
         return "CoinbaseTransaction(height={}, outputs={})".format(self.height, self.outputs)
-
-

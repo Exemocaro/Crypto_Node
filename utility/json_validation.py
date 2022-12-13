@@ -1,5 +1,7 @@
 import jsonschema
 
+from json_keys import *
+
 # In this file, we will define the schema for all the messages and objects that we will use in the network
 # We will use the jsonschema library to validate the messages and objects
 # The format and the types will be tested, so all work afterwards can rely on valid data
@@ -13,23 +15,23 @@ hello_message_schema = {
     "$id": "hello message",
     "title": "Hello message",
     "description": "The schema for the hello message",
-    "type": "object",
+    type_key: object_key,
     "properties": {
-        "type": {
+        type_key: {
             "description": "The type of the message",
-            "type": "string",
+            type_key: "string",
         },
-        "version": {
+        version_key: {
             "description": "The version that the node is using",
-            "type": "string",
+            type_key: "string",
             "pattern": "^0\\.8\\.\\d+$"
         },
-        "agent": {
+        agent_key: {
             "description": "The name of the node",
-            "type": "string",
+            type_key: "string",
         },
     },
-    "required": ["type", "version", "agent"],
+    "required": [type_key, version_key, agent_key],
 }
 
 # the schema for the peers message
@@ -38,21 +40,21 @@ peers_message_schema = {
     "$id": "peers message",
     "title": "Peers message",
     "description": "The schema for the peers message",
-    "type": "object",
+    type_key: object_key,
     "properties": {
-        "type": {
+        type_key: {
             "description": "The type of the message",
-            "type": "string",
+            type_key: "string",
         },
-        "peers": {
+        peers_key: {
             "description": "The list of peers",
-            "type": "array",
+            type_key: "array",
             "items": {
-                "type": "string",
+                type_key: "string",
             },
         },
     },
-    "required": ["type", "peers"],
+    "required": [type_key, peers_key],
 }
 
 # the schema for the getpeers message
@@ -61,14 +63,14 @@ getpeers_message_schema = {
     "$id": "getpeers message",
     "title": "Getpeers message",
     "description": "The schema for the getpeers message",
-    "type": "object",
+    type_key: object_key,
     "properties": {
-        "type": {
+        type_key: {
             "description": "The type of the message",
-            "type": "string",
+            type_key: "string",
         },
     },
-    "required": ["type"],
+    "required": [type_key],
 }
 
 # error mesage schema
@@ -80,18 +82,18 @@ ihaveobject_schema = {
     "$id": "ihaveobject message",
     "title": "Ihaveobject message",
     "description": "The schema for the ihaveobject message",
-    "type": "object",
+    type_key: object_key,
     "properties": {
-        "type": {
+        type_key: {
             "description": "The type of the message",
-            "type": "string",
+            type_key: "string",
         },
-        "objectid": {
+        objectid_key: {
             "description": "The object that the node has",
-            "type": "string",
+            type_key: "string",
         },
     },
-    "required": ["type", "objectid"],
+    "required": [type_key, objectid_key],
 }
 
 # getobject message schema
@@ -100,18 +102,18 @@ getobject_schema = {
     "$id": "getobject message",
     "title": "Getobject message",
     "description": "The schema for the getobject message",
-    "type": "object",
+    type_key: object_key,
     "properties": {
-        "type": {
+        type_key: {
             "description": "The type of the message",
-            "type": "string",
+            type_key: "string",
         },
-        "objectid": {
+        objectid_key: {
             "description": "The object that the node wants",
-            "type": "string",
+            type_key: "string",
         },
     },
-    "required": ["type", "objectid"],
+    "required": [type_key, objectid_key],
 }
 
 # object message schema
@@ -121,18 +123,18 @@ object_schema = {
     "$id": "object message",
     "title": "Object message",
     "description": "The schema for the object message",
-    "type": "object",
+    type_key: object_key,
     "properties": {
-        "type": {
+        type_key: {
             "description": "The type of the message",
-            "type": "string",
+            type_key: "string",
         },
-        "object": {
+        object_key: {
             "description": "The object",
-            "type": "object",
+            type_key: object_key,
         },
     },
-    "required": ["type", "object"],
+    "required": [type_key, object_key],
 }
 
 
@@ -142,17 +144,17 @@ object_schema = {
 # The schema for a list of outputs (used in the transaction message)
 outputs_schema = {
     "description": "The outputs of a transaction",
-    "type": "array",
+    type_key: "array",
     "items": {
-        "type": "object",
+        type_key: object_key,
         "properties": {
             "pubkey": {
                 "description": "The public key of the recipient",
-                "type": "string",
+                type_key: "string",
             },
             "value": {
                 "description": "The amount of coins in picaker",
-                "type": "integer",
+                type_key: "integer",
                 "minimum": 0,
             }
         },
@@ -166,29 +168,29 @@ regular_transaction_schema = {
     "$id": "regular transaction",
     "title": "Regular transaction",
     "description": "A regular transaction",
-    "type": "object",
+    type_key: object_key,
     "properties": {
-        "type": {
+        type_key: {
             "description": "The type of the transaction",
-            "type": "string",
+            type_key: "string",
         },
         "inputs": {
             "description": "The inputs of the transaction",
-            "type": "array",
+            type_key: "array",
             "items": {
-                "type": "object",
+                type_key: object_key,
                 "properties": {
                     "outpoint": {
                         "description": "The outpoint of the input",
-                        "type": "object",
+                        type_key: object_key,
                         "properties": {
                             "txid": {
                                 "description": "The transaction id of the previous transaction",
-                                "type": "string",
+                                type_key: "string",
                             },
                             "index": {
                                 "description": "The index of the output in the previous transaction",
-                                "type": "integer",
+                                type_key: "integer",
                                 "minimum": 0,
                             }
                         },
@@ -196,7 +198,7 @@ regular_transaction_schema = {
                     },
                     "sig": {
                         "description": "The signature of the input",
-                        "type": "string",
+                        type_key: "string",
                     }
                 },
                 "required": ["outpoint", "sig"],
@@ -206,7 +208,7 @@ regular_transaction_schema = {
         },
         "outputs": outputs_schema,
     },
-    "required": ["type", "inputs", "outputs"],
+    "required": [type_key, "inputs", "outputs"],
 }
 
 
@@ -216,15 +218,15 @@ coinbase_transaction_schema = {
     "$id": "coinbase transaction",
     "title": "Coinbase transaction",
     "description": "A coinbase transaction",
-    "type": "object",
+    type_key: object_key,
     "properties": {
-        "type": {
+        type_key: {
             "description": "The type of the transaction",
-            "type": "string",
+            type_key: "string",
         },
         "outputs": outputs_schema
     },
-    "required": ["type", "outputs"],
+    "required": [type_key, "outputs"],
 }
 
 block_schema = {
@@ -232,52 +234,84 @@ block_schema = {
     "$id": "block",
     "title": "Block",
     "description": "The schema for a block",
-    "type": "object",
+    type_key: object_key,
     "properties": {
-        "type": {
+        type_key: {
             "description": "The type of the block",
-            "type": "string",
+            type_key: "string",
         },
         "txids": {
             "description": "The transaction ids of the transactions in the block",
-            "type": "array",
+            type_key: "array",
             "items": {
                 "description": "The transaction id",
-                "type": "string",
+                type_key: "string",
             },
             "minItems": 0, # TODO : Can most likely be 1
             "uniqueItems": True,
         },
         "previd": {
             "description": "The hash of the previous block",
-            "type": "string",
+            type_key: "string",
         },
         "nonce": {
             "description": "The nonce of the block",
-            "type": "string",
+            type_key: "string",
         },
         "created": {
             "description": "The timestamp of the block",
-            "type": "integer",
+            type_key: "integer",
             "minimum": 0,
         },
         "miner": {
             "description": "The name of the miner (not technically needed)",
-            "type": "string",
+            type_key: "string",
         },
         "note": {
             "description": "The note of the block (not technically needed)",
-            "type": "string",
+            type_key: "string",
         },
         "T": {
             "description": "The target of the block",
-            "type": "string",
+            type_key: "string",
         },
     },
-    "required": ["type", "txids", "previd", "nonce", "created", "T"],
+    "required": [type_key, "txids", "previd", "nonce", "created", "T"],
 }
 
+chaintip_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "chaintip message",
+    "title": "Chaintip message",
+    "description": "The schema for a chaintip message",
+    type_key: object_key,
+    "properties": {
+        type_key: {
+            "description": "The type of the chaintip",
+            type_key: "string",
+        },
+        chaintip_key: {
+            "description": "The chaintip",
+            type_key: "string",
+        },
+    },
+    "required": [type_key, chaintip_key],
+}
 
+getchaintip_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "getchaintip message",
+    "title": "Getchaintip message",
+    "description": "The schema for the getchaintip message",
+    type_key: object_key,
+    "properties": {
+        type_key: {
+            "description": "The type of the getchaintip",
+            type_key: "string",
+        },
+    },
+    "required": [type_key],
+}
 
 
 

@@ -26,7 +26,7 @@ def main():
 
     node_networking.connect_to_node(HOST + ":" + str(PORT))
 
-    message = json.dumps({"type": "hello", "version": "0.8.0", "agent": "New Test Client"})
+    message = json.dumps({type_key: hello_key, version_key: "0.8.0", agent_key: "New Test Client"})
     node_networking.send_to_node(HOST + ":" + str(PORT), message)
 
 

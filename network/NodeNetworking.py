@@ -40,6 +40,13 @@ class NodeNetworking:
         # start a new thread to check for received data
         NodeNetworking.check_received_data_thread = Thread(target=NodeNetworking.check_received_data).start()
 
+        # connect to the known nodes
+        for node in KnownNodesHandler.get_known_nodes():
+            NodeNetworking.connect_to_node(node)
+
+        # ask all peers for their chaintip
+        NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getchaintip_message())
+
     @staticmethod
     def accept_connections():
         print("Accepting connections...")
@@ -48,6 +55,7 @@ class NodeNetworking:
                 connection, credentials = NodeNetworking.server.accept()
                 LogPlus.info(f"| INFO | New connection from {credentials}")
                 NodeNetworking.handler = NodeNetworking.handle_connection(connection, credentials)
+                KnownNodesHandler.add_node(convert_tuple_to_string(credentials)) # add the credentials into the database
                 NodeNetworking.handler.send(MessageGenerator.generate_hello_message())
                 NodeNetworking.handler.send(MessageGenerator.generate_getpeers_message())
             except Exception as e:

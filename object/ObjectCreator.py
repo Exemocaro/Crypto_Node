@@ -9,7 +9,7 @@ from object.Block import Block
 class ObjectCreator:
     @staticmethod
     def create_object(json_object):
-        if json_object["type"] == "transaction":
+        if json_object[type_key] == "transaction":
             if "height" in json_object: # check if it's a coinbase transaction
                 try:
                     return CoinbaseTransaction.from_json(json_object)
@@ -20,7 +20,7 @@ class ObjectCreator:
                     return Transaction.from_json(json_object)
                 except Exception as e:
                     raise Exception(f"Invalid regular transaction: {e}")
-        elif json_object["type"] == "block":
+        elif json_object[type_key] == "block":
             try:
                 return Block.from_json(json_object)
             except Exception as e:

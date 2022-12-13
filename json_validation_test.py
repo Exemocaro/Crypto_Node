@@ -3,7 +3,7 @@ import jsonschema
 from utility.json_validation import hello_message_schema, regular_transaction_schema
 
 transaction_json = {
-    "type": "transaction",
+    type_key: "transaction",
     "inputs": [
         {
             "outpoint": {
