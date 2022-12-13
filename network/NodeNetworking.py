@@ -41,7 +41,7 @@ class NodeNetworking:
         NodeNetworking.check_received_data_thread = Thread(target=NodeNetworking.check_received_data).start()
 
         # connect to the known nodes
-        for node in KnownNodesHandler.get_known_nodes():
+        for node in KnownNodesHandler.known_nodes:
             NodeNetworking.connect_to_node(node)
 
         # ask all peers for their chaintip
