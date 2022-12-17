@@ -2,6 +2,8 @@ from object.Transaction import Transaction
 from object.CoinbaseTransaction import CoinbaseTransaction
 from object.Block import Block
 
+from json_keys import *
+
 
 # apparently this is the way to do it, to avoid circular imports
 

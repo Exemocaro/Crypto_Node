@@ -4,6 +4,8 @@ from object.Block import Block
 from database.UTXO import UTXO
 from database.ObjectHandler import ObjectHandler
 
+from json_keys import *
+
 def calculate_set(block):
     # create empty set for the genesis block
     sets = {"00000000a420b7cefa2b7730243316921ed59ffe836e111ca3801f82a4f5360e": []}
@@ -29,18 +31,18 @@ def calculate_set(block):
         for txid in self.txids:
             tx_json = ObjectHandler.get_object(txid)
             # get an array containing the indexes (0, 1, 2, ...) of the outputs that are still unspent
-            indexes = [i for i in range(len(tx_json["outputs"]))]
+            indexes = [i for i in range(len(tx_json[outputs_key]))]
             new_utxo.append({txid: indexes})
 
         for txid in self.txids:
             tx_json = ObjectHandler.get_object(txid)
-            for input in tx_json["inputs"]:
+            for input in tx_json[inputs_key]:
                 # remove the input from the UTXO
                 for outputs in new_utxo:
-                    if input["txid"] in outputs:
-                        outputs[input["txid"]].remove(input["index"])
+                    if input[txid_key] in outputs:
+                        outputs[input[txid_key]].remove(input[index_key])
                         # remove the dict if there are no more unspent outputs
-                        if len(outputs[input["txid"]]) == 0:
+                        if len(outputs[input[txid_key]]) == 0:
                             new_utxo.remove(outputs)
                         break
 
@@ -61,19 +63,19 @@ def calculate_set(block):
                 for txid in txs:
                     tx_json = ObjectHandler.get_object(txid)
                     # get an array containing the indexes (0, 1, 2, ...) of the outputs that are still unspent
-                    indexes = [i for i in range(len(tx_json["outputs"]))]
+                    indexes = [i for i in range(len(tx_json[outputs_key]))]
                     set.append({txid: indexes})
 
                 # remove all inputs from the set
                 for txid in txs:
                     tx_json = ObjectHandler.get_object(txid)
-                    for input in tx_json["inputs"]:
+                    for input in tx_json[inputs_key]:
                         # remove the input from the set
                         for outputs in set:
-                            if input["txid"] in outputs:
-                                outputs[input["txid"]].remove(input["index"])
+                            if input[txid_key] in outputs:
+                                outputs[input[txid_key]].remove(input[index_key])
                                 # remove the dict if there are no more unspent outputs
-                                if len(outputs[input["txid"]]) == 0:
+                                if len(outputs[input[txid_key]]) == 0:
                                     set.remove(outputs)
                                 break
 

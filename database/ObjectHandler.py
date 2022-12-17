@@ -73,18 +73,19 @@ class ObjectHandler:
     def update_id_to_index():
         ObjectHandler.id_to_index = {}
         for i in range(len(ObjectHandler.objects)):
-            object_id = ObjectHandler.objects[i]["txid"]
+            object_id = ObjectHandler.objects[i][txid_key]
             ObjectHandler.id_to_index[object_id] = i
 
     @staticmethod
-    def add_object(obj, validity=True, type="unknown"):
+    def add_object(obj, validity=True, type="unknown", missing = []):
         try:
             txid = Object.get_id_from_json(obj)
             ObjectHandler.objects.append({
                 "txid": txid,
                 "validity": validity,
                 object_key: obj,
-                type_key: type
+                type_key: type,
+                "missing": missing
             })
             ObjectHandler.id_to_index[txid] = len(ObjectHandler.objects) - 1
             ObjectHandler.save_objects()
@@ -92,6 +93,9 @@ class ObjectHandler:
             """if validity == "valid":
                 if UTXO.is_available(self.inputs):
                 UTXO.addToSet(self.outputs) # should we add it here?"""
+
+            if validity == "valid":
+                ObjectHandler.update_pending_objects(txid)
 
         except Exception as e:
             LogPlus.error("| ERROR | ObjectHandler.add_object | " + str(e))
@@ -109,6 +113,30 @@ class ObjectHandler:
         return [obj[object_key] for obj in ObjectHandler.objects if obj["validity"] == "pending"]
 
     @staticmethod
+    def get_status(object_id):
+        if object_id in ObjectHandler.id_to_index:
+            return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["validity"]
+        else:
+            return None
+
+    @staticmethod
+    def update_pending_objects(object_id = None):
+        if object_id == None:
+            object_ids = [obj[object_key] for obj in ObjectHandler.objects if obj["validity"] == "valid"]
+        else:
+            object_ids = [object_id]
+
+        for object_id in object_ids:
+            for pending in [obj for obj in ObjectHandler.objects if obj["validity"] == "pending"]:
+                if object_id in pending["missing"]:
+                    pending["missing"].remove(object_id)
+
+    @staticmethod
+    def get_verifiable_objects():
+        return [obj[object_key] for obj in ObjectHandler.objects if obj["validity"] == "pending" and len(obj["missing"]) == 0]
+
+
+    @staticmethod
     def update_object_status(object_id, validity):
         if object_id in ObjectHandler.id_to_index:
             ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["validity"] = validity
@@ -121,17 +149,20 @@ class ObjectHandler:
         
         for block in blocks:
             # check if the object is in txids of the block
-            if object_id in block["txids"]:
+            if object_id in block[txids_key]:
                 return Object.get_id_from_json(block)
 
     @staticmethod
     def get_chaintip():
         # get all objects of type block
-        blocks = [obj[object_key] for obj in ObjectHandler.objects if obj[type_key] == "block"]
-        # check height in coinbase transaction, return the blockid with the highest height
+        blocks = [obj[object_key] for obj in ObjectHandler.objects if obj[type_key] == "block" and obj["validity"] == "valid"]
 
-        return max(blocks, key=lambda block: block["txids"][0]["height"])["txid"]
-        #return max(blocks, key=lambda block: get_block_height(block))["txid"]
+        if len(blocks) <= 1:
+            return Object.get_id_from_json(GENESIS_BLOCK)
+
+        # check height in coinbase transaction, return the blockid with the highest height
+        return max(blocks, key=lambda block: block[txids_key][0][height_key])[txid_key]
+        #return max(blocks, key=lambda block: get_block_height(block))[txid_key]
 
     @staticmethod
     def get_block_height(object_id):
@@ -139,9 +170,9 @@ class ObjectHandler:
             # get block
             block = ObjectHandler.get_object(object_id)
             # get coinbase transaction
-            coinbase = block["txids"][0]
+            coinbase = block[txids_key][0]
             # return height
-            return coinbase["height"]
+            return coinbase[height_key]
         except:
             return -1
         

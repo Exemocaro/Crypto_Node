@@ -1,11 +1,13 @@
 import time
 
 from config import *
+
 from queue import Queue
 from threading import Thread
 from socket import socket, SOL_SOCKET, SO_REUSEADDR
 
 from utility.logplus import LogPlus
+from engine.MessageGenerator import MessageGenerator
 
 # What ConnectionHandler does:
 # - Store connection, credentials, in_queue and out_queue

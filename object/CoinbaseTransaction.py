@@ -1,11 +1,13 @@
 import json
 import json_canonical
 import hashlib
+import jsonschema
 
 from abc import ABC, abstractmethod
 
-import jsonschema
 from colorama import Fore, Style
+
+from json_keys import *
 
 from utility.json_validation import coinbase_transaction_schema
 
@@ -37,8 +39,8 @@ class CoinbaseTransaction(Object):
     def from_json(tx_json):
         # this will raise an exception if the json is invalid
         jsonschema.validate(instance=tx_json, schema=coinbase_transaction_schema)
-        tx_height = tx_json["height"]
-        tx_outputs = tx_json["outputs"]
+        tx_height = tx_json[height_key]
+        tx_outputs = tx_json[outputs_key]
         coinbase_tx = CoinbaseTransaction(tx_height, tx_outputs)
         return coinbase_tx
 
@@ -58,7 +60,7 @@ class CoinbaseTransaction(Object):
         """# we can only verify them, if they are in a block
         block = ObjectHandler.get_block_containing_object(self)
         if block is None:
-            return {"result": "Information missing"}
+            return {"result": "data missing"}
         # verify the value of the coinbase transaction
         # the value of the coinbase transaction is the block reward"""
         

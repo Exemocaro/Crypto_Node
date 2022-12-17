@@ -13,7 +13,7 @@ class LogPlus:
         if len(message) > LOG_LIMIT:
             message = message[0:LOG_LIMIT]
         logging.debug(message)
-        print(message)
+        print(Fore.GREEN + message + Style.RESET_ALL)
         pass
 
     @staticmethod
@@ -21,7 +21,7 @@ class LogPlus:
         if len(message) > LOG_LIMIT:
             message = message[0:LOG_LIMIT]
         logging.info(message)
-        print(message)
+        #print(message)
         pass
 
     @staticmethod

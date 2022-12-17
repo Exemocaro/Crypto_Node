@@ -10,6 +10,8 @@ import jsonschema
 from nacl.signing import VerifyKey, SigningKey
 
 from config import *
+from json_keys import *
+
 from object.Object import Object
 
 from database.ObjectHandler import ObjectHandler
@@ -54,8 +56,8 @@ class Transaction(Object):
         # this will raise an exception if the json is invalid
         jsonschema.validate(instance=tx_json, schema=regular_transaction_schema)
         # without the validation, the inputs could contain invalid data and cause errors later
-        tx_inputs = tx_json["inputs"]
-        tx_outputs = tx_json["outputs"]
+        tx_inputs = tx_json[inputs_key]
+        tx_outputs = tx_json[outputs_key]
         return Transaction(tx_inputs, tx_outputs)
     
     def get_type(self):
@@ -80,7 +82,7 @@ class Transaction(Object):
             # this is used to verify the signatures
             tx_copy = copy.deepcopy(self)
             for input in tx_copy.inputs:
-                input["sig"] = None
+                input[sig_key] = None
             return tx_copy
         except Exception as e:
             LogPlus.error(f"| ERROR | Transaction.copy_without_sig | {e}")
@@ -97,29 +99,30 @@ class Transaction(Object):
             for input in self.inputs:
                 # 1. Check that each input is valid (txid exists, index is valid)
                 # Check that the txid exists
-                outpoint = input["outpoint"]
-                txid = outpoint["txid"]
+                outpoint = input[outpoint_key]
+                txid = outpoint[txid_key]
                 tx = ObjectHandler.get_object(txid)
                 if tx is None:
                     LogPlus.warning("| WARNING | Transaction.verify | input txid does not exist")
-                    return {"result": "False"}
+                    return {"result": "data missing", "ids": [txid]}
 
                 # Check that the index is valid
-                index = outpoint["index"]
-                if index >= len(tx["outputs"]):
+                index = outpoint[index_key]
+                if index >= len(tx[outputs_key]):
                     LogPlus.warning("| WARNING | Transaction.verify | input index is invalid")
                     return {"result": "False"}
 
                 # 2. Check that each input is signed by the owner of the outpoint
                 # Get the public key of the owner of the outpoint
-                output = tx["outputs"][index]
-                pubkey = outpoint["pubkey"]
+                output = tx[outputs_key][index]
+                LogPlus.debug(f"| DEBUG | Transaction.verify | output: {output}")
+                pubkey = output[pubkey_key]
 
                 # get the pubkey bytes
                 pubkey_bytes = bytes.fromhex(pubkey)
             
                 # Get the signature of the input
-                sig = input["sig"]
+                sig = input[sig_key]
 
                 # Check that the signature is valid
                 combined = bytes.fromhex(sig) + json_canonical.canonicalize(self.copy_without_sig().get_json())
@@ -130,13 +133,13 @@ class Transaction(Object):
                     return {"result": "False"}
 
                 # get the sum already, will be checked in step 4
-                sum_input += output["value"]
+                sum_input += output[value_key]
 
             sum_output = 0
 
             # 3. Check that output pubkeys are valid (value is >= 0, already checked by jsonschema)
             for output in self.outputs:
-                pubkey = output["pubkey"]
+                pubkey = output[pubkey_key]
                 # should be 64 hex characters
                 try:
                     int(pubkey, 16)
@@ -145,7 +148,7 @@ class Transaction(Object):
                     return {"result": "False"}
 
                 # get the sum already, will be checked in step 4
-                sum_output += output["value"]
+                sum_output += output[value_key]
 
             # 4. Check that the sum of the inputs is equal to the sum of the outputs. Output can be equal or smaller than input
             if sum_input < sum_output:
@@ -178,16 +181,16 @@ class Transaction(Object):
         sum_output = 0
 
         for input in self.inputs:
-            outpoint = input["outpoint"]
-            txid = outpoint["txid"]
-            index = outpoint["index"]
+            outpoint = input[outpoint_key]
+            txid = outpoint[txid_key]
+            index = outpoint[index_key]
             tx = ObjectHandler.get_object(txid)
-            output = tx["outputs"][index]
-            sum_input += output["value"]
+            output = tx[outputs_key][index]
+            sum_input += output[value_key]
 
 
         for output in self.outputs:
-            sum_output += output["value"]
+            sum_output += output[value_key]
 
         return sum_input - sum_output
 

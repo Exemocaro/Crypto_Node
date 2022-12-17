@@ -290,12 +290,12 @@ chaintip_schema = {
             "description": "The type of the chaintip",
             type_key: "string",
         },
-        chaintip_key: {
+        blockid_key: {
             "description": "The chaintip",
             type_key: "string",
         },
     },
-    "required": [type_key, chaintip_key],
+    "required": [type_key, blockid_key],
 }
 
 getchaintip_schema = {

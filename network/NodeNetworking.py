@@ -15,6 +15,8 @@ from network.ConnectionHandler import ConnectionHandler
 from utility.credentials_utility import *
 
 from database.KnownNodesHandler import *
+from database.ObjectHandler import *
+from database.UTXO import *
 
 from config import *
 
@@ -28,6 +30,8 @@ class NodeNetworking:
 
     @staticmethod
     def start_server():
+        UTXO.clear()  
+
         NodeNetworking.server = socket()
         NodeNetworking.server.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
         NodeNetworking.server.bind(SERVER_ADDRESS)
@@ -45,7 +49,10 @@ class NodeNetworking:
             NodeNetworking.connect_to_node(node)
 
         # ask all peers for their chaintip
+        NodeNetworking.send_to_all_nodes(MessageGenerator.generate_hello_message())
         NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getchaintip_message())
+
+                
 
     @staticmethod
     def accept_connections():
@@ -84,7 +91,6 @@ class NodeNetworking:
                     data = handler.in_queue.get()
                     LogPlus.info(f"| INFO | Received {data} from {handler.credentials}")
                     responses = handle_input(data, handler)
-                    print(responses)
                     if responses is None:
                         continue
                     for (cleaned_credentials, res) in responses:
