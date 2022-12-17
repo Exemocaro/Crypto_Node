@@ -92,206 +92,173 @@ class Block:
 
         missing_data = []
 
+        # First part of verification
         try:
-            # Ensure the target is the one required
-            if self.t != "00000002af000000000000000000000000000000000000000000000000000000":
-                LogPlus.info("| INFO | Block.verify | Target is not the one required")
-                return {"result": "False"}
-            
-            # Check the proof-of-work: blockid < target
-            blockid = self.get_id()
-            if int(blockid, 16) >= int(self.t, 16):
-                LogPlus.info("| INFO | Block.verify | Proof-of-work is not valid")
-                return {"result": "False"}
-
-        except Exception as e:
-            LogPlus.error(f"| ERROR | Block.verify | A |  Exception: " + str(e))
+            self.verify_proof_of_work()
+            missing_data += self.check_previous_block()
+            missing_data += self.check_transactions_weak()
+        except ValidationException as e:
+            LogPlus.info(f"| INFO | Block.verify part 1 failed | {e}")
             return {"result": "False"}
-
-        # Check for previous block
-        # If it doesn't exist, then send a getobject message to your peers in order to get the previous block.
-        # and store current block for later verification
-        try:
-            # check if its valid, pending or invalid
-            if ObjectHandler.get_status(self.previd) == "invalid":
-                LogPlus.info("| INFO | Block.verify | Previous block is invalid")
-                return {"result": "False"}
-            elif ObjectHandler.get_status(self.previd) == "pending":
-                LogPlus.info("| INFO | Block.verify | Previous block is pending")
-                return {"result": "data missing", "ids": [self.previd]}
-            elif ObjectHandler.get_status(self.previd) == "valid":
-                LogPlus.info("| INFO | Block.verify | Previous block is valid")
-            else:
-                LogPlus.info("| INFO | Block.verify | Previous block is not found")
-                missing_data.append(self.previd)
         except Exception as e:
-            LogPlus.info("| INFO | Block.verify | B | Exception: " + str(e))
-            return {"result": "False"}
-
-        # in case it passes the block validation
-        try:
-            unknown_txids = []
-
-            for txid in self.txids:
-                if ObjectHandler.get_object(txid) is None:
-                    unknown_txids.append(txid)
-
-            if len(unknown_txids) > 0:
-                missing_data += unknown_txids
-        except Exception as e:
-            LogPlus.info("| INFO | Block.verify | C | Exception: " + str(e))
+            LogPlus.error(f"| ERROR | Block.verify | A | Exception: {e}")
             return {"result": "False"}
 
         if len(missing_data) > 0:
             return {"result": "data missing", "ids": missing_data}
 
+        # Second part of verification
         try:
-            # Load UTXO of previous block
-            prev_utxo = UTXO.get_utxo(self.previd)
-            #LogPlus.debug(f"| DEBUG | Block.verify | prev_utxo: {prev_utxo}")
-            if prev_utxo is None:
-                LogPlus.info("| Info | Block.verify | D | Previous UTXO is not found")
-                return {"result": "data missing", "ids": []}
-        except Exception as e:
-            LogPlus.info("| INFO | Block.verify | Exception: " + str(e))
-
-        # There can be at most one coinbase transaction in a block. If present, then the txid of the coinbase transaction must be at index 0 in txids.
-        # Check if the first transaction is a coinbase transaction
-        first_txid = self.txids[0]
-        first_tx_json = ObjectHandler.get_object(first_txid)
-
-        try:
-            jsonschema.validate(first_tx_json, coinbase_transaction_schema)
-            # validate the coinbase transaction
-            coinbase_tx = CoinbaseTransaction.from_json(first_tx_json)
-            validity = coinbase_tx.verify()
-            if validity["result"] == "False":
-                LogPlus.error(f"| ERROR | Block.verify | 1 | A transaction is not valid | {self.get_json()}")
-                return {"result": "False"}
-        except jsonschema.exceptions.ValidationError:
-            LogPlus.error("| ERROR | Block.verify | E | The first transaction is not a coinbase transaction")
-            return {"result": "False" }
-
-        # verify height (should be equal to the height of the previous block + 1)
-        prev_block = ObjectHandler.get_object(self.previd)
-        if prev_block is None:
-            LogPlus.error("| ERROR | Block.verify | F | Previous block is not found")
+            self.check_coinbase_transaction()
+            self.check_height()
+            self.check_created_timestamp()
+            self.check_fees()
+            self.check_transactions_strong()
+        except ValidationException as e:
+            LogPlus.info(f"| INFO | Block.verify part 2 failed | {e}")
             return {"result": "False"}
-        try:
-            prev_coinbase_txid = prev_block[txids_key][0]
-            prev_coinbase_tx = CoinbaseTransaction.from_json(ObjectHandler.get_object(prev_coinbase_txid))
-            if prev_coinbase_tx.height + 1 != coinbase_tx.height:
-                LogPlus.error("| ERROR | Block.verify | G | Height is not valid")
-                return {"result": "False"}
         except Exception as e:
-            LogPlus.info(f"| INFO | Block.verify | F2 | Previous block coinbase is not found, it's most likely the genesis block | {prev_block}")
-
-        # verify the timestamp (should be greater than the timestamp of the previous block and less than the current time)
-        if prev_block[created_key] >= self.created or self.created > time.time():
-            LogPlus.error("| ERROR | Block.verify | H | Timestamp is not valid")
+            LogPlus.error(f"| ERROR | Block.verify | B | Exception: {e}")
             return {"result": "False"}
-
-        LogPlus.info("| INFO | Block.verify | Check 1H")
         
-        # verify remaining transactions
-        try:
-            inputs = []
-            for txid in self.txids[1:]:
-                tx_json = ObjectHandler.get_object(txid)
-                try:
-                    jsonschema.validate(tx_json, regular_transaction_schema)
-                    validity = Transaction.from_json(tx_json).verify()
-                    if validity["result"] == "False":
-                        LogPlus.error(f"| ERROR | Block.verify | 2 | A transaction is not valid | {self.get_json()}")
-                        return {"result": "False"}
-
-                    # check if the inputs of the transaction are in the prev UTXO set
-                    for input in tx_json[inputs_key]:
-                        LogPlus.debug(f"| DEBUG | Block.verify | input: {input}")
-                        # prev_utxo is an array of dicts, where the key is the txid and the value is an array of outputs
-                        if input[outpoint_key][txid_key] not in prev_utxo.keys():
-                            LogPlus.error(f"| ERROR | Block.verify | 3 | A transaction is not valid | txid not available | {self.get_json()} | {prev_utxo}")
-                            return {"result": "False"}
-                        else:
-                            # check if the output index is valid
-                            if not input[outpoint_key][index_key] in prev_utxo[input[outpoint_key][txid_key]]:
-                                LogPlus.error(f"| ERROR | Block.verify | 4 | A transaction is not valid | index not available | {self.get_json()}")
-                                return {"result": "False"}
-
-                    # check if any input is used twice
-                    tx_json = ObjectHandler.get_object(txid)
-                    for input in tx_json[inputs_key]:
-                        if input in inputs:
-                            LogPlus.error(f"| ERROR | Block.verify | An input is used twice")
-                            return {"result": "False"}
-                        inputs.append(input)
-                    
-                except jsonschema.exceptions.ValidationError:
-                    # This should not happen, coinbase transactions have to be at the beginning of the block
-                    return { "result": "False" }
-
-            # Check is the value of the coinbase transaction is valid
-            # The output of the coinbase transaction can be at most the sum of transaction fees in the block plus the block reward.
-            # In our protocol, the block reward is a constant 50 × 1012 picaker.
-            # The fee of a transaction is the sum of its input values minus the sum of its output values.
-        except Exception as e:
-            LogPlus.info("| ERROR | Block.verify | I | Exception: " + str(e))
-
-        try:
-            # sum up tx fees
-            tx_fees = 0
-            for txid in self.txids:
-                tx_json = ObjectHandler.get_object(txid)
-                try:
-                    tx = Transaction.from_json(tx_json)
-                    tx_fees += tx.get_fee()
-                except Exception as e:
-                    # this can happen, when the first tx is a coinbase transaction
-                    pass
-
-            # tx fees + block reward >= coinbase transaction value
-            if tx_fees + (BLOCK_REWARD) < first_tx_json[outputs_key][0][value_key]:
-                LogPlus.error(f"| ERROR | Block.verify | The coinbase transaction value is not valid")
-                #LogPlus.info(f"| INFO | Block.verify | The coinbase transaction value is invalid |{self.get_id()}")
-                return { "result": "False" }
-
-            # The block is valid
-
-        except Exception as e:
-            LogPlus.info("| INFO | Block.verify | J | Exception: " + str(e))
-
-        try:
-
-            new_utxo = prev_utxo # we'll update this as we go along
-            # it's a list of dicts
-            # each dict has a key "txid" and an array of indexes "indexes" that are still unspent
-
-            # Loop through all transactions in the block
-            # First loop to add all new outputs to the UTXO
-            # Second loop to remove all inputs from the UTXO
-            for txid in self.txids:
-                tx_json = ObjectHandler.get_object(txid)
-                # get an array containing the indexes (0, 1, 2, ...) of the outputs that are still unspent
-                indexes = [i for i in range(len(tx_json[outputs_key]))]
-                new_utxo.append({txid: indexes})
-
-            for txid in self.txids:
-                tx_json = ObjectHandler.get_object(txid)
-                if tx_json[inputs_key] is not None:
-                    for input in tx_json[inputs_key]:
-                        # remove the input from the UTXO
-                        for outputs in new_utxo:
-                            if input[txid_key] in outputs:
-                                outputs[input[txid_key]].remove(input[index_key])
-                                # remove the dict if there are no more unspent outputs
-                                if len(outputs[input[txid_key]]) == 0:
-                                    new_utxo.remove(outputs)
-                                break
-        except Exception as e:
-            LogPlus.info("| INFO | Block.verify | K | Exception: " + str(e))
-
-        # save the new UTXO set
-        # UTXO.sets[self.get_id()] = new_utxo
-        # UTXO.save()
 
         return { "result": "True" }
+
+    def verify_proof_of_work(self):
+        # Ensure the target is the one required
+        if self.t != "00000002af000000000000000000000000000000000000000000000000000000":
+            LogPlus.info("| INFO | Block.verify_proof_of_work | Target is not the one required")
+            raise ValidationException("Target is not the one required")
+        
+        # Check the proof-of-work: blockid < target
+        blockid = self.get_id()
+        if int(blockid, 16) >= int(self.t, 16):
+            LogPlus.info("| INFO | Block.verify_proof_of_work | Proof-of-work is not valid")
+            raise ValidationException("Proof-of-work is not valid")
+
+
+    # Check if previous block is valid
+    # If pending or unknown, return the id of the previous block to be missing
+    def check_previous_block(self):
+        # Check for previous block
+        # If it doesn't exist, then send a getobject message to your peers in order to get the previous block.
+        # and store current block for later verification
+
+        # check if its valid, pending or invalid
+        if ObjectHandler.get_status(self.previd) == "invalid":
+            LogPlus.info("| INFO | Block.check_previous_block | Previous block is invalid")
+            raise ValidationException("Previous block is invalid")
+        elif ObjectHandler.get_status(self.previd) == "pending":
+            LogPlus.info("| INFO | Block.check_previous_block | Previous block is pending")
+            return [self.previd]
+        elif ObjectHandler.get_status(self.previd) == "valid":
+            LogPlus.info("| INFO | Block.check_previous_block | Previous block is valid")
+            return []
+        else:
+            LogPlus.info("| INFO | Block.check_previous_block | Previous block is not found")
+            return [self.previd]
+
+    # Check if all included transactions are known and valid
+    # If unknown, return the ids of the transactions to be missing
+    def check_transactions_weak(self):
+        missing_data = []
+
+        for txid in self.txids:
+            if ObjectHandler.get_object(txid) is None:
+                missing_data.append(txid)
+            elif ObjectHandler.get_status(txid) == "invalid":
+                # Actual validity check is done in the next step
+                # This is just to check if the transaction is known and invalid
+                # It could be valid here, but invalid in the next step when it is checked against the UTXO set
+                raise ValidationException(f"Included transaction with id {txid} is invalid")
+
+        return missing_data
+
+    def check_coinbase_transaction(self):
+        # Check if the first transaction is a coinbase transaction
+        if len(self.txids) == 0:
+            raise ValidationException("No transactions in block")
+        first_txid = self.txids[0]
+        first_tx_json = ObjectHandler.get_object(first_txid)
+        try:
+            jsonschema.validate(first_tx_json, coinbase_transaction_schema)
+        except jsonschema.exceptions.ValidationError as e:
+            raise ValidationException(f"First transaction is not a coinbase transaction")
+
+        # TODO: Check if the coinbase transaction is valid
+
+
+    def check_height(self):
+        # Check if prev block is the genesis block
+        coinbase_txid = self.txids[0]
+        coinbase_tx_json = ObjectHandler.get_object(coinbase_txid)
+        height = coinbase_tx_json[height_key]
+
+        if height == 1: # This means that the previous block is the genesis block
+            if self.previd != Object.get_id_from_json(GENESIS_BLOCK):
+                raise ValidationException("The previous block is not the genesis block, but height is 1")
+            return
+
+        # Check if the height is correct
+        prev_block_json = ObjectHandler.get_object(self.previd)
+        prev_coinbase_tx_json = ObjectHandler.get_object(prev_block_json[txids_key][0])
+        prev_height = prev_coinbase_tx_json[height_key]
+
+        if height != prev_height + 1:
+            raise ValidationException("The height is not correct")
+
+    def check_created_timestamp(self):
+        # Check if the created timestamp is correct
+        
+        # Check if it's after now
+        if self.created > time.time():
+            raise ValidationException("The created timestamp is in the future")
+
+        # Check if it's before the previous block
+        prev_block_json = ObjectHandler.get_object(self.previd)
+        if self.created < prev_block_json[created_key]: # TODO: Check if < or <= is correct
+            raise ValidationException("The created timestamp is before the previous block")
+
+    def check_transactions_strong(self):
+        # Check if all transactions are valid
+        # This is done by checking the UTXO set
+
+        prev_utxo = UTXO.get_utxo(self.previd)
+
+        for txid in self.txids:
+            tx_json = ObjectHandler.get_object(txid)
+            # Go through all inputs, see if they are in the UTXO set
+            # Remove them from the UTXO set if they are to prevent double spending
+            # Value is checked by the transaction itself (in the weak check)
+            for input in tx_json[inputs_key]:
+                input_txid = input[txid_key]
+                input_index = input[index_key]
+                if input_txid not in prev_utxo:
+                    raise ValidationException(f"Transaction {input_txid} used by {txid} is unavailable")
+                if input_index not in prev_utxo[input_txid]:
+                    raise ValidationException(f"Input {input_index} from {input_txid} used by {txid} is unavailable")
+                prev_utxo[input_txid].remove(input_index)
+                if len(prev_utxo[input_txid]) == 0:
+                    prev_utxo.pop(input_txid)
+
+        
+    def check_fees(self):
+        # sum up tx fees
+        tx_fees = 0
+        for txid in self.txids[1:]:
+            tx_json = ObjectHandler.get_object(txid)
+            tx = Transaction.from_json(tx_json)
+            tx_fees += tx.get_fee()
+
+        coinbase_txid = self.txids[0]
+        coinbase_tx_json = ObjectHandler.get_object(coinbase_txid)
+        coinbase_tx_value = coinbase_tx_json[outputs_key][0][value_key]
+
+        # tx fees + block reward >= coinbase transaction value
+        if tx_fees + BLOCK_REWARD < coinbase_tx_value:
+            LogPlus.error(f"| ERROR | Block.verify | The coinbase transaction value is not valid")
+            raise ValidationException("The coinbase transaction value is not valid")
+
+# This lets us distinguish between a validation error and other (unwanted) errors
+class ValidationException(Exception):
+    pass
