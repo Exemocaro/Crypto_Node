@@ -6,8 +6,10 @@ from object.Block import *
 
 from Miner import Miner
 
+from utility.other_utilities import *
+
 def main():
-    #NETWORKING = NodeNetworking(KnownNodesHandler)
+    reset_objects_file() # makes it easier to debug fetching the chaintip
 
     KnownNodesHandler.load_known_nodes()
     KnownNodesHandler.set_active_nodes()
@@ -20,4 +22,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    #mined_block = Miner.mine(SAMPLE_BLOCK)
