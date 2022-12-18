@@ -168,13 +168,17 @@ class ObjectHandler:
     @staticmethod
     def get_chaintip():
         # get all objects of type block
-        blocks = [obj[object_key] for obj in ObjectHandler.objects if obj[type_key] == "block" and obj["validity"] == "valid"]
-
+        blocks = [obj[txid_key] for obj in ObjectHandler.objects if obj[type_key] == "block" and obj["validity"] == "valid"]
+        LogPlus.debug(f"| DEBUG | ObjectHandler.get_chaintip |  lenblocks: {len(blocks)}")
         if len(blocks) <= 1:
             return Object.get_id_from_json(GENESIS_BLOCK)
+        
+        # sort out genesis block
+        blocks = [blockid for blockid in blocks if blockid != Object.get_id_from_json(GENESIS_BLOCK)]
 
         # check height in coinbase transaction, return the blockid with the highest height
-        return max(blocks, key=lambda block: block[txids_key][0][height_key])[txid_key]
+        chaintip_id = max(blocks, key=lambda block: ObjectHandler.get_height(block))
+        return chaintip_id
         #return max(blocks, key=lambda block: get_block_height(block))[txid_key]
 
     @staticmethod
@@ -218,7 +222,18 @@ class ObjectHandler:
         try:
             with open(ObjectHandler.objects_file, "r") as f:
                 ObjectHandler.objects = json.load(f)
+            ObjectHandler.update_id_to_index()
         except Exception as e:
             ObjectHandler.objects = []
             ObjectHandler.save_objects()
             LogPlus().error(f"| ERROR | ObjectHandler | load_objects failed | {e}")
+
+    @staticmethod
+    def get_height(block_id):
+        try:
+            block_json = ObjectHandler.get_object(block_id)
+            coinbase_txid = block_json[txids_key][0]
+            coinbase_tx_json = ObjectHandler.get_object(coinbase_txid)
+            return coinbase_tx_json[height_key]
+        except:
+            return -1
