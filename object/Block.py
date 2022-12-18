@@ -91,12 +91,22 @@ class Block:
         """
 
         missing_data = []
+        pending_prev = None
 
         # First part of verification
         try:
             self.verify_proof_of_work()
-            missing_data += self.check_previous_block()
+            # from check_previous_block we get a json containing a list of missing objects and 
+            still_required = self.check_previous_block()
+            if still_required["reason"] == "missing":
+                missing_data.append(self.previd)
+            elif still_required["reason"] == "pending":
+                pending_prev = self.previd
             missing_data += self.check_transactions_weak()
+            # Log the height
+            height = self.get_height()
+            if height != -1:
+                LogPlus.debug(f"| DEBUG | Block.verify | Height: {height}")
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 1 failed | {e}")
             return {"result": "False"}
@@ -104,8 +114,8 @@ class Block:
             LogPlus.error(f"| ERROR | Block.verify | A | Exception: {e}")
             return {"result": "False"}
 
-        if len(missing_data) > 0:
-            return {"result": "data missing", "ids": missing_data}
+        if len(missing_data) > 0 or pending_prev is not None:
+            return {"result": "data missing", "missing": missing_data, "pending": pending_prev}
 
         # Second part of verification
         try:
@@ -150,13 +160,13 @@ class Block:
             raise ValidationException("Previous block is invalid")
         elif ObjectHandler.get_status(self.previd) == "pending":
             LogPlus.info("| INFO | Block.check_previous_block | Previous block is pending")
-            return [self.previd]
+            return {"reason": "pending"}
         elif ObjectHandler.get_status(self.previd) == "valid":
             LogPlus.info("| INFO | Block.check_previous_block | Previous block is valid")
-            return []
+            return {"reason": "none"}
         else:
             LogPlus.info("| INFO | Block.check_previous_block | Previous block is not found")
-            return [self.previd]
+            return {"reason": "missing"}
 
     # Check if all included transactions are known and valid
     # If unknown, return the ids of the transactions to be missing
@@ -190,9 +200,7 @@ class Block:
 
     def check_height(self):
         # Check if prev block is the genesis block
-        coinbase_txid = self.txids[0]
-        coinbase_tx_json = ObjectHandler.get_object(coinbase_txid)
-        height = coinbase_tx_json[height_key]
+        height = self.get_height()
 
         if height == 1: # This means that the previous block is the genesis block
             if self.previd != Object.get_id_from_json(GENESIS_BLOCK):
@@ -225,7 +233,10 @@ class Block:
 
         prev_utxo = UTXO.get_utxo(self.previd)
 
-        for txid in self.txids:
+        if prev_utxo is None:
+            raise ValidationException("UTXO set is not available")
+
+        for txid in self.txids[1:]:
             tx_json = ObjectHandler.get_object(txid)
             # Go through all inputs, see if they are in the UTXO set
             # Remove them from the UTXO set if they are to prevent double spending
@@ -258,6 +269,14 @@ class Block:
         if tx_fees + BLOCK_REWARD < coinbase_tx_value:
             LogPlus.error(f"| ERROR | Block.verify | The coinbase transaction value is not valid")
             raise ValidationException("The coinbase transaction value is not valid")
+
+    def get_height(self):
+        try:
+            coinbase_txid = self.txids[0]
+            coinbase_tx_json = ObjectHandler.get_object(coinbase_txid)
+            return coinbase_tx_json[height_key]
+        except:
+            return -1
 
 # This lets us distinguish between a validation error and other (unwanted) errors
 class ValidationException(Exception):

@@ -153,58 +153,15 @@ def handle_object(data_parsed, sender_address):
         object_json = data_parsed[object_key]
         object = ObjectCreator.create_object(object_json)
         object_id = object.get_id()
-        object_type = object.get_type()
 
         if not ObjectHandler.is_object_known(object_id):
             LogPlus.info(f"| INFO | inputHandling | handle_object | New object received | {object_id}")
-
-            verification_result = None
-            # validate object and add it to the database - first add the object to the database and then validate it!!
-            try:
-                # first we add the object
-                LogPlus.info(f"| INFO | inputHandling | handle_object | {object_id} | Object added to database")
-                try:
-                    verification_result = object.verify()
-                except Exception as e:
-                    LogPlus.error(f"| ERROR | inputHandling.handle_object | Verification failed | {object_id} | {e}")
-                    return [(sender_address, MessageGenerator.generate_error_message("Verification failed!"))]
-                if not "result" in verification_result:
-                    try:
-                        LogPlus.error(f"| ERROR | inputHandling | handle_object | {object_id} | No result in verification_result")
-                        return []
-                    except Exception as e:
-                        LogPlus.error(f"| ERROR | inputHandling | handle_object | A | {object_id} | {e}")
-                if verification_result["result"] == "True":
-                    try:
-                        ObjectHandler.add_object(object.get_json(), "valid", object_type)
-                        LogPlus.info(f"| INFO | inputHandling | handle_object | {object_id} | Object added to database")
-                        # gossip the object (send ihaveobeject to all known nodes)
-                        responses += [(node, MessageGenerator.generate_ihaveobject_message(object_id)) for node in KnownNodesHandler.known_nodes]
-                        # also check if pending objects can be verified now
-                        responses += revalidate_pending_objects()
-                    except Exception as e:
-                        LogPlus.error(f"| ERROR | inputHandling | handle_object | B | {object_id} | {e}")
-
-                elif verification_result["result"] == "False":
-                    try:
-                        ObjectHandler.add_object(object.get_json(), "invalid", object_type)
-                        LogPlus.error(f"| ERROR | inputHandling | handle_object | {object_id} | Object verification failed")
-                        responses.append((sender_address, MessageGenerator.generate_error_message("Object verification failed!")))
-                    except Exception as e:
-                        LogPlus.error(f"| ERROR | inputHandling | handle_object | C | {object_id} | {e}")
-                elif verification_result["result"] == "data missing":
-                    try:
-                        ObjectHandler.add_object(object.get_json(), "pending", object_type, verification_result["ids"])
-                        # request missing data (getobject)
-                        for txid in verification_result["ids"]:
-                            message =  MessageGenerator.generate_getobject_message(txid)
-                            responses += [(node_credentials, message) for node_credentials in KnownNodesHandler.active_nodes]  
-                            responses.append((sender_address, message))                
-                    except Exception as e:
-                        LogPlus.error(f"| ERROR | inputHandling | handle_object | D | {object_id} | {e}")
-
-            except Exception as e:
-                LogPlus.error(f"| ERROR | inputHandler | handle_object | Couldn't add object | {e} ")
+            verification_results = verify_object(object, sender_address)
+            responses += verification_results["responses"]
+            revalidate = verification_results["revalidation"]
+            if revalidate:
+                responses += revalidate_pending_objects()
+                
         else: # Object is already known
             LogPlus.info(f"| INFO | OBJECT | Object already known | {object_id}")
 
@@ -213,8 +170,63 @@ def handle_object(data_parsed, sender_address):
         LogPlus.error(f"| ERROR | inputHandling.handle_object | All | {data_parsed} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
 
-    # send the ihaveobject message
-    return [(sender_address, MessageGenerator.generate_ihaveobject_message(object.get_id()))]
+@staticmethod 
+def verify_object(object, sender_address = None):
+    verification_result = None
+
+    object_id = object.get_id()
+    object_type = object.get_type()
+
+    responses = []
+    revalidation = False
+
+
+    # validate object and add it to the database - first add the object to the database and then validate it!!
+    try:
+        if not ObjectHandler.is_object_known(object_id):
+            ObjectHandler.add_object(object.get_json(), "validation started", object_type)
+            LogPlus.info(f"| INFO | inputHandling | handle_object | {object_id} | Object added to database")
+
+        verification_result = object.verify()
+        if verification_result["result"] == "True":
+            try:
+                ObjectHandler.update_object_status(object_id, "valid")
+                LogPlus.info(f"| INFO | inputHandling | handle_object | {object_id} | Object added to database")
+                # gossip the object (send ihaveobeject to all known nodes)
+                message = MessageGenerator.generate_ihaveobject_message(object_id)
+                responses += [(node, message) for node in KnownNodesHandler.known_nodes]
+                revalidation = True
+                # also check if pending objects can be verified now
+                ObjectHandler.update_pending_objects(object_id)
+            except Exception as e:
+                LogPlus.error(f"| ERROR | inputHandling | handle_object | B | {object_id} | {e}")
+
+        elif verification_result["result"] == "False":
+            try:
+                ObjectHandler.update_object_status(object_id, "invalid")
+                ObjectHandler.update_pending_objects(object_id)
+                LogPlus.error(f"| ERROR | inputHandling | handle_object | {object_id} | Object verification failed")
+                if sender_address is not None:
+                    responses.append((sender_address, MessageGenerator.generate_error_message("Object verification failed!")))
+            except Exception as e:
+                LogPlus.error(f"| ERROR | inputHandling | handle_object | C | {object_id} | {e}")
+
+        elif verification_result["result"] == "data missing":
+            try:
+                ObjectHandler.update_object_status(object.get_id(), "pending")
+                ObjectHandler.set_requirements(object.get_id(), verification_result["missing"], verification_result["pending"])# request missing data (getobject)
+                for txid in verification_result["missing"]:
+                    message =  MessageGenerator.generate_getobject_message(txid)
+                    responses += [(node_credentials, message) for node_credentials in KnownNodesHandler.active_nodes]
+                    if sender_address is not None: 
+                        responses.append((sender_address, message))                
+            except Exception as e:
+                LogPlus.error(f"| ERROR | inputHandling | handle_object | D | {object_id} | {e}")
+
+    except Exception as e:
+        LogPlus.error(f"| ERROR | inputHandler | handle_object | Couldn't add object | {e} ")
+
+    return {"responses": responses, "revalidation": revalidation }
 
 @staticmethod
 def handle_getchaintip(data_parsed, sender_address):
@@ -250,63 +262,20 @@ def handle_chaintip(data_parsed, sender_address):
     # send the chaintip message
     return []
 
-# we now store the missing data for pending objects
-# if the missing data is received, the pending object can be verified
-# whenever we receive a new object, we check if there are pending objects that are waiting for it
-# if there are, we can clear that object from the missing data list
-# if the missing data list is empty, we can verify the pending object
-@staticmethod
-def update_pending_objects(new_object_id):
-    pending_objects = ObjectHandler.get_pending_objects()
-    responses = []
-    for pending_object in pending_objects:
-        if new_object_id in pending_object["missing"]:
-            pending_object["missing"].remove(new_object_id)
-            if len(pending_object["missing"]) == 0:
-                try:
-                    object = ObjectCreator.create_object(pending_object)
-                    verification_result = object.verify()
-                    if verification_result["result"] == "True":
-                        ObjectHandler.update_object_status(object.get_id(), "valid")
-                        # gossip the object
-                        message = MessageGenerator.generate_ihaveobject_message(object.get_id())
-                        responses += [(node_credentials, message) for node_credentials in KnownNodesHandler.active_nodes]
-                    elif verification_result["result"] == "False":
-                        ObjectHandler.update_object_status(object.get_id(), "invalid")
-                    elif verification_result["result"] == "data missing":
-                        ObjectHandler.update_object_status(object.get_id(), "pending", verification_result["ids"])
-                        # request missing data (getobject)
-                        for txid in verification_result["ids"]:
-                            message =  MessageGenerator.generate_getobject_message(txid)
-                            responses += [(node_credentials, message) for node_credentials in KnownNodesHandler.active_nodes]  
-                except Exception as e:
-                    LogPlus.error(f"| ERROR | inputHandling | update_pending_objects | {e}")
-
 @staticmethod
 def revalidate_pending_objects():
     try:
-        pending_objects = ObjectHandler.get_verifiable_objects()
-        responses = []
-        for pending_object in pending_objects:
-            try:
-                object = ObjectCreator.create_object(pending_object)
-                verification_result = object.verify()
-                if verification_result["result"] == "True":
-                    ObjectHandler.update_object_status(object.get_id(), "valid")
-                    # gossip the object
-                    message = MessageGenerator.generate_ihaveobject_message(object.get_id())
-                    responses += [(node_credentials, message) for node_credentials in KnownNodesHandler.active_nodes]
-                    # update pending objects
-                    ObjectHandler.update_pending_objects(object.get_id())
-                    # revalidate pending objects
-                    responses += revalidate_pending_objects()
-                elif verification_result["result"] == "False":
-                    ObjectHandler.update_object_status(object.get_id(), "invalid")
-                elif verification_result["result"] == "data missing":
-                    ObjectHandler.update_object_status(object.get_id(), "pending")
-            except Exception as e:
-                LogPlus.error(f"| ERROR | inputHandling.revalidate_pending_objects | object problem inside for loop, object printed above | {e} | {e.args}")
-                return []
+        revalidate = True
+        while revalidate:
+            pending_objects = ObjectHandler.get_verifiable_objects()
+            responses = []
+            for pending_object in pending_objects:
+                try:
+                    verification_results = verify_object(ObjectCreator.create_object(pending_object))
+                    responses += verification_results["responses"]
+                    revalidate = verification_results["revalidation"]
+                except Exception as e:
+                    LogPlus.error(f"| ERROR | inputHandling.revalidate_pending_objects | object problem inside for loop, object printed above | {e} | {e.args}")
         return responses
     except Exception as e:
         LogPlus.error(f"| ERROR | inputHandling.revalidate_pending_objects | {e}")

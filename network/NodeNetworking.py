@@ -51,6 +51,10 @@ class NodeNetworking:
         # ask all peers for their chaintip
         NodeNetworking.send_to_all_nodes(MessageGenerator.generate_hello_message())
         NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getchaintip_message())
+        # Height 17
+        # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getobject_message("00000000deacae40c9a486b5443ad7a437062e34109267229924bbb0dcbd341b"))
+        # Height 3XX
+        # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getobject_message("000000020d8fa99862de641ee6348f910550d7b8e6ea23356d5ec8dd729317e7"))
 
                 
 

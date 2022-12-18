@@ -104,7 +104,7 @@ class Transaction(Object):
                 tx = ObjectHandler.get_object(txid)
                 if tx is None:
                     LogPlus.warning("| WARNING | Transaction.verify | input txid does not exist")
-                    return {"result": "data missing", "ids": [txid]}
+                    return {"result": "data missing", "missing": [txid], "pending": None}
 
                 # Check that the index is valid
                 index = outpoint[index_key]

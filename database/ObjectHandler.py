@@ -77,7 +77,7 @@ class ObjectHandler:
             ObjectHandler.id_to_index[object_id] = i
 
     @staticmethod
-    def add_object(obj, validity=True, type="unknown", missing = []):
+    def add_object(obj, validity="valid", type="unknown", missing = [], pending = None):
         try:
             txid = Object.get_id_from_json(obj)
             ObjectHandler.objects.append({
@@ -85,7 +85,8 @@ class ObjectHandler:
                 "validity": validity,
                 object_key: obj,
                 type_key: type,
-                "missing": missing
+                "missing": missing,
+                "pending": pending
             })
             ObjectHandler.id_to_index[txid] = len(ObjectHandler.objects) - 1
             ObjectHandler.save_objects()
@@ -94,8 +95,7 @@ class ObjectHandler:
                 if UTXO.is_available(self.inputs):
                 UTXO.addToSet(self.outputs) # should we add it here?"""
 
-            if validity == "valid":
-                ObjectHandler.update_pending_objects(txid)
+            ObjectHandler.update_pending_objects(txid)
 
         except Exception as e:
             LogPlus.error("| ERROR | ObjectHandler.add_object | " + str(e))
@@ -130,16 +130,29 @@ class ObjectHandler:
             for pending in [obj for obj in ObjectHandler.objects if obj["validity"] == "pending"]:
                 if object_id in pending["missing"]:
                     pending["missing"].remove(object_id)
+                if object_id == pending["pending"]:
+                    pending["pending"] = None
+
 
     @staticmethod
     def get_verifiable_objects():
-        return [obj[object_key] for obj in ObjectHandler.objects if obj["validity"] == "pending" and len(obj["missing"]) == 0]
+        return [obj[object_key] for obj in ObjectHandler.objects if obj["validity"] == "pending" 
+                                                                    and len(obj["missing"]) == 0 
+                                                                    and obj["pending"] == None ]
 
 
     @staticmethod
     def update_object_status(object_id, validity):
         if object_id in ObjectHandler.id_to_index:
             ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["validity"] = validity
+            ObjectHandler.save_objects()
+
+    @staticmethod
+    def set_requirements(object_id, missing, pending):
+        if object_id in ObjectHandler.id_to_index:
+            index = ObjectHandler.id_to_index[object_id]
+            ObjectHandler.objects[index]["missing"] = missing
+            ObjectHandler.objects[index]["pending"] = pending
             ObjectHandler.save_objects()
 
     @staticmethod
