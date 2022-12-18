@@ -54,7 +54,7 @@ class NodeNetworking:
         # Height 17
         # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getobject_message("00000000deacae40c9a486b5443ad7a437062e34109267229924bbb0dcbd341b"))
         # Height 3XX
-        # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getobject_message("000000020d8fa99862de641ee6348f910550d7b8e6ea23356d5ec8dd729317e7"))
+        # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getobject_message("00000000c5a4617bf184142c54f137de6cca2046825608b42cb69cfc9ed10384"))
 
                 
 

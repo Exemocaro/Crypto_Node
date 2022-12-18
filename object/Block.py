@@ -120,10 +120,15 @@ class Block:
         # Second part of verification
         try:
             self.check_coinbase_transaction()
+            LogPlus.debug(f"| DEBUG | Block.verify | Coinbase transaction verified")
             self.check_height()
+            LogPlus.debug(f"| DEBUG | Block.verify | Height verified")
             self.check_created_timestamp()
+            LogPlus.debug(f"| DEBUG | Block.verify | Timestamp verified")
             self.check_fees()
+            LogPlus.debug(f"| DEBUG | Block.verify | Fees verified")
             self.check_transactions_strong()
+            LogPlus.debug(f"| DEBUG | Block.verify | Transactions verified")
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 2 failed | {e}")
             return {"result": "False"}
@@ -242,8 +247,9 @@ class Block:
             # Remove them from the UTXO set if they are to prevent double spending
             # Value is checked by the transaction itself (in the weak check)
             for input in tx_json[inputs_key]:
-                input_txid = input[txid_key]
-                input_index = input[index_key]
+                outpoint = input[outpoint_key]
+                input_txid = outpoint[txid_key]
+                input_index = outpoint[index_key]
                 if input_txid not in prev_utxo:
                     raise ValidationException(f"Transaction {input_txid} used by {txid} is unavailable")
                 if input_index not in prev_utxo[input_txid]:

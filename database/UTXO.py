@@ -46,7 +46,7 @@ class UTXO:
     @staticmethod
     def get_utxo(blockid):
         keys = UTXO.sets.keys()
-        LogPlus.debug(f"| DEBUG | UTXO | Keys: {keys}")
+        # LogPlus.debug(f"| DEBUG | UTXO | Keys: {keys}")
         if blockid in keys:
             LogPlus.debug(f"| DEBUG | UTXO | Returning set for block {blockid}")
             return UTXO.sets[blockid]
@@ -87,9 +87,6 @@ class UTXO:
                 prev_set = UTXO.sets[prev_id]
             else:
                 return
-                
-
-            LogPlus.debug(f"| DEBUG | UTXO | Previous set: {prev_set}")
 
             # get the transactions of the block
             txs = block[txids_key]
@@ -102,7 +99,6 @@ class UTXO:
             # add the coinbase transaction to the set
             new_set[coinbase_txid] = [0]
 
-            LogPlus.debug(f"| DEBUG | UTXO | A | New set: {new_set}")
         except Exception as e:
             LogPlus.error(f"| ERROR | UTXO | First | Error calculating set for block {block}: {e}")
             return
@@ -117,39 +113,26 @@ class UTXO:
 
             for txid in txs[1:]:
 
-                LogPlus.debug(f"| DEBUG | UTXO | A1 | New set: {new_set}")
                 tx = ObjectHandler.get_object(txid)
-                LogPlus.debug(f"| DEBUG | UTXO | A2 | New set: {new_set}")
                 for input in tx[inputs_key]:
                     # get the outpoint
-                    LogPlus.debug(f"| DEBUG | UTXO | A3 | New set: {new_set}")
                     outpoint = input[outpoint_key]
-                    LogPlus.debug(f"| DEBUG | UTXO | A4 | New set: {new_set}")
                     txid = outpoint[txid_key]
-                    LogPlus.debug(f"| DEBUG | UTXO | A5 | New set: {new_set}")
                     out_index = outpoint[index_key]
-                    LogPlus.debug(f"| DEBUG | UTXO | A6 | New set: {new_set}")
                     # remove the output from the set
                     if txid in new_set.keys():
-                        LogPlus.debug(f"| DEBUG | UTXO | A7 | New set: {new_set}")
                         new_set[txid].remove(out_index)
-                        LogPlus.debug(f"| DEBUG | UTXO | A8 | New set: {new_set}")
                         if len(new_set[txid]) == 0:
                             new_set.pop(txid)
-                            LogPlus.debug(f"| DEBUG | UTXO | A9 | New set: {new_set}")
                         break
 
-                LogPlus.debug(f"| DEBUG | UTXO | A10 | New set: {new_set}")
                 num_outputs = len(tx[outputs_key])
-                LogPlus.debug(f"| DEBUG | UTXO | A11 | New set: {new_set}")
 
                 # add the new outputs to the set
                 new_set[txid] = [i for i in range(num_outputs)]
 
-            LogPlus.debug(f"| DEBUG | UTXO | B | New set: {new_set}")
-
             # save the set
-            UTXO.sets[block[blockid_key]] = new_set
+            UTXO.sets[block_id] = new_set
         except Exception as e:
             LogPlus.error(f"| ERROR | UTXO | Last | Error calculating set for block {block}: {e}")
         

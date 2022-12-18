@@ -5,7 +5,7 @@ import logging
 PORT = 18018  # The port used by the server
 SERVER_ADDRESS = ('', PORT)
 
-TIMEOUT = 200  # The timeout for the server
+TIMEOUT = 2000  # The timeout for the server
 
 BLOCK_REWARD = 50 * (10 ** 12)
 
