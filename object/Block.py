@@ -120,15 +120,10 @@ class Block:
         # Second part of verification
         try:
             self.check_coinbase_transaction()
-            LogPlus.debug(f"| DEBUG | Block.verify | Coinbase transaction verified")
             self.check_height()
-            LogPlus.debug(f"| DEBUG | Block.verify | Height verified")
             self.check_created_timestamp()
-            LogPlus.debug(f"| DEBUG | Block.verify | Timestamp verified")
             self.check_fees()
-            LogPlus.debug(f"| DEBUG | Block.verify | Fees verified")
             self.check_transactions_strong()
-            LogPlus.debug(f"| DEBUG | Block.verify | Transactions verified")
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 2 failed | {e}")
             return {"result": "False"}
