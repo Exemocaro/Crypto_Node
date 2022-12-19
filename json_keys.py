@@ -65,5 +65,9 @@ height_key = "height"
 # CHAINTIP KEYS
 blockid_key = "blockid"
 
-
+# INTERNAL KEYS
+validity_key = "validity"
+missing_key = "missing"
+pending_key = "pending"
+sender_key = "sender"
 
