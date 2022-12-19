@@ -25,7 +25,6 @@ class ConnectionHandler:
             self.credentials = convert_string_to_tuple(credentials)
         else:
             self.credentials = credentials
-        self.credentials = credentials
         self.in_buffer = b""
         self.in_queue = Queue()
         self.out_queue = Queue()
