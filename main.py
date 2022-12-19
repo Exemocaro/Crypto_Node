@@ -1,5 +1,6 @@
-from network.NodeNetworking import *
-from database.KnownNodesHandler import *
+from network.NodeNetworking import NodeNetworking
+from database.KnownNodesHandler import KnownNodesHandler
+from engine.MessageGenerator import MessageGenerator
 from config import *
 
 from object.Block import *
@@ -9,7 +10,12 @@ from Miner import Miner
 from utility.other_utilities import *
 
 def main():
-    reset_objects_file() # makes it easier to debug fetching the chaintip
+    # reset_objects_file() # makes it easier to debug fetching the chaintip
+
+    # Let user change agent_name if it is the default
+    if MessageGenerator.agent_name == "THIS COULD BE YOUR NODE":
+        MessageGenerator.agent_name = input("Enter a name for your node: ")
+    #    agent_name = input("Enter a name for your node: ")
 
     KnownNodesHandler.load_known_nodes()
     KnownNodesHandler.set_active_nodes()

@@ -5,6 +5,7 @@ import hashlib
 from colorama import Fore, Style
 
 from utility.logplus import LogPlus
+from utility.credentials_utility import *
 #from UTXO import *
 from object.Object import Object
 #from object.ObjectCreator import ObjectCreator
@@ -84,6 +85,9 @@ class ObjectHandler:
             type: the type of the object (transaction, block, unknown)
             sender_address: the address of the sender of the object """
         try:
+            # if sender is tuple, convert to string
+            if type(sender_address) == tuple:
+                sender_address = convert_tuple_to_string(sender_address)
             txid = Object.get_id_from_json(obj)
             ObjectHandler.objects.append({
                 "txid": txid,

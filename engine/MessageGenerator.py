@@ -5,6 +5,7 @@ from json_keys import *
 
 
 class MessageGenerator:
+    agent_name = AGENT_NAME
 
     @staticmethod
     def generate_hello_message():
