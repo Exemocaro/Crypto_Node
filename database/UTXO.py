@@ -46,19 +46,14 @@ class UTXO:
     @staticmethod
     def get_utxo(blockid):
         keys = UTXO.sets.keys()
-        # LogPlus.debug(f"| DEBUG | UTXO | Keys: {keys}")
         if blockid in keys:
-            LogPlus.debug(f"| DEBUG | UTXO | Returning set for block {blockid}")
             return UTXO.sets[blockid]
         else:
-            LogPlus.debug(f"| DEBUG | UTXO | Let's calculate set for block {blockid}")
             UTXO.calculate_set(ObjectHandler.get_object(blockid))
             keys = UTXO.sets.keys()
             if blockid in keys:
-                LogPlus.debug(f"| DEBUG | UTXO | Returning set for block {blockid}")
                 return UTXO.sets[blockid]
             else:
-                LogPlus.debug(f"| DEBUG | UTXO | Returning None")
                 return None
 
     @staticmethod
@@ -74,7 +69,6 @@ class UTXO:
             # check if its a json object
             if isinstance(block, Object):
                 block = block.get_json()
-            LogPlus.debug(f"| DEBUG | UTXO | Calculating set for block {Object.get_id_from_json(block)}")
             block_id = Object.get_id_from_json(block)
             # get the previous block
             prev_id = block[previd_key]
