@@ -75,9 +75,28 @@ getpeers_message_schema = {
 
 # error mesage schema
 
+error_message_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "error message",
+    "title": "Error message",
+    "description": "The schema for the error message",
+    type_key: object_key,
+    "properties": {
+        type_key: {
+            "description": "The type of the message",
+            type_key: "string",
+        },
+        error_key: {
+            "description": "The error message",
+            type_key: "string",
+        },
+    },
+    "required": [type_key, error_key],
+}
+
 # ihavebject message schema
 
-ihaveobject_schema = {
+ihaveobject_message_schema = {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "ihaveobject message",
     "title": "Ihaveobject message",
@@ -97,7 +116,7 @@ ihaveobject_schema = {
 }
 
 # getobject message schema
-getobject_schema = {
+getobject_message_schema = {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "getobject message",
     "title": "Getobject message",
@@ -118,7 +137,7 @@ getobject_schema = {
 
 # object message schema
 
-object_schema = {
+object_message_schema = {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "object message",
     "title": "Object message",
@@ -137,6 +156,40 @@ object_schema = {
     "required": [type_key, object_key],
 }
 
+
+chaintip_message_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "chaintip message",
+    "title": "Chaintip message",
+    "description": "The schema for a chaintip message",
+    type_key: object_key,
+    "properties": {
+        type_key: {
+            "description": "The type of the chaintip",
+            type_key: "string",
+        },
+        blockid_key: {
+            "description": "The chaintip",
+            type_key: "string",
+        },
+    },
+    "required": [type_key, blockid_key],
+}
+
+getchaintip_message_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "getchaintip message",
+    "title": "Getchaintip message",
+    "description": "The schema for the getchaintip message",
+    type_key: object_key,
+    "properties": {
+        type_key: {
+            "description": "The type of the getchaintip",
+            type_key: "string",
+        },
+    },
+    "required": [type_key],
+}
 
 # OBJECT SCHEMAS
 
@@ -277,40 +330,6 @@ block_schema = {
         },
     },
     "required": [type_key, "txids", "previd", "nonce", "created", "T"],
-}
-
-chaintip_schema = {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "chaintip message",
-    "title": "Chaintip message",
-    "description": "The schema for a chaintip message",
-    type_key: object_key,
-    "properties": {
-        type_key: {
-            "description": "The type of the chaintip",
-            type_key: "string",
-        },
-        blockid_key: {
-            "description": "The chaintip",
-            type_key: "string",
-        },
-    },
-    "required": [type_key, blockid_key],
-}
-
-getchaintip_schema = {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "getchaintip message",
-    "title": "Getchaintip message",
-    "description": "The schema for the getchaintip message",
-    type_key: object_key,
-    "properties": {
-        type_key: {
-            "description": "The type of the getchaintip",
-            type_key: "string",
-        },
-    },
-    "required": [type_key],
 }
 
 
