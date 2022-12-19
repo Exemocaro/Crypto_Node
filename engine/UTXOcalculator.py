@@ -19,7 +19,7 @@ def calculate_set(block):
         prev_utxo = UTXO.get_utxo(self.previd)
         if prev_utxo is None:
             LogPlus.error("| ERROR | Block.verify | Previous UTXO is not found")
-            return {"result": "False"}
+            return {"result": "invalid"}
 
         new_utxo = prev_utxo # we'll update this as we go along
         # it's a list of dicts

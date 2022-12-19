@@ -104,18 +104,17 @@ class Transaction(Object):
                 tx = ObjectHandler.get_object(txid)
                 if tx is None:
                     LogPlus.warning("| WARNING | Transaction.verify | input txid does not exist")
-                    return {"result": "data missing", "missing": [txid], "pending": None}
+                    return {"result": "pending", "missing": [txid], "pending": None}
 
                 # Check that the index is valid
                 index = outpoint[index_key]
                 if index >= len(tx[outputs_key]):
                     LogPlus.warning("| WARNING | Transaction.verify | input index is invalid")
-                    return {"result": "False"}
+                    return {"result": "invalid"}
 
                 # 2. Check that each input is signed by the owner of the outpoint
                 # Get the public key of the owner of the outpoint
                 output = tx[outputs_key][index]
-                LogPlus.debug(f"| DEBUG | Transaction.verify | output: {output}")
                 pubkey = output[pubkey_key]
 
                 # get the pubkey bytes
@@ -130,7 +129,7 @@ class Transaction(Object):
                     VerifyKey(pubkey_bytes).verify(combined) # will raise an exception if the signature is invalid
                 except Exception as e:
                     LogPlus.warning(f"| WARNING | Transaction.verify | input signature is invalid | {e}")
-                    return {"result": "False"}
+                    return {"result": "invalid"}
 
                 # get the sum already, will be checked in step 4
                 sum_input += output[value_key]
@@ -145,7 +144,7 @@ class Transaction(Object):
                     int(pubkey, 16)
                 except ValueError:
                     LogPlus.warning("| WARNING | Transaction.verify | output pubkey is invalid")
-                    return {"result": "False"}
+                    return {"result": "invalid"}
 
                 # get the sum already, will be checked in step 4
                 sum_output += output[value_key]
@@ -153,7 +152,7 @@ class Transaction(Object):
             # 4. Check that the sum of the inputs is equal to the sum of the outputs. Output can be equal or smaller than input
             if sum_input < sum_output:
                 LogPlus.warning("| WARNING | Transaction.verify | sum of inputs is smaller than sum of outputs")
-                return {"result": "False"}
+                return {"result": "invalid"}
 
 
             # TODO: REPLACE THIS BY UTXO SET
@@ -166,10 +165,10 @@ class Transaction(Object):
                 UTXO.addToSet(self.outputs) # should we add it here?
                 return True"""
 
-            return {"result": "True"}
+            return {"result": "valid"}
         except Exception as e:
             LogPlus.error(f"| ERROR | Transaction.verify | {self.get_id()[:10]}... | {e}")
-            return {"result": "False"}
+            return {"result": "invalid"}
 
     def get_fee(self):
 

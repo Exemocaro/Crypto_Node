@@ -109,13 +109,13 @@ class Block:
                 LogPlus.debug(f"| DEBUG | Block.verify | Height: {height}")
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 1 failed | {e}")
-            return {"result": "False"}
+            return {"result": "invalid"}
         except Exception as e:
             LogPlus.error(f"| ERROR | Block.verify | A | Exception: {e}")
-            return {"result": "False"}
+            return {"result": "invalid"}
 
         if len(missing_data) > 0 or pending_prev is not None:
-            return {"result": "data missing", "missing": missing_data, "pending": pending_prev}
+            return {"result": "pending", "missing": missing_data, "pending": pending_prev}
 
         # Second part of verification
         try:
@@ -126,13 +126,13 @@ class Block:
             self.check_transactions_strong()
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 2 failed | {e}")
-            return {"result": "False"}
+            return {"result": "invalid"}
         except Exception as e:
             LogPlus.error(f"| ERROR | Block.verify | B | Exception: {e}")
-            return {"result": "False"}
+            return {"result": "invalid"}
         
 
-        return { "result": "True" }
+        return { "result": "valid" }
 
     def verify_proof_of_work(self):
         # Ensure the target is the one required
