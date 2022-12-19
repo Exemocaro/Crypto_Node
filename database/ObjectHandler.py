@@ -103,6 +103,7 @@ class ObjectHandler:
 
     @staticmethod
     def get_object(object_id):
+        """ Returns the object with the given id """
         if object_id in ObjectHandler.id_to_index:
             return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]][object_key]
         else:
@@ -120,6 +121,7 @@ class ObjectHandler:
 
     @staticmethod
     def get_status(object_id):
+        """ Returns the validity of the object with the given id """
         if object_id in ObjectHandler.id_to_index:
             return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["validity"]
         else:
@@ -163,6 +165,8 @@ class ObjectHandler:
 
     @staticmethod
     def get_block_containing_object(object_id):
+        """ Returns the id of the block containing the object with the given id
+            None if the object is not in a block """
         # get all objects of type block
         blocks = [obj[object_key] for obj in ObjectHandler.objects if obj[type_key] == "block"]
         
@@ -173,6 +177,7 @@ class ObjectHandler:
 
     @staticmethod
     def get_chaintip():
+        """ Returns the id of the chaintip """
         # get all objects of type block
         blocks = [obj[txid_key] for obj in ObjectHandler.objects if obj[type_key] == "block" and obj["validity"] == "valid"]
         LogPlus.debug(f"| DEBUG | ObjectHandler.get_chaintip |  lenblocks: {len(blocks)}")
@@ -189,6 +194,8 @@ class ObjectHandler:
 
     @staticmethod
     def get_block_height(object_id):
+        """ Takes an object id and returns the height of the block containing the object, 
+            -1 if the object is not a block or the coinbase transaction is not found """
         try:
             # get block
             block = ObjectHandler.get_object(object_id)
@@ -202,6 +209,7 @@ class ObjectHandler:
 
     @staticmethod
     def is_valid(object_id):
+        """ Takes an object id and returns True if the object is valid, False otherwise (might still be pending)"""
         if object_id in ObjectHandler.id_to_index:
             return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["validity"] == "valid"
         else:
@@ -209,11 +217,13 @@ class ObjectHandler:
 
     @staticmethod
     def is_object_known(object_id):
+        """ Takes an object id and returns True if the object is known, False otherwise"""
         return object_id in ObjectHandler.id_to_index.keys()
 
     # Saving and loading objects from file
     @staticmethod
     def save_objects():
+        """ Saves the objects to the file """
         try:
             with open(ObjectHandler.objects_file, "w") as f:
                 json.dump(ObjectHandler.objects, f, indent=4)
@@ -225,6 +235,7 @@ class ObjectHandler:
 
     @staticmethod
     def load_objects():
+        """ Loads the objects from the file and updates the id_to_index dictionary """
         try:
             with open(ObjectHandler.objects_file, "r") as f:
                 ObjectHandler.objects = json.load(f)
@@ -236,6 +247,7 @@ class ObjectHandler:
 
     @staticmethod
     def get_height(block_id):
+        """ Returns the height of the block with the given id """
         try:
             block_json = ObjectHandler.get_object(block_id)
             coinbase_txid = block_json[txids_key][0]
