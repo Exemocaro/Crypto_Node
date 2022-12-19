@@ -174,6 +174,7 @@ class ObjectHandler:
             # check if the object is in txids of the block
             if object_id in block[txids_key]:
                 return Object.get_id_from_json(block)
+        return None
 
     @staticmethod
     def get_chaintip():
@@ -211,7 +212,7 @@ class ObjectHandler:
     def is_valid(object_id):
         """ Takes an object id and returns True if the object is valid, False otherwise (might still be pending)"""
         if object_id in ObjectHandler.id_to_index:
-            return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["validity"] == "valid"
+            return ObjectHandler.get_status(object_id) == "valid"
         else:
             return False
 
