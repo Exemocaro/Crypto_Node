@@ -110,7 +110,13 @@ class ObjectHandler:
     
     @staticmethod
     def get_pending_objects():
-        return [obj[object_key] for obj in ObjectHandler.objects if obj["validity"] == "pending"]
+        """ Returns all pending objects (objects with validity "pending") """
+        return ObjectHandler.get_objects_with_status("pending")
+
+    @staticmethod 
+    def get_objects_with_status(status):
+        """ Returns all objects with the given status """
+        return [obj[object_key] for obj in ObjectHandler.objects if obj["validity"] == status]
 
     @staticmethod
     def get_status(object_id):
