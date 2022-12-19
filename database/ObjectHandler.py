@@ -77,7 +77,12 @@ class ObjectHandler:
             ObjectHandler.id_to_index[object_id] = i
 
     @staticmethod
-    def add_object(obj, validity="valid", type="unknown", missing = [], pending = None):
+    def add_object(obj, validity="valid", type="unknown", sender_address=None):
+        """ Adds an object to the object list and saves it to the objects file 
+            obj: the object to add
+            validity: the validity of the object (valid, invalid, pending)
+            type: the type of the object (transaction, block, unknown)
+            sender_address: the address of the sender of the object """
         try:
             txid = Object.get_id_from_json(obj)
             ObjectHandler.objects.append({
@@ -85,16 +90,13 @@ class ObjectHandler:
                 "validity": validity,
                 object_key: obj,
                 type_key: type,
-                "missing": missing,
-                "pending": pending
+                "missing": [],
+                "pending": None,
+                sender_key: sender_address
             })
             ObjectHandler.id_to_index[txid] = len(ObjectHandler.objects) - 1
             ObjectHandler.save_objects()
             ObjectHandler.update_id_to_index()
-            """if validity == "valid":
-                if UTXO.is_available(self.inputs):
-                UTXO.addToSet(self.outputs) # should we add it here?"""
-
             ObjectHandler.update_pending_objects(txid)
 
         except Exception as e:
@@ -104,7 +106,7 @@ class ObjectHandler:
     @staticmethod
     def get_object(object_id):
         """ Returns the object with the given id """
-        if object_id in ObjectHandler.id_to_index:
+        if object_id in ObjectHandler.id_to_index.keys():
             return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]][object_key]
         else:
             return None
@@ -128,40 +130,53 @@ class ObjectHandler:
             return None
 
     @staticmethod
-    def update_pending_objects(object_id = None):
-        if object_id == None:
-            object_ids = [obj[object_key] for obj in ObjectHandler.objects if obj["validity"] == "valid"]
-        else:
-            object_ids = [object_id]
+    def update_pending_objects(object_id):
+        """ Updates all pending objects that depend on the given object, takes the id of the object as input """
+        # get status of object
+        status = ObjectHandler.get_status(object_id)
+        # check if object is in missing objects and remove the dependency
+        for pending in [obj for obj in ObjectHandler.objects if obj["validity"] == "pending"]:
+            if "missing" in pending.keys() and object_id in pending["missing"]:
+                pending["missing"].remove(object_id)
+                ObjectHandler.save_objects()
 
-        for object_id in object_ids:
+        if status == "valid":
             for pending in [obj for obj in ObjectHandler.objects if obj["validity"] == "pending"]:
-                if object_id in pending["missing"]:
-                    pending["missing"].remove(object_id)
-                if object_id == pending["pending"]:
+                if "pending" in pending.keys() and object_id == pending["pending"]:
                     pending["pending"] = None
+                    ObjectHandler.save_objects()
+
+        if status == "invalid":
+            # check if object is in pending objects and remove the dependency
+            for pending in [obj for obj in ObjectHandler.objects if obj["validity"] == "pending"]:
+                if "pending" in pending.keys() and object_id == pending["pending"]:
+                    pending["pending"] = None
+                    pending["validity"] = "invalid"
+                    pending["missing"] = []
+                    ObjectHandler.save_objects()
 
 
     @staticmethod
     def get_verifiable_objects():
-        return [obj[object_key] for obj in ObjectHandler.objects if obj["validity"] == "pending" 
-                                                                    and len(obj["missing"]) == 0 
-                                                                    and obj["pending"] == None ]
+        """ Returns all objects that can be verified (objects with validity "pending" or "received") """
+        pending_objects = [obj for obj in ObjectHandler.objects if obj["validity"] == "pending"] 
+        pending_objects = [obj for obj in pending_objects if "missing" not in obj.keys() or len(obj["missing"]) == 0]
+        pending_objects = [obj[object_key] for obj in pending_objects if "pending" not in obj.keys() or obj["pending"] == None]
+        recevied_objects = ObjectHandler.get_objects_with_status("received")
+        return pending_objects + recevied_objects
 
 
     @staticmethod
-    def update_object_status(object_id, validity):
-        if object_id in ObjectHandler.id_to_index:
-            ObjectHandler.objects[ObjectHandler.id_to_index[object_id]]["validity"] = validity
-            ObjectHandler.save_objects()
-
-    @staticmethod
-    def set_requirements(object_id, missing, pending):
+    def update_object_status(object_id, validity, missing=[], pending=None):
+        """ Updates the status (and missing & pending) of the object with the given id """
         if object_id in ObjectHandler.id_to_index:
             index = ObjectHandler.id_to_index[object_id]
+            ObjectHandler.objects[index]["validity"] = validity
             ObjectHandler.objects[index]["missing"] = missing
             ObjectHandler.objects[index]["pending"] = pending
             ObjectHandler.save_objects()
+            if validity in ["valid", "invalid"]:
+                ObjectHandler.update_pending_objects(object_id)  
 
     @staticmethod
     def get_block_containing_object(object_id):
@@ -169,9 +184,7 @@ class ObjectHandler:
             None if the object is not in a block """
         # get all objects of type block
         blocks = [obj[object_key] for obj in ObjectHandler.objects if obj[type_key] == "block"]
-        
         for block in blocks:
-            # check if the object is in txids of the block
             if object_id in block[txids_key]:
                 return Object.get_id_from_json(block)
         return None
@@ -244,7 +257,7 @@ class ObjectHandler:
         except Exception as e:
             ObjectHandler.objects = []
             ObjectHandler.save_objects()
-            LogPlus().error(f"| ERROR | ObjectHandler | load_objects failed | {e}")
+            LogPlus.error(f"| ERROR | ObjectHandler | load_objects failed | {e}")
 
     @staticmethod
     def get_height(block_id):
@@ -256,3 +269,16 @@ class ObjectHandler:
             return coinbase_tx_json[height_key]
         except:
             return -1
+
+    @staticmethod
+    def get_orginal_sender(txid):
+        """ Returns the original sender address of the transaction with the given id """
+        try:
+            tx_json = ObjectHandler.get_object(txid)
+            if tx_json is not None:
+                return tx_json[sender_key]
+            else:
+                return None
+        except Exception as e:
+            LogPlus.error(f"| ERROR | ObjectHandler | get_orginal_sender failed | {e}")
+            return None

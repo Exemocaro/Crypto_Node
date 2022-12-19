@@ -10,6 +10,7 @@ from colorama import Fore, Style
 from json_keys import *
 
 from utility.json_validation import coinbase_transaction_schema
+from utility.logplus import LogPlus
 
 from object.Object import Object
 
@@ -57,7 +58,7 @@ class CoinbaseTransaction(Object):
 
     def verify(self):
         # we can only verify them, if they are in a block
-        block = ObjectHandler.get_block_containing_object(self)
+        block = ObjectHandler.get_block_containing_object(self.get_id())
         if block is None:
             return {"result": "pending", "missing": [], "pending": None}
         # check if the block is valid

@@ -276,7 +276,8 @@ class Block:
             coinbase_txid = self.txids[0]
             coinbase_tx_json = ObjectHandler.get_object(coinbase_txid)
             return coinbase_tx_json[height_key]
-        except:
+        except Exception as e:
+            LogPlus.error(f"| ERROR | Block.get_height | {e}")
             return -1
 
 # This lets us distinguish between a validation error and other (unwanted) errors
