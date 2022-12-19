@@ -7,6 +7,7 @@ from threading import Thread
 from socket import socket, SOL_SOCKET, SO_REUSEADDR
 
 from utility.logplus import LogPlus
+from utility.credentials_utility import *
 from engine.MessageGenerator import MessageGenerator
 
 # What ConnectionHandler does:
@@ -19,6 +20,11 @@ class ConnectionHandler:
 
     def __init__(self, connection=None, credentials=None):
         self.connection = connection
+        # if str, make tuple
+        if type(credentials) == str:
+            self.credentials = convert_string_to_tuple(credentials)
+        else:
+            self.credentials = credentials
         self.credentials = credentials
         self.in_buffer = b""
         self.in_queue = Queue()
