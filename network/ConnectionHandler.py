@@ -35,6 +35,7 @@ class ConnectionHandler:
             self.connection.connect(self.credentials)
         except Exception as e:
             LogPlus.error(f"| ERROR | ConnectionHandler.start_connection | Could not connect to {self.credentials}, timeout after {TIMEOUT}ms")
+            LogPlus.error(f"| ERROR | ConnectionHandler.start_connection | {e}")
             return False
 
         self.is_open = True
