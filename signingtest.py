@@ -1,9 +1,9 @@
 import nacl.encoding
 from nacl.signing import *
 import json
-from engine.Transaction import *
-from engine.CoinbaseTransaction import *
-from engine.Object import *
+from object.Transaction import *
+from object.CoinbaseTransaction import *
+from object.Object import *
 
 # import base64encoder
 import base64

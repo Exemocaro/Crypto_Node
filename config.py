@@ -7,7 +7,7 @@ SERVER_ADDRESS = ('', PORT)
 
 TIMEOUT = 2000  # The timeout for the server
 
-BLOCK_REWARD = 50 * (10 ** 12)
+BLOCK_REWARD = 5 * (10 ** 12)
 
 INCOMING_DATA_BUFFER = 1024
 CLIENTS_NUMBER = 500
