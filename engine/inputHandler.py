@@ -39,6 +39,8 @@ def handle_input(data, handler):
         if type_key in data_parsed:
             message_type = data_parsed[type_key]
             if message_type in message_keys:
+                if not validate_message_schema(data_parsed, message_type):
+                    return [(sender_address, MessageGenerator.generate_error_message("Invalid message schema."))]
                 function_name = data_parsed[type_key]
                 if handler.message_count == 0: # first message
                     if function_name != hello_key:
@@ -55,99 +57,71 @@ def handle_input(data, handler):
         LogPlus.error(f"| ERROR | inputHandling | handle_input | {data} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
 
+@staticmethod
+def validate_message_schema(data_parsed, message_type):
+    # Message schema name is the message type with _message_schema
+    schema_name = message_type + "_message_schema"
+    schema = globals()[schema_name]
+    try:
+        jsonschema.validate(instance=data_parsed, schema=schema)
+    except Exception as e:
+        LogPlus.error(f"| ERROR | inputHandling | validate_message_schema | {data_parsed} | {e}")
+        return False
+    return True
 
-# This is called when a hello message is received
+
 @staticmethod
 def handle_hello(data_parsed, sender_address):
-    try:
-        jsonschema.validate(instance=data_parsed, schema=hello_message_schema)
-    except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandling.handle_hello | {data_parsed} | {sender_address} | {e}")
-        return [(sender_address, MessageGenerator.generate_error_message("Invalid hello message!"))]
+    """ This is called when a hello message is received """
     # dont send a hello here, because the hello is already sent in the connection handler
     return []
 
 
-# This is called when a getpeers message is received
 @staticmethod
 def handle_getpeers(data_parsed, sender_address):
-    try:
-        jsonschema.validate(instance=data_parsed, schema=getpeers_message_schema)
-    except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandling.handle_getpeers | {data_parsed} | {sender_address} | {e}")
-        return [(sender_address, MessageGenerator.generate_error_message("Invalid getpeers message!"))]
-
+    """ This is called when a getpeers message is received """
     return [(sender_address, MessageGenerator.generate_peers_message(KnownNodesHandler.known_nodes))]
 
 
-# This in called when a peers message is received
 @staticmethod
 def handle_peers(data_parsed, sender_address):
-    try:
-        jsonschema.validate(instance=data_parsed, schema=peers_message_schema)
-    except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandling.handle_peers | {data_parsed} | {sender_address} | {e}")
-        return [(sender_address, MessageGenerator.generate_error_message("Invalid peers message!"))]
-
+    """ This is called when a peers message is received """
     # add the peers to the known nodes
     for peer in data_parsed[peers_key]:
         KnownNodesHandler.add_node(peer)
 
-    # we don't do anything besides saving!! 
 
-    ## send the ihaveobject message
-    #return [(sender_address, MessageGenerator.generate_ihaveobject_message())]
-
-# This is called when an error message is received
 @staticmethod
 def handle_error(data_parsed, sender_address):
-    try:
-        LogPlus.error(f"| ERROR | {sender_address} | ERROR | {data_parsed} | Error message received")
-    except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandling | handle_error | {data_parsed} | {sender_address} | {e}")
-        return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
+    """ This is called when an error message is received """
+    # nothing has to be done here, but logging is a good idea
+    LogPlus.error(f"| ERROR | inputHandling.handle_error | {data_parsed} | {sender_address}")
+    return []
 
 
-# This is called when an ihaveobject message is received
 @staticmethod
 def handle_ihaveobject(data_parsed, sender_address):
-    try:
-        jsonschema.validate(instance=data_parsed, schema=ihaveobject_schema)
-    except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandling.handle_ihaveobject | {data_parsed} | {sender_address} | {e}")
-        return [(sender_address, MessageGenerator.generate_error_message("Invalid ihaveobject message!"))]
 
+    """ This is called when an ihaveobject message is received"""
     # send the getobject message if we don't have it
     if not ObjectHandler.is_object_known(data_parsed[objectid_key]):
         return [(sender_address, MessageGenerator.generate_getobject_message(data_parsed[objectid_key]))]
 
     return []
 
-# This is called when a getobject message is received
 @staticmethod
 def handle_getobject(data_parsed, sender_address):
-    try:
-        jsonschema.validate(instance=data_parsed, schema=getobject_schema)
-    except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandling.handle_getobject | {data_parsed} | {sender_address} | {e}")
-        return [(sender_address, MessageGenerator.generate_error_message("Invalid getobject message!"))]
-
+    """ This is called when a getobject message is received """
     object_id = data_parsed[objectid_key]
     # get the object
     object = ObjectHandler.get_object(object_id)
-
     # always send the object independent of it's validaty! 
-    res =  [(sender_address, MessageGenerator.generate_object_message(object))]
-    return res
+    return [(sender_address, MessageGenerator.generate_object_message(object))]
     
-# This is called when an object message is received
+
 @staticmethod
 def handle_object(data_parsed, sender_address):
-    try:
-        jsonschema.validate(instance=data_parsed, schema=object_schema)
-    except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandling.handle_object | Invalid schema | {data_parsed} | {sender_address} | {e}")
-        return [(sender_address, MessageGenerator.generate_error_message("Invalid object message!"))]
+    """ This is called when an object message is received """
 
     try:
 
