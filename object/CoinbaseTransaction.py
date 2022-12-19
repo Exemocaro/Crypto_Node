@@ -56,13 +56,20 @@ class CoinbaseTransaction(Object):
         }
 
     def verify(self):
-        return {"result": "True"}
-        """# we can only verify them, if they are in a block
+        # we can only verify them, if they are in a block
         block = ObjectHandler.get_block_containing_object(self)
         if block is None:
-            return {"result": "data missing"}
-        # verify the value of the coinbase transaction
-        # the value of the coinbase transaction is the block reward"""
+            return {"result": "pending", "missing": [], "pending": None}
+        # check if the block is valid
+        if ObjectHandler.get_status(block) == "valid":
+            return {"result": "valid"}
+        # check if the block is pending
+        if ObjectHandler.get_status(block) == "pending":
+            return {"result": "pending", "missing": [], "pending": block}
+        # check if the block is invalid
+        if ObjectHandler.get_status(block) == "invalid":
+            return {"result": "invalid"}
+        
         
     def __str__(self):
         return "CoinbaseTransaction(height={}, outputs={})".format(self.height, self.outputs)
