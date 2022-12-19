@@ -18,7 +18,6 @@ from json_keys import *
 
 from utility.json_validation import *
 
-
 # This is called when a message is received
 # It calls the appropriate function based on the type of the message
 # It returns the response (as byte-like data) to be sent back to the sender
@@ -26,14 +25,14 @@ from utility.json_validation import *
 # If the message is not valid, it returns an error message
 
 def handle_input(data, handler):
+    """ Handles the input from the network. Returns a list of tuples (address, message) to be sent back to other nodes. """
     sender_address = handler.credentials
     try:
         data_parsed = json.loads(str(data, encoding="utf-8"))
     except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandler | A | handle_input | {data} | {e} | {e.args}")
+        # Maybe we should seperate for internal and external errors, this is an external error, so we should not log it as an error
+        LogPlus.info(f"| INFO | inputHandler | handle_input | Inavlid JSON | {data} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Invalid json."))]
-    
-    LogPlus.debug(f"| DEBUG | inputHandler | A | handle_input | {data_parsed}")
 
     try:
         if type_key in data_parsed:
@@ -101,13 +100,13 @@ def handle_error(data_parsed, sender_address):
 
 @staticmethod
 def handle_ihaveobject(data_parsed, sender_address):
-
     """ This is called when an ihaveobject message is received"""
     # send the getobject message if we don't have it
     if not ObjectHandler.is_object_known(data_parsed[objectid_key]):
         return [(sender_address, MessageGenerator.generate_getobject_message(data_parsed[objectid_key]))]
 
     return []
+
 
 @staticmethod
 def handle_getobject(data_parsed, sender_address):
