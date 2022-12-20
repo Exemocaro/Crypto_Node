@@ -97,11 +97,11 @@ class Block:
         try:
             self.verify_proof_of_work()
             # from check_previous_block we get a json containing a list of missing objects and 
-            still_required = self.check_previous_block()
-            if still_required["reason"] == "missing":
+            prev_block_status = self.check_previous_block()
+            if prev_block_status == "missing":
                 missing_data.append(self.previd)
-            elif still_required["reason"] == "pending":
                 pending_prev = self.previd
+            elif prev_block_status == "pending":
             missing_data += self.check_transactions_weak()
             # Log the height
             height = self.get_height()
@@ -150,9 +150,9 @@ class Block:
     # Check if previous block is valid
     # If pending or unknown, return the id of the previous block to be missing
     def check_previous_block(self):
-        # Check for previous block
-        # If it doesn't exist, then send a getobject message to your peers in order to get the previous block.
-        # and store current block for later verification
+        """Check for previous block.
+        Returning "valid", "pending" or "missing" depending on the status of the previous block.
+        Raises ValidationException if the previous block is invalid. """
 
         # check if its valid, pending or invalid
         if ObjectHandler.get_status(self.previd) == "invalid":
