@@ -160,13 +160,13 @@ class Block:
             raise ValidationException("Previous block is invalid")
         elif ObjectHandler.get_status(self.previd) == "pending":
             LogPlus.info("| INFO | Block.check_previous_block | Previous block is pending")
-            return {"reason": "pending"}
+            return "pending"
         elif ObjectHandler.get_status(self.previd) == "valid":
             LogPlus.info("| INFO | Block.check_previous_block | Previous block is valid")
-            return {"reason": "none"}
+            return "valid"
         else:
             LogPlus.info("| INFO | Block.check_previous_block | Previous block is not found")
-            return {"reason": "missing"}
+            return "missing"
 
     # Check if all included transactions are known and valid
     # If unknown, return the ids of the transactions to be missing
