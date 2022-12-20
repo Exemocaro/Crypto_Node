@@ -140,6 +140,8 @@ class Block:
         return { "result": "valid" }
 
     def verify_proof_of_work(self):
+        """ Check that the target is the one required and that the proof-of-work is valid.
+        Raise ValidationException if not valid."""
         # Ensure the target is the one required
         if self.t != "00000002af000000000000000000000000000000000000000000000000000000":
             LogPlus.info("| INFO | Block.verify_proof_of_work | Target is not the one required")
@@ -173,9 +175,11 @@ class Block:
             LogPlus.info("| INFO | Block.check_previous_block | Previous block is not found")
             return "missing"
 
-    # Check if all included transactions are known and valid
-    # If unknown, return the ids of the transactions to be missing
+    
     def check_transactions_weak(self):
+        """Check if all included transactions are known and valid
+        If unknown, return the ids of the transactions to be missing
+        If invalid, raise ValidationException"""
         missing_data = []
 
         for txid in self.txids:
@@ -190,7 +194,8 @@ class Block:
         return missing_data
 
     def check_coinbase_transaction(self):
-        # Check if the first transaction is a coinbase transaction
+        """ Check if the first transaction is a coinbase transaction
+        Raises ValidationException if not """
         if len(self.txids) == 0:
             raise ValidationException("No transactions in block")
         first_txid = self.txids[0]
@@ -204,6 +209,8 @@ class Block:
 
 
     def check_height(self):
+        """ Check if the height is correct
+        Raises ValidationException if not"""
         # Check if prev block is the genesis block
         height = self.get_height()
 
@@ -221,7 +228,8 @@ class Block:
             raise ValidationException("The height is not correct")
 
     def check_created_timestamp(self):
-        # Check if the created timestamp is correct
+        """ Check if the created timestamp is correct
+        Raises ValidationException if not"""
         
         # Check if it's after now
         if self.created > time.time():
@@ -233,8 +241,9 @@ class Block:
             raise ValidationException("The created timestamp is before the previous block")
 
     def check_transactions_strong(self):
-        # Check if all transactions are valid
-        # This is done by checking the UTXO set
+        """ Check if all transactions are valid
+        This is done by checking the UTXO set
+        Raises ValidationException if not valid"""
 
         prev_utxo = UTXO.get_utxo(self.previd)
 
@@ -260,6 +269,9 @@ class Block:
 
         
     def check_fees(self):
+        """ Check if coinbase vale is correct
+        tx fees + block reward >= coinbase transaction value
+        Raises ValidationException if not valid"""
         # sum up tx fees
         tx_fees = 0
         for txid in self.txids[1:]:
@@ -273,10 +285,12 @@ class Block:
 
         # tx fees + block reward >= coinbase transaction value
         if tx_fees + BLOCK_REWARD < coinbase_tx_value:
-            LogPlus.error(f"| ERROR | Block.verify | The coinbase transaction value is not valid")
+            LogPlus.info(f"| INFO | Block.verify | The coinbase transaction value is not valid")
             raise ValidationException("The coinbase transaction value is not valid")
 
     def get_height(self):
+        """ Get the height of the block
+        Returns -1 if the block is coinbase transaction is not found"""
         try:
             coinbase_txid = self.txids[0]
             coinbase_tx_json = ObjectHandler.get_object(coinbase_txid)
