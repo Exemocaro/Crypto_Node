@@ -142,7 +142,7 @@ class ObjectHandler:
         for pending in [obj for obj in ObjectHandler.objects if obj["validity"] == "pending"]:
             if "missing" in pending.keys() and object_id in pending["missing"]:
                 pending["missing"].remove(object_id)
-                ObjectHandler.save_objects()
+
 
         if status == "valid":
             for pending in [obj for obj in ObjectHandler.objects if obj["validity"] == "pending"]:
@@ -156,7 +156,8 @@ class ObjectHandler:
                     pending["pending"] = []
                     pending["validity"] = "invalid"
                     pending["missing"] = []
-                    ObjectHandler.save_objects()
+        
+        ObjectHandler.save_objects()
 
 
     @staticmethod
@@ -245,9 +246,7 @@ class ObjectHandler:
         try:
             with open(ObjectHandler.objects_file, "w") as f:
                 json.dump(ObjectHandler.objects, f, indent=4)
-
             f.close()
-
         except Exception as e:
             LogPlus().error(f"| ERROR | ObjectHandler | save_objects failed | {e}")
 
