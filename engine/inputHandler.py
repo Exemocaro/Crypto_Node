@@ -219,6 +219,7 @@ def verify_object(object, sender_address = None):
 
     except Exception as e:
         LogPlus.error(f"| ERROR | inputHandling | verify_object | {object_id} | Object verification failed | {e}")
+        return {"responses": [], "revalidation": False}
 
     LogPlus.info(f"| INFO | inputHandling | {object_id} | Object verification result | {verification_result}")
 
@@ -245,6 +246,7 @@ def verify_object(object, sender_address = None):
 
     except Exception as e:
         LogPlus.error(f"| ERROR | inputHandling | verify_object | Result handling | {object_id} | {e}")
+        return {"responses": [], "revalidation": False}
 
 
     return {"responses": responses, "revalidation": revalidation }

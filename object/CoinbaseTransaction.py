@@ -66,7 +66,7 @@ class CoinbaseTransaction(Object):
             return {"result": "valid"}
         # check if the block is pending
         if ObjectHandler.get_status(block) == "pending":
-            return {"result": "pending", "missing": [], "pending": block}
+            return {"result": "pending", "missing": [], "pending": [block]}
         # check if the block is invalid
         if ObjectHandler.get_status(block) == "invalid":
             return {"result": "invalid"}

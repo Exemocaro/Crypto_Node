@@ -135,28 +135,34 @@ class ObjectHandler:
     @staticmethod
     def update_pending_objects(object_id):
         """ Updates all pending objects that depend on the given object, takes the id of the object as input """
-        # get status of object
-        status = ObjectHandler.get_status(object_id)
-        # check if object is in missing objects and remove the dependency
-        for pending in [obj for obj in ObjectHandler.objects if obj[validity_key] == "pending"]:
-            if "missing" in pending.keys() and object_id in pending[missing_key]:
-                pending[missing_key].remove(object_id)
-
-
-        if status == "valid":
-            for pending in [obj for obj in ObjectHandler.objects if obj[validity_key] == "pending"]:
-                if "pending" in pending.keys() and object_id in pending[pending_key]:
+        try:
+            # get status of object
+            status = ObjectHandler.get_status(object_id)
+            pending_objects = [obj for obj in ObjectHandler.objects if obj[validity_key] == "pending"]
+            # check if object is in missing objects and remove the dependency
+            for pending in pending_objects:
+                # Add keys to pending object if they don't exist
+                if not pending_key in pending.keys():
                     pending[pending_key] = []
-
-        if status == "invalid":
-            # check if object is in pending objects and remove the dependency
-            for pending in [obj for obj in ObjectHandler.objects if obj[validity_key] == "pending"]:
-                if "pending" in pending.keys() and object_id in pending[pending_key]:
-                    pending[pending_key] = []
-                    pending[validity_key] = "invalid"
+                if not missing_key in pending.keys():
                     pending[missing_key] = []
-        
-        ObjectHandler.save_objects()
+
+                # Remove object from missing objects
+                if object_id in pending[missing_key]:
+                    pending[missing_key].remove(object_id)
+
+                # check if object is in pending objects and remove the dependency if we have a result
+                if object_id in pending[pending_key]:
+                    pending[pending_key].remove(object_id)
+                    # in case this object is invalid, set the pending object to invalid too, safes time
+                    if status == "invalid":
+                        pending[pending_key] = []
+                        pending[validity_key] = "invalid"
+                        pending[missing_key] = []
+            
+            ObjectHandler.save_objects()
+        except Exception as e:
+            LogPlus.error(f"| ERROR | ObjectHandler.update_pending_objects | {e}")
 
     @staticmethod
     def update_all_pending_objects():
