@@ -159,6 +159,12 @@ class ObjectHandler:
         
         ObjectHandler.save_objects()
 
+    @staticmethod
+    def update_all_pending_objects():
+        """ Updates all pending objects """
+        for obj in ObjectHandler.get_pending_objects():
+            ObjectHandler.update_pending_objects(Object.get_id_from_json(obj))
+
 
     @staticmethod
     def get_verifiable_objects():
