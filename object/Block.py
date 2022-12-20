@@ -294,6 +294,8 @@ class Block:
         try:
             coinbase_txid = self.txids[0]
             coinbase_tx_json = ObjectHandler.get_object(coinbase_txid)
+            if coinbase_tx_json is None:
+                return -1
             return coinbase_tx_json[height_key]
         except Exception as e:
             LogPlus.error(f"| ERROR | Block.get_height | {e}")
