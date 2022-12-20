@@ -211,7 +211,7 @@ def verify_object(object, sender_address = None):
         
         status = verification_result["result"]
         missing = [] if not "missing" in verification_result.keys() else verification_result["missing"]
-        pending = None if not "pending" in verification_result.keys() else verification_result["pending"]
+        pending = [] if not "pending" in verification_result.keys() else verification_result["pending"]
 
         ObjectHandler.update_object_status(object_id, status, missing, pending)
 

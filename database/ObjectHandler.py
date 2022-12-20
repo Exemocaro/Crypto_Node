@@ -95,7 +95,7 @@ class ObjectHandler:
                 object_key: obj,
                 type_key: type,
                 "missing": [],
-                "pending": None,
+                "pending": [],
                 sender_key: sender_address
             })
             ObjectHandler.id_to_index[txid] = len(ObjectHandler.objects) - 1
@@ -146,15 +146,14 @@ class ObjectHandler:
 
         if status == "valid":
             for pending in [obj for obj in ObjectHandler.objects if obj["validity"] == "pending"]:
-                if "pending" in pending.keys() and object_id == pending["pending"]:
-                    pending["pending"] = None
-                    ObjectHandler.save_objects()
+                if "pending" in pending.keys() and object_id in pending["pending"]:
+                    pending["pending"] = []
 
         if status == "invalid":
             # check if object is in pending objects and remove the dependency
             for pending in [obj for obj in ObjectHandler.objects if obj["validity"] == "pending"]:
-                if "pending" in pending.keys() and object_id == pending["pending"]:
-                    pending["pending"] = None
+                if "pending" in pending.keys() and object_id in pending["pending"]:
+                    pending["pending"] = []
                     pending["validity"] = "invalid"
                     pending["missing"] = []
                     ObjectHandler.save_objects()
@@ -165,13 +164,14 @@ class ObjectHandler:
         """ Returns all objects that can be verified (objects with validity "pending" or "received") """
         pending_objects = [obj for obj in ObjectHandler.objects if obj["validity"] == "pending"] 
         pending_objects = [obj for obj in pending_objects if "missing" not in obj.keys() or len(obj["missing"]) == 0]
-        pending_objects = [obj[object_key] for obj in pending_objects if "pending" not in obj.keys() or obj["pending"] == None]
+        pending_objects = [obj for obj in pending_objects if "pending" not in obj.keys() or len(obj["pending"]) == 0]
+        pending_objects = [obj[object_key] for obj in pending_objects]
         recevied_objects = ObjectHandler.get_objects_with_status("received")
         return pending_objects + recevied_objects
 
 
     @staticmethod
-    def update_object_status(object_id, validity, missing=[], pending=None):
+    def update_object_status(object_id, validity, missing=[], pending=[]):
         """ Updates the status (and missing & pending) of the object with the given id """
         if object_id in ObjectHandler.id_to_index:
             index = ObjectHandler.id_to_index[object_id]

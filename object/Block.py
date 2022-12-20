@@ -91,7 +91,7 @@ class Block:
         """
 
         missing_data = []
-        pending_prev = None
+        pending_prev = []
 
         # First part of verification
         try:
@@ -100,8 +100,8 @@ class Block:
             prev_block_status = self.check_previous_block()
             if prev_block_status == "missing":
                 missing_data.append(self.previd)
-                pending_prev = self.previd
             elif prev_block_status == "pending":
+                pending_prev.append(self.previd)
             missing_data += self.check_transactions_weak()
             # Log the height
             height = self.get_height()
@@ -114,7 +114,7 @@ class Block:
             LogPlus.error(f"| ERROR | Block.verify | A | Exception: {e}")
             return {"result": "invalid"}
 
-        if len(missing_data) > 0 or pending_prev is not None:
+        if len(missing_data) is not 0 or len(pending_prev) is not 0:
             return {"result": "pending", "missing": missing_data, "pending": pending_prev}
 
         # Second part of verification
