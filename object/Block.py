@@ -127,6 +127,11 @@ class Block:
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 2 failed | {e}")
             return {"result": "invalid"}
+        except MissingDataException as e:
+            # This should never happen, because we already checked for missing data
+            # But if it does, the block still shouldn't be considered invalid
+            LogPlus.error(f"| ERROR | Block.verify | MissingDataException: {e}")
+            return {"result": "pending", "missing": [], "pending": [self.previd]}
         except Exception as e:
             LogPlus.error(f"| ERROR | Block.verify | B | Exception: {e}")
             return {"result": "invalid"}
@@ -234,7 +239,7 @@ class Block:
         prev_utxo = UTXO.get_utxo(self.previd)
 
         if prev_utxo is None:
-            raise ValidationException("UTXO set is not available")
+            raise MissingDataException("UTXO set is not available")
 
         for txid in self.txids[1:]:
             tx_json = ObjectHandler.get_object(txid)
@@ -282,4 +287,7 @@ class Block:
 
 # This lets us distinguish between a validation error and other (unwanted) errors
 class ValidationException(Exception):
+    pass
+
+class MissingDataException(Exception):
     pass
