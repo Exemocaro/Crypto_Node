@@ -56,7 +56,8 @@ class NodeNetworking:
         # Height 3XX
         # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getobject_message("00000000c5a4617bf184142c54f137de6cca2046825608b42cb69cfc9ed10384"))
 
-                
+        # Update the pending / missing objects
+        ObjectHandler.update_all_pending_objects()
 
     @staticmethod
     def accept_connections():
