@@ -58,6 +58,8 @@ def handle_input(data, handler):
 
 @staticmethod
 def validate_message_schema(data_parsed, message_type):
+    """ Validates the message schema.
+    Returns True if the schema is valid, False otherwise. """
     # Message schema name is the message type with _message_schema
     schema_name = message_type + "_message_schema"
     schema = globals()[schema_name]
