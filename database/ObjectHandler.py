@@ -78,11 +78,11 @@ class ObjectHandler:
             ObjectHandler.id_to_index[object_id] = i
 
     @staticmethod
-    def add_object(obj, validity="valid", type="unknown", sender_address=None):
+    def add_object(obj, validity="valid", object_type="unknown", sender_address=None):
         """ Adds an object to the object list and saves it to the objects file 
             obj: the object to add
             validity: the validity of the object (valid, invalid, pending)
-            type: the type of the object (transaction, block, unknown)
+            object_type: the type of the object (transaction, block, unknown)
             sender_address: the address of the sender of the object """
         try:
             # if sender is tuple, convert to string
@@ -93,12 +93,11 @@ class ObjectHandler:
                 "txid": txid,
                 "validity": validity,
                 object_key: obj,
-                type_key: type,
+                type_key: object_type,
                 "missing": [],
                 "pending": [],
                 sender_key: sender_address
             })
-            ObjectHandler.id_to_index[txid] = len(ObjectHandler.objects) - 1
             ObjectHandler.save_objects()
             ObjectHandler.update_id_to_index()
             ObjectHandler.update_pending_objects(txid)
@@ -276,7 +275,8 @@ class ObjectHandler:
             coinbase_txid = block_json[txids_key][0]
             coinbase_tx_json = ObjectHandler.get_object(coinbase_txid)
             return coinbase_tx_json[height_key]
-        except:
+        except Exception as e:
+            LogPlus.error(f"| ERROR | ObjectHandler | get_height failed | {e}")
             return -1
 
     @staticmethod
