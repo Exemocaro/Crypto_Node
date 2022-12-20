@@ -175,9 +175,9 @@ def revalidate_pending_objects(sender_address = None):
             pending_objects = ObjectHandler.get_verifiable_objects()
             for pending_object in pending_objects:
                 verification_results = verify_object(ObjectCreator.create_object(pending_object), sender_address)
-                responses += verification_results["responses"]
+                responses += verification_results[responses_key]
                 if not revalidate:
-                    revalidate = verification_results["revalidation"]
+                    revalidate = verification_results[revalidation_key]
         return responses
     except Exception as e:
         LogPlus.error(f"| ERROR | inputHandling.revalidate_pending_objects | {e}")
@@ -206,14 +206,14 @@ def verify_object(object, sender_address = None):
             return {"responses": [], "revalidation": False}
 
         verification_result = object.verify()
-        if verification_result["result"] not in ["valid", "invalid", "pending"]:
+        if verification_result[result_key] not in ["valid", "invalid", "pending"]:
             # This should never happen, would be an internal issue
             LogPlus.error(f"| ERROR | inputHandling | verify_object | {object_id} | Invalid verification result | {verification_result}")
             return {"responses": [], "revalidation": False}
         
-        status = verification_result["result"]
-        missing = [] if not "missing" in verification_result.keys() else verification_result["missing"]
-        pending = [] if not "pending" in verification_result.keys() else verification_result["pending"]
+        status = verification_result[result_key]
+        missing = [] if not "missing" in verification_result.keys() else verification_result[missing_key]
+        pending = [] if not "pending" in verification_result.keys() else verification_result[pending_key]
 
         ObjectHandler.update_object_status(object_id, status, missing, pending)
 
@@ -237,7 +237,7 @@ def verify_object(object, sender_address = None):
 
         elif status == "pending":
             if "missing" in verification_result.keys():
-                for txid in verification_result["missing"]:
+                for txid in verification_result[missing_key]:
                     message =  MessageGenerator.generate_getobject_message(txid)
                     responses += [(node_credentials, message) for node_credentials in KnownNodesHandler.known_nodes]
                     if sender_address is not None: 

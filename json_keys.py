@@ -70,4 +70,5 @@ validity_key = "validity"
 missing_key = "missing"
 pending_key = "pending"
 sender_key = "sender"
-
+responses_key = "responses"
+revalidation_key = "revalidation"
