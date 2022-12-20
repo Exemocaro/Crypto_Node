@@ -68,7 +68,7 @@ class ObjectHandler:
   
     id_to_index = {}
     objects_file = OBJECTS_FILE
-    objects = []
+    objects = DEFAULT_OBJECTS
 
     @staticmethod
     def update_id_to_index():
@@ -259,7 +259,7 @@ class ObjectHandler:
                 ObjectHandler.objects = json.load(f)
             ObjectHandler.update_id_to_index()
         except Exception as e:
-            ObjectHandler.objects = []
+            ObjectHandler.objects = DEFAULT_OBJECTS
             ObjectHandler.save_objects()
             LogPlus.error(f"| ERROR | ObjectHandler | load_objects failed | {e}")
 

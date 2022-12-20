@@ -40,6 +40,17 @@ GENESIS_BLOCK = {
     "type" : "block"
 }
 
+# Genesis block always has to be in the known objects, otherwise the node will not be able to accept any other blocks
+DEFAULT_OBJECTS = [
+    {
+        "type": "block",
+        "validity": "valid",
+        "txid": "00000000a420b7cefa2b7730243316921ed59ffe836e111ca3801f82a4f5360e",
+        "object": GENESIS_BLOCK
+    }
+]
+    
+
 SAMPLE_BLOCK = {
             "type": "block",
             "txids": [],
