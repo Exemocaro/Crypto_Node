@@ -72,6 +72,7 @@ class ObjectHandler:
 
     @staticmethod
     def update_id_to_index():
+        """ Updates the id_to_index mapping """
         ObjectHandler.id_to_index = {}
         for i in range(len(ObjectHandler.objects)):
             object_id = ObjectHandler.objects[i][txid_key]
@@ -126,11 +127,12 @@ class ObjectHandler:
 
     @staticmethod
     def get_status(object_id):
-        """ Returns the validity of the object with the given id """
+        """ Returns the validity of the object with the given id
+            If the object is not in the object list, returns "missing" """
         if object_id in ObjectHandler.id_to_index:
             return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]][validity_key]
         else:
-            return None
+            return "missing"
 
     @staticmethod
     def update_pending_objects(object_id):

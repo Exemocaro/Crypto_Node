@@ -12,9 +12,9 @@ class KnownNodesHandler:
     known_nodes = []
     known_nodes_file = ADDRESSES_FILE
 
-    # load known nodes from file
     @staticmethod
     def load_known_nodes():
+        """ Loads the known nodes from the known nodes file"""
         try:
             with open(KnownNodesHandler.known_nodes_file, "r") as f:
                 for line in f:
@@ -22,16 +22,16 @@ class KnownNodesHandler:
         except Exception as e:
             LogPlus.error(f"| ERROR | Couldn't load nodes | {e} | {e.args}")
 
-    # add a node to the known nodes list and save it to file
     @staticmethod
     def add_node(node):
+        """ Adds a node to the known nodes list and saves it to file"""
         if is_credentials_format(node) and not KnownNodesHandler.is_node_known(node):
             KnownNodesHandler.known_nodes.append(node)
             KnownNodesHandler.save_known_nodes()
 
-    # save known nodes to file
     @staticmethod
     def save_known_nodes():
+        """ Saves the known nodes to the known nodes file"""
         with open(KnownNodesHandler.known_nodes_file, "w") as f:
             # clear file first
             f.truncate(0)
@@ -42,22 +42,23 @@ class KnownNodesHandler:
                 except Exception as e:
                     LogPlus.error(f"| ERROR | Nodes couldn't be saved | {e} | {e.args}")
 
-    # determines which nodes from our known nodes are active
     def set_active_nodes():
+        """ Sets the active nodes to the known nodes"""
         KnownNodesHandler.active_nodes = KnownNodesHandler.known_nodes
+
 
     # Making handling ip and port easier
 
-    # check if the ip of the credentials is known
     @staticmethod
     def is_node_known(node):
+        """ Checks if the node is known, only ip has to match"""
         # it's sufficient to check if the ip is known
         ip = get_ip(node)
         return KnownNodesHandler.is_ip_known(ip)
 
-    # check if the ip is known
     @staticmethod
     def is_ip_known(ip):
+        """ Checks if the ip is known"""
         known_ips = []
         for node in KnownNodesHandler.known_nodes:
             known_ips.append(node.split(":")[0])
@@ -66,18 +67,20 @@ class KnownNodesHandler:
         else:
             return False
 
-    # if the ip is known, return the full credentials
     @staticmethod
     def get_full_credentials(ip):
+        """ Returns the full credentials of the ip,
+        in other words it returns the credentials with the correct port"""
         if KnownNodesHandler.is_ip_known(ip):
             for credentials in KnownNodesHandler.known_nodes:
                 if ip == credentials.split(":")[0]:
                     return credentials
         return None
 
-    # if the ip is known, change the port accordingly
     @staticmethod
     def clean_credentials(credentials):
+        """ If the ip is known, change the port accordingly
+        otherwise return the credentials as they are"""
         if KnownNodesHandler.is_ip_known(credentials.split(":")[0]):
             return KnownNodesHandler.get_full_credentials(credentials.split(":")[0])
         else:
