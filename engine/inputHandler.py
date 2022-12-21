@@ -185,7 +185,8 @@ def revalidate_pending_objects(sender_address = None):
 
 @staticmethod 
 def verify_object(object, sender_address = None):
-    """ Verifies an object (given as Object type) and returns a list of responses """
+    """ Verifies an object (given as Object type)
+    returns a list of responses and a boolean if the object has to be revalidated"""
     verification_result = None
 
     object_id = object.get_id()
@@ -197,21 +198,22 @@ def verify_object(object, sender_address = None):
 
     # validate object and add it to the database - first add the object to the database and then validate it!!
     try:
+        # add the object to the database if it is not known
         if not ObjectHandler.is_object_known(object_id):
             ObjectHandler.add_object(object.get_json(), "received", object_type, sender_address)
             LogPlus.info(f"| INFO | inputHandling | verify_object | {object_id} | Object added to database")
+            revalidation = True
 
+        # valid and invalid are final states, we dont need to revalidate them
         if ObjectHandler.get_status(object_id) in ["valid", "invalid"]:
             LogPlus.info(f"| INFO | inputHandling | verify_object | {object_id} | Object already validated")
             return {"responses": [], "revalidation": False}
 
+        # result will be a dictionary {"result": ..., "missing": [...], "pending": [...]}
         verification_result = object.verify()
-        if verification_result[result_key] not in ["valid", "invalid", "pending"]:
-            # This should never happen, would be an internal issue
-            LogPlus.error(f"| ERROR | inputHandling | verify_object | {object_id} | Invalid verification result | {verification_result}")
-            return {"responses": [], "revalidation": False}
         
         status = verification_result[result_key]
+
         missing = [] if not "missing" in verification_result.keys() else verification_result[missing_key]
         pending = [] if not "pending" in verification_result.keys() else verification_result[pending_key]
 
@@ -248,5 +250,5 @@ def verify_object(object, sender_address = None):
         LogPlus.error(f"| ERROR | inputHandling | verify_object | Result handling | {object_id} | {e}")
         return {"responses": [], "revalidation": False}
 
-
+    # LogPlus.debug(f"| DEBUG | inputHandling | verify_object | {object_id} | Revalidation | {revalidation}")
     return {"responses": responses, "revalidation": revalidation }
