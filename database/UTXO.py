@@ -145,7 +145,7 @@ class UTXO:
     @staticmethod
     def save():
         """ Saves the UTXO by adding it to the auto save queue"""
-        UTXO.auto_save_queue.put(UTXO.sets)
+        UTXO.auto_save_queue.put(copy.deepcopy(UTXO.sets))
 
     @staticmethod
     def start_auto_save():
