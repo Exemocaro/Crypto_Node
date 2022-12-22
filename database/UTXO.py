@@ -58,12 +58,10 @@ class UTXO:
         try:
             # Try calculating the set if it doesn't exist yet
             if blockid in UTXO.sets:
-                LogPlus.debug(f"| DEBUG | UTXO | Set for {blockid} already exists")
                 return copy.deepcopy(UTXO.sets[blockid])
             # Try calculating the set
             # Check if previous block utxo set exists
             # Otherwise use fake recursive call to calculate the set
-            LogPlus.debug(f"| DEBUG | UTXO | Calculating set for {blockid}")
             prev_id = ObjectHandler.get_object(blockid)[previd_key]
             todo = [blockid]
             while prev_id is not None and prev_id not in copy.deepcopy(UTXO.sets):
@@ -130,7 +128,6 @@ class UTXO:
 
                 # add the new outputs to the set
                 out_indexes = [i for i in range(num_outputs)]
-                LogPlus.debug(f"| DEBUG | UTXO | Adding {out_indexes} to {new_txid}")
                 new_set[new_txid] = out_indexes
 
             # save the set

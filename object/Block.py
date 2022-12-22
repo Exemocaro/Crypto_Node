@@ -113,13 +113,11 @@ class Block:
                 LogPlus.debug(f"| DEBUG | Block.verify | Height: {height}")
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 1 failed | {e}")
-            LogPlus.debug(f"| DEBUG | Block.verify | Block: {self.get_id()} | {e}")
             return {"result": "invalid"}
         except Exception as e:
             LogPlus.error(f"| ERROR | Block.verify | A | Exception: {e}")
             return {"result": "invalid"}
 
-        LogPlus.debug(f"| DEBUG | Block.verify | A | Block: {self.get_id()[:10]}... | Missing: {len(missing_data)} | Pending: {len(pending_prev)}")
         if len(missing_data) is not 0 or len(pending_prev) is not 0:
             return {"result": "pending", "missing": missing_data, "pending": pending_prev}
 
@@ -133,7 +131,6 @@ class Block:
 
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 2 failed | {e}")
-            LogPlus.debug(f"| DEBUG | Block.verify | B | Block: {self.get_id()} | {e}")
             return {"result": "invalid"}
         except MissingDataException as e:
             # This should never happen, because we already checked for missing data
@@ -201,7 +198,6 @@ class Block:
     def check_coinbase_transaction(self):
         """ Check if the first transaction is a coinbase transaction
         Raises ValidationException if not """
-        LogPlus.debug(f"| DEBUG | Block.check_coinbase_transaction | Block: {self.get_id()}")
         if len(self.txids) == 0:
             raise ValidationException("No transactions in block")
         first_txid = self.txids[0]
