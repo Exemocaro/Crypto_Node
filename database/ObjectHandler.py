@@ -110,7 +110,7 @@ class ObjectHandler:
     @staticmethod
     def get_object(object_id):
         """ Returns the object with the given id """
-        if object_id in ObjectHandler.id_to_index.keys():
+        if object_id in ObjectHandler.id_to_index:
             return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]][object_key]
         else:
             return None
@@ -144,9 +144,9 @@ class ObjectHandler:
             # check if object is in missing objects and remove the dependency
             for pending in pending_objects:
                 # Add keys to pending object if they don't exist
-                if not pending_key in pending.keys():
+                if not pending_key in pending:
                     pending[pending_key] = []
-                if not missing_key in pending.keys():
+                if not missing_key in pending:
                     pending[missing_key] = []
 
                 # Remove object from missing objects
@@ -177,8 +177,8 @@ class ObjectHandler:
     def get_verifiable_objects():
         """ Returns all objects that can be verified (objects with validity "pending" or "received") """
         pending_objects = [obj for obj in ObjectHandler.objects if obj[validity_key] == "pending"] 
-        pending_objects = [obj for obj in pending_objects if "missing" not in obj.keys() or len(obj[missing_key]) == 0]
-        pending_objects = [obj for obj in pending_objects if "pending" not in obj.keys() or len(obj[pending_key]) == 0]
+        pending_objects = [obj for obj in pending_objects if "missing" not in obj or len(obj[missing_key]) == 0]
+        pending_objects = [obj for obj in pending_objects if "pending" not in obj or len(obj[pending_key]) == 0]
         pending_objects = [obj[object_key] for obj in pending_objects]
         recevied_objects = ObjectHandler.get_objects_with_status("received")
         return pending_objects + recevied_objects
@@ -250,7 +250,7 @@ class ObjectHandler:
     @staticmethod
     def is_object_known(object_id):
         """ Takes an object id and returns True if the object is known, False otherwise"""
-        return object_id in ObjectHandler.id_to_index.keys()
+        return object_id in ObjectHandler.id_to_index
 
     # Saving and loading objects from file
     @staticmethod
@@ -292,7 +292,7 @@ class ObjectHandler:
         """ Returns the original sender address of the transaction with the given id """
         try:
             tx_json = ObjectHandler.get_object(txid)
-            if tx_json is not None:
+            if tx_json is not None and sender_key in tx_json:
                 return tx_json[sender_key]
             else:
                 return None

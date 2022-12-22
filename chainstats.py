@@ -16,9 +16,9 @@ print(f"Chaintip: {chaintip}")
 
 # get average block time
 diff_sum = 0
-while current_block["previd"] is not None:
-    next_block = ObjectHandler.get_object(current_block["previd"])
-    time_diff = current_block["created"] - next_block["created"]
+while current_block[previd_key] is not None:
+    next_block = ObjectHandler.get_object(current_block[previd_key])
+    time_diff = current_block[created_key] - next_block[created_key]
     diff_sum += time_diff
     current_block = next_block
 
@@ -29,11 +29,11 @@ current_block = ObjectHandler.get_object(chaintip)
 # get average block time of latest 50 blocks
 diff_sum = 0
 for i in range(50):
-    next_block = ObjectHandler.get_object(current_block["previd"])
-    time_diff = current_block["created"] - next_block["created"]
+    next_block = ObjectHandler.get_object(current_block[previd_key])
+    time_diff = current_block[created_key] - next_block[created_key]
     diff_sum += time_diff
     current_block = next_block
-    if current_block["previd"] is not None:
+    if current_block[previd_key] is not None:
         break
 
 print(f"Difference sum: {diff_sum}")

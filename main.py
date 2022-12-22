@@ -9,8 +9,14 @@ from Miner import Miner
 
 from utility.other_utilities import *
 
+from database.UTXO import UTXO
+
 def main():
-    # reset_objects_file() # makes it easier to debug fetching the chaintip
+    reset_objects_file() # makes it easier to debug fetching the chaintip
+
+    UTXO.clear()
+    UTXO.save_to_file()
+    
 
     # Let user change agent_name if it is the default
     if MessageGenerator.agent_name == "THIS COULD BE YOUR NODE":

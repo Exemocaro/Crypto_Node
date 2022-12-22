@@ -5,7 +5,7 @@ import logging
 PORT = 18018  # The port used by the server
 SERVER_ADDRESS = ('', PORT)
 
-TIMEOUT = 2000  # The timeout for the server
+TIMEOUT = 2  # The timeout for the server
 
 BLOCK_REWARD = 50 * (10 ** 12)
 
@@ -15,6 +15,7 @@ DATA_SIZE = 2048  # size of data to read from each received message
 
 ADDRESSES_FILE = 'database/known_credentials.txt'  # file that stores the known addresses
 OBJECTS_FILE = 'database/known_objects.json'  # file that stores the known objects
+UTXO_FILE = 'database/utxo.json'  # file that stores the utxo
 
 SYSTEM = platform.system().lower()  # our operating system
 

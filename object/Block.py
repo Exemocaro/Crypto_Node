@@ -21,7 +21,7 @@ from config import *
 from json_keys import *
 
 from database.ObjectHandler import *
-from database.UTXO import *
+from database.UTXO import UTXO, TransactionsInvalidException
 
 from network.NodeNetworking import *
 
@@ -149,8 +149,8 @@ class Block:
             self.check_transactions_strong()
             step9 = time.time() - step8 - start2
             #print(f"Time for check_transactions_strong: {step9}")
-            print("Times bigger than 0.01 seconds:")
-            print([step if step > 0.01 else "" for step in [step9, step8, step7, step6, step5, step4, step3, step2, step1]])
+            #print("Times bigger than 0.01 seconds:")
+            #print([step if step > 0.01 else "" for step in [step9, step8, step7, step6, step5, step4, step3, step2, step1]])
 
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 2 failed | {e}")
@@ -165,7 +165,7 @@ class Block:
             LogPlus.error(f"| ERROR | Block.verify | B | Exception: {e}")
             return {"result": "invalid"}
 
-        print(f"Time for block verification: {time.time() - start}")     
+        # print(f"Time for block verification: {time.time() - start}")     
 
         return { "result": "valid" }
 
@@ -273,27 +273,13 @@ class Block:
         This is done by checking the UTXO set
         Raises ValidationException if not valid"""
 
-        prev_utxo = UTXO.get_utxo(self.previd)
-
-        if prev_utxo is None:
-            raise MissingDataException("UTXO set is not available")
-
-        for txid in self.txids[1:]:
-            tx_json = ObjectHandler.get_object(txid)
-            # Go through all inputs, see if they are in the UTXO set
-            # Remove them from the UTXO set if they are to prevent double spending
-            # Value is checked by the transaction itself (in the weak check)
-            for input in tx_json[inputs_key]:
-                outpoint = input[outpoint_key]
-                input_txid = outpoint[txid_key]
-                input_index = outpoint[index_key]
-                if input_txid not in prev_utxo:
-                    raise ValidationException(f"Transaction {input_txid} used by {txid} is unavailable")
-                if input_index not in prev_utxo[input_txid]:
-                    raise ValidationException(f"Input {input_index} from {input_txid} used by {txid} is unavailable")
-                prev_utxo[input_txid].remove(input_index)
-                if len(prev_utxo[input_txid]) == 0:
-                    prev_utxo.pop(input_txid)
+        try:
+            # try calculating the UTXO set
+            # this will raise an exception if the UTXO set is not valid
+            # if the utxo set is valid, all transactions are valid
+            UTXO.calculate_set(self.get_json())
+        except TransactionsInvalidException as e:
+            raise ValidationException(f"Transactions are not valid: {e}")
 
         
     def check_fees(self):

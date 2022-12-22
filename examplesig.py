@@ -30,14 +30,14 @@ tx_json = {
     ],
     "outputs": [
         {
-            "pubkey": tx.outputs[0]["pubkey"],
+            "pubkey": tx.outputs[0][pubkey_key],
             "value": 10
         }
     ],
     type_key: "transaction"
 }
 
-print(Fore.CYAN + str(pubkey == tx.outputs[0]["pubkey"]))
+print(Fore.CYAN + str(pubkey == tx.outputs[0][pubkey_key]))
 print(Style.RESET_ALL)
 tx = Transaction.from_json(tx_json)
 key_test = VerifyKey(pubkey, encoder=nacl.encoding.HexEncoder)

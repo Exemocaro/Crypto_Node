@@ -214,8 +214,8 @@ def verify_object(object, sender_address = None):
         
         status = verification_result[result_key]
 
-        missing = [] if not "missing" in verification_result.keys() else verification_result[missing_key]
-        pending = [] if not "pending" in verification_result.keys() else verification_result[pending_key]
+        missing = [] if not "missing" in verification_result else verification_result[missing_key]
+        pending = [] if not "pending" in verification_result else verification_result[pending_key]
 
         ObjectHandler.update_object_status(object_id, status, missing, pending)
 
@@ -239,7 +239,7 @@ def verify_object(object, sender_address = None):
             revalidation = True
 
         elif status == "pending":
-            if "missing" in verification_result.keys():
+            if "missing" in verification_result:
                 for txid in verification_result[missing_key]:
                     message =  MessageGenerator.generate_getobject_message(txid)
                     responses += [(node_credentials, message) for node_credentials in KnownNodesHandler.known_nodes]
