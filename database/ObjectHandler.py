@@ -1,8 +1,13 @@
 import json
 import json_canonical
 import hashlib
+import time
+import copy
 
 from colorama import Fore, Style
+
+from threading import Thread, Timer
+from queue import Queue
 
 from utility.logplus import LogPlus
 from utility.credentials_utility import *
@@ -70,6 +75,8 @@ class ObjectHandler:
     objects_file = OBJECTS_FILE
     objects = DEFAULT_OBJECTS
 
+    auto_save_queue = Queue()
+
     @staticmethod
     def update_id_to_index():
         """ Updates the id_to_index mapping """
@@ -99,7 +106,7 @@ class ObjectHandler:
                 "pending": [],
                 sender_key: sender_address
             })
-            ObjectHandler.save_objects()
+            ObjectHandler.save()
             ObjectHandler.update_id_to_index()
             ObjectHandler.update_pending_objects(txid)
 
@@ -162,7 +169,7 @@ class ObjectHandler:
                         pending[validity_key] = "invalid"
                         pending[missing_key] = []
             
-            ObjectHandler.save_objects()
+            ObjectHandler.save()
         except Exception as e:
             LogPlus.error(f"| ERROR | ObjectHandler.update_pending_objects | {e}")
 
@@ -192,7 +199,7 @@ class ObjectHandler:
             ObjectHandler.objects[index][validity_key] = validity
             ObjectHandler.objects[index][missing_key] = missing
             ObjectHandler.objects[index][pending_key] = pending
-            ObjectHandler.save_objects()
+            ObjectHandler.save()
             if validity in ["valid", "invalid"]:
                 ObjectHandler.update_pending_objects(object_id)  
 
@@ -272,7 +279,7 @@ class ObjectHandler:
             ObjectHandler.update_id_to_index()
         except Exception as e:
             ObjectHandler.objects = DEFAULT_OBJECTS
-            ObjectHandler.save_objects()
+            ObjectHandler.save()
             LogPlus.error(f"| ERROR | ObjectHandler | load_objects failed | {e}")
 
     @staticmethod
@@ -299,3 +306,38 @@ class ObjectHandler:
         except Exception as e:
             LogPlus.error(f"| ERROR | ObjectHandler | get_orginal_sender failed | {e}")
             return None
+
+    # Multithreaded auto save
+
+    @staticmethod
+    def save():
+        """ Saves the objects by adding them to the auto save queue """
+        ObjectHandler.auto_save_queue.put(ObjectHandler.objects)
+
+    @staticmethod
+    def start_auto_save():
+        """ Starts the auto save thread """
+        save_thread = Thread(target=ObjectHandler.auto_save)
+        save_thread.start()
+
+    @staticmethod
+    def auto_save():
+        """ Auto saves the objects every 5 seconds """
+        while True:
+            if not ObjectHandler.auto_save_queue.empty():
+                # get last object from queue
+                while not ObjectHandler.auto_save_queue.empty():
+                    item = ObjectHandler.auto_save_queue.get()
+                # save object
+                ObjectHandler.save_to_file(copy.deepcopy(item))
+            # sleep for 5 seconds
+            time.sleep(AUTO_SAVE_INTERVAL)
+
+    @staticmethod
+    def save_to_file(object_list):
+        """ Saves the given object_list set to the object_list file"""
+        try:
+            with open(OBJECTS_FILE, "w") as f:
+                json.dump(object_list, f, indent=4)
+        except Exception as e:
+            LogPlus.error(f"| ERROR | Couldn't save objects | {e} ")

@@ -50,11 +50,11 @@ class NodeNetworking:
 
         # ask all peers for their chaintip
         NodeNetworking.send_to_all_nodes(MessageGenerator.generate_hello_message())
-        NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getchaintip_message())
+        # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getchaintip_message())
         # Height 17
         # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getobject_message("00000000deacae40c9a486b5443ad7a437062e34109267229924bbb0dcbd341b"))
         # Height 3XX
-        # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getobject_message("00000000c5a4617bf184142c54f137de6cca2046825608b42cb69cfc9ed10384"))
+        NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getobject_message("00000000c5a4617bf184142c54f137de6cca2046825608b42cb69cfc9ed10384"))
 
         # Update the pending / missing objects
         ObjectHandler.update_all_pending_objects()
@@ -155,3 +155,14 @@ class NodeNetworking:
         if handler is None:
             return False
         handler.send(data)
+
+    @staticmethod
+    def copy_utxo(set):
+        """"Takes a set an creates a deep copy of it"""
+        copy = {}
+        for key in set:
+            copy[key] = []
+            for value in set[key]:
+                copy[key].append(value)
+        return copy
+

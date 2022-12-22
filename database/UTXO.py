@@ -2,6 +2,10 @@ import json
 import json_canonical
 import hashlib
 import copy
+import time
+
+from queue import Queue
+from threading import Thread, Timer
 from colorama import Fore, Style
 
 from utility.logplus import LogPlus
@@ -29,6 +33,8 @@ class UTXO:
         Object.get_id_from_json(GENESIS_BLOCK): {} # genesis block
     }
 
+    auto_save_queue = Queue()
+
     @staticmethod
     def clear():
         """ Clears the UTXO set, only the genesis block is left"""
@@ -46,16 +52,6 @@ class UTXO:
             LogPlus.error(f"| ERROR | Couldn't load UTXO set | {e} ")
     
     @staticmethod
-    def save_to_file():
-        """ Saves the UTXO set to the UTXO file"""
-        try:
-            with open(UTXO_FILE, "w") as f:
-                json.dump(UTXO.sets, f, indent=4)
-        except Exception as e:
-            LogPlus.error(f"| ERROR | Couldn't save UTXO set | {e} ")
-
-
-    @staticmethod
     def get_utxo(blockid):
         """ Returns the UTXO set for the given block id, calculates it if it doesn't exist yet
         Returns None if the block doesn't exist or the set couldn't be calculated """
@@ -70,12 +66,12 @@ class UTXO:
             LogPlus.debug(f"| DEBUG | UTXO | Calculating set for {blockid}")
             prev_id = ObjectHandler.get_object(blockid)[previd_key]
             todo = [blockid]
-            while prev_id is not None and prev_id not in UTXO.sets.copy():
+            while prev_id is not None and prev_id not in copy.deepcopy(UTXO.sets):
                 todo.append(prev_id)
                 prev_id = (ObjectHandler.get_object(prev_id))[previd_key]
             if prev_id is None:
                 # check if it's the genesis block
-                if blockid == Object.get_id_from_json(ObjectHandler.get_object("00000000a420b7cefa2b7730243316921ed59ffe836e111ca3801f82a4f5360e")):
+                if blockid == Object.get_id_from_json(GENESIS_BLOCK):
                     UTXO.sets[blockid] = {}
                     return {}
                 else:
@@ -100,14 +96,14 @@ class UTXO:
             prev_id = block[previd_key]
             if prev_id not in UTXO.sets:
                 return 
-            prev_set = UTXO.sets[prev_id].copy()
+            prev_set = copy.deepcopy(UTXO.sets[prev_id])
 
             # get the id of the coinbase transaction
             txs = block[txids_key]
             coinbase_txid = txs[0]
 
             # add the coinbase transaction to the set
-            new_set = prev_set.copy()
+            new_set = prev_set
             new_set[coinbase_txid] = [0]
 
             # add the other transactions to the set
@@ -124,6 +120,7 @@ class UTXO:
                     if txid_to_check not in new_set or out_index not in new_set[txid_to_check]:
                         raise TransactionsInvalidException(f"Invalid outpoint from {new_txid} to {txid_to_check}")
                     # remove the output from the set
+                    new_set[txid_to_check] = new_set[txid_to_check]
                     new_set[txid_to_check].remove(out_index)
                     if len(new_set[txid_to_check]) == 0:
                         new_set.pop(txid_to_check)
@@ -132,17 +129,54 @@ class UTXO:
                 num_outputs = len(tx[outputs_key])
 
                 # add the new outputs to the set
-                new_set[new_txid] = [i for i in range(num_outputs)]
+                out_indexes = [i for i in range(num_outputs)]
+                LogPlus.debug(f"| DEBUG | UTXO | Adding {out_indexes} to {new_txid}")
+                new_set[new_txid] = out_indexes
 
             # save the set
             block_id = Object.get_id_from_json(block)
-            UTXO.sets[block_id] = new_set.copy()
-            UTXO.save_to_file()
+            UTXO.sets[block_id] = new_set
+            UTXO.save()
         except TransactionsInvalidException as e:
             # pass the exception up
             raise e
         except Exception as e:
             LogPlus.error(f"| ERROR | UTXO | Last | Error calculating set for block {block}: {e}")
+
+    # Multithreaded auto save
+
+    @staticmethod
+    def save():
+        """ Saves the UTXO by adding it to the auto save queue"""
+        UTXO.auto_save_queue.put(UTXO.sets)
+
+    @staticmethod
+    def start_auto_save():
+        """ Starts the auto save thread"""
+        save_thread = Thread(target=UTXO.auto_save)
+        save_thread.start()
+
+    @staticmethod
+    def auto_save():
+        """Save function made for multithreading"""
+        while True:
+            if not UTXO.auto_save_queue.empty():
+                # get last item from queue
+                while not UTXO.auto_save_queue.empty():
+                    item = UTXO.auto_save_queue.get()
+                # save to file
+                UTXO.save_to_file(copy.deepcopy(item))
+            # wait for 5 seconds
+            time.sleep(AUTO_SAVE_INTERVAL)
+
+    @staticmethod
+    def save_to_file(sets):
+        """ Saves the given UTXO set to the UTXO file"""
+        try:
+            with open(UTXO_FILE, "w") as f:
+                json.dump(sets, f, indent=4)
+        except Exception as e:
+            LogPlus.error(f"| ERROR | Couldn't save UTXO set | {e} ")
 
 class TransactionsInvalidException(Exception):
     pass

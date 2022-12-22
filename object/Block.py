@@ -97,10 +97,7 @@ class Block:
 
         # First part of verification
         try:
-            start = time.time()
             self.verify_proof_of_work()
-            step1 = time.time() - start
-            #print(f"Time for PoW: {step1}")
             # from check_previous_block we get a json containing a list of missing objects and 
             prev_block_status = self.check_previous_block()
             if prev_block_status == "missing":
@@ -109,15 +106,9 @@ class Block:
                 pending_prev.append(self.previd)
             elif prev_block_status == "invalid":
                 raise ValidationException("Invalid previous block")
-            step2 = time.time() - step1 - start
-            #print(f"Time for check_previous_block: {step2}")
             missing_data += self.check_transactions_weak()
-            step3 = time.time() - step2 - start
-            #print(f"Time for check_transactions_weak: {step3}")
             # Log the height
             height = self.get_height()
-            step4 = time.time() - step3 - start
-            #print(f"Time for get_height: {step4}")
             if height != -1:
                 LogPlus.debug(f"| DEBUG | Block.verify | Height: {height}")
         except ValidationException as e:
@@ -128,29 +119,17 @@ class Block:
             LogPlus.error(f"| ERROR | Block.verify | A | Exception: {e}")
             return {"result": "invalid"}
 
+        LogPlus.debug(f"| DEBUG | Block.verify | A | Block: {self.get_id()[:10]}... | Missing: {len(missing_data)} | Pending: {len(pending_prev)}")
         if len(missing_data) is not 0 or len(pending_prev) is not 0:
             return {"result": "pending", "missing": missing_data, "pending": pending_prev}
 
         # Second part of verification
         try:
-            start2 = time.time()
             self.check_coinbase_transaction()
-            step5 = time.time() - start2
-            #print(f"Time for check_coinbase_transaction: {step5}")
             self.check_height()
-            step6 = time.time() - step5 - start2
-            #print(f"Time for check_height: {step6}")
             self.check_created_timestamp()
-            step7 = time.time() - step6 - start2
-            #print(f"Time for check_created_timestamp: {step7}")
             self.check_fees()
-            step8 = time.time() - step7 - start2
-            #print(f"Time for check_fees: {step8}")
             self.check_transactions_strong()
-            step9 = time.time() - step8 - start2
-            #print(f"Time for check_transactions_strong: {step9}")
-            #print("Times bigger than 0.01 seconds:")
-            #print([step if step > 0.01 else "" for step in [step9, step8, step7, step6, step5, step4, step3, step2, step1]])
 
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 2 failed | {e}")
@@ -163,9 +142,7 @@ class Block:
             return {"result": "pending", "missing": [], "pending": [self.previd]}
         except Exception as e:
             LogPlus.error(f"| ERROR | Block.verify | B | Exception: {e}")
-            return {"result": "invalid"}
-
-        # print(f"Time for block verification: {time.time() - start}")     
+            return {"result": "invalid"} 
 
         return { "result": "valid" }
 
@@ -224,6 +201,7 @@ class Block:
     def check_coinbase_transaction(self):
         """ Check if the first transaction is a coinbase transaction
         Raises ValidationException if not """
+        LogPlus.debug(f"| DEBUG | Block.check_coinbase_transaction | Block: {self.get_id()}")
         if len(self.txids) == 0:
             raise ValidationException("No transactions in block")
         first_txid = self.txids[0]
@@ -272,7 +250,6 @@ class Block:
         """ Check if all transactions are valid
         This is done by checking the UTXO set
         Raises ValidationException if not valid"""
-
         try:
             # try calculating the UTXO set
             # this will raise an exception if the UTXO set is not valid

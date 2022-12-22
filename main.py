@@ -15,7 +15,9 @@ def main():
     reset_objects_file() # makes it easier to debug fetching the chaintip
 
     UTXO.clear()
-    UTXO.save_to_file()
+    UTXO.start_auto_save()
+    UTXO.save()
+    ObjectHandler.start_auto_save()
     
 
     # Let user change agent_name if it is the default

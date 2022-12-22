@@ -9,6 +9,8 @@ TIMEOUT = 2  # The timeout for the server
 
 BLOCK_REWARD = 50 * (10 ** 12)
 
+AUTO_SAVE_INTERVAL = 5  # seconds
+
 INCOMING_DATA_BUFFER = 1024
 CLIENTS_NUMBER = 500
 DATA_SIZE = 2048  # size of data to read from each received message
