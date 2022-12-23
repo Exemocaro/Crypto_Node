@@ -13,6 +13,14 @@ class KnownNodesHandler:
     known_nodes_file = ADDRESSES_FILE
 
     @staticmethod
+    def clear_known_nodes():
+        try:
+            with open(KnownNodesHandler.known_nodes_file, "r+") as f:
+                f.truncate(0) # clears the file
+        except Exception as e:
+            LogPlus.error(f"| ERROR | Couldn't clear nodes' folder | {e} | {e.args}")
+
+    @staticmethod
     def load_known_nodes():
         """ Loads the known nodes from the known nodes file"""
         try:

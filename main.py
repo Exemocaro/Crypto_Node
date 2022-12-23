@@ -25,7 +25,8 @@ def main():
         MessageGenerator.agent_name = input("Enter a name for your node: ")
     #    agent_name = input("Enter a name for your node: ")
 
-    KnownNodesHandler.load_known_nodes()
+    KnownNodesHandler.clear_known_nodes()
+    #KnownNodesHandler.load_known_nodes()
     KnownNodesHandler.set_active_nodes()
 
     ObjectHandler.load_objects()
