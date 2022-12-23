@@ -30,7 +30,7 @@ from json_keys import *
 class UTXO:
 
     sets = {
-        Object.get_id_from_json(GENESIS_BLOCK): {} # genesis block
+        GENESIS_BLOCK_ID: {} # genesis block
     }
 
     auto_save_queue = Queue()
@@ -39,7 +39,7 @@ class UTXO:
     def clear():
         """ Clears the UTXO set, only the genesis block is left"""
         UTXO.sets = {
-            Object.get_id_from_json(GENESIS_BLOCK): {} # genesis block
+            GENESIS_BLOCK_ID: {} # genesis block
         }
 
     @staticmethod
@@ -69,7 +69,7 @@ class UTXO:
                 prev_id = (ObjectHandler.get_object(prev_id))[previd_key]
             if prev_id is None:
                 # check if it's the genesis block
-                if blockid == Object.get_id_from_json(GENESIS_BLOCK):
+                if blockid == GENESIS_BLOCK_ID:
                     UTXO.sets[blockid] = {}
                     return {}
                 else:

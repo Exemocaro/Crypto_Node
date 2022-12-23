@@ -221,10 +221,10 @@ class ObjectHandler:
         blocks = [obj[txid_key] for obj in ObjectHandler.objects if obj[type_key] == "block" and obj[validity_key] == "valid"]
         LogPlus.debug(f"| DEBUG | ObjectHandler.get_chaintip |  lenblocks: {len(blocks)}")
         if len(blocks) <= 1:
-            return Object.get_id_from_json(GENESIS_BLOCK)
+            return GENESIS_BLOCK_ID
         
         # sort out genesis block
-        blocks = [blockid for blockid in blocks if blockid != Object.get_id_from_json(GENESIS_BLOCK)]
+        blocks = [blockid for blockid in blocks if blockid != GENESIS_BLOCK_ID]
 
         # check height in coinbase transaction, return the blockid with the highest height
         chaintip_id = max(blocks, key=lambda block: ObjectHandler.get_height(block))

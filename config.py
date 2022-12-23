@@ -31,9 +31,11 @@ logging.basicConfig(
     datefmt='%d/%m/%Y %H:%M:%S'
 )
 
+TARGET = "00000002af000000000000000000000000000000000000000000000000000000"
+TARGET_INT = int(TARGET, 16)
 
 GENESIS_BLOCK = {
-    "T": "00000002af000000000000000000000000000000000000000000000000000000" ,
+    "T": TARGET,
     "created": 1624219079,
     "miner" : "dionyziz",
     "nonce": "0000000000000000000000000000000000000000000000000000002634878840",
@@ -42,13 +44,14 @@ GENESIS_BLOCK = {
     "txids" : [],
     "type" : "block"
 }
+GENESIS_BLOCK_ID = "00000000a420b7cefa2b7730243316921ed59ffe836e111ca3801f82a4f5360e"
 
 # Genesis block always has to be in the known objects, otherwise the node will not be able to accept any other blocks
 DEFAULT_OBJECTS = [
     {
         "type": "block",
         "validity": "valid",
-        "txid": "00000000a420b7cefa2b7730243316921ed59ffe836e111ca3801f82a4f5360e",
+        "txid": GENESIS_BLOCK_ID,
         "object": GENESIS_BLOCK
     }
 ]

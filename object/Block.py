@@ -147,13 +147,13 @@ class Block:
         """ Check that the target is the one required and that the proof-of-work is valid.
         Raise ValidationException if not valid."""
         # Ensure the target is the one required
-        if self.t != "00000002af000000000000000000000000000000000000000000000000000000":
+        if self.t != TARGET:
             LogPlus.info("| INFO | Block.verify_proof_of_work | Target is not the one required")
             raise ValidationException("Target is not the one required")
         
         # Check the proof-of-work: blockid < target
         blockid = self.get_id()
-        if int(blockid, 16) >= int(self.t, 16):
+        if int(blockid, 16) >= TARGET_INT:
             LogPlus.info("| INFO | Block.verify_proof_of_work | Proof-of-work is not valid")
             raise ValidationException("Proof-of-work is not valid")
 
@@ -217,7 +217,7 @@ class Block:
         height = self.get_height()
 
         if height == 1: # This means that the previous block is the genesis block
-            if self.previd != Object.get_id_from_json(GENESIS_BLOCK):
+            if self.previd != GENESIS_BLOCK_ID:
                 raise ValidationException("The previous block is not the genesis block, but height is 1")
             return
 
