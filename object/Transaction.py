@@ -141,6 +141,9 @@ class Transaction(Object):
                 pubkey = output[pubkey_key]
                 # should be 64 hex characters
                 try:
+                    if len(pubkey) != 64:
+                        LogPlus.warning("| WARNING | Transaction.verify | output pubkey is invalid, wrong length")
+                        return {"result": "invalid"}
                     int(pubkey, 16)
                 except ValueError:
                     LogPlus.warning("| WARNING | Transaction.verify | output pubkey is invalid")
