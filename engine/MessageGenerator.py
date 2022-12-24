@@ -65,6 +65,16 @@ class MessageGenerator:
         """ Generates a chaintip message as bytes with the given block id """
         message_json = {type_key: chaintip_key , blockid_key: block_id}
         return MessageGenerator.get_bytes_from_json(message_json)
+        
+    @staticmethod
+    def generate_getmempool_message():
+        """ Generates a getmempool message as bytes """
+        message_json = {type_key: getmempool_key}
+        return MessageGenerator.get_bytes_from_json(message_json)
 
-    # TODO : Mempool messages
+    @staticmethod
+    def generate_mempool_message(txids):
+        """ Generates a mempool message as bytes with the given mempool / list of txids """
+        message_json = {type_key: mempool_key, txids_key: txids}
+        return MessageGenerator.get_bytes_from_json(message_json)
 

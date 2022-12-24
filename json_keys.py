@@ -15,6 +15,9 @@ ihaveobject_key = "ihaveobject"
 chaintip_key = "chaintip"
 getchaintip_key = "getchaintip"
 
+mempool_key = "mempool"
+getmempool_key = "getmempool"
+
 error_key = "error"
 
 message_keys = [
@@ -26,6 +29,8 @@ message_keys = [
     ihaveobject_key,
     chaintip_key,
     getchaintip_key,
+    mempool_key,
+    getmempool_key,
     error_key
 ]
 
