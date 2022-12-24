@@ -151,10 +151,14 @@ class NodeNetworking:
         # no connection found
         # so we create a new connection and send the data there
 
-        handler = NodeNetworking.connect_to_node(handler.credentials)
-        if handler is None:
-            return False
-        handler.send(data)
+        try:
+            LogPlus.warning(f"| WARNING | No connections found!")
+            handler = NodeNetworking.connect_to_node(handler.credentials)
+            if handler is None:
+                return False
+            handler.send(data)
+        except Exception as e:
+            LogPlus.error(f"| ERROR | No connections found and couldn't connect to handler! | {e}")
 
     @staticmethod
     def copy_utxo(set):
