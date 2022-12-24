@@ -100,6 +100,7 @@ class Block:
         # First part of verification
         try:
             self.verify_proof_of_work()
+            self.check_note_and_miner_text()
             # from check_previous_block we get a json containing a list of missing objects and 
             prev_block_status = self.check_previous_block()
             if prev_block_status == "missing":
@@ -276,6 +277,14 @@ class Block:
         if tx_fees + BLOCK_REWARD < coinbase_tx_value:
             LogPlus.info(f"| INFO | Block.verify | The coinbase transaction value is not valid")
             raise ValidationException("The coinbase transaction value is not valid")
+
+    def check_note_and_miner_text(self):
+        """Ensure that the note and miner fields in a block are ASCII-printable strings up to 128 characters long each. 
+        ASCII printable characters are those with decimal values 32 up to 126."""
+        if not self.note.isascii() or not self.miner.isascii():
+            raise ValidationException("The note or miner fields are not ASCII printable")
+        if len(self.note) > 128 or len(self.miner) > 128:
+            raise ValidationException("The note or miner fields are longer than 128 characters")
 
     def get_height(self):
         """ Get the height of the block
