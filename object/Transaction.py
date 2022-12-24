@@ -19,6 +19,7 @@ from database.UTXO import *
 
 from utility.json_validation import regular_transaction_schema
 from utility.logplus import LogPlus
+from utility.Exceptions import ValidationException
 
 # Format of a regular transaction:
 """
@@ -93,9 +94,6 @@ class Transaction(Object):
         # Go step by step like in Task 2
 
         try:
-
-            sum_input = 0
-
             for input in self.inputs:
                 # 1. Check that each input is valid (txid exists, index is valid)
                 # Check that the txid exists
@@ -109,73 +107,38 @@ class Transaction(Object):
                 # Check that the index is valid
                 index = outpoint[index_key]
                 if index >= len(tx[outputs_key]):
-                    LogPlus.warning("| WARNING | Transaction.verify | input index is invalid")
-                    return {"result": "invalid"}
+                    raise ValidationException(f"Index is invalid: {index}")
 
                 # 2. Check that each input is signed by the owner of the outpoint
                 # Get the public key of the owner of the outpoint
                 output = tx[outputs_key][index]
                 pubkey = output[pubkey_key]
-
-                # get the pubkey bytes
-                pubkey_bytes = bytes.fromhex(pubkey)
-            
-                # Get the signature of the input
                 sig = input[sig_key]
 
-                # Check that the signature is valid
-                combined = bytes.fromhex(sig) + json_canonical.canonicalize(self.copy_without_sig().get_json())
-                try:
-                    VerifyKey(pubkey_bytes).verify(combined) # will raise an exception if the signature is invalid
-                except Exception as e:
-                    LogPlus.warning(f"| WARNING | Transaction.verify | input signature is invalid | {e}")
-                    return {"result": "invalid"}
-
-                # get the sum already, will be checked in step 4
-                sum_input += output[value_key]
-
-            sum_output = 0
+                self.verify_signature(pubkey, sig)
 
             # 3. Check that output pubkeys are valid (value is >= 0, already checked by jsonschema)
             for output in self.outputs:
                 pubkey = output[pubkey_key]
-                # should be 64 hex characters
-                try:
-                    if len(pubkey) != 64:
-                        LogPlus.warning("| WARNING | Transaction.verify | output pubkey is invalid, wrong length")
-                        return {"result": "invalid"}
-                    int(pubkey, 16)
-                except ValueError:
-                    LogPlus.warning("| WARNING | Transaction.verify | output pubkey is invalid")
-                    return {"result": "invalid"}
-
-                # get the sum already, will be checked in step 4
-                sum_output += output[value_key]
+                Transaction.verify_pubkey_format(pubkey)
 
             # 4. Check that the sum of the inputs is equal to the sum of the outputs. Output can be equal or smaller than input
-            if sum_input < sum_output:
-                LogPlus.warning("| WARNING | Transaction.verify | sum of inputs is smaller than sum of outputs")
-                return {"result": "invalid"}
+            self.verify_values()
 
-
-            # TODO: REPLACE THIS BY UTXO SET
-            # 5. Check that the transaction is not a double spend
-            # TODO : This is not mentioned in the task, but it's required to make sense
-            # go through all saved transactions and check if the txid is already used as an input
-            """used_inputs = [] # stores txid and index as tuple
-
-            if UTXO.is_available(self.inputs):
-                UTXO.addToSet(self.outputs) # should we add it here?
-                return True"""
+            # 5. Check that the transaction doesn't contain any input twice
+            self.verify_no_duplicate_inputs()
 
             return {"result": "valid"}
+        except ValidationException as e:
+            LogPlus.warning(f"| WARNING | Transaction.verify | {self.get_id()[:10]}... | {e}")
+            return {"result": "invalid"}
         except Exception as e:
             LogPlus.error(f"| ERROR | Transaction.verify | {self.get_id()[:10]}... | {e}")
             return {"result": "invalid"}
 
     def get_fee(self):
 
-        if not self.verify():
+        if not self.verify()["result"] == "valid":
             return 0
 
         # calculate the fee of the transaction
@@ -195,6 +158,46 @@ class Transaction(Object):
             sum_output += output[value_key]
 
         return sum_input - sum_output
+
+    def verify_values(self):
+        """ Check if the sum of the inputs is equal to the sum of the outputs. 
+        Output can be equal or smaller than input"""
+        if self.get_fee() < 0:
+            raise ValidationException(f"Sum of inputs is smaller than sum of outputs")
+
+    def verify_signature(self, pubkey, sig):
+        """verify the signature of the transaction
+        pubkey and sig are hex strings"""
+        try:
+            pubkey_bytes = bytes.fromhex(pubkey)
+            sig_bytes = bytes.fromhex(sig)
+            tx_bytes = json_canonical.canonicalize(self.copy_without_sig().get_json())
+            combined = sig_bytes + tx_bytes
+            VerifyKey(pubkey_bytes).verify(sig_bytes)
+            return True
+        except Exception:
+            raise ValidationException(f"Invalid signature: {sig}")
+
+    def verify_no_duplicate_inputs(self):
+        """ Check if the transaction contains any input twice """
+        # create a set of the inputs
+        input_set = set()
+        for input in self.inputs:
+            input_str = json.dumps(input)
+            if input_str in input_set:
+                raise ValidationException("Transaction contains duplicate inputs")
+            input_set.add(input_str)
+
+    @staticmethod
+    def verify_pubkey_format(pubkey):
+        """ verify the format of the public key
+        should be 64 hex characters """
+        try:
+            if len(pubkey) != 64:
+                return False
+            int(pubkey, 16)
+        except Exception:
+            raise ValidationException(f"Invalid pubkey format: {pubkey}")
 
 
     def __str__(self):

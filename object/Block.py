@@ -25,6 +25,8 @@ from database.UTXO import UTXO, TransactionsInvalidException
 
 from network.NodeNetworking import *
 
+from utility.Exceptions import ValidationException, MissingDataException
+
 class Block:
 
     def __init__(self, txids, nonce, miner, note, previd, created, t):
@@ -287,10 +289,3 @@ class Block:
         except Exception as e:
             LogPlus.error(f"| ERROR | Block.get_height | {e}")
             return -1
-
-# This lets us distinguish between a validation error and other (unwanted) errors
-class ValidationException(Exception):
-    pass
-
-class MissingDataException(Exception):
-    pass
