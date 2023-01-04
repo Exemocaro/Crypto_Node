@@ -50,3 +50,12 @@ class LogPlus:
         else:
             logging.warning(message)
             print(Fore.RED + message + Style.RESET_ALL)
+
+    @staticmethod
+    def timer(message):
+        if len(message) > LOG_LIMIT:
+            logging.info(message[0:LOG_LIMIT])
+            print(Fore.CYAN + message[0:LOG_LIMIT] + Style.RESET_ALL)
+        else:
+            logging.info(message)
+            print(Fore.CYAN + message + Style.RESET_ALL)
