@@ -37,9 +37,14 @@ class CoinbaseTransaction(Object):
 
     # create a transaction from a json representation
     @staticmethod
-    def from_json(tx_json):
+    def from_json(tx_json, validate_json=True):
         # this will raise an exception if the json is invalid
-        jsonschema.validate(instance=tx_json, schema=coinbase_transaction_schema)
+        if validate_json:
+            try:
+                jsonschema.validate(instance=tx_json, schema=coinbase_transaction_schema)
+            except jsonschema.exceptions.ValidationError as e:
+                LogPlus.error(f"| ERROR | invalid coinbase transaction json: {e}")
+                return None
         tx_height = tx_json[height_key]
         tx_outputs = tx_json[outputs_key]
         coinbase_tx = CoinbaseTransaction(tx_height, tx_outputs)

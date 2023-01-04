@@ -26,7 +26,7 @@ class Object(ABC):
 
     @staticmethod
     @abstractmethod
-    def from_json(object_json):
+    def from_json(object_json, validate_json=True):
         pass
     
     # TODO

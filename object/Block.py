@@ -26,6 +26,7 @@ from database.UTXO import UTXO, TransactionsInvalidException
 from network.NodeNetworking import *
 
 from utility.Exceptions import ValidationException, MissingDataException
+from utility.TimeTracker import TimeTracker
 
 class Block:
 
@@ -61,13 +62,17 @@ class Block:
         return "block" 
 
     @staticmethod
-    def from_json(block_json):
+    def from_json(block_json, validate_json=True):
         #jsonschema.validate(block_json, block_schema)
-        try:
-            jsonschema.validate(block_json, block_schema)
-        except jsonschema.exceptions.ValidationError as e:
-            LogPlus.error("| ERROR | Block.from_json | " + str(e))
-            return None
+        TimeTracker.start("Block.from_json")
+        if validate_json:
+            try:
+                jsonschema.validate(block_json, block_schema)
+                TimeTracker.checkpoint("Block.from_json", "jsonschema.validate")
+            except jsonschema.exceptions.ValidationError as e:
+                LogPlus.error("| ERROR | Block.from_json | " + str(e))
+                TimeTracker.end("Block.from_json")
+                return None
         block = Block(
             block_json[txids_key],
             block_json[nonce_key],
@@ -77,6 +82,8 @@ class Block:
             block_json[created_key],
             block_json[T_key]
         )
+        TimeTracker.checkpoint("Block.from_json", "block created")
+        TimeTracker.end("Block.from_json")
         return block
 
     def verify(self):
@@ -93,6 +100,7 @@ class Block:
         - ✅ Verify the law of conservation for the coinbase transaction. The output of the coinbase transaction can be at most the sum of transaction fees in the block plus the block reward. In our protocol, the block reward is a constant 50 × 1012 picaker. The fee of a transaction is the sum of its input values minus the sum of its output values.
         - ✅ When you receive a block object from the network, validate it. If valid, then store the block in your local database and gossip the block.
         """
+        TimeTracker.start("Block.verify")
 
         missing_data = []
         pending_prev = []
@@ -100,50 +108,71 @@ class Block:
         # First part of verification
         try:
             self.verify_proof_of_work()
+            TimeTracker.checkpoint("Block.verify", "verify_proof_of_work")
             self.check_note_and_miner_text()
+            TimeTracker.checkpoint("Block.verify", "check_note_and_miner_text")
             # from check_previous_block we get a json containing a list of missing objects and 
             prev_block_status = self.check_previous_block()
+            TimeTracker.checkpoint("Block.verify", "check_previous_block")
             if prev_block_status == "missing":
                 missing_data.append(self.previd)
             elif prev_block_status == "pending":
                 pending_prev.append(self.previd)
             elif prev_block_status == "invalid":
                 raise ValidationException("Invalid previous block")
+            TimeTracker.checkpoint("Block.verify", "check_previous_block result handled")
             missing_data += self.check_transactions_weak()
+            TimeTracker.checkpoint("Block.verify", "check_transactions_weak")
             # Log the height
             height = self.get_height()
             if height != -1:
                 LogPlus.debug(f"| DEBUG | Block.verify | Height: {height}")
+            TimeTracker.checkpoint("Block.verify", "get_height")
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 1 failed | {e}")
+            TimeTracker.end("Block.verify")
             return {"result": "invalid"}
         except Exception as e:
+            TimeTracker.end("Block.verify")
             LogPlus.error(f"| ERROR | Block.verify | A | Exception: {e}")
             return {"result": "invalid"}
 
         if len(missing_data) is not 0 or len(pending_prev) is not 0:
+            TimeTracker.end("Block.verify")
             return {"result": "pending", "missing": missing_data, "pending": pending_prev}
+        
+        TimeTracker.checkpoint("Block.verify", "part 1", True)
 
         # Second part of verification
         try:
             self.check_coinbase_transaction()
+            TimeTracker.checkpoint("Block.verify", "check_coinbase_transaction")
             self.check_height()
+            TimeTracker.checkpoint("Block.verify", "check_height")
             self.check_created_timestamp()
+            TimeTracker.checkpoint("Block.verify", "check_created_timestamp")
             self.check_fees()
+            TimeTracker.checkpoint("Block.verify", "check_fees")
             self.check_transactions_strong()
+            TimeTracker.checkpoint("Block.verify", "check_transactions_strong")
 
         except ValidationException as e:
             LogPlus.info(f"| INFO | Block.verify part 2 failed | {e}")
+            TimeTracker.end("Block.verify")
             return {"result": "invalid"}
         except MissingDataException as e:
             # This should never happen, because we already checked for missing data
             # But if it does, the block still shouldn't be considered invalid
             LogPlus.error(f"| ERROR | Block.verify | MissingDataException: {e}")
+            TimeTracker.end("Block.verify")
             return {"result": "pending", "missing": [], "pending": [self.previd]}
         except Exception as e:
             LogPlus.error(f"| ERROR | Block.verify | B | Exception: {e}")
+            TimeTracker.end("Block.verify")
+            TimeTracker.end("Block.verify")
             return {"result": "invalid"} 
-
+        
+        TimeTracker.end("Block.verify")
         return { "result": "valid" }
 
     def verify_proof_of_work(self):

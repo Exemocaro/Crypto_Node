@@ -53,9 +53,14 @@ class Transaction(Object):
 
     # create a transaction from a json representation
     @staticmethod
-    def from_json(tx_json):
+    def from_json(tx_json, validate_json=True):
         # this will raise an exception if the json is invalid
-        jsonschema.validate(instance=tx_json, schema=regular_transaction_schema)
+        if validate_json:
+            try:
+                jsonschema.validate(instance=tx_json, schema=regular_transaction_schema)
+            except jsonschema.exceptions.ValidationError as e:
+                LogPlus.error(f"| ERROR | invalid transaction json: {e}")
+                return None
         # without the validation, the inputs could contain invalid data and cause errors later
         tx_inputs = tx_json[inputs_key]
         tx_outputs = tx_json[outputs_key]
@@ -92,7 +97,7 @@ class Transaction(Object):
     def verify(self):
         # we know that the format is valid
         # Go step by step like in Task 2
-
+        # LogPlus.debug(f"| DEBUG | Transaction.verify | {self.get_id()[:10]}...")
         try:
             for input in self.inputs:
                 # 1. Check that each input is valid (txid exists, index is valid)
@@ -101,7 +106,7 @@ class Transaction(Object):
                 txid = outpoint[txid_key]
                 tx = ObjectHandler.get_object(txid)
                 if tx is None:
-                    LogPlus.warning("| WARNING | Transaction.verify | input txid does not exist")
+                    LogPlus.warning("| WARNING | Transaction.verify | input txid does not exist | {txid[:10]}... in {self.get_id()[:10]}...")
                     return {"result": "pending", "missing": [txid], "pending": []}
 
                 # Check that the index is valid
@@ -138,26 +143,28 @@ class Transaction(Object):
 
     def get_fee(self):
 
-        if not self.verify()["result"] == "valid":
+        try:
+            # calculate the fee of the transaction
+            sum_input = 0
+            sum_output = 0
+
+            for input in self.inputs:
+                outpoint = input[outpoint_key]
+                txid = outpoint[txid_key]
+                index = outpoint[index_key]
+                tx = ObjectHandler.get_object(txid)
+                output = tx[outputs_key][index]
+                sum_input += output[value_key]
+
+
+            for output in self.outputs:
+                sum_output += output[value_key]
+
+            return sum_input - sum_output
+        except Exception as e:
+            # This can happen, should be handled better in the future
+            LogPlus.warning(f"| WARNING | Transaction.get_fee | {e}")
             return 0
-
-        # calculate the fee of the transaction
-        sum_input = 0
-        sum_output = 0
-
-        for input in self.inputs:
-            outpoint = input[outpoint_key]
-            txid = outpoint[txid_key]
-            index = outpoint[index_key]
-            tx = ObjectHandler.get_object(txid)
-            output = tx[outputs_key][index]
-            sum_input += output[value_key]
-
-
-        for output in self.outputs:
-            sum_output += output[value_key]
-
-        return sum_input - sum_output
 
     def verify_values(self):
         """ Check if the sum of the inputs is equal to the sum of the outputs. 
@@ -173,9 +180,9 @@ class Transaction(Object):
             sig_bytes = bytes.fromhex(sig)
             tx_bytes = json_canonical.canonicalize(self.copy_without_sig().get_json())
             combined = sig_bytes + tx_bytes
-            VerifyKey(pubkey_bytes).verify(sig_bytes)
-            return True
+            VerifyKey(pubkey_bytes).verify(combined)
         except Exception:
+            LogPlus.warning(f"| WARNING | Transaction.verify_signature | Invalid signature: {sig[:10]}... | {self.get_id()[:10]}...")
             raise ValidationException(f"Invalid signature: {sig}")
 
     def verify_no_duplicate_inputs(self):
