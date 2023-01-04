@@ -17,6 +17,7 @@ from config import *
 from json_keys import *
 
 from utility.json_validation import *
+from utility.TimeTracker import TimeTracker
 
 # This is called when a message is received
 # It calls the appropriate function based on the type of the message
@@ -34,24 +35,28 @@ def handle_input(data, handler):
         LogPlus.info(f"| INFO | inputHandler | handle_input | Inavlid JSON | {data} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Invalid json."))]
 
+    # validate the message schema
     try:
-        if type_key in data_parsed:
-            message_type = data_parsed[type_key]
-            if message_type in message_keys:
-                if not validate_message_schema(data_parsed, message_type):
-                    return [(sender_address, MessageGenerator.generate_error_message("Invalid message schema."))]
-                function_name = data_parsed[type_key]
-                if handler.message_count == 0: # first message
-                    if function_name != hello_key:
-                        handler.close()
-                        return None
-                return  globals()["handle_" + function_name](data_parsed, sender_address)
-            else:
-                LogPlus.warning(f"| WARNING | {sender_address} | HANDLEINPUT | {data} | Invalid type | {message_type}")
-                return [(sender_address, MessageGenerator.generate_error_message("Type \"" + message_type + "\"invalid or not supported!"))]
-        else:
-            LogPlus.warning(f"| WARNING | {sender_address} | HANDLEINPUT | {data} | No type in message")
-            return [(sender_address, MessageGenerator.generate_error_message("No type in message!"))]
+        jsonschema.validate(instance=data_parsed, schema=message_schema)
+    except jsonschema.exceptions.ValidationError as e:
+        LogPlus.info(f"| INFO | inputHandler | handle_input | Invalid message schema | {data} | {e}")
+        return [(sender_address, MessageGenerator.generate_error_message("Invalid message schema."))]
+
+    try:
+        message_type = data_parsed[type_key]
+
+        # validate the message schema
+        if not validate_message_schema(data_parsed, message_type):
+            return [(sender_address, MessageGenerator.generate_error_message("Invalid message schema."))]
+
+        # first message must be a hello message
+        if handler.message_count == 0:
+            if message_type != hello_key:
+                handler.close()
+                return None
+
+        # call the appropriate function based on the message type
+        return  globals()["handle_" + message_type](data_parsed, sender_address)
     except Exception as e:
         LogPlus.error(f"| ERROR | inputHandling | handle_input | {data} | {sender_address} | {e}")
         return [(sender_address, MessageGenerator.generate_error_message("Unknown Error"))]
@@ -123,20 +128,19 @@ def handle_getobject(data_parsed, sender_address):
 @staticmethod
 def handle_object(data_parsed, sender_address):
     """ This is called when an object message is received """
-    responses = []
     object_json = data_parsed[object_key]
     object = ObjectCreator.create_object(object_json)
     object_id = object.get_id()
 
     if ObjectHandler.is_object_known(object_id):
         LogPlus.info(f"| INFO | inputHandling | Object already known | {object_id}")
-        return responses
+        return []
         
     # add the object to the database
     ObjectHandler.add_object(object.get_json(), "received", object.get_type(), sender_address)
 
     # validate the object
-    responses += revalidate_pending_objects(sender_address)
+    responses = revalidate_pending_objects(sender_address)
 
     LogPlus.info(f"| INFO | inputHandling | Object received | {object_id}")
 
@@ -165,19 +169,39 @@ def handle_chaintip(data_parsed, sender_address):
     return [(sender_address, message)]
 
 @staticmethod
+def handle_getmempool(data_parsed, sender_address):
+    """ This is called when a getmempool message is received """
+    # TODO: implement   
+    return []
+
+@staticmethod
+def handle_mempool(data_parsed, sender_address):
+    """ This is called when a mempool message is received """
+    # TODO: implement
+    LogPlus.debug(f"| DEBUG | inputHandling.handle_getmempool | {data_parsed[txids_key]} | {sender_address}")
+    return []
+
+@staticmethod
 def revalidate_pending_objects(sender_address = None):
     """ Revalidates all pending objects and returns a list of responses """
     try:
+        TimeTracker.start("revalidate_pending_objects")
         revalidate = True
         responses = []
         while revalidate:
             revalidate = False
             pending_objects = ObjectHandler.get_verifiable_objects()
+            TimeTracker.checkpoint("revalidate_pending_objects", "got all pending objects")
             for pending_object in pending_objects:
-                verification_results = verify_object(ObjectCreator.create_object(pending_object), sender_address)
+                obj = ObjectCreator.create_object(pending_object, False)
+                TimeTracker.checkpoint("revalidate_pending_objects", "created one pending object")
+                verification_results = verify_object(obj, sender_address)
+                TimeTracker.checkpoint("revalidate_pending_objects", "verified one pending object")
                 responses += verification_results[responses_key]
                 if not revalidate:
                     revalidate = verification_results[revalidation_key]
+            TimeTracker.checkpoint("revalidate_pending_objects", "looped through all pending objects")
+        TimeTracker.end("revalidate_pending_objects")
         return responses
     except Exception as e:
         LogPlus.error(f"| ERROR | inputHandling.revalidate_pending_objects | {e}")
@@ -187,6 +211,8 @@ def revalidate_pending_objects(sender_address = None):
 def verify_object(object, sender_address = None):
     """ Verifies an object (given as Object type)
     returns a list of responses and a boolean if the object has to be revalidated"""
+
+    TimeTracker.start("verify_object")
     verification_result = None
 
     object_id = object.get_id()
@@ -195,35 +221,49 @@ def verify_object(object, sender_address = None):
     responses = []
     revalidation = False
 
+    # LogPlus.debug(f"| DEBUG | inputHandling | verify_object | {object_id[:10]}... | {object_type}")
+
 
     # validate object and add it to the database - first add the object to the database and then validate it!!
     try:
         # add the object to the database if it is not known
         if not ObjectHandler.is_object_known(object_id):
             ObjectHandler.add_object(object.get_json(), "received", object_type, sender_address)
-            LogPlus.info(f"| INFO | inputHandling | verify_object | {object_id} | Object added to database")
+            LogPlus.info(f"| INFO | inputHandling | verify_object | {object_id[:10]}... | Object added to database")
             revalidation = True
+
+        TimeTracker.checkpoint("verify_object", "add_object")
 
         # valid and invalid are final states, we dont need to revalidate them
         if ObjectHandler.get_status(object_id) in ["valid", "invalid"]:
-            LogPlus.info(f"| INFO | inputHandling | verify_object | {object_id} | Object already validated")
+            LogPlus.info(f"| INFO | inputHandling | verify_object | {object_id[:10]}... | Object already validated")
             return {"responses": [], "revalidation": False}
+        
+        TimeTracker.checkpoint("verify_object", "check_status")
 
         # result will be a dictionary {"result": ..., "missing": [...], "pending": [...]}
         verification_result = object.verify()
+
+        TimeTracker.checkpoint("verify_object", "object verified")
         
         status = verification_result[result_key]
+
+        # LogPlus.debug(f"| DEBUG | inputHandling | verify_object | {object_id[:10]}... | Object verification result | {verification_result}")
 
         missing = [] if not "missing" in verification_result else verification_result[missing_key]
         pending = [] if not "pending" in verification_result else verification_result[pending_key]
 
+        TimeTracker.checkpoint("verify_object", "get missing and pending")
+
         ObjectHandler.update_object_status(object_id, status, missing, pending)
 
+        TimeTracker.checkpoint("verify_object", "update_object_status")
+
     except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandling | verify_object | {object_id} | Object verification failed | {e}")
+        LogPlus.error(f"| ERROR | inputHandling | verify_object | {object_id[:10]}...| Object verification failed | {e}")
         return {"responses": [], "revalidation": False}
 
-    LogPlus.info(f"| INFO | inputHandling | {object_id} | Object verification result | {verification_result}")
+    LogPlus.info(f"| INFO | inputHandling | {object_id[:10]}... | Object verification result | {verification_result}")
 
     try:
         if status == "valid":
@@ -246,9 +286,13 @@ def verify_object(object, sender_address = None):
                     if sender_address is not None: 
                         responses.append((sender_address, message))      
 
+        TimeTracker.checkpoint("verify_object", "result handling")
+
     except Exception as e:
-        LogPlus.error(f"| ERROR | inputHandling | verify_object | Result handling | {object_id} | {e}")
+        LogPlus.error(f"| ERROR | inputHandling | verify_object | Result handling | {object_id[:10]}... | {e}")
         return {"responses": [], "revalidation": False}
+    finally:
+        TimeTracker.end("verify_object")
 
     # LogPlus.debug(f"| DEBUG | inputHandling | verify_object | {object_id} | Revalidation | {revalidation}")
     return {"responses": responses, "revalidation": revalidation }

@@ -9,6 +9,22 @@ from json_keys import *
 
 # MESSAGE SCHEMAS
 
+message_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "message",
+    "title": "Message",
+    "description": "The schema for all messages",
+    type_key: object_key,
+    "properties": {
+        type_key: {
+            "description": "The type of the message",
+            type_key: "string",
+            "enum": message_keys
+        },
+    },
+    "required": [type_key],
+}
+
 # The schema for the hello message
 hello_message_schema = {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -85,6 +101,7 @@ error_message_schema = {
         type_key: {
             "description": "The type of the message",
             type_key: "string",
+            "enum": ["error"]
         },
         error_key: {
             "description": "The error message",
@@ -106,6 +123,7 @@ ihaveobject_message_schema = {
         type_key: {
             "description": "The type of the message",
             type_key: "string",
+            "enum": ["ihaveobject"]
         },
         objectid_key: {
             "description": "The object that the node has",
@@ -126,6 +144,7 @@ getobject_message_schema = {
         type_key: {
             "description": "The type of the message",
             type_key: "string",
+            "enum": ["getobject"]
         },
         objectid_key: {
             "description": "The object that the node wants",
@@ -147,10 +166,19 @@ object_message_schema = {
         type_key: {
             "description": "The type of the message",
             type_key: "string",
+            "enum": ["object"]
         },
         object_key: {
             "description": "The object",
             type_key: object_key,
+            "properties": {
+                type_key: {
+                    "description": "The type of the object",
+                    type_key: "string",
+                    "enum": ["block", "transaction"]
+                },
+                "required": [type_key],
+            }
         },
     },
     "required": [type_key, object_key],
@@ -167,6 +195,7 @@ chaintip_message_schema = {
         type_key: {
             "description": "The type of the chaintip",
             type_key: "string",
+            "enum": ["chaintip"]
         },
         blockid_key: {
             "description": "The chaintip",
@@ -186,10 +215,51 @@ getchaintip_message_schema = {
         type_key: {
             "description": "The type of the getchaintip",
             type_key: "string",
+            "enum": ["getchaintip"]
         },
     },
     "required": [type_key],
 }
+
+mempool_message_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "mempool message",
+    "title": "Mempool message",
+    "description": "The schema for the mempool message",
+    type_key: object_key,
+    "properties": {
+        type_key: { 
+            "description": "The type of the mempool",
+            type_key: "string",
+            "enum": ["mempool"]
+        },
+        txids_key: {
+            "description": "The mempool",
+            type_key: "array",
+            "items": {
+                type_key: "string",
+            },
+        },
+    },
+    "required": [type_key, txids_key],
+}
+
+getmempool_message_schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "getmempool message",
+    "title": "Getmempool message",
+    "description": "The schema for the getmempool message",
+    type_key: object_key,
+    "properties": {
+        type_key: {
+            "description": "The type of the getmempool",
+            type_key: "string",
+            "enum": ["getmempool"]
+        },
+    },
+    "required": [type_key],
+}
+
 
 # OBJECT SCHEMAS
 
@@ -226,6 +296,7 @@ regular_transaction_schema = {
         type_key: {
             "description": "The type of the transaction",
             type_key: "string",
+            "enum": ["transaction"]
         },
         "inputs": {
             "description": "The inputs of the transaction",
@@ -276,6 +347,7 @@ coinbase_transaction_schema = {
         type_key: {
             "description": "The type of the transaction",
             type_key: "string",
+            "enum": ["transaction"]
         },
         "outputs": outputs_schema
     },
@@ -292,6 +364,7 @@ block_schema = {
         type_key: {
             "description": "The type of the block",
             type_key: "string",
+            "enum": ["block"]
         },
         "txids": {
             "description": "The transaction ids of the transactions in the block",
@@ -300,7 +373,7 @@ block_schema = {
                 "description": "The transaction id",
                 type_key: "string",
             },
-            "minItems": 0, # TODO : Can most likely be 1
+            "minItems": 1,
             "uniqueItems": True,
         },
         "previd": {
