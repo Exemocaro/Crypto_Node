@@ -9,6 +9,7 @@ from threading import Thread, Timer
 from colorama import Fore, Style
 
 from utility.logplus import LogPlus
+from utility.TimeTracker import TimeTracker
 
 from object.Object import Object
 
@@ -90,11 +91,14 @@ class UTXO:
         """ Calculates the UTXO set for the given block and adds it to the UTXO.sets dictionary
         Block has to be a dictionary"""
         try:
+            TimeTracker.start("UTXO.calculate_set")
             # get the previous block
             prev_id = block[previd_key]
             if prev_id not in UTXO.sets:
                 return 
             prev_set = copy.deepcopy(UTXO.sets[prev_id])
+
+            TimeTracker.checkpoint("UTXO.calculate_set", "copied prev set")
 
             # get the id of the coinbase transaction
             txs = block[txids_key]
@@ -103,6 +107,8 @@ class UTXO:
             # add the coinbase transaction to the set
             new_set = prev_set
             new_set[coinbase_txid] = [0]
+
+            TimeTracker.checkpoint("UTXO.calculate_set", "added coinbase")
 
             # add the other transactions to the set
             # remove used outputs
@@ -122,13 +128,16 @@ class UTXO:
                     new_set[txid_to_check].remove(out_index)
                     if len(new_set[txid_to_check]) == 0:
                         new_set.pop(txid_to_check)
-                    break
+                    # break
+                    TimeTracker.checkpoint("UTXO.calculate_set", "removed used output")
 
                 num_outputs = len(tx[outputs_key])
 
                 # add the new outputs to the set
                 out_indexes = [i for i in range(num_outputs)]
                 new_set[new_txid] = out_indexes
+
+                TimeTracker.checkpoint("UTXO.calculate_set", "added new tx")
 
             # save the set
             block_id = Object.get_id_from_json(block)
