@@ -51,6 +51,8 @@ class NodeNetworking:
         # ask all peers for their chaintip
         NodeNetworking.send_to_all_nodes(MessageGenerator.generate_hello_message())
         NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getchaintip_message())
+        # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getpeers_message())
+        NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getmempool_message())
         # Height 17
         # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getobject_message("00000000deacae40c9a486b5443ad7a437062e34109267229924bbb0dcbd341b"))
         # Height 3XX
@@ -58,6 +60,7 @@ class NodeNetworking:
 
         # Update the pending / missing objects
         ObjectHandler.update_all_pending_objects()
+        revalidate_pending_objects()
 
     @staticmethod
     def accept_connections():
@@ -121,10 +124,10 @@ class NodeNetworking:
     @staticmethod
     def send_to_node(credentials, data):
         LogPlus.info(f"| INFO | Sending {data} to {credentials}")
+        # convert credentials to tuple if it is a string
+        if type(credentials) is str:
+            credentials = convert_string_to_tuple(credentials)
         for handler in NodeNetworking.handlers:
-            # convert credentials to tuple if it is a string
-            if type(credentials) is str:
-                credentials = convert_string_to_tuple(credentials)
             if handler.credentials == credentials:
                 handler.send(data)
                 return True
@@ -139,26 +142,8 @@ class NodeNetworking:
 
     @staticmethod
     def send_to_all_nodes(data):
-        #LogPlus.info(f"| INFO | Sending {data} to {credentials}")
         for handler in NodeNetworking.handlers:
-            # convert credentials to tuple if it is a string
-            if type(handler.credentials) is str:
-                handler.credentials = convert_string_to_tuple(handler.credentials)
-            # we take out the check and send to everyone
             handler.send(data)
-            return True
-
-        # no connection found
-        # so we create a new connection and send the data there
-
-        try:
-            LogPlus.warning(f"| WARNING | No connections found!")
-            handler = NodeNetworking.connect_to_node(handler.credentials)
-            if handler is None:
-                return False
-            handler.send(data)
-        except Exception as e:
-            LogPlus.error(f"| ERROR | No connections found and couldn't connect to handler! | {e}")
 
     @staticmethod
     def copy_utxo(set):

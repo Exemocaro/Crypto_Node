@@ -39,8 +39,7 @@ class ConnectionHandler:
         try:
             self.connection.connect(self.credentials)
         except Exception as e:
-            LogPlus.error(f"| ERROR | ConnectionHandler.start_connection | Could not connect to {self.credentials}, timeout after {TIMEOUT}ms")
-            LogPlus.error(f"| ERROR | ConnectionHandler.start_connection | {e}")
+            LogPlus.error(f"| ERROR | ConnectionHandler.start_connection | Could not connect to {self.credentials}, {e}")
             return False
 
         self.is_open = True
@@ -95,10 +94,11 @@ class ConnectionHandler:
         try:
             # make sure the message is byte-like object
             if not isinstance(message, bytes):
+                LogPlus.warning(f"| WARNING | Message {message} is not byte-like object. Encoding to bytes.")
                 message = str(message).encode()
             self.connection.sendall(message)
         except Exception as e:
-            LogPlus.error(f"| ERROR | Could not send message {message} to {self.credentials}")
+            LogPlus.error(f"| ERROR | Could not send message {message} to {self.credentials}: {e}")
             self.is_open = False
             return False
         return True
