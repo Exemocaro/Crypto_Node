@@ -2,7 +2,7 @@ import socket
 import json
 
 from config import *
-from engine.generateMessage import *
+from engine.MessageGenerator import *
 
 # HOST = "192.168.56.1" # LOCAL
 HOST = "143.244.205.206"  # MATEUS
