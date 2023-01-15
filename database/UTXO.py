@@ -142,6 +142,9 @@ class UTXO:
             # save the set
             block_id = Object.get_id_from_json(block)
             UTXO.sets[block_id] = new_set
+            # remove the old set
+            if prev_id in UTXO.sets:
+                UTXO.sets.pop(prev_id)
             UTXO.save()
             TimeTracker.end("UTXO.calculate_set")
         except TransactionsInvalidException as e:
