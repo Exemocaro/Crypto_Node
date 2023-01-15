@@ -137,7 +137,7 @@ class Block:
             LogPlus.error(f"| ERROR | Block.verify | A | Exception: {e}")
             return {"result": "invalid"}
 
-        if len(missing_data) is not 0 or len(pending_prev) is not 0:
+        if len(missing_data) != 0 or len(pending_prev) != 0:
             TimeTracker.end("Block.verify")
             return {"result": "pending", "missing": missing_data, "pending": pending_prev}
         
