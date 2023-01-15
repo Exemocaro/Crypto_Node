@@ -1,12 +1,12 @@
 import json
 import jsonschema
 
-
 from utility.credentials_utility import *
 from utility.logplus import LogPlus
 
 from database.KnownNodesHandler import KnownNodesHandler
 from database.ObjectHandler import ObjectHandler
+from database.Mempool import Mempool
 
 from object.Object import Object
 from object.ObjectCreator import ObjectCreator
@@ -129,7 +129,18 @@ def handle_getobject(data_parsed, sender_address):
 def handle_object(data_parsed, sender_address):
     """ This is called when an object message is received """
     object_json = data_parsed[object_key]
-    object = ObjectCreator.create_object(object_json)
+    try:
+        object = ObjectCreator.create_object(object_json)
+    except Exception as e:
+        LogPlus.error(f"| ERROR | inputHandling | handle_object | {object_json} | {e}")
+        return [(sender_address, MessageGenerator.generate_error_message("Invalid object"))]
+
+    # check if the object is valid
+    if not object.is_valid():
+        Mempool.add_transaction(object) # should work?
+        LogPlus.info(f"| INFO | inputHandling | Invalid object | {object.get_id()}")
+        return [(sender_address, MessageGenerator.generate_error_message("Invalid object"))]
+
     object_id = object.get_id()
 
     if ObjectHandler.is_object_known(object_id):
@@ -177,8 +188,12 @@ def handle_getmempool(data_parsed, sender_address):
 @staticmethod
 def handle_mempool(data_parsed, sender_address):
     """ This is called when a mempool message is received """
-    # TODO: implement
     LogPlus.debug(f"| DEBUG | inputHandling.handle_getmempool | {data_parsed[txids_key]} | {sender_address}")
+    txids = data_parsed[txids_key]
+    responses = []
+    for txid in txids:
+        if not ObjectHandler.is_object_known(txid):
+            responses.append((None, MessageGenerator.generate_getobject_message(txid)))
     return []
 
 @staticmethod
@@ -269,7 +284,7 @@ def verify_object(object, sender_address = None):
         if status == "valid":
             # gossip the object (send ihaveobeject to all known nodes)
             message = MessageGenerator.generate_ihaveobject_message(object_id)
-            responses += [(node, message) for node in KnownNodesHandler.known_nodes]
+            responses.append(None, message)
             revalidation = True
 
         elif status == "invalid":
@@ -282,7 +297,7 @@ def verify_object(object, sender_address = None):
             if "missing" in verification_result:
                 for txid in verification_result[missing_key]:
                     message =  MessageGenerator.generate_getobject_message(txid)
-                    responses += [(node_credentials, message) for node_credentials in KnownNodesHandler.known_nodes]
+                    responses.append(None, message)
                     if sender_address is not None: 
                         responses.append((sender_address, message))      
 

@@ -18,8 +18,10 @@ DATA_SIZE = 2048  # size of data to read from each received message
 ADDRESSES_FILE = 'database/known_credentials.txt'  # file that stores the known addresses
 OBJECTS_FILE = 'database/known_objects.json'  # file that stores the known objects
 UTXO_FILE = 'database/utxo.json'  # file that stores the utxo
+MEMPOOL_FILE = 'database/mempool.json'  # file that stores the mempool
 
 BOOTSTRAP_NODE = "128.130.122.101:18018" # bootstrapping node
+JANS_NODE = "4.231.16.23:18018"  # Jan's node
 
 SYSTEM = platform.system().lower()  # our operating system
 

@@ -69,7 +69,10 @@ class TimeTracker:
             if name in TimeTracker.times:
                 LogPlus.timer(f"| TimeTracker | {name} stats:")
                 for checkpoint in TimeTracker.times[name]["checkpoints"]:
-                    exec_time = round(sum(TimeTracker.times[name]["checkpoints"][checkpoint]) / len(TimeTracker.times[name]["checkpoints"][checkpoint]), 2)
+                    if len(TimeTracker.times[name]["checkpoints"][checkpoint]) > 0:
+                        exec_time = round(sum(TimeTracker.times[name]["checkpoints"][checkpoint]) / len(TimeTracker.times[name]["checkpoints"][checkpoint]), 2)
+                    else:
+                        exec_time = -1 # means it was going to be divided by 0
                     LogPlus.timer(f"| TimeTracker | {checkpoint}: {exec_time} ms")
                 exec_time = round(sum(TimeTracker.times[name]["ends"]) / len(TimeTracker.times[name]["ends"]), 2)
                 LogPlus.timer(f"| TimeTracker | Total: {exec_time} ms")

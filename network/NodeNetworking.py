@@ -102,6 +102,10 @@ class NodeNetworking:
                     if responses is None:
                         continue
                     for (cleaned_credentials, res) in responses:
+                        # if credantials is None, send to all nodes
+                        if cleaned_credentials is None:
+                            NodeNetworking.send_to_all_nodes(res)
+                            continue
                         # if cleanead credentials is a tuple, convert it to a string
                         if type(cleaned_credentials) is tuple:
                             cleaned_credentials = convert_tuple_to_string(cleaned_credentials)

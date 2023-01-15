@@ -33,7 +33,7 @@ def main():
 
     if mode == "testing":
         reset_objects_file()
-        KnownNodesHandler.add_node(BOOTSTRAP_NODE)
+        KnownNodesHandler.add_node(JANS_NODE)
         UTXO.clear()
         UTXO.save()
 
