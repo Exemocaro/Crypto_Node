@@ -176,9 +176,9 @@ object_message_schema = {
                     "description": "The type of the object",
                     type_key: "string",
                     "enum": ["block", "transaction"]
-                },
-                "required": [type_key],
-            }
+                }
+            },
+            "required": [type_key],
         },
     },
     "required": [type_key, object_key],
