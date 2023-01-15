@@ -124,7 +124,6 @@ class UTXO:
                     if txid_to_check not in new_set or out_index not in new_set[txid_to_check]:
                         raise TransactionsInvalidException(f"Invalid outpoint from {new_txid} to {txid_to_check}")
                     # remove the output from the set
-                    new_set[txid_to_check] = new_set[txid_to_check]
                     new_set[txid_to_check].remove(out_index)
                     if len(new_set[txid_to_check]) == 0:
                         new_set.pop(txid_to_check)
@@ -139,10 +138,12 @@ class UTXO:
 
                 TimeTracker.checkpoint("UTXO.calculate_set", "added new tx")
 
+            TimeTracker.checkpoint("UTXO.calculate_set", "added new outputs")
             # save the set
             block_id = Object.get_id_from_json(block)
             UTXO.sets[block_id] = new_set
             UTXO.save()
+            TimeTracker.end("UTXO.calculate_set")
         except TransactionsInvalidException as e:
             # pass the exception up
             raise e
