@@ -19,6 +19,8 @@ ADDRESSES_FILE = 'database/known_credentials.txt'  # file that stores the known 
 OBJECTS_FILE = 'database/known_objects.json'  # file that stores the known objects
 UTXO_FILE = 'database/utxo.json'  # file that stores the utxo
 
+BOOTSTRAP_NODE = "128.130.122.101:18018" # bootstrapping node
+
 SYSTEM = platform.system().lower()  # our operating system
 
 AGENT_NAME = "THIS COULD BE YOUR NODE"
