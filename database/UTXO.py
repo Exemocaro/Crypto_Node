@@ -39,10 +39,14 @@ class UTXO:
     def get_utxo(blockid):
         """ Returns the UTXO set for the given block id by calculating it
         Returns None if the block doesn't exist or the set couldn't be calculated """
+
+        if blockid == GENESIS_BLOCK_ID:
+            return UTXO.GENESIS_BLOCK_UTXO
+
         try:
             # Calculating the set
             # Check if previous block utxo set exists
-            # Otherwise use fake recursive call to calculate the set    
+            # Otherwise use fake recursive call to calculate the set
 
             prev_id = ObjectHandler.get_object(blockid)[previd_key]
             todo = [blockid]
