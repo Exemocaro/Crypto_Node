@@ -7,9 +7,13 @@ from utility.logplus import LogPlus
 from database.KnownNodesHandler import KnownNodesHandler
 from database.ObjectHandler import ObjectHandler
 from database.Mempool import Mempool
+from database.UTXO import UTXO
 
 from object.Object import Object
 from object.ObjectCreator import ObjectCreator
+from object.Transaction import Transaction
+from object.Block import Block
+from object.CoinbaseTransaction import CoinbaseTransaction
 
 from engine.MessageGenerator import MessageGenerator
 
@@ -136,8 +140,7 @@ def handle_object(data_parsed, sender_address):
         return [(sender_address, MessageGenerator.generate_error_message("Invalid object"))]
 
     # check if the object is valid
-    if not object.is_valid():
-        Mempool.add_transaction(object) # should work?
+    if not object.verify():
         LogPlus.info(f"| INFO | inputHandling | Invalid object | {object.get_id()}")
         return [(sender_address, MessageGenerator.generate_error_message("Invalid object"))]
 
@@ -182,13 +185,13 @@ def handle_chaintip(data_parsed, sender_address):
 @staticmethod
 def handle_getmempool(data_parsed, sender_address):
     """ This is called when a getmempool message is received """
-    # TODO: implement   
-    return []
+    LogPlus.debug(f"| DEBUG | inputHandling.handle_getmempool | { sender_address}")
+    return Mempool.get_mempool()
 
 @staticmethod
 def handle_mempool(data_parsed, sender_address):
     """ This is called when a mempool message is received """
-    LogPlus.debug(f"| DEBUG | inputHandling.handle_getmempool | {data_parsed[txids_key]} | {sender_address}")
+    LogPlus.debug(f"| DEBUG | inputHandling.handle_mempool | {data_parsed[txids_key]} | {sender_address}")
     txids = data_parsed[txids_key]
     responses = []
     for txid in txids:
@@ -223,7 +226,7 @@ def revalidate_pending_objects(sender_address = None):
         return []
 
 @staticmethod 
-def verify_object(object, sender_address = None):
+def verify_object(object: Object, sender_address = None):
     """ Verifies an object (given as Object type)
     returns a list of responses and a boolean if the object has to be revalidated"""
 
@@ -284,8 +287,26 @@ def verify_object(object, sender_address = None):
         if status == "valid":
             # gossip the object (send ihaveobeject to all known nodes)
             message = MessageGenerator.generate_ihaveobject_message(object_id)
-            responses.append(None, message)
+            responses.append((None, message))
             revalidation = True
+            # if it's a block, check if we have a new longest chain
+            if object_type == "block":
+                LogPlus.info(f"| INFO | inputHandling | verify_object | {object_id[:10]}... | Block verified | Checking for new longest chain")
+                if ObjectHandler.get_chaintip() == object_id:
+                    # Redo the mempool validation
+                    LogPlus.debug(f"Redo the mempool for the longest chain")
+                    UTXO.get_utxo(object_id) # this updated the longest chain utxo in UTXO
+                    Mempool.apply_block(object.get_json())
+            if object_type == Transaction.TYPE:
+                # Check if it's in the mempool or might be added
+                if object_id in Mempool.mempool_txids:
+                    LogPlus.info(f"| INFO | inputHandling | Object already in mempool | {object_id}")
+                
+                # Check if the transaction can be added to the mempool
+                elif not Mempool.add_transaction(object.get_json()):
+                    LogPlus.info(f"| INFO | inputHandling | Object can't be added to mempool | {object_id}")
+                    responses.append((sender_address, MessageGenerator.generate_error_message("Object can't be added to mempool")))
+
 
         elif status == "invalid":
             original_sender = ObjectHandler.get_orginal_sender(object_id)
@@ -297,7 +318,7 @@ def verify_object(object, sender_address = None):
             if "missing" in verification_result:
                 for txid in verification_result[missing_key]:
                     message =  MessageGenerator.generate_getobject_message(txid)
-                    responses.append(None, message)
+                    responses.append((None, message))
                     if sender_address is not None: 
                         responses.append((sender_address, message))      
 

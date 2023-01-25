@@ -29,7 +29,6 @@ class Object(ABC):
     def from_json(object_json, validate_json=True):
         pass
     
-    # TODO
     @abstractmethod
     def verify(self):
         pass

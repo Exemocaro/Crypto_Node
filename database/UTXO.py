@@ -32,11 +32,8 @@ from json_keys import *
 class UTXO:
 
     GENESIS_BLOCK_UTXO = {}
-    mempool_utxo = {}
     longest_chain_stored_id = None
     longest_chain_utxo = None
-    
-    auto_save_queue = Queue()
     
     @staticmethod
     def get_utxo(blockid):
@@ -45,14 +42,15 @@ class UTXO:
         try:
             # Calculating the set
             # Check if previous block utxo set exists
-            # Otherwise use fake recursive call to calculate the set
+            # Otherwise use fake recursive call to calculate the set    
 
             prev_id = ObjectHandler.get_object(blockid)[previd_key]
             todo = [blockid]
-            while prev_id is not GENESIS_BLOCK_ID and prev_id is not None:
+            while prev_id != GENESIS_BLOCK_ID and prev_id is not None:
                 todo.append(prev_id)
                 try:
-                    prev_id = (ObjectHandler.get_object(prev_id))[previd_key]
+                    block = ObjectHandler.get_object(prev_id)
+                    prev_id = block[previd_key]
                 except Exception as e:
                     # TODO: Maybe we should request the block from the network
                     LogPlus.error(f"| ERROR | UTXO | Couldn't find previous block for {blockid} | {e}")
@@ -68,7 +66,9 @@ class UTXO:
             # calculate the todo from end to start
             for blockid in reversed(todo):
                 block = ObjectHandler.get_object(blockid)
-                current_utxo = UTXO.apply_multiple_transactions_to_UTXO(current_utxo, block[txids_key])
+                txids = block[txids_key]
+                transactions = [ObjectHandler.get_object(txid) for txid in txids]
+                current_utxo = UTXO.apply_multiple_transactions_to_UTXO(current_utxo, transactions)
                 
             if blockid == ObjectHandler.get_chaintip():
                 UTXO.longest_chain_stored_id = blockid
@@ -77,35 +77,45 @@ class UTXO:
             return current_utxo
 
         except Exception as e:
-            LogPlus.error(f"| ERROR | UTXO | Couldn't get UTXO set for {blockid} | {e}")
+            LogPlus.error(f"| WARNING | UTXO | Couldn't get UTXO set for {blockid} | {e}")
+            LogPlus.error(f"Previous utxo set: {current_utxo}")
             return None
 
     @staticmethod
     def apply_transaction_to_UTXO(utxo: typing.Dict, transaction: typing.Dict) -> typing.Dict:
         """ Applies the given transaction to the given UTXO set
         Returns the modified UTXO set """
-        utxo = copy.deepcopy(utxo)
-        # remove used outputs
-        for input in transaction[inputs_key]:
-            # get the outpoint
-            outpoint = input[outpoint_key]
-            txid_to_check = outpoint[txid_key]
-            out_index = outpoint[index_key]
-            # raise error if invalid outpoint
-            if txid_to_check not in utxo or out_index not in utxo[txid_to_check]:
-                raise TransactionsInvalidException(f"Invalid outpoint {txid_to_check}:{out_index}")
-            # remove the outpoint
-            utxo[txid_to_check].remove(out_index)
-            # remove the txid if it doesn't have any outputs left
-            if len(utxo[txid_to_check]) == 0:
-                del utxo[txid_to_check]
-        # get the id of the transaction
-        txid = Object.get_id_from_json(transaction)
-        # create a list of indexes for the outputs
-        indexes = [i for i in range(len(transaction[outputs_key]))]
-        utxo[txid] = indexes
-        return utxo
+        try:
+            utxo = copy.deepcopy(utxo)
+            # remove used outputs
+            if inputs_key in transaction: # if it's not a coinbase transaction
+                for input in transaction[inputs_key]:
+                    # get the outpoint
+                    outpoint = input[outpoint_key]
+                    txid_to_check = outpoint[txid_key]
+                    out_index = outpoint[index_key]
+                    # raise error if invalid outpoint
+                    if txid_to_check not in utxo or out_index not in utxo[txid_to_check]:
+                        raise TransactionsInvalidException(f"Invalid outpoint {txid_to_check}:{out_index}")
 
+                    # remove the outpoint
+                    utxo[txid_to_check].remove(out_index)
+                    # remove the txid if it doesn't have any outputs left
+                    if len(utxo[txid_to_check]) == 0:
+                        del utxo[txid_to_check]
+            # get the id of the transaction
+            txid = Object.get_id_from_json(transaction)
+            # create a list of indexes for the outputs
+            indexes = [i for i in range(len(transaction[outputs_key]))]
+            utxo[txid] = indexes
+            return utxo
+        except TransactionsInvalidException as e:
+            LogPlus.warning(f"| WARNING | UTXO | Invalid transaction | {e}")
+            raise e
+        except Exception as e:
+            LogPlus.error(f"| ERROR | UTXO | Couldn't apply transaction to UTXO | {e}")
+            return {} 
+            
     @staticmethod
     def apply_multiple_transactions_to_UTXO(utxo: typing.Dict, transactions: typing.List) -> typing.Dict:
         """ Applies the given transactions to the given UTXO set
@@ -120,6 +130,7 @@ class UTXO:
         Returns True if the transaction is valid, False otherwise """
         # check if the transaction is valid
         try:
+            LogPlus.debug(f"| DEBUG | UTXO |Verify transaction to UTXO | {type(transaction)}")
             UTXO.apply_transaction_to_UTXO(utxo, transaction)
             return True
         except TransactionsInvalidException as e:
@@ -134,51 +145,6 @@ class UTXO:
             return True
         except TransactionsInvalidException as e:
             return False
-
-    # Multithreaded auto save
-
-    @staticmethod
-    def save():
-        """ Saves the UTXO by adding it to the auto save queue"""
-        UTXO.auto_save_queue.put(copy.deepcopy(UTXO.sets))
-
-    @staticmethod
-    def start_auto_save():
-        """ Starts the auto save thread"""
-        save_thread = Thread(target=UTXO.auto_save)
-        save_thread.start()
-
-    @staticmethod
-    def auto_save():
-        """Save function made for multithreading"""
-        while True:
-            if not UTXO.auto_save_queue.empty():
-                # get last item from queue
-                while not UTXO.auto_save_queue.empty():
-                    item = UTXO.auto_save_queue.get()
-                # save to file
-                UTXO.save_to_file(copy.deepcopy(item))
-            # wait for 5 seconds
-            time.sleep(AUTO_SAVE_INTERVAL)
-
-    @staticmethod
-    def save_to_file(sets):
-        """ Saves the given UTXO set to the UTXO file"""
-        try:
-            with open(UTXO_FILE, "w") as f:
-                json.dump(sets, f, indent=4)
-        except Exception as e:
-            LogPlus.error(f"| ERROR | Couldn't save UTXO set | {e} ")
-
-    @staticmethod
-    def load_from_file():
-        """ Loads the UTXO set from the UTXO file"""
-        try:
-            with open(UTXO_FILE, "r") as f:
-                # TODO: Fix this
-                UTXO.sets = json.load(f)
-        except Exception as e:
-            LogPlus.error(f"| ERROR | Couldn't load UTXO set | {e} ")
 
 class TransactionsInvalidException(Exception):
     pass

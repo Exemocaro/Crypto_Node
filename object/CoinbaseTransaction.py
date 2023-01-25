@@ -69,13 +69,11 @@ class CoinbaseTransaction(Object):
         # check if the block is valid
         if ObjectHandler.get_status(block) == "valid":
             return {"result": "valid"}
-        # check if the block is pending
-        if ObjectHandler.get_status(block) == "pending":
-            return {"result": "pending", "missing": [], "pending": [block]}
         # check if the block is invalid
         if ObjectHandler.get_status(block) == "invalid":
             return {"result": "invalid"}
         
+        return {"result": "pending", "missing": [], "pending": [block]}
         
     def __str__(self):
         return "CoinbaseTransaction(height={}, outputs={})".format(self.height, self.outputs)

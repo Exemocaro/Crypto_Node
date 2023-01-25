@@ -46,6 +46,8 @@ from utility.Exceptions import ValidationException
 
 class Transaction(Object):
 
+    TYPE = "transaction"
+
     def __init__(self, inputs, outputs):
         self.inputs = inputs
         self.outputs = outputs
@@ -67,7 +69,7 @@ class Transaction(Object):
         return Transaction(tx_inputs, tx_outputs)
     
     def get_type(self):
-        return "transaction" 
+        return Transaction.TYPE
 
     def get_json(self):
         try:

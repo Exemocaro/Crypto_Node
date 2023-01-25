@@ -30,7 +30,6 @@ class NodeNetworking:
 
     @staticmethod
     def start_server():
-        UTXO.load_from_file()
 
         NodeNetworking.server = socket()
         NodeNetworking.server.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)

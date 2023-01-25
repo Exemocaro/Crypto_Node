@@ -239,9 +239,6 @@ class Block:
         except jsonschema.exceptions.ValidationError as e:
             raise ValidationException(f"First transaction is not a coinbase transaction")
 
-        # TODO: Check if the coinbase transaction is valid
-
-
     def check_height(self):
         """ Check if the height is correct
         Raises ValidationException if not"""
@@ -282,7 +279,7 @@ class Block:
             # try calculating the UTXO set
             # this will raise an exception if the UTXO set is not valid
             # if the utxo set is valid, all transactions are valid
-            UTXO.calculate_set(self.get_json())
+            UTXO.get_utxo(self.get_id())
         except TransactionsInvalidException as e:
             raise ValidationException(f"Transactions are not valid: {e}")
 

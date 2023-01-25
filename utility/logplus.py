@@ -21,7 +21,7 @@ class LogPlus:
         if len(message) > LOG_LIMIT:
             message = message[0:LOG_LIMIT]
         #logging.info(message)
-        print(message)
+        #print(message)
         pass
 
     @staticmethod

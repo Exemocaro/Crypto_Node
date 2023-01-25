@@ -15,27 +15,21 @@ def main():
 
     mode = "testing" # "testing", "production" or "grading"
 
-    UTXO.start_auto_save()
     ObjectHandler.start_auto_save()
     TimeTracker.regularly_print_stats()
     
     if mode == "grading":
         reset_objects_file() # makes it easier to debug fetching the chaintip
         KnownNodesHandler.clear_known_nodes()
-        UTXO.clear()
-        UTXO.save()
     
     if mode == "production":
         KnownNodesHandler.load_known_nodes()
-        UTXO.load_from_file()
         ObjectHandler.load_objects()
         ObjectHandler.update_id_to_index()
 
     if mode == "testing":
         reset_objects_file()
-        KnownNodesHandler.add_node(JANS_NODE)
-        UTXO.clear()
-        UTXO.save()
+        KnownNodesHandler.add_node(BOOTSTRAP_NODE)
 
 
     # Let user change agent_name if it is the default
