@@ -3,6 +3,7 @@ import json_canonical
 import hashlib
 import time
 import copy
+import typing
 
 from colorama import Fore, Style
 
@@ -75,6 +76,8 @@ class ObjectHandler:
     objects_file = OBJECTS_FILE
     objects = DEFAULT_OBJECTS
 
+    longest_chain_blockid = GENESIS_BLOCK_ID
+
     auto_save_queue = Queue()
 
     @staticmethod
@@ -86,7 +89,7 @@ class ObjectHandler:
             ObjectHandler.id_to_index[object_id] = i
 
     @staticmethod
-    def add_object(obj, validity="valid", object_type="unknown", sender_address=None):
+    def add_object(obj: typing.Dict, validity="valid", object_type="unknown", sender_address=None):
         """ Adds an object to the object list and saves it to the objects file 
             obj: the object to add
             validity: the validity of the object (valid, invalid, pending)
@@ -115,7 +118,7 @@ class ObjectHandler:
             return False
 
     @staticmethod
-    def get_object(object_id):
+    def get_object(object_id: str):
         """ Returns the object with the given id """
         if object_id in ObjectHandler.id_to_index:
             return ObjectHandler.objects[ObjectHandler.id_to_index[object_id]][object_key]
@@ -128,7 +131,7 @@ class ObjectHandler:
         return ObjectHandler.get_objects_with_status("pending")
 
     @staticmethod 
-    def get_objects_with_status(status):
+    def get_objects_with_status(status: str):
         """ Returns all objects with the given status """
         return [obj[object_key] for obj in ObjectHandler.objects if obj[validity_key] == status]
 
@@ -151,9 +154,9 @@ class ObjectHandler:
             # check if object is in missing objects and remove the dependency
             for pending in pending_objects:
                 # Add keys to pending object if they don't exist
-                if not pending_key in pending:
+                if not pending_key in pending or pending[pending_key] == None:
                     pending[pending_key] = []
-                if not missing_key in pending:
+                if not missing_key in pending or pending[missing_key] == None:
                     pending[missing_key] = []
 
                 # Remove object from missing objects
@@ -168,7 +171,6 @@ class ObjectHandler:
                         pending[pending_key] = []
                         pending[validity_key] = "invalid"
                         pending[missing_key] = []
-            
             ObjectHandler.save()
         except Exception as e:
             LogPlus.error(f"| ERROR | ObjectHandler.update_pending_objects | {e}")
@@ -183,12 +185,21 @@ class ObjectHandler:
     @staticmethod
     def get_verifiable_objects():
         """ Returns all objects that can be verified (objects with validity "pending" or "received") """
-        pending_objects = [obj for obj in ObjectHandler.objects if obj[validity_key] == "pending"] 
-        pending_objects = [obj for obj in pending_objects if "missing" not in obj or len(obj[missing_key]) == 0]
-        pending_objects = [obj for obj in pending_objects if "pending" not in obj or len(obj[pending_key]) == 0]
-        pending_objects = [obj[object_key] for obj in pending_objects]
-        recevied_objects = ObjectHandler.get_objects_with_status("received")
-        return pending_objects + recevied_objects
+        try:
+            pending_objects = [obj for obj in ObjectHandler.objects if obj[validity_key] == "pending"] 
+            for obj in pending_objects:
+                if not missing_key in obj or obj[missing_key] == None:
+                    obj[missing_key] = []
+                if not pending_key in obj or obj[pending_key] == None:
+                    obj[pending_key] = []
+            pending_objects = [obj for obj in pending_objects if len(obj[missing_key]) == 0]
+            pending_objects = [obj for obj in pending_objects if len(obj[pending_key]) == 0]
+            pending_objects = [obj[object_key] for obj in pending_objects]
+            recevied_objects = ObjectHandler.get_objects_with_status("received")
+            return pending_objects + recevied_objects
+        except Exception as e:
+            LogPlus.error(f"| ERROR | ObjectHandler.get_verifiable_objects | {e}")
+            return []
 
 
     @staticmethod
@@ -219,7 +230,6 @@ class ObjectHandler:
         """ Returns the id of the chaintip """
         # get all objects of type block
         blocks = [obj[txid_key] for obj in ObjectHandler.objects if obj[type_key] == "block" and obj[validity_key] == "valid"]
-        LogPlus.debug(f"| DEBUG | ObjectHandler.get_chaintip |  lenblocks: {len(blocks)}")
         if len(blocks) <= 1:
             return GENESIS_BLOCK_ID
         
@@ -297,7 +307,10 @@ class ObjectHandler:
     @staticmethod
     def save():
         """ Saves the objects by adding them to the auto save queue """
-        ObjectHandler.auto_save_queue.put(ObjectHandler.objects)
+        try:
+            ObjectHandler.auto_save_queue.put(ObjectHandler.objects)
+        except Exception as e:
+            LogPlus.error(f"| ERROR | ObjectHandler | save failed | {e}")
 
     @staticmethod
     def start_auto_save():
@@ -326,3 +339,5 @@ class ObjectHandler:
                 json.dump(object_list, f, indent=4)
         except Exception as e:
             LogPlus.error(f"| ERROR | Couldn't save objects | {e} ")
+
+
