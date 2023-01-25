@@ -229,22 +229,7 @@ class ObjectHandler:
         # check height in coinbase transaction, return the blockid with the highest height
         chaintip_id = max(blocks, key=lambda block: ObjectHandler.get_height(block))
         return chaintip_id
-        #return max(blocks, key=lambda block: get_block_height(block))[txid_key]
-
-    @staticmethod
-    def get_block_height(object_id):
-        """ Takes an object id and returns the height of the block containing the object, 
-            -1 if the object is not a block or the coinbase transaction is not found """
-        try:
-            # get block
-            block = ObjectHandler.get_object(object_id)
-            # get coinbase transaction
-            coinbase = block[txids_key][0]
-            # return height
-            return coinbase[height_key]
-        except:
-            return -1
-        
+        #return max(blocks, key=lambda block: get_block_height(block))[txid_key]    
 
     @staticmethod
     def is_valid(object_id):
