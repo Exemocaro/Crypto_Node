@@ -3,6 +3,7 @@ import json_canonical
 import hashlib
 import copy
 import time
+import typing
 
 from queue import Queue
 from threading import Thread, Timer
@@ -30,128 +31,109 @@ from json_keys import *
 
 class UTXO:
 
-    sets = {
-        GENESIS_BLOCK_ID: {} # genesis block
-    }
-
+    GENESIS_BLOCK_UTXO = {}
+    mempool_utxo = {}
+    longest_chain_stored_id = None
+    longest_chain_utxo = None
+    
     auto_save_queue = Queue()
-
-    @staticmethod
-    def clear():
-        """ Clears the UTXO set, only the genesis block is left"""
-        UTXO.sets = {
-            GENESIS_BLOCK_ID: {} # genesis block
-        }
-
-    @staticmethod
-    def load_from_file():
-        """ Loads the UTXO set from the UTXO file"""
-        try:
-            with open(UTXO_FILE, "r") as f:
-                UTXO.sets = json.load(f)
-        except Exception as e:
-            LogPlus.error(f"| ERROR | Couldn't load UTXO set | {e} ")
     
     @staticmethod
     def get_utxo(blockid):
-        """ Returns the UTXO set for the given block id, calculates it if it doesn't exist yet
+        """ Returns the UTXO set for the given block id by calculating it
         Returns None if the block doesn't exist or the set couldn't be calculated """
         try:
-            # Try calculating the set if it doesn't exist yet
-            if blockid in UTXO.sets:
-                return copy.deepcopy(UTXO.sets[blockid])
-            # Try calculating the set
+            # Calculating the set
             # Check if previous block utxo set exists
             # Otherwise use fake recursive call to calculate the set
+
             prev_id = ObjectHandler.get_object(blockid)[previd_key]
             todo = [blockid]
-            while prev_id is not None and prev_id not in copy.deepcopy(UTXO.sets):
+            while prev_id is not GENESIS_BLOCK_ID and prev_id is not None:
                 todo.append(prev_id)
-                prev_id = (ObjectHandler.get_object(prev_id))[previd_key]
-            if prev_id is None:
-                # check if it's the genesis block
-                if blockid == GENESIS_BLOCK_ID:
-                    UTXO.sets[blockid] = {}
-                    return {}
-                else:
-                    LogPlus.error(f"| ERROR | UTXO | Couldn't find previous block for {blockid}")
+                try:
+                    prev_id = (ObjectHandler.get_object(prev_id))[previd_key]
+                except Exception as e:
+                    # TODO: Maybe we should request the block from the network
+                    LogPlus.error(f"| ERROR | UTXO | Couldn't find previous block for {blockid} | {e}")
                     return None
+
+            if prev_id is None:
+                # We would have caught the genesis block id in the while loop
+                LogPlus.error(f"| ERROR | UTXO | Couldn't find previous block for {blockid}")
+                return None
+
+            current_utxo = copy.deepcopy(UTXO.GENESIS_BLOCK_UTXO)
 
             # calculate the todo from end to start
             for blockid in reversed(todo):
                 block = ObjectHandler.get_object(blockid)
-                UTXO.calculate_set(block)
-            return copy.deepcopy(UTXO.sets[blockid])
+                current_utxo = UTXO.apply_multiple_transactions_to_UTXO(current_utxo, block[txids_key])
+                
+            if blockid == ObjectHandler.get_chaintip():
+                UTXO.longest_chain_stored_id = blockid
+                UTXO.longest_chain_utxo = current_utxo
+                
+            return current_utxo
+
         except Exception as e:
             LogPlus.error(f"| ERROR | UTXO | Couldn't get UTXO set for {blockid} | {e}")
             return None
-    
+
     @staticmethod
-    def calculate_set(block):
-        """ Calculates the UTXO set for the given block and adds it to the UTXO.sets dictionary
-        Block has to be a dictionary"""
+    def apply_transaction_to_UTXO(utxo: typing.Dict, transaction: typing.Dict) -> typing.Dict:
+        """ Applies the given transaction to the given UTXO set
+        Returns the modified UTXO set """
+        utxo = copy.deepcopy(utxo)
+        # remove used outputs
+        for input in transaction[inputs_key]:
+            # get the outpoint
+            outpoint = input[outpoint_key]
+            txid_to_check = outpoint[txid_key]
+            out_index = outpoint[index_key]
+            # raise error if invalid outpoint
+            if txid_to_check not in utxo or out_index not in utxo[txid_to_check]:
+                raise TransactionsInvalidException(f"Invalid outpoint {txid_to_check}:{out_index}")
+            # remove the outpoint
+            utxo[txid_to_check].remove(out_index)
+            # remove the txid if it doesn't have any outputs left
+            if len(utxo[txid_to_check]) == 0:
+                del utxo[txid_to_check]
+        # get the id of the transaction
+        txid = Object.get_id_from_json(transaction)
+        # create a list of indexes for the outputs
+        indexes = [i for i in range(len(transaction[outputs_key]))]
+        utxo[txid] = indexes
+        return utxo
+
+    @staticmethod
+    def apply_multiple_transactions_to_UTXO(utxo: typing.Dict, transactions: typing.List) -> typing.Dict:
+        """ Applies the given transactions to the given UTXO set
+        Returns the modified UTXO set """
+        for transaction in transactions:
+            utxo = UTXO.apply_transaction_to_UTXO(utxo, transaction)
+        return utxo
+
+    @staticmethod
+    def check_validity(utxo: typing.Dict, transaction: typing.Dict) -> bool:
+        """ Checks if the given transaction is valid for the given UTXO set
+        Returns True if the transaction is valid, False otherwise """
+        # check if the transaction is valid
         try:
-            TimeTracker.start("UTXO.calculate_set")
-            # get the previous block
-            prev_id = block[previd_key]
-            if prev_id not in UTXO.sets:
-                return 
-            prev_set = copy.deepcopy(UTXO.sets[prev_id])
-
-            TimeTracker.checkpoint("UTXO.calculate_set", "copied prev set")
-
-            # get the id of the coinbase transaction
-            txs = block[txids_key]
-            coinbase_txid = txs[0]
-
-            # add the coinbase transaction to the set
-            new_set = prev_set
-            new_set[coinbase_txid] = [0]
-
-            TimeTracker.checkpoint("UTXO.calculate_set", "added coinbase")
-
-            # add the other transactions to the set
-            # remove used outputs
-            for new_txid in txs[1:]:
-
-                tx = ObjectHandler.get_object(new_txid)
-                for input in tx[inputs_key]:
-                    # get the outpoint
-                    outpoint = input[outpoint_key]
-                    txid_to_check = outpoint[txid_key]
-                    out_index = outpoint[index_key]
-                    # raise error if invalid outpoint
-                    if txid_to_check not in new_set or out_index not in new_set[txid_to_check]:
-                        raise TransactionsInvalidException(f"Invalid outpoint from {new_txid} to {txid_to_check}")
-                    # remove the output from the set
-                    new_set[txid_to_check].remove(out_index)
-                    if len(new_set[txid_to_check]) == 0:
-                        new_set.pop(txid_to_check)
-                    # break
-                    TimeTracker.checkpoint("UTXO.calculate_set", "removed used output")
-
-                num_outputs = len(tx[outputs_key])
-
-                # add the new outputs to the set
-                out_indexes = [i for i in range(num_outputs)]
-                new_set[new_txid] = out_indexes
-
-                TimeTracker.checkpoint("UTXO.calculate_set", "added new tx")
-
-            TimeTracker.checkpoint("UTXO.calculate_set", "added new outputs")
-            # save the set
-            block_id = Object.get_id_from_json(block)
-            UTXO.sets[block_id] = new_set
-            # remove the old set
-            if prev_id in UTXO.sets:
-                UTXO.sets.pop(prev_id)
-            UTXO.save()
-            TimeTracker.end("UTXO.calculate_set")
+            UTXO.apply_transaction_to_UTXO(utxo, transaction)
+            return True
         except TransactionsInvalidException as e:
-            # pass the exception up
-            raise e
-        except Exception as e:
-            LogPlus.error(f"| ERROR | UTXO | Last | Error calculating set for block {block}: {e}")
+            return False
+
+    @staticmethod
+    def check_multiple_validities(utxo: typing.Dict, transactions: typing.List) -> bool:
+        """ Checks if the given transactions are valid for the given UTXO set
+        Returns True if all transactions are valid, False otherwise """
+        try:
+            UTXO.apply_multiple_transactions_to_UTXO(utxo, transactions)
+            return True
+        except TransactionsInvalidException as e:
+            return False
 
     # Multithreaded auto save
 
@@ -187,6 +169,16 @@ class UTXO:
                 json.dump(sets, f, indent=4)
         except Exception as e:
             LogPlus.error(f"| ERROR | Couldn't save UTXO set | {e} ")
+
+    @staticmethod
+    def load_from_file():
+        """ Loads the UTXO set from the UTXO file"""
+        try:
+            with open(UTXO_FILE, "r") as f:
+                # TODO: Fix this
+                UTXO.sets = json.load(f)
+        except Exception as e:
+            LogPlus.error(f"| ERROR | Couldn't load UTXO set | {e} ")
 
 class TransactionsInvalidException(Exception):
     pass
