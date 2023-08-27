@@ -14,32 +14,24 @@ from colorama import Fore, Back, Style
 # Let's use ed25519 to sign a transaction
 # First, we need to generate a new random signing key
 signing_key = SigningKey.generate()
-print("Signing key: ", signing_key.encode(encoder=nacl.encoding.HexEncoder).decode("utf-8"))
+print(
+    "Signing key: ",
+    signing_key.encode(encoder=nacl.encoding.HexEncoder).decode("utf-8"),
+)
 print()
 
 # Then, we need to generate a new random verify key
 verify_key = signing_key.verify_key
-print("Verify key: ", verify_key.encode(encoder=nacl.encoding.HexEncoder).decode("utf-8"))
+print(
+    "Verify key: ", verify_key.encode(encoder=nacl.encoding.HexEncoder).decode("utf-8")
+)
 print()
 
 # Now, we can sign a transaction
 tx = {
     type_key: "transaction",
-    "inputs": [
-        {
-            "outpoint": {
-                "txid": "a" * 64,
-                "index": 0
-            },
-            "sig": None
-        }
-    ],
-    "outputs": [
-        {
-            "pubkey": "abc",
-            "value": 100
-        }
-    ]
+    "inputs": [{"outpoint": {"txid": "a" * 64, "index": 0}, "sig": None}],
+    "outputs": [{"pubkey": "abc", "value": 100}],
 }
 
 message = json_canonical.canonicalize(tx)
@@ -48,7 +40,7 @@ print()
 
 # Use ed25519 now
 signed = signing_key.sign(message)
-#print("Signed transaction: ", signed)
+# print("Signed transaction: ", signed)
 
 # get the signature
 sig = signed.signature
@@ -66,4 +58,3 @@ try:
     print("The signature is valid!")
 except Exception as e:
     print("The signature is invalid!")
-

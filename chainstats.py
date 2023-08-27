@@ -1,5 +1,6 @@
 from database.ObjectHandler import ObjectHandler
 from json_keys import *
+
 # Just some stats for the chain / known blocks
 
 ObjectHandler.load_objects()

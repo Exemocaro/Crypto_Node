@@ -19,7 +19,7 @@ message_schema = {
         type_key: {
             "description": "The type of the message",
             type_key: "string",
-            "enum": message_keys
+            "enum": message_keys,
         },
     },
     "required": [type_key],
@@ -40,7 +40,7 @@ hello_message_schema = {
         version_key: {
             "description": "The version that the node is using",
             type_key: "string",
-            "pattern": "^0\\.8\\.\\d+$"
+            "pattern": "^0\\.8\\.\\d+$",
         },
         agent_key: {
             "description": "The name of the node",
@@ -101,7 +101,7 @@ error_message_schema = {
         type_key: {
             "description": "The type of the message",
             type_key: "string",
-            "enum": ["error"]
+            "enum": ["error"],
         },
         error_key: {
             "description": "The error message",
@@ -123,7 +123,7 @@ ihaveobject_message_schema = {
         type_key: {
             "description": "The type of the message",
             type_key: "string",
-            "enum": ["ihaveobject"]
+            "enum": ["ihaveobject"],
         },
         objectid_key: {
             "description": "The object that the node has",
@@ -144,7 +144,7 @@ getobject_message_schema = {
         type_key: {
             "description": "The type of the message",
             type_key: "string",
-            "enum": ["getobject"]
+            "enum": ["getobject"],
         },
         objectid_key: {
             "description": "The object that the node wants",
@@ -166,7 +166,7 @@ object_message_schema = {
         type_key: {
             "description": "The type of the message",
             type_key: "string",
-            "enum": ["object"]
+            "enum": ["object"],
         },
         object_key: {
             "description": "The object",
@@ -175,7 +175,7 @@ object_message_schema = {
                 type_key: {
                     "description": "The type of the object",
                     type_key: "string",
-                    "enum": ["block", "transaction"]
+                    "enum": ["block", "transaction"],
                 }
             },
             "required": [type_key],
@@ -195,7 +195,7 @@ chaintip_message_schema = {
         type_key: {
             "description": "The type of the chaintip",
             type_key: "string",
-            "enum": ["chaintip"]
+            "enum": ["chaintip"],
         },
         blockid_key: {
             "description": "The chaintip",
@@ -215,7 +215,7 @@ getchaintip_message_schema = {
         type_key: {
             "description": "The type of the getchaintip",
             type_key: "string",
-            "enum": ["getchaintip"]
+            "enum": ["getchaintip"],
         },
     },
     "required": [type_key],
@@ -228,10 +228,10 @@ mempool_message_schema = {
     "description": "The schema for the mempool message",
     type_key: object_key,
     "properties": {
-        type_key: { 
+        type_key: {
             "description": "The type of the mempool",
             type_key: "string",
-            "enum": ["mempool"]
+            "enum": ["mempool"],
         },
         txids_key: {
             "description": "The mempool",
@@ -254,7 +254,7 @@ getmempool_message_schema = {
         type_key: {
             "description": "The type of the getmempool",
             type_key: "string",
-            "enum": ["getmempool"]
+            "enum": ["getmempool"],
         },
     },
     "required": [type_key],
@@ -279,7 +279,7 @@ outputs_schema = {
                 "description": "The amount of coins in picaker",
                 type_key: "integer",
                 "minimum": 0,
-            }
+            },
         },
         "required": ["pubkey", "value"],
     },
@@ -296,7 +296,7 @@ regular_transaction_schema = {
         type_key: {
             "description": "The type of the transaction",
             type_key: "string",
-            "enum": ["transaction"]
+            "enum": ["transaction"],
         },
         "inputs": {
             "description": "The inputs of the transaction",
@@ -316,14 +316,14 @@ regular_transaction_schema = {
                                 "description": "The index of the output in the previous transaction",
                                 type_key: "integer",
                                 "minimum": 0,
-                            }
+                            },
                         },
                         "required": ["txid", "index"],
                     },
                     "sig": {
                         "description": "The signature of the input",
                         type_key: "string",
-                    }
+                    },
                 },
                 "required": ["outpoint", "sig"],
             },
@@ -347,9 +347,9 @@ coinbase_transaction_schema = {
         type_key: {
             "description": "The type of the transaction",
             type_key: "string",
-            "enum": ["transaction"]
+            "enum": ["transaction"],
         },
-        "outputs": outputs_schema
+        "outputs": outputs_schema,
     },
     "required": [type_key, "outputs"],
 }
@@ -364,7 +364,7 @@ block_schema = {
         type_key: {
             "description": "The type of the block",
             type_key: "string",
-            "enum": ["block"]
+            "enum": ["block"],
         },
         "txids": {
             "description": "The transaction ids of the transactions in the block",
@@ -404,12 +404,3 @@ block_schema = {
     },
     "required": [type_key, "txids", "previd", "nonce", "created", "T"],
 }
-
-
-
-
-
-
-
-
-

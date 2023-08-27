@@ -19,22 +19,9 @@ signature = "1d0d7d774042607c69a87ac5f1cdf92bf474c25fafcc089fe667602bfefb0494726
 
 # Test the verifaction process
 tx_json = {
-    "inputs": [
-        {
-            "outpoint": {
-                "index": 0,
-                "txid": tx_id
-            },
-            "sig": signature
-        }
-    ],
-    "outputs": [
-        {
-            "pubkey": tx.outputs[0][pubkey_key],
-            "value": 10
-        }
-    ],
-    type_key: "transaction"
+    "inputs": [{"outpoint": {"index": 0, "txid": tx_id}, "sig": signature}],
+    "outputs": [{"pubkey": tx.outputs[0][pubkey_key], "value": 10}],
+    type_key: "transaction",
 }
 
 print(Fore.CYAN + str(pubkey == tx.outputs[0][pubkey_key]))

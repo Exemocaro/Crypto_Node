@@ -30,7 +30,6 @@ from database.ObjectHandler import ObjectHandler
 
 
 class CoinbaseTransaction(Object):
-
     def __init__(self, height, outputs):
         self.height = height
         self.outputs = outputs
@@ -41,7 +40,9 @@ class CoinbaseTransaction(Object):
         # this will raise an exception if the json is invalid
         if validate_json:
             try:
-                jsonschema.validate(instance=tx_json, schema=coinbase_transaction_schema)
+                jsonschema.validate(
+                    instance=tx_json, schema=coinbase_transaction_schema
+                )
             except jsonschema.exceptions.ValidationError as e:
                 LogPlus.error(f"| ERROR | invalid coinbase transaction json: {e}")
                 return None
@@ -55,11 +56,7 @@ class CoinbaseTransaction(Object):
 
     def get_json(self):
         # return a json representation of the transaction
-        return {
-            type_key: "transaction",
-            "height": self.height,
-            "outputs": self.outputs
-        }
+        return {type_key: "transaction", "height": self.height, "outputs": self.outputs}
 
     def verify(self):
         # we can only verify them, if they are in a block
@@ -72,8 +69,10 @@ class CoinbaseTransaction(Object):
         # check if the block is invalid
         if ObjectHandler.get_status(block) == "invalid":
             return {"result": "invalid"}
-        
+
         return {"result": "pending", "missing": [], "pending": [block]}
-        
+
     def __str__(self):
-        return "CoinbaseTransaction(height={}, outputs={})".format(self.height, self.outputs)
+        return "CoinbaseTransaction(height={}, outputs={})".format(
+            self.height, self.outputs
+        )

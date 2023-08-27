@@ -1,4 +1,3 @@
-
 # What NodeNetworking does:
 # - Listen on port 18018 for incoming connections
 # - Connect to other nodes
@@ -22,7 +21,6 @@ from config import *
 
 
 class NodeNetworking:
-
     handlers = []
     server = None
     server_thread = None
@@ -30,7 +28,6 @@ class NodeNetworking:
 
     @staticmethod
     def start_server():
-
         NodeNetworking.server = socket()
         NodeNetworking.server.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
         NodeNetworking.server.bind(SERVER_ADDRESS)
@@ -38,10 +35,14 @@ class NodeNetworking:
         print("Server started")
 
         # start a new thread to accept connections
-        NodeNetworking.server_thread = Thread(target=NodeNetworking.accept_connections).start()
+        NodeNetworking.server_thread = Thread(
+            target=NodeNetworking.accept_connections
+        ).start()
 
         # start a new thread to check for received data
-        NodeNetworking.check_received_data_thread = Thread(target=NodeNetworking.check_received_data).start()
+        NodeNetworking.check_received_data_thread = Thread(
+            target=NodeNetworking.check_received_data
+        ).start()
 
         # connect to the known nodes
         for node in KnownNodesHandler.known_nodes:
@@ -49,7 +50,9 @@ class NodeNetworking:
 
         # ask all peers for their chaintip
         NodeNetworking.send_to_all_nodes(MessageGenerator.generate_hello_message())
-        NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getchaintip_message())
+        NodeNetworking.send_to_all_nodes(
+            MessageGenerator.generate_getchaintip_message()
+        )
         # NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getpeers_message())
         NodeNetworking.send_to_all_nodes(MessageGenerator.generate_getmempool_message())
         # Height 17
@@ -68,10 +71,16 @@ class NodeNetworking:
             try:
                 connection, credentials = NodeNetworking.server.accept()
                 LogPlus.info(f"| INFO | New connection from {credentials}")
-                NodeNetworking.handler = NodeNetworking.handle_connection(connection, credentials)
-                KnownNodesHandler.add_node(convert_tuple_to_string(credentials)) # add the credentials into the database
+                NodeNetworking.handler = NodeNetworking.handle_connection(
+                    connection, credentials
+                )
+                KnownNodesHandler.add_node(
+                    convert_tuple_to_string(credentials)
+                )  # add the credentials into the database
                 NodeNetworking.handler.send(MessageGenerator.generate_hello_message())
-                NodeNetworking.handler.send(MessageGenerator.generate_getpeers_message())
+                NodeNetworking.handler.send(
+                    MessageGenerator.generate_getpeers_message()
+                )
             except Exception as e:
                 LogPlus.error(f"| ERROR | NodeNetworking.accept_connections | {e}")
 
@@ -100,15 +109,19 @@ class NodeNetworking:
                     responses = handle_input(data, handler)
                     if responses is None:
                         continue
-                    for (cleaned_credentials, res) in responses:
+                    for cleaned_credentials, res in responses:
                         # if credantials is None, send to all nodes
                         if cleaned_credentials is None:
                             NodeNetworking.send_to_all_nodes(res)
                             continue
                         # if cleanead credentials is a tuple, convert it to a string
                         if type(cleaned_credentials) is tuple:
-                            cleaned_credentials = convert_tuple_to_string(cleaned_credentials)
-                        cleaned_credentials = KnownNodesHandler.clean_credentials(cleaned_credentials)
+                            cleaned_credentials = convert_tuple_to_string(
+                                cleaned_credentials
+                            )
+                        cleaned_credentials = KnownNodesHandler.clean_credentials(
+                            cleaned_credentials
+                        )
                         NodeNetworking.send_to_node(cleaned_credentials, res)
 
     # creating a new connection to the credentials, returning handler
@@ -150,11 +163,10 @@ class NodeNetworking:
 
     @staticmethod
     def copy_utxo(set):
-        """"Takes a set an creates a deep copy of it"""
+        """ "Takes a set an creates a deep copy of it"""
         copy = {}
         for key in set:
             copy[key] = []
             for value in set[key]:
                 copy[key].append(value)
         return copy
-

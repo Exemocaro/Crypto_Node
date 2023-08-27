@@ -1,14 +1,13 @@
-
 from network.NodeNetworking import *
 from database.KnownNodesHandler import *
 
 from config import *
 
-#HOST = "192.168.56.1" # LOCAL
-#HOST = "143.244.205.206"  # MATEUS
-#HOST = "4.231.16.23" # JAN
-#HOST = "128.130.122.101" # bootstrapping node
-HOST = "127.0.0.1" # localhost
+# HOST = "192.168.56.1" # LOCAL
+# HOST = "143.244.205.206"  # MATEUS
+# HOST = "4.231.16.23" # JAN
+# HOST = "128.130.122.101" # bootstrapping node
+HOST = "127.0.0.1"  # localhost
 
 host = HOST
 port = PORT
@@ -26,7 +25,9 @@ def main():
 
     node_networking.connect_to_node(HOST + ":" + str(PORT))
 
-    message = json.dumps({type_key: hello_key, version_key: "0.8.0", agent_key: "New Test Client"})
+    message = json.dumps(
+        {type_key: hello_key, version_key: "0.8.0", agent_key: "New Test Client"}
+    )
     node_networking.send_to_node(HOST + ":" + str(PORT), message)
 
 

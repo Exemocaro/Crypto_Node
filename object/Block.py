@@ -28,8 +28,8 @@ from network.NodeNetworking import *
 from utility.Exceptions import ValidationException, MissingDataException
 from utility.TimeTracker import TimeTracker
 
-class Block:
 
+class Block:
     def __init__(self, txids, nonce, miner, note, previd, created, t):
         self.txids = txids
         self.nonce = nonce
@@ -48,7 +48,7 @@ class Block:
             "note": self.note,
             "previd": self.previd,
             "created": self.created,
-            "T": self.t
+            "T": self.t,
         }
         return block_json
 
@@ -57,13 +57,13 @@ class Block:
         canonical_block_json = canonicalize(block_json)
         blockid = hashlib.sha256(canonical_block_json).hexdigest()
         return blockid
-    
+
     def get_type(self):
-        return "block" 
+        return "block"
 
     @staticmethod
     def from_json(block_json, validate_json=True):
-        #jsonschema.validate(block_json, block_schema)
+        # jsonschema.validate(block_json, block_schema)
         TimeTracker.start("Block.from_json")
         if validate_json:
             try:
@@ -80,7 +80,7 @@ class Block:
             block_json[note_key],
             block_json[previd_key],
             block_json[created_key],
-            block_json[T_key]
+            block_json[T_key],
         )
         TimeTracker.checkpoint("Block.from_json", "block created")
         TimeTracker.end("Block.from_json")
@@ -111,7 +111,7 @@ class Block:
             TimeTracker.checkpoint("Block.verify", "verify_proof_of_work")
             self.check_note_and_miner_text()
             TimeTracker.checkpoint("Block.verify", "check_note_and_miner_text")
-            # from check_previous_block we get a json containing a list of missing objects and 
+            # from check_previous_block we get a json containing a list of missing objects and
             prev_block_status = self.check_previous_block()
             TimeTracker.checkpoint("Block.verify", "check_previous_block")
             if prev_block_status == "missing":
@@ -120,7 +120,9 @@ class Block:
                 pending_prev.append(self.previd)
             elif prev_block_status == "invalid":
                 raise ValidationException("Invalid previous block")
-            TimeTracker.checkpoint("Block.verify", "check_previous_block result handled")
+            TimeTracker.checkpoint(
+                "Block.verify", "check_previous_block result handled"
+            )
             missing_data += self.check_transactions_weak()
             TimeTracker.checkpoint("Block.verify", "check_transactions_weak")
             # Log the height
@@ -139,8 +141,12 @@ class Block:
 
         if len(missing_data) != 0 or len(pending_prev) != 0:
             TimeTracker.end("Block.verify")
-            return {"result": "pending", "missing": missing_data, "pending": pending_prev}
-        
+            return {
+                "result": "pending",
+                "missing": missing_data,
+                "pending": pending_prev,
+            }
+
         TimeTracker.checkpoint("Block.verify", "part 1", True)
 
         # Second part of verification
@@ -170,46 +176,56 @@ class Block:
             LogPlus.error(f"| ERROR | Block.verify | B | Exception: {e}")
             TimeTracker.end("Block.verify")
             TimeTracker.end("Block.verify")
-            return {"result": "invalid"} 
-        
+            return {"result": "invalid"}
+
         TimeTracker.end("Block.verify")
-        return { "result": "valid" }
+        return {"result": "valid"}
 
     def verify_proof_of_work(self):
-        """ Check that the target is the one required and that the proof-of-work is valid.
+        """Check that the target is the one required and that the proof-of-work is valid.
         Raise ValidationException if not valid."""
         # Ensure the target is the one required
         if self.t != TARGET:
-            LogPlus.info("| INFO | Block.verify_proof_of_work | Target is not the one required")
+            LogPlus.info(
+                "| INFO | Block.verify_proof_of_work | Target is not the one required"
+            )
             raise ValidationException("Target is not the one required")
-        
+
         # Check the proof-of-work: blockid < target
         blockid = self.get_id()
         if int(blockid, 16) >= TARGET_INT:
-            LogPlus.info("| INFO | Block.verify_proof_of_work | Proof-of-work is not valid")
+            LogPlus.info(
+                "| INFO | Block.verify_proof_of_work | Proof-of-work is not valid"
+            )
             raise ValidationException("Proof-of-work is not valid")
-
 
     def check_previous_block(self):
         """Check for previous block.
         Returning "valid", "pending" or "missing" depending on the status of the previous block.
-        Raises ValidationException if the previous block is invalid. """
+        Raises ValidationException if the previous block is invalid."""
 
         # check if its valid, pending or invalid
         if ObjectHandler.get_status(self.previd) == "invalid":
-            LogPlus.info("| INFO | Block.check_previous_block | Previous block is invalid")
+            LogPlus.info(
+                "| INFO | Block.check_previous_block | Previous block is invalid"
+            )
             raise ValidationException("Previous block is invalid")
         elif ObjectHandler.get_status(self.previd) == "pending":
-            LogPlus.info("| INFO | Block.check_previous_block | Previous block is pending")
+            LogPlus.info(
+                "| INFO | Block.check_previous_block | Previous block is pending"
+            )
             return "pending"
         elif ObjectHandler.get_status(self.previd) == "valid":
-            LogPlus.info("| INFO | Block.check_previous_block | Previous block is valid")
+            LogPlus.info(
+                "| INFO | Block.check_previous_block | Previous block is valid"
+            )
             return "valid"
         else:
-            LogPlus.info("| INFO | Block.check_previous_block | Previous block is not found")
+            LogPlus.info(
+                "| INFO | Block.check_previous_block | Previous block is not found"
+            )
             return "missing"
 
-    
     def check_transactions_weak(self):
         """Check if all included transactions are known and valid
         If unknown, return the ids of the transactions to be missing
@@ -223,13 +239,15 @@ class Block:
                 # Actual validity check is done in the next step
                 # This is just to check if the transaction is known and invalid
                 # It could be valid here, but invalid in the next step when it is checked against the UTXO set
-                raise ValidationException(f"Included transaction with id {txid} is invalid")
+                raise ValidationException(
+                    f"Included transaction with id {txid} is invalid"
+                )
 
         return missing_data
 
     def check_coinbase_transaction(self):
-        """ Check if the first transaction is a coinbase transaction
-        Raises ValidationException if not """
+        """Check if the first transaction is a coinbase transaction
+        Raises ValidationException if not"""
         if len(self.txids) == 0:
             raise ValidationException("No transactions in block")
         first_txid = self.txids[0]
@@ -237,17 +255,21 @@ class Block:
         try:
             jsonschema.validate(first_tx_json, coinbase_transaction_schema)
         except jsonschema.exceptions.ValidationError as e:
-            raise ValidationException(f"First transaction is not a coinbase transaction")
+            raise ValidationException(
+                f"First transaction is not a coinbase transaction"
+            )
 
     def check_height(self):
-        """ Check if the height is correct
+        """Check if the height is correct
         Raises ValidationException if not"""
         # Check if prev block is the genesis block
         height = self.get_height()
 
-        if height == 1: # This means that the previous block is the genesis block
+        if height == 1:  # This means that the previous block is the genesis block
             if self.previd != GENESIS_BLOCK_ID:
-                raise ValidationException("The previous block is not the genesis block, but height is 1")
+                raise ValidationException(
+                    "The previous block is not the genesis block, but height is 1"
+                )
             return
 
         # Check if the height is correct
@@ -259,20 +281,24 @@ class Block:
             raise ValidationException("The height is not correct")
 
     def check_created_timestamp(self):
-        """ Check if the created timestamp is correct
+        """Check if the created timestamp is correct
         Raises ValidationException if not"""
-        
+
         # Check if it's after now
         if self.created > time.time():
             raise ValidationException("The created timestamp is in the future")
 
         # Check if it's before the previous block
         prev_block_json = ObjectHandler.get_object(self.previd)
-        if self.created < prev_block_json[created_key]: # TODO: Check if < or <= is correct
-            raise ValidationException("The created timestamp is before the previous block")
+        if (
+            self.created < prev_block_json[created_key]
+        ):  # TODO: Check if < or <= is correct
+            raise ValidationException(
+                "The created timestamp is before the previous block"
+            )
 
     def check_transactions_strong(self):
-        """ Check if all transactions are valid
+        """Check if all transactions are valid
         This is done by checking the UTXO set
         Raises ValidationException if not valid"""
         try:
@@ -283,9 +309,8 @@ class Block:
         except TransactionsInvalidException as e:
             raise ValidationException(f"Transactions are not valid: {e}")
 
-        
     def check_fees(self):
-        """ Check if coinbase vale is correct
+        """Check if coinbase vale is correct
         tx fees + block reward >= coinbase transaction value
         Raises ValidationException if not valid"""
         # sum up tx fees
@@ -301,19 +326,25 @@ class Block:
 
         # tx fees + block reward >= coinbase transaction value
         if tx_fees + BLOCK_REWARD < coinbase_tx_value:
-            LogPlus.info(f"| INFO | Block.verify | The coinbase transaction value is not valid")
+            LogPlus.info(
+                f"| INFO | Block.verify | The coinbase transaction value is not valid"
+            )
             raise ValidationException("The coinbase transaction value is not valid")
 
     def check_note_and_miner_text(self):
-        """Ensure that the note and miner fields in a block are ASCII-printable strings up to 128 characters long each. 
+        """Ensure that the note and miner fields in a block are ASCII-printable strings up to 128 characters long each.
         ASCII printable characters are those with decimal values 32 up to 126."""
         if not self.note.isascii() or not self.miner.isascii():
-            raise ValidationException("The note or miner fields are not ASCII printable")
+            raise ValidationException(
+                "The note or miner fields are not ASCII printable"
+            )
         if len(self.note) > 128 or len(self.miner) > 128:
-            raise ValidationException("The note or miner fields are longer than 128 characters")
+            raise ValidationException(
+                "The note or miner fields are longer than 128 characters"
+            )
 
     def get_height(self):
-        """ Get the height of the block
+        """Get the height of the block
         Returns -1 if the block is coinbase transaction is not found"""
         try:
             coinbase_txid = self.txids[0]

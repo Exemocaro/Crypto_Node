@@ -1,4 +1,3 @@
-
 # CONVERT TUPLE, STRING AND IP / PORT BACK AND FORTH
 def convert_tuple_to_string(credentials_tuple):
     return str(credentials_tuple[0]) + ":" + str(credentials_tuple[1])
@@ -18,6 +17,7 @@ def get_ip(credentials_string):
 
 
 # VALIDATING THE FORMAT OF THE CREDENTIALS
+
 
 # checking if the credentials are valid
 def is_credentials_format(credentials):

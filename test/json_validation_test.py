@@ -11,16 +11,13 @@ message_schema = {
         "type": {
             "description": "The type of the message",
             "type": "string",
-            "enum": ["hello", "ciao"]
+            "enum": ["hello", "ciao"],
         }
     },
     "required": ["type"],
 }
 
-message = {
-    "type": "hello",
-    "some_other_key": "some_other_value"
-}
+message = {"type": "hello", "some_other_key": "some_other_value"}
 
 try:
     jsonschema.validate(message, message_schema)
@@ -28,10 +25,7 @@ try:
 except jsonschema.exceptions.ValidationError as e:
     print(e)
 
-message2 = {
-    "type": "ciao bella",
-    "some_other_key": "some_other_value"
-}
+message2 = {"type": "ciao bella", "some_other_key": "some_other_value"}
 
 try:
     jsonschema.validate(message2, message_schema)
