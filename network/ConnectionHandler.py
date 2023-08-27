@@ -17,7 +17,6 @@ from engine.MessageGenerator import MessageGenerator
 
 
 class ConnectionHandler:
-
     def __init__(self, connection=None, credentials=None):
         self.connection = connection
         # if str, make tuple
@@ -39,7 +38,9 @@ class ConnectionHandler:
         try:
             self.connection.connect(self.credentials)
         except Exception as e:
-            LogPlus.error(f"| ERROR | ConnectionHandler.start_connection | Could not connect to {self.credentials}, {e}")
+            LogPlus.error(
+                f"| ERROR | ConnectionHandler.start_connection | Could not connect to {self.credentials}, {e}"
+            )
             return False
 
         self.is_open = True
@@ -70,18 +71,20 @@ class ConnectionHandler:
             # this will happen when there is no data to receive (so almost every time)
             return
 
-        if incoming_data not in [None, b'']:
+        if incoming_data not in [None, b""]:
             self.in_buffer += incoming_data
 
-        if b'\n' in self.in_buffer:
+        if b"\n" in self.in_buffer:
             # split buffer into messages
-            messages = self.in_buffer.split(b'\n')
+            messages = self.in_buffer.split(b"\n")
             # put all messages except the last one in the queue
-            for message in messages[:-1]:                
+            for message in messages[:-1]:
                 self.message_count += 1
                 self.in_queue.put(message)
 
-                LogPlus.info(f"| INFO | Received message {message} from {self.credentials}. Added to queue.")
+                LogPlus.info(
+                    f"| INFO | Received message {message} from {self.credentials}. Added to queue."
+                )
             # put the last message in the buffer
             self.in_buffer = messages[-1]
 
@@ -94,11 +97,15 @@ class ConnectionHandler:
         try:
             # make sure the message is byte-like object
             if not isinstance(message, bytes):
-                LogPlus.warning(f"| WARNING | Message {message} is not byte-like object. Encoding to bytes.")
+                LogPlus.warning(
+                    f"| WARNING | Message {message} is not byte-like object. Encoding to bytes."
+                )
                 message = str(message).encode()
             self.connection.sendall(message)
         except Exception as e:
-            LogPlus.error(f"| ERROR | Could not send message {message} to {self.credentials}: {e}")
+            LogPlus.error(
+                f"| ERROR | Could not send message {message} to {self.credentials}: {e}"
+            )
             self.is_open = False
             return False
         return True

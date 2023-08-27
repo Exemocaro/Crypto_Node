@@ -45,13 +45,11 @@ from utility.Exceptions import ValidationException
 
 
 class Transaction(Object):
-
     TYPE = "transaction"
 
     def __init__(self, inputs, outputs):
         self.inputs = inputs
         self.outputs = outputs
-
 
     # create a transaction from a json representation
     @staticmethod
@@ -67,7 +65,7 @@ class Transaction(Object):
         tx_inputs = tx_json[inputs_key]
         tx_outputs = tx_json[outputs_key]
         return Transaction(tx_inputs, tx_outputs)
-    
+
     def get_type(self):
         return Transaction.TYPE
 
@@ -77,7 +75,7 @@ class Transaction(Object):
             tx_json = {
                 type_key: "transaction",
                 "inputs": self.inputs,
-                "outputs": self.outputs
+                "outputs": self.outputs,
             }
             return tx_json
         except Exception as e:
@@ -108,7 +106,9 @@ class Transaction(Object):
                 txid = outpoint[txid_key]
                 tx = ObjectHandler.get_object(txid)
                 if tx is None:
-                    LogPlus.warning("| WARNING | Transaction.verify | input txid does not exist | {txid[:10]}... in {self.get_id()[:10]}...")
+                    LogPlus.warning(
+                        "| WARNING | Transaction.verify | input txid does not exist | {txid[:10]}... in {self.get_id()[:10]}..."
+                    )
                     return {"result": "pending", "missing": [txid], "pending": []}
 
                 # Check that the index is valid
@@ -137,14 +137,17 @@ class Transaction(Object):
 
             return {"result": "valid"}
         except ValidationException as e:
-            LogPlus.warning(f"| WARNING | Transaction.verify | {self.get_id()[:10]}... | {e}")
+            LogPlus.warning(
+                f"| WARNING | Transaction.verify | {self.get_id()[:10]}... | {e}"
+            )
             return {"result": "invalid"}
         except Exception as e:
-            LogPlus.error(f"| ERROR | Transaction.verify | {self.get_id()[:10]}... | {e}")
+            LogPlus.error(
+                f"| ERROR | Transaction.verify | {self.get_id()[:10]}... | {e}"
+            )
             return {"result": "invalid"}
 
     def get_fee(self):
-
         try:
             # calculate the fee of the transaction
             sum_input = 0
@@ -158,7 +161,6 @@ class Transaction(Object):
                 output = tx[outputs_key][index]
                 sum_input += output[value_key]
 
-
             for output in self.outputs:
                 sum_output += output[value_key]
 
@@ -169,7 +171,7 @@ class Transaction(Object):
             return 0
 
     def verify_values(self):
-        """ Check if the sum of the inputs is equal to the sum of the outputs. 
+        """Check if the sum of the inputs is equal to the sum of the outputs.
         Output can be equal or smaller than input"""
         if self.get_fee() < 0:
             raise ValidationException(f"Sum of inputs is smaller than sum of outputs")
@@ -184,11 +186,13 @@ class Transaction(Object):
             combined = sig_bytes + tx_bytes
             VerifyKey(pubkey_bytes).verify(combined)
         except Exception:
-            LogPlus.warning(f"| WARNING | Transaction.verify_signature | Invalid signature: {sig[:10]}... | {self.get_id()[:10]}...")
+            LogPlus.warning(
+                f"| WARNING | Transaction.verify_signature | Invalid signature: {sig[:10]}... | {self.get_id()[:10]}..."
+            )
             raise ValidationException(f"Invalid signature: {sig}")
 
     def verify_no_duplicate_inputs(self):
-        """ Check if the transaction contains any input twice """
+        """Check if the transaction contains any input twice"""
         # create a set of the inputs
         input_set = set()
         for input in self.inputs:
@@ -199,8 +203,8 @@ class Transaction(Object):
 
     @staticmethod
     def verify_pubkey_format(pubkey):
-        """ verify the format of the public key
-        should be 64 hex characters """
+        """verify the format of the public key
+        should be 64 hex characters"""
         try:
             if len(pubkey) != 64:
                 return False
@@ -208,8 +212,5 @@ class Transaction(Object):
         except Exception:
             raise ValidationException(f"Invalid pubkey format: {pubkey}")
 
-
     def __str__(self):
         return f"Transaction(inputs={self.inputs}, outputs={self.outputs})"
-
-

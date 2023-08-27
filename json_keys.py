@@ -1,4 +1,3 @@
-
 type_key = "type"
 
 # MESSAGE TYPES
@@ -31,7 +30,7 @@ message_keys = [
     getchaintip_key,
     mempool_key,
     getmempool_key,
-    error_key
+    error_key,
 ]
 
 # HELLO MESSAGE

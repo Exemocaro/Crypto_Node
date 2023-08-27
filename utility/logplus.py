@@ -7,7 +7,6 @@ from config import *
 
 
 class LogPlus:
-
     @staticmethod
     def debug(message):
         if len(message) > LOG_LIMIT:
@@ -20,8 +19,8 @@ class LogPlus:
     def info(message):
         if len(message) > LOG_LIMIT:
             message = message[0:LOG_LIMIT]
-        #logging.info(message)
-        #print(message)
+        # logging.info(message)
+        # print(message)
         pass
 
     @staticmethod
@@ -54,10 +53,10 @@ class LogPlus:
     @staticmethod
     def timer(message):
         if len(message) > LOG_LIMIT:
-            #logging.info(message[0:LOG_LIMIT])
-            #print(Fore.CYAN + message[0:LOG_LIMIT] + Style.RESET_ALL)
+            # logging.info(message[0:LOG_LIMIT])
+            # print(Fore.CYAN + message[0:LOG_LIMIT] + Style.RESET_ALL)
             pass
         else:
             pass
-            #logging.info(message)
-            #print(Fore.CYAN + message + Style.RESET_ALL)
+            # logging.info(message)
+            # print(Fore.CYAN + message + Style.RESET_ALL)
